@@ -7,6 +7,7 @@ interface Props {
   pictureCaption: string,
   pictureURL: string,
   onClickBuy: () => void,
+  //onClickPost:() => void,
 }
 
 export default function ProductCard(props: Props) {
@@ -24,9 +25,9 @@ export default function ProductCard(props: Props) {
       </div>
 
       <div style={{textAlign: 'center', marginBottom: 8}}>
-        <strong>{props.price} Test-π</strong> <br />
-        <button onClick={props.onClickBuy}>Order</button>
-      </div>
+        <strong>{props.price}π</strong> <br />
+        <button onClick={props.onClickBuy}>Join community</button>
+      </div> 
 
       <span style={{fontSize: '0.6em'}}>{props.pictureCaption}</span>
     </div>

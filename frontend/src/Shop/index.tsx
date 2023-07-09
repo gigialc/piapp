@@ -81,6 +81,7 @@ export default function Shop() {
   const onModalClose = () => {
     setShowModal(false);
   }
+ 
 
   const orderProduct = async (memo: string, amount: number, paymentMetadata: MyPaymentMetadata) => {
     if(user === null) {
@@ -110,6 +111,7 @@ export default function Shop() {
   const onReadyForServerCompletion = (paymentId: string, txid: string) => {
     console.log("onReadyForServerCompletion", paymentId, txid);
     axiosClient.post('/payments/complete', {paymentId, txid}, config);
+   
   }
 
   const onCancel = (paymentId: string) => {
@@ -130,23 +132,34 @@ export default function Shop() {
       <Header user={user} onSignIn={signIn} onSignOut={signOut}/>
 
       <ProductCard
-        name="Apple Pie"
-        description="You know what this is. Pie. Apples. Apple pie."
-        price={3}
-        pictureURL="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Apple_pie.jpg/1280px-Apple_pie.jpg"
-        pictureCaption="Picture by Dan Parsons - https://www.flickr.com/photos/dan90266/42759561/, CC BY-SA 2.0, https://commons.wikimedia.org/w/index.php?curid=323125"
-        onClickBuy={() => orderProduct("Order Apple Pie", 3, { productId: 'apple_pie_1' })}
+        name="Abortion Rights"
+        description=" The new abortion laws in the United States are a great example of why abortion stigma is a big issue that has to be tackled. This community supports and openly talks about abortion to empower each other and educate the rest of the world."
+        price={1}
+        pictureURL="https://static.vecteezy.com/system/resources/previews/009/730/589/non_2x/women-with-banners-my-body-my-choice-my-right-vector.jpg"
+        pictureCaption="https://static.vecteezy.com/system/resources/previews/009/730/589/non_2x/women-with-banners-my-body-my-choice-my-right-vector.jpg"
+        onClickBuy={() => orderProduct("Pay to enter community", 1, { productId: 'Abortion Rights' })}
       />
       <ProductCard
-        name="Lemon Meringue Pie"
-        description="Non-contractual picture. We might have used oranges because we had no lemons. Order at your own risk."
-        price={5}
-        pictureURL="https://live.staticflickr.com/1156/5134246283_f2686ff8a8_b.jpg"
-        pictureCaption="Picture by Sistak - https://www.flickr.com/photos/94801434@N00/5134246283, CC BY-SA 2.0"
-        onClickBuy={() => orderProduct("Order Lemon Meringue Pie", 5, { productId: 'lemon_pie_1' })}
+        name="Mental Health"
+        description="Talking opnely about mental health creates a culture of understanding. By starting conversations about mental health, we can create a more inclusive and compassionate society where people feel comfortable seeking help and support when they need it."
+        price={1}
+        pictureURL="https://www.planstreetinc.com/wp-content/uploads/2021/07/what-is-mental-health.png"
+        pictureCaption="ttps://www.planstreetinc.com/wp-content/uploads/2021/07/what-is-mental-health.png"
+        onClickBuy={() => orderProduct("Pay to enter community", 1, { productId: 'Mental Health' })}
+      />
+      <ProductCard
+        name="Period Stigma"
+        description="Periods are beautiful and normal, they should be celebrated and not hidden. This community aims to normalize talking about periods to ensure that menstruators are healthy and comfortable in their bodies. 
+        "
+        price={1}
+        pictureURL="https://www.healthywomen.org/media-library/image.jpg?id=27287943&width=1200&height=800&quality=85&coordinates=0%2C169%2C0%2C0"
+        pictureCaption="https://www.healthywomen.org/media-library/image.jpg?id=27287943&width=1200&height=800&quality=85&coordinates=0%2C169%2C0%2C0"
+        onClickBuy={() => orderProduct("Pay to enter community", 1, { productId: 'Period Stigma' })}
       />
 
-      { showModal && <SignIn onSignIn={signIn} onModalClose={onModalClose} /> }
+      { showModal && <SignIn onSignIn={signIn} onModalClose={onModalClose} onPosts={function (): void {
+        throw new Error('Function not implemented.');
+      } } /> }
     </>
   );
 }

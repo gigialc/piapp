@@ -47,6 +47,7 @@ export default function mountPaymentsEndpoints(router: Router) {
 
   // approve the current payment
   router.post('/approve', async (req, res) => {
+    console.log(req.session.currentUser);
     if (!req.session.currentUser) {
       return res.status(401).json({ error: 'unauthorized', message: "User needs to sign in first" });
     }
@@ -54,7 +55,9 @@ export default function mountPaymentsEndpoints(router: Router) {
     const app = req.app;
 
     const paymentId = req.body.paymentId;
+    console.log("buy"); 
     const currentPayment = await platformAPIClient.get(`/v2/payments/${paymentId}`);
+    console.log("high"); 
     const orderCollection = app.locals.orderCollection;
 
     /* 
@@ -100,9 +103,12 @@ export default function mountPaymentsEndpoints(router: Router) {
   // handle the cancelled payment
   router.post('/cancelled_payment', async (req, res) => {
     const app = req.app;
+    
 
     const paymentId = req.body.paymentId;
     const orderCollection = app.locals.orderCollection;
+    console.log(app,paymentId,orderCollection);
+    
 
     /*
       implement your logic here
