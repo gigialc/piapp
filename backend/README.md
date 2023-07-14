@@ -66,22 +66,22 @@ Additionally, you can specify MongoDB name env variable, which if not specified 
 Start a MongoDB server using the following command:
 
 ```
-docker run --name demoapp-mongo -d \
-  -e MONGO_INITDB_ROOT_USERNAME=demoapp -e MONGO_INITDB_ROOT_PASSWORD=dev_password \
+docker run --name destigfemme-mongo -d \
+  -e MONGO_INITDB_ROOT_USERNAME=destigfemme -e MONGO_INITDB_ROOT_PASSWORD=dev_password \
   -p 27017:27017 mongo:5.0
 ```
 
 Down the road, you can use the following commands to stop and start your mongo container:
 
 ```
-docker stop demoapp-mongo
-docker start demoapp-mongo
+docker stop destigfemme-mongo
+docker start destigfemme-mongo
 ```
 
 To reinitialize everything (and **drop all the data**) you can run the following command:
 
 ```
-docker kill demoapp-mongo; docker rm demoapp-mongo
+docker kill destigfemme-mongo; docker rm destigfemme-mongo
 ```
 
 Then, recreate the container using the `docker run` command above.
@@ -94,11 +94,15 @@ Install MongoDB Community following the
 
 Run the server and create a database and a user:
 
-Open a Mongo shell by running `mongosh`, then paste the following JS code into it:
+- Run the server by running `mongod` command. 
+
+Open a new termianl to create a new database and running 
+
+- Open a Mongo shell by running `mongosh`, then paste the following JS code into it:
 
 ```javascript
-var MONGODB_DATABASE_NAME = "demoapp-development"
-var MONGODB_USERNAME = "demoapp"
+var MONGODB_DATABASE_NAME = "destigfemme-development"
+var MONGODB_USERNAME = "destigfemme"
 var MONGODB_PASSWORD = "dev_password"
 
 db.getSiblingDB("admin").createUser(

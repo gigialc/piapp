@@ -1,7 +1,6 @@
 # Pi Platform Demo App: Development Environment
 
-The following document explains how to set up a development environment and run the Pi Platform Demo App in the
-sandbox environment.
+The following document explains how to set up a development environment and run the Pi Platform Demo App in the sandbox environment.
 
 ## Prerequisites:
 
@@ -47,7 +46,7 @@ This will bring you to the App Dashboard, from this screen you can continue the 
   - Step 3: Create a Pi Wallet, see this [Pi Wallet Introduction](https://pi-apps.github.io/community-developer-guide/docs/importantTopics/paymentFlow/piWallet/) for more information
   - Step 4: Review this documentation and our [Community Developer Guide](https://pi-apps.github.io/community-developer-guide/) for help getting setup
   - Step 5: Configure App Development URL: the URL on which your app is running on your development environment. If your using the default
-    setup for the demo app frontend, this is "http://localhost:3314. **Note:** If you need, you can change the port by specifying it in
+    setup for the demo app frontend, this is "http://localhost:3333. **Note:** If you need, you can change the port by specifying it in
     `frontend/.env` file, as the value of the `PORT` environment variable.
  
  <img title="Developer Portal App Checklist" alt="App Checklist" src="./img/app_checklist.png" style="width:300px;height:1100px;" />
