@@ -3,6 +3,7 @@ import axios from 'axios';
 import ProductCard from './components/ProductCard';
 import SignIn from './components/SignIn';
 import Header from './components/Header';
+import NavigationBar from './components/NavigationBar'; 
 
 type MyPaymentMetadata = {};
 
@@ -23,6 +24,7 @@ interface PaymentDTO {
   identifier: string,
   metadata: Object,
   memo: string,
+  
   status: {
     developer_approved: boolean,
     transaction_verified: boolean,
@@ -157,9 +159,16 @@ export default function Shop() {
         onClickBuy={() => orderProduct("Pay to enter community", 1, { productId: 'Period Stigma' })}
       />
 
-      { showModal && <SignIn onSignIn={signIn} onModalClose={onModalClose} onPosts={function (): void {
+      { showModal && 
+      
+      <SignIn onSignIn={signIn} 
+      onModalClose={onModalClose} 
+      onPosts={function (): void {
         throw new Error('Function not implemented.');
-      } } /> }
+      } } /> 
+      }
+      <NavigationBar />
+
     </>
   );
 }

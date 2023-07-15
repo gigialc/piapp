@@ -23,26 +23,18 @@ const headerStyle: CSSProperties = {
 export default function Header(props: Props) {
   return (
     <header style={headerStyle}>
-      <div style={{ fontWeight: "bold" }}>Communities</div>
-
-
-      {/* <div> 
-             <button type="button" onClick={onPosts}>News</button>
-          </div>
-      <div>
-             <button type="button" onClick={onChat}>Quiz</button>
-          </div>*/}
-
+      <div style={{  color: "black", fontSize: 20}}>Communities</div>
+     
       <div>
 
-      
         {props.user === null ? (
-          <button onClick={props.onSignIn}>Sign in</button>
+          <button style={{borderRadius: "30px"}} onClick={props.onSignIn}>Sign in</button>
         ) : (
           <div>
             @{props.user.username} <button type="button" onClick={props.onSignOut}>Sign out</button>
           </div>
         )}
+        
       </div>
     
     </header>

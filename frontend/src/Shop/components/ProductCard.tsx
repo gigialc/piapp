@@ -7,7 +7,7 @@ interface Props {
   pictureCaption: string,
   pictureURL: string,
   onClickBuy: () => void,
-  onClickPost:() => void,
+  //onClickPost:() => void,
 }
 
 export default function ProductCard(props: Props) {
