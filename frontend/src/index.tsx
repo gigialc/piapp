@@ -6,7 +6,7 @@ import Shop from './Shop';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Shop />
+    <Shop/>
   </React.StrictMode>,
   document.getElementById('root')
 );

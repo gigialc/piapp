@@ -12,7 +12,7 @@ interface Props {
 
 export default function ProductCard(props: Props) {
   return (
-    <div style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid pink'}}>
+    <div style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid pink', marginBottom: '60px'}}>
       <div style={{ display: 'flex', flexDirection: 'row' }}>
         <div style={{ width: "33%", marginRight: 8 }}>
           <img style={{ width: "100%" }} src={props.pictureURL} alt={props.name} />

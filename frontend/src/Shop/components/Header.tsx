@@ -34,18 +34,13 @@ export default function Header(props: Props) {
             @{props.user.username} <button type="button" onClick={props.onSignOut}>Sign out</button>
           </div>
         )}
-        
+
       </div>
     
     </header>
   );
   
-  function onPosts() {
-    window.open("./public/quiz.html", "_blank");
-  }
-  function onChat() {
-    window.open("./public/quiz.html", "_blank");
-  }
+  
 
 }
 

@@ -3,7 +3,8 @@ import axios from 'axios';
 import ProductCard from './components/ProductCard';
 import SignIn from './components/SignIn';
 import Header from './components/Header';
-import NavigationBar from './components/NavigationBar'; 
+import { MuiBottomNavigation } from './components/MuiBottomNavigation';
+
 
 type MyPaymentMetadata = {};
 
@@ -24,7 +25,7 @@ interface PaymentDTO {
   identifier: string,
   metadata: Object,
   memo: string,
-  
+
   status: {
     developer_approved: boolean,
     transaction_verified: boolean,
@@ -132,7 +133,7 @@ export default function Shop() {
   return (
     <>
       <Header user={user} onSignIn={signIn} onSignOut={signOut}/>
-
+      
       <ProductCard
         name="Abortion Rights"
         description=" The new abortion laws in the United States are a great example of why abortion stigma is a big issue that has to be tackled. This community supports and openly talks about abortion to empower each other and educate the rest of the world."
@@ -167,8 +168,9 @@ export default function Shop() {
         throw new Error('Function not implemented.');
       } } /> 
       }
-      <NavigationBar />
-
+      <MuiBottomNavigation/>
     </>
+   
   );
+  
 }
