@@ -7,12 +7,12 @@ interface Props {
   pictureCaption: string,
   pictureURL: string,
   onClickBuy: () => void,
-  //onClickPost:() => void,
+  onClickPost:() => void,
 }
 
 export default function ProductCard(props: Props) {
   return (
-    <div style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid gray' }}>
+    <div style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid pink'}}>
       <div style={{ display: 'flex', flexDirection: 'row' }}>
         <div style={{ width: "33%", marginRight: 8 }}>
           <img style={{ width: "100%" }} src={props.pictureURL} alt={props.name} />
@@ -26,7 +26,7 @@ export default function ProductCard(props: Props) {
 
       <div style={{textAlign: 'center', marginBottom: 8}}>
         <strong>{props.price}π</strong> <br />
-        <button onClick={props.onClickBuy}>Join community</button>
+        <button style={{ backgroundColor: "pink",  borderRadius: "30px", paddingLeft: "3%", paddingRight: "3%"}} onClick={props.onClickBuy}> Join </button>
       </div> 
 
       <span style={{fontSize: '0.6em'}}>{props.pictureCaption}</span>

@@ -26,12 +26,13 @@ export default function Header(props: Props) {
       <div style={{ fontWeight: "bold" }}>Communities</div>
 
 
-      <div>
+      {/* <div> 
              <button type="button" onClick={onPosts}>News</button>
           </div>
       <div>
              <button type="button" onClick={onChat}>Quiz</button>
-          </div>
+          </div>*/}
+
       <div>
 
       
