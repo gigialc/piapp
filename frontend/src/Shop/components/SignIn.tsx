@@ -8,13 +8,13 @@ interface Props {
 }
 
 const modalStyle: CSSProperties = {
-  background: 'red', 
+  background: 'white', 
   position: 'absolute', 
   left: '15vw', 
   top: '40%', 
   width: '70vw', 
   height: '25vh', 
-  border: '1px solid red', 
+  border: '1px solid pink', 
   textAlign: 'center', 
   display: 'flex', 
   flexDirection: 'column', 

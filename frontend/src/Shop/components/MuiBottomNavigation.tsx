@@ -1,25 +1,42 @@
-import React from "react";
+
 import {BottomNavigation, BottomNavigationAction} from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
 import AddIcon from '@mui/icons-material/Add';
-import { useState } from "react";
+import React, { useState } from "react";
+import { BrowserRouter as Router, useNavigate } from 'react-router-dom';
 
-export const MuiBottomNavigation = () => {
-  const  [value, setValue] = useState(0)
+
+const MuiBottomNavigation: React.FC = () => {
+  const [bnValue, setBNValue] = useState(0);
+  const navigate = useNavigate();
+
   return (
-    <BottomNavigation sx={{ width: "100%", position: "fixed", bottom: 0 }} 
-        value = {value} 
-        onChange = {(event, newValue) => {
-        setValue(newValue);
-        }}
-        showLabels
-        >
-      <BottomNavigationAction label="Profile" icon={<PersonIcon />} />
-      <BottomNavigationAction label="Home" icon={<HomeIcon />} />
-      <BottomNavigationAction label="Add" icon={<AddIcon />} />
-
-  </BottomNavigation>
-
-  )
+    <BottomNavigation
+      sx={{ width: "100%", position: "fixed", bottom: 0 }}
+      value={bnValue}
+      onChange={(event, value) => setBNValue(value)}
+    >
+      <BottomNavigationAction
+        label="Profile"
+        icon={<PersonIcon />}
+        value={bnValue}
+        onClick={() => navigate("/Profile")}
+      />
+      <BottomNavigationAction
+        label="Home"
+        icon={<HomeIcon />}
+        value={bnValue}
+        onClick={() => navigate("../index")}
+      />
+      <BottomNavigationAction
+        label="Add"
+        icon={<AddIcon />}
+        value={bnValue}
+        onClick={() => navigate("/Add")}
+      />
+    </BottomNavigation>
+  );
 };
+
+export default MuiBottomNavigation;
