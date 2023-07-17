@@ -3,10 +3,7 @@ import axios from 'axios';
 import ProductCard from './components/ProductCard';
 import SignIn from './components/SignIn';
 import Header from './components/Header';
-import MuiBottomNavigation from './components/MuiBottomNavigation';
-import { Route, Routes } from 'react-router';
-import Add from './components/Add';
-import Profile from './components/Profile';
+import MuiBottomNavigation from '../MuiBottomNavigation';
 
 type MyPaymentMetadata = {};
 
@@ -170,16 +167,9 @@ export default function Shop() {
         throw new Error('Function not implemented.');
       } } /> 
       }
-      <div>
+
       <MuiBottomNavigation />
-      <Routes>
-        <Route path="/Profile" element={<Add />} />
-        <Route path="/Add" element={<Profile />} />
-      </Routes>
-    </div>
-      
-    </>
    
+    </>
   );
-  
 }

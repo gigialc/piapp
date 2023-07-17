@@ -1,11 +1,9 @@
-
-import {BottomNavigation, BottomNavigationAction} from "@mui/material";
+import { BottomNavigation, BottomNavigationAction } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
 import AddIcon from '@mui/icons-material/Add';
 import React, { useState } from "react";
-import { BrowserRouter as Router, useNavigate } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 
 const MuiBottomNavigation: React.FC = () => {
   const [bnValue, setBNValue] = useState(0);
@@ -27,7 +25,7 @@ const MuiBottomNavigation: React.FC = () => {
         label="Home"
         icon={<HomeIcon />}
         value={bnValue}
-        onClick={() => navigate("../index")}
+        onClick={() => navigate("/Shop")}
       />
       <BottomNavigationAction
         label="Add"
@@ -38,5 +36,4 @@ const MuiBottomNavigation: React.FC = () => {
     </BottomNavigation>
   );
 };
-
 export default MuiBottomNavigation;
