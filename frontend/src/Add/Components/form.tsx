@@ -23,7 +23,7 @@ const resolver: Resolver<FormValues> = async (values) => {
         }
       : {},
   }
-}t
+}
 
 export default function Add() {
     const {
