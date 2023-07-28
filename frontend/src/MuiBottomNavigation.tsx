@@ -1,3 +1,7 @@
+// Date: 9/18/2021
+// Description: This is the main page for the Add page. It will display the header, the form, and the bottom navigation bar.
+// Created by Georgina Alacaraz
+
 import { BottomNavigation, BottomNavigationAction } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
@@ -31,7 +35,7 @@ const MuiBottomNavigation: React.FC = () => {
         label="Add"
         icon={<AddIcon />}
         value={bnValue}
-        onClick={() => navigate("/Add")}
+        onClick={() => navigate("/Add")} 
       />
     </BottomNavigation>
   );

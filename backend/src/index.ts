@@ -26,7 +26,6 @@ const mongoClientOptions = {
   },
 }
 
-
 //
 // I. Initialize and set up the express app and various middlewares and packages:
 //
@@ -81,6 +80,13 @@ const userRouter = express.Router();
 mountUserEndpoints(userRouter);
 app.use('/user', userRouter);
 
+// Community endpoints under /community:
+// const communityRouter = express.Router();
+// mountCommunityEndpoints(communityRouter);
+// app.use('/community', communityRouter);
+
+
+
 // Hello World page to check everything works:
 app.get('/', async (_, res) => {
   res.status(200).send({ message: "Hello, World!" });
@@ -95,6 +101,10 @@ app.listen(8000, async () => {
     const db = client.db(dbName);
     app.locals.orderCollection = db.collection('orders');
     app.locals.userCollection = db.collection('users');
+
+    //adding communities to the database, you can see the fields of communities in the types folder
+    app.locals.communityCollection = db.collection('communities');
+
     console.log('Connected to MongoDB on: ', mongoUri)
   } catch (err) {
     console.error('Connection to MongoDB failed: ', err)

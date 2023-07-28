@@ -2,9 +2,9 @@
   "name": "app-platform-demo-backend",
   "version": "1.0.0",
   "license": "MIT",
-  "description": "A demo app to showcase usage of the Pi App Platform.",
+  "description": "Destig Femme App for Pi Network",
   "author": {
-    "name": "Pi Core Team"
+    "name": "St Paul"
   },
   "scripts": {
     "build": "tsc",
@@ -22,7 +22,8 @@
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "mongodb": "^4.0.0",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "react-hook-form": "^7.45.2"
   },
   "devDependencies": {
     "@types/cors": "^2.8.11",

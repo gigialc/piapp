@@ -132,7 +132,6 @@ export default function Shop() {
   return (
     <>
       <Header user={user} onSignIn={signIn} onSignOut={signOut}/>
-      
       <ProductCard
         name="Abortion Rights"
         description=" The new abortion laws in the United States are a great example of why abortion stigma is a big issue that has to be tackled. This community supports and openly talks about abortion to empower each other and educate the rest of the world."
