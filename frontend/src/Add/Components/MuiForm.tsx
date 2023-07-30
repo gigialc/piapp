@@ -87,7 +87,7 @@ export default function MuiForm() {
             price
         };
 
-        axios.post('../community', data)
+        axios.post('/community', data)
             .then((response) => {
             console.log(response);
             setShowModal(true);

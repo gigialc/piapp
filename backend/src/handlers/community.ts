@@ -4,7 +4,9 @@
 
 // Community endpoints under /community
 import { Router } from "express";
-import { ObjectId } from "mongodb";
+import { ObjectId, Collection } from "mongodb";
+import platformAPIClient from "../services/platformAPIClient";
+import { Community } from "../types/community";
 
 export default function mountCommunityEndpoints(router: Router) {
     router.get('/community', async (req, res) => {

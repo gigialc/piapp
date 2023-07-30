@@ -5,6 +5,7 @@ import "../types/session";
 
 export default function mountPaymentsEndpoints(router: Router) {
   // handle the incomplete payment
+  console
   router.post('/incomplete', async (req, res) => {
     const payment = req.body.payment;
     const paymentId = payment.identifier;
@@ -44,7 +45,7 @@ export default function mountPaymentsEndpoints(router: Router) {
     await platformAPIClient.post(`/v2/payments/${paymentId}/complete`, { txid });
     return res.status(200).json({ message: `Handled the incomplete payment ${paymentId}` });
   });
-
+console.log("hi2");
   // approve the current payment
   router.post('/approve', async (req, res) => {
     console.log(req.session.currentUser);
@@ -74,7 +75,7 @@ export default function mountPaymentsEndpoints(router: Router) {
       cancelled: false,
       created_at: new Date()
     });
-
+    console.log("hi3");
     // let Pi Servers know that you're ready
     await platformAPIClient.post(`/v2/payments/${paymentId}/approve`);
     return res.status(200).json({ message: `Approved the payment ${paymentId}` });

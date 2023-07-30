@@ -136,16 +136,16 @@ export default function Shop() {
         name="Abortion Rights"
         description=" The new abortion laws in the United States are a great example of why abortion stigma is a big issue that has to be tackled. This community supports and openly talks about abortion to empower each other and educate the rest of the world."
         price={1}
-        pictureURL="https://static.vecteezy.com/system/resources/previews/009/730/589/non_2x/women-with-banners-my-body-my-choice-my-right-vector.jpg"
-        pictureCaption="https://static.vecteezy.com/system/resources/previews/009/730/589/non_2x/women-with-banners-my-body-my-choice-my-right-vector.jpg"
+        // pictureURL="https://static.vecteezy.com/system/resources/previews/009/730/589/non_2x/women-with-banners-my-body-my-choice-my-right-vector.jpg"
+        // pictureCaption="https://static.vecteezy.com/system/resources/previews/009/730/589/non_2x/women-with-banners-my-body-my-choice-my-right-vector.jpg"
         onClickBuy={() => orderProduct("Pay to enter community", 1, { productId: 'Abortion Rights' })}
       />
       <ProductCard
         name="Mental Health"
         description="Talking opnely about mental health creates a culture of understanding. By starting conversations about mental health, we can create a more inclusive and compassionate society where people feel comfortable seeking help and support when they need it."
         price={1}
-        pictureURL="https://www.planstreetinc.com/wp-content/uploads/2021/07/what-is-mental-health.png"
-        pictureCaption="ttps://www.planstreetinc.com/wp-content/uploads/2021/07/what-is-mental-health.png"
+        // pictureURL="https://www.planstreetinc.com/wp-content/uploads/2021/07/what-is-mental-health.png"
+        // pictureCaption="ttps://www.planstreetinc.com/wp-content/uploads/2021/07/what-is-mental-health.png"
         onClickBuy={() => orderProduct("Pay to enter community", 1, { productId: 'Mental Health' })}
       />
       <ProductCard
@@ -153,8 +153,8 @@ export default function Shop() {
         description="Periods are beautiful and normal, they should be celebrated and not hidden. This community aims to normalize talking about periods to ensure that menstruators are healthy and comfortable in their bodies. 
         "
         price={1}
-        pictureURL="https://www.healthywomen.org/media-library/image.jpg?id=27287943&width=1200&height=800&quality=85&coordinates=0%2C169%2C0%2C0"
-        pictureCaption="https://www.healthywomen.org/media-library/image.jpg?id=27287943&width=1200&height=800&quality=85&coordinates=0%2C169%2C0%2C0"
+        // pictureURL="https://www.healthywomen.org/media-library/image.jpg?id=27287943&width=1200&height=800&quality=85&coordinates=0%2C169%2C0%2C0"
+        // pictureCaption="https://www.healthywomen.org/media-library/image.jpg?id=27287943&width=1200&height=800&quality=85&coordinates=0%2C169%2C0%2C0"
         onClickBuy={() => orderProduct("Pay to enter community", 1, { productId: 'Period Stigma' })}
       />
 
