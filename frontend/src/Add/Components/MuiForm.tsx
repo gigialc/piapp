@@ -153,12 +153,12 @@ export default function MuiForm() {
                         error={categoryError}
                         helperText={categoryErrorMessage}
                     /> */}
-                    <Button type="submit" variant="contained"style={{ backgroundColor:"deeppink", color:"black" }} >Submit</Button>
+                    <Button type="submit" variant="contained"style={{ backgroundColor:"pink", color:"black", borderRadius:"100px" }} >Submit</Button>
                 </Stack>
             </form>
             {showModal && (
                 <div style={modalStyle}>
-                    <p style={{ fontWeight: 'bold' }}>Your community has been created.</p>
+                    <p style={{ fontWeight: 'light' }}>Your community has been created.</p>
                     <div>
                         <button onClick={onModalClose}>Close</button>
                     </div>

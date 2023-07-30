@@ -2,6 +2,7 @@ import axios from "axios";
 import { Router } from "express";
 import platformAPIClient from "../services/platformAPIClient";
 import "../types/session";
+import { ObjectId } from "mongodb";
 
 export default function mountPaymentsEndpoints(router: Router) {
   // handle the incomplete payment
