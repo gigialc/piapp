@@ -28,7 +28,7 @@ const headerStyle: CSSProperties = {
 export default function Header(props: Props) {
   return (
     <header style={headerStyle}>
-      <div style={{  color: "black", fontSize: 20}}>Communities</div>
+      <div style={{  color: "black", fontSize: 20}}></div>
      
       <div>
 

@@ -6,8 +6,9 @@ import React, { CSSProperties, useState } from 'react';
 import axios from 'axios';
 import MuiBottomNavigation from '../MuiBottomNavigation';
 import SignIn from './Components/SignIn';
-import form from './Components/form';
+import form from './Components/MuiForm';
 import Header from './Components/Header';
+import MuiForm from './Components/MuiForm';
 
 type AuthResult = {
   accessToken: string,
@@ -65,7 +66,7 @@ export default function Add() {
         throw new Error('Function not implemented.');
       } } /> 
       }
-      <form />
+      <MuiForm />
       <MuiBottomNavigation />
    
     </>
