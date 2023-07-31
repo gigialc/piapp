@@ -4,24 +4,40 @@
 
 import React, { CSSProperties, useState } from 'react';
 import axios from 'axios';
-import { TextField, Button, Stack, colors } from '@mui/material';
+import { TextField, Button, Stack, colors, FormControl } from '@mui/material';
+
+// Make TS accept the existence of our window.__ENV object - defined in index.html:
+interface WindowWithEnv extends Window {
+  __ENV?: {
+    backendURL: string, // REACT_APP_BACKEND_URL environment variable
+    sandbox: "true" | "false", // REACT_APP_SANDBOX_SDK environment variable - string, not boolean!
+  }
+}
+
+const _window: WindowWithEnv = window;
+const backendURL = _window.__ENV && _window.__ENV.backendURL;
+
+
+const axiosClient = axios.create({ baseURL: `${backendURL}`, timeout: 20000, withCredentials: true});
+const config = {headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}};
+
 
 export default function MuiForm() {
 
     const [title, setTitle] = useState<string>('');
     const [description, setDescription] = useState<string>('');
     const [price, setPrice] = useState<string>('');
-    const [category, setCategory] = useState<string>('');
+    // const [category, setCategory] = useState<string>('');
     
     const [titleError, setTitleError] = useState<boolean>(false);
     const [descriptionError, setDescriptionError] = useState<boolean>(false);
     const [priceError, setPriceError] = useState<boolean>(false);
-    const [categoryError, setCategoryError] = useState<boolean>(false);
+    // const [categoryError, setCategoryError] = useState<boolean>(false);
     
     const [titleErrorMessage, setTitleErrorMessage] = useState<string>('');
     const [descriptionErrorMessage, setDescriptionErrorMessage] = useState<string>('');
     const [priceErrorMessage, setPriceErrorMessage] = useState<string>('');
-    const [categoryErrorMessage, setCategoryErrorMessage] = useState<string>('');
+    // const [categoryErrorMessage, setCategoryErrorMessage] = useState<string>('');
     
     const [showModal, setShowModal] = useState<boolean>(false);
     
@@ -45,8 +61,9 @@ export default function MuiForm() {
         setShowModal(false);
     }
     
-    const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+    
     
         if (title === '') {
         setTitleError(true);
@@ -80,14 +97,15 @@ export default function MuiForm() {
         // setCategoryErrorMessage('');
         // }
     
-        if (title !== '' && description !== '' && price !== '' && category !== '') {
+        if (title !== '' && description !== '' && price !== '') {
         const data = {
             title,
             description,
             price
         };
+       
 
-        axios.post('/community', data)
+        axiosClient.post('/community/create', data)
             .then((response) => {
             console.log(response);
             setShowModal(true);
@@ -114,7 +132,7 @@ export default function MuiForm() {
 
     return (
         <div>
-            <form onSubmit={onSubmit}>
+            <form onSubmit={handleSubmit}>
                 <Stack spacing={2} sx={{ width: '80%', margin: 'auto' }}>
                     < h1 style={{ color: "black", fontSize: 25 }}>Create your Community</h1>
                     <TextField

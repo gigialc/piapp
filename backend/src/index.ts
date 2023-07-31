@@ -10,6 +10,7 @@ import { MongoClient } from 'mongodb';
 import env from './environments';
 import mountPaymentsEndpoints from './handlers/payments';
 import mountUserEndpoints from './handlers/users';
+import mountCommunityEndpoints from './handlers/community';
 
 // We must import typedefs for ts-node-dev to pick them up when they change (even though tsc would supposedly
 // have no problem here)
@@ -81,9 +82,9 @@ mountUserEndpoints(userRouter);
 app.use('/user', userRouter);
 
 // Community endpoints under /community:
-// const communityRouter = express.Router();
-// mountCommunityEndpoints(communityRouter);
-// app.use('/community', communityRouter);
+const communityRouter = express.Router();
+mountCommunityEndpoints(communityRouter);
+app.use('/community', communityRouter);
 
 
 

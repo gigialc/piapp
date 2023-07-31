@@ -9,14 +9,14 @@ import platformAPIClient from "../services/platformAPIClient";
 import { Community } from "../types/community";
 
 export default function mountCommunityEndpoints(router: Router) {
-    router.get('/community', async (req, res) => {
+    router.get('/create', async (req, res) => {
         const communityCollection = req.app.locals.communityCollection;
         const communities = await communityCollection.find().toArray();
         return res.status(200).json({ communities });
     }
 );
 
-    router.post('/community', async (req, res) => {
+    router.post('/create', async (req, res) => {
         const communityCollection = req.app.locals.communityCollection;
         const community = req.body.community;
         const insertResult = await communityCollection.insertOne(community);
