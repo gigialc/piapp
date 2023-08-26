@@ -469,3 +469,7 @@
 ::ffff:127.0.0.1 - - [26/Aug/2023:15:36:09 +0000] "OPTIONS /payments/approve HTTP/1.1" 204 0
 ::ffff:127.0.0.1 - - [26/Aug/2023:15:36:19 +0000] "OPTIONS /payments/approve HTTP/1.1" 204 0
 ::ffff:127.0.0.1 - - [26/Aug/2023:15:36:29 +0000] "OPTIONS /payments/approve HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [26/Aug/2023:15:44:38 +0000] "OPTIONS /user/signin HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [26/Aug/2023:15:44:40 +0000] "POST /user/signin HTTP/1.1" 200 28
+::ffff:127.0.0.1 - - [26/Aug/2023:15:44:50 +0000] "OPTIONS /payments/approve HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [26/Aug/2023:15:44:53 +0000] "POST /payments/approve HTTP/1.1" 200 63

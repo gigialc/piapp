@@ -87,7 +87,7 @@ const signInUser = (authResult: any) => {
       console.error(err);
       return res.status(401).json({error: "User not authorized"});
     }
-    return res.status(200).json({ message: "User signed in" });
+    return res.status().json({ message: "User signed in" });
   }
 ```
 
