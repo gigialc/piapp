@@ -80,6 +80,7 @@ app.use('/payments', paymentsRouter);
 const userRouter = express.Router();
 mountUserEndpoints(userRouter);
 app.use('/user', userRouter);
+console.log("hi3")
 
 // Community endpoints under /community:
 const communityRouter = express.Router();
@@ -111,6 +112,6 @@ app.listen(3333, async () => {
     console.error('Connection to MongoDB failed: ', err)
   }
 
-  console.log('App platform demo app - Backend listening on port 3333!');
+  console.log(`App platform demo app - Backend listening on port 3333!`);
   console.log(`CORS config: configured to respond to a frontend hosted on ${env.frontend_url}`);
 });

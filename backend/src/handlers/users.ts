@@ -2,7 +2,6 @@ import { Router } from "express";
 
 import platformAPIClient from "../services/platformAPIClient";
 
-
 export default function mountUserEndpoints(router: Router) {
   // handle the user auth accordingly
   router.post('/signin', async (req, res) => {
@@ -43,6 +42,7 @@ export default function mountUserEndpoints(router: Router) {
 
     return res.status(200).json({ message: "User signed in" });
   });
+  console.log("hi6")
 
   // handle the user auth accordingly
   router.get('/signout', async (req, res) => {

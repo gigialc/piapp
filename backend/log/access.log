@@ -455,3 +455,17 @@
 ::ffff:127.0.0.1 - - [25/Aug/2023:17:13:52 +0000] "OPTIONS /payments/approve HTTP/1.1" 204 0
 ::1 - - [25/Aug/2023:20:56:36 +0000] "GET / HTTP/1.1" 200 27
 ::1 - - [25/Aug/2023:20:56:37 +0000] "GET /favicon.ico HTTP/1.1" 404 150
+::ffff:127.0.0.1 - - [26/Aug/2023:15:21:41 +0000] "OPTIONS /user/signin HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [26/Aug/2023:15:21:55 +0000] "OPTIONS /payments/approve HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [26/Aug/2023:15:22:05 +0000] "OPTIONS /payments/approve HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [26/Aug/2023:15:22:15 +0000] "OPTIONS /payments/approve HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [26/Aug/2023:15:26:31 +0000] "OPTIONS /user/signin HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [26/Aug/2023:15:32:21 +0000] "OPTIONS /user/signin HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [26/Aug/2023:15:34:08 +0000] "OPTIONS /user/signin HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [26/Aug/2023:15:34:54 +0000] "OPTIONS /user/signin HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [26/Aug/2023:15:35:46 +0000] "OPTIONS /user/signin HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [26/Aug/2023:15:35:49 +0000] "OPTIONS /payments/approve HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [26/Aug/2023:15:35:59 +0000] "OPTIONS /payments/approve HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [26/Aug/2023:15:36:09 +0000] "OPTIONS /payments/approve HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [26/Aug/2023:15:36:19 +0000] "OPTIONS /payments/approve HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [26/Aug/2023:15:36:29 +0000] "OPTIONS /payments/approve HTTP/1.1" 204 0

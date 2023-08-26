@@ -72,7 +72,7 @@ export default function Shop() {
   }
 
   const signInUser = (authResult: AuthResult) => {
-    axiosClient.post('/user/signin', {authResult});
+    axiosClient.post('http://localhost:3333/user/signin', {authResult});
     return setShowModal(false);
   }
 
