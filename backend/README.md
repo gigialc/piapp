@@ -57,7 +57,7 @@ SESSION_SECRET=
 
 ### 2. Set up MongoDB
 
-The default port for MongoDB is `27017`. If you have decided to change either default port or username and password,
+The default port for MongoDB is `27018`. If you have decided to change either default port or username and password,
 make sure to update environment variables in the backend `.env` file accordingly.
 Additionally, you can specify MongoDB name env variable, which if not specified will be named `demo-app` by default.
 
@@ -68,7 +68,7 @@ Start a MongoDB server using the following command:
 ```
 docker run --name destigfemme-mongo -d \
   -e MONGO_INITDB_ROOT_USERNAME=destigfemme -e MONGO_INITDB_ROOT_PASSWORD=dev_password \
-  -p 27017:27017 mongo:5.0
+  -p 27018:27018 mongo:5.0
 ```
 
 Down the road, you can use the following commands to stop and start your mongo container:
@@ -101,7 +101,7 @@ Open a new termianl to create a new database and running
 - Open a Mongo shell by running `mongosh`, then paste the following JS code into it:
 
 ```javascript
-var MONGODB_DATABASE_NAME = "destigfemme-development"
+var MONGODB_DATABASE_NAME = "destigfemme-mongo"
 var MONGODB_USERNAME = "destigfemme"
 var MONGODB_PASSWORD = "dev_password"
 
@@ -136,3 +136,7 @@ CORS config: configured to respond to a frontend hosted on http://localhost:3314
 
 ---
 You've completed the backend setup, return to [`doc/development.md`](../doc/deployment.md) to finish setting up the demo app
+
+Run on https://sandbox.minepi.com/mobile-app-ui/app/stake-the-stitma
+
+Connection String to Database on MongoDB Compass: mongodb://destigfemme:dev_password@localhost:27018/?authSource=admin

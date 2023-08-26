@@ -8,7 +8,7 @@ export default function mountUserEndpoints(router: Router) {
   router.post('/signin', async (req, res) => {
     const auth = req.body.authResult;
     const userCollection = req.app.locals.userCollection;
-
+    console.log(auth);
     try {
       // Verify the user's access token with the /me endpoint:
       const me = await platformAPIClient.get(`/v2/me`, { headers: { 'Authorization': `Bearer ${auth.accessToken}` } });
@@ -19,7 +19,7 @@ export default function mountUserEndpoints(router: Router) {
     }
 
     let currentUser = await userCollection.findOne({ uid: auth.user.uid });
-
+    console.log(currentUser);
     if (currentUser) {
       await userCollection.updateOne({
         _id: currentUser._id

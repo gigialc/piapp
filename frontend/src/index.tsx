@@ -1,26 +1,18 @@
-import ReactDOM from 'react-dom';
-import 'normalize.css';
+import React from 'react';
+import ReactDOM from "react-dom/client";
+import App from './App';
 import './defaults.css';
-import Shop from './Shop';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import MuiBottomNavigation from './MuiBottomNavigation';
-import Add from './Add';
-import Profile from './Profile';
-//this is good
+import { BrowserRouter, } from 'react-router-dom';// import ReactDOM from 'react-dom'; 
+import './defaults.css';
+import 'normalize.css';
 
-ReactDOM.render(
-  <Router>
 
-    <Routes>
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
-      <Route path="/Shop" element={<Shop />} />
-      <Route path="/Add" element={<Add />} />
-      <Route path="/Profile" element={<Profile />} />
-
-    </Routes>
-
-    <MuiBottomNavigation />
-
-  </Router>,
-  document.getElementById('root')
+root.render(
+  <React.StrictMode>
+    <BrowserRouter>
+    <App />
+    </BrowserRouter>
+  </React.StrictMode>
 );

@@ -69,7 +69,7 @@ app.use(session({
 
 //
 // II. Mount app endpoints:
-//
+
 
 // Payments endpoint under /payments:
 const paymentsRouter = express.Router();

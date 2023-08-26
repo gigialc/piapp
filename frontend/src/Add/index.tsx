@@ -2,11 +2,10 @@
 // Description: This is the main page for the Add page. It will display the header, the form, and the bottom navigation bar.
 // Created by Georgina Alacaraz
 
-import React, { CSSProperties, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import MuiBottomNavigation from '../MuiBottomNavigation';
 import SignIn from './Components/SignIn';
-import form from './Components/MuiForm';
 import Header from './Components/Header';
 import MuiForm from './Components/MuiForm';
 
