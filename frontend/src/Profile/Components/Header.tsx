@@ -23,13 +23,8 @@ const headerStyle: CSSProperties = {
 export default function Header(props: Props) {
   return (
     <header style={headerStyle}>
-      <div style={{ color: "black", fontSize: 20 }}>
-        {/* Add a link to the user's profile */}
-        {props.user !== null && (
-          <Link to="/profile">
-            {props.user.username}'s Profile
-          </Link>
-        )}
+      <div style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid pink', marginBottom: '10px'}}>
+        <h2 style={{ color: 'pink' }}>Communities</h2>
       </div>
 
       <div>

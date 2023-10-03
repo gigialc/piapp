@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import Header from './Components/Header';
+import SignIn from './Components/SignIn';
 import axios from 'axios';
 
 type AuthResult = {
@@ -65,19 +67,38 @@ export default function Profile() {
     firstName: "Paula",
     lastName: "Burgos",
     email: "plopezburgos@gmail.com",
+    communities_joined: "Abortion Rights"
     // Add more user information as needed
   };
 
   return (
-    <div>
-      <h2 style={{ color: 'pink' }}>User Profile</h2>
-      <p>
-        <strong>Name:</strong> {userData.firstName} {userData.lastName}
+    <>
+    <Header user={user} onSignIn={signIn} onSignOut={signOut}/>    
+  
+      { showModal && 
+      <SignIn onSignIn={signIn} 
+      onModalClose={onModalClose} 
+      onPosts={function (): void {
+        throw new Error('Function not implemented.');
+      } } /> 
+      }
+
+    <p>
+        <div style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid pink', marginBottom: '10px'}}>
+          <strong>Name:</strong> {userData.firstName} {userData.lastName}
+        </div>
       </p>
       <p>
-        <strong>Email:</strong> {userData.email}
+        <div style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid pink', marginBottom: '10px'}}>
+          <strong>Email:</strong> {userData.email}
+        </div>
       </p>
-      {/* Add more profile information here */}
-    </div>
+      <p>
+        <div style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid pink', marginBottom: '10px'}}>
+          <strong>Communities Joined:</strong> {userData.communities_joined}
+        </div>
+      </p>  
+
+    </>
   );
 }
