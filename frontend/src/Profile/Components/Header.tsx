@@ -24,7 +24,7 @@ export default function Header(props: Props) {
   return (
     <header style={headerStyle}>
       <div style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid pink', marginBottom: '10px'}}>
-        <h2 style={{ color: 'pink' }}>Communities</h2>
+        <h2 style={{ color: 'pink' }}>User Profile</h2>
       </div>
 
       <div>

@@ -23,7 +23,7 @@ const modalStyle: CSSProperties = {
 
 export default function SignIn(props: Props) {
   return (
-    <div style={modalStyle}>
+    <div style={{...modalStyle, background: 'white', padding: '20px', borderRadius: '8px' }}>
       <p style={{ fontWeight: 'bold' }}>You need to sign in first.</p>
       <div>
         <button onClick={props.onSignIn} style={{ marginRight: '1em' }}>Sign in</button>

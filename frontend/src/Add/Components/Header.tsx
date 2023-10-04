@@ -3,7 +3,6 @@
 // Created by Georgina Alacaraz
 
 import React, { CSSProperties } from "react";
-import { Link } from "react-router-dom";
 import { User } from "../";
 
 interface Props {
@@ -28,8 +27,9 @@ const headerStyle: CSSProperties = {
 export default function Header(props: Props) {
   return (
     <header style={headerStyle}>
-      <div style={{  color: "black", fontSize: 20}}></div>
-     
+      <div style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid pink', marginBottom: '10px'}}>
+        <h2 style={{ color: 'pink' }}>Create your Community</h2>
+      </div>
       <div>
 
         {props.user === null ? (
