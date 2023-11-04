@@ -133,8 +133,7 @@ export default function MuiForm() {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <Stack spacing={2} sx={{ width: '80%', margin: 'auto' }}>
-                    < h1 style={{ color: "black", fontSize: 25 }}>Create your Community</h1>
+                <Stack spacing={2} sx={{ width: '80%', margin: '10%' }}>
                     <TextField
                         id="title"
                         label="Title"

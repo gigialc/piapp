@@ -116,6 +116,7 @@ export default function Shop() {
    
   }
 
+  //random comment (test)
   const onCancel = (paymentId: string) => {
     console.log("onCancel", paymentId);
     return axiosClient.post('/payments/cancelled_payment', {paymentId});
@@ -157,6 +158,31 @@ export default function Shop() {
         // pictureCaption="https://www.healthywomen.org/media-library/image.jpg?id=27287943&width=1200&height=800&quality=85&coordinates=0%2C169%2C0%2C0"
         onClickBuy={() => orderProduct("Pay to enter community", 1, { productId: 'Period Stigma' })}
       />
+      <ProductCard
+        name="Abortion Rights"
+        description=" The new abortion laws in the United States are a great example of why abortion stigma is a big issue that has to be tackled. This community supports and openly talks about abortion to empower each other and educate the rest of the world."
+        price={1}
+        // pictureURL="https://static.vecteezy.com/system/resources/previews/009/730/589/non_2x/women-with-banners-my-body-my-choice-my-right-vector.jpg"
+        // pictureCaption="https://static.vecteezy.com/system/resources/previews/009/730/589/non_2x/women-with-banners-my-body-my-choice-my-right-vector.jpg"
+        onClickBuy={() => orderProduct("Pay to enter community", 1, { productId: 'Abortion Rights' })}
+      />
+      <ProductCard
+        name="Abortion Rights"
+        description=" The new abortion laws in the United States are a great example of why abortion stigma is a big issue that has to be tackled. This community supports and openly talks about abortion to empower each other and educate the rest of the world."
+        price={1}
+        // pictureURL="https://static.vecteezy.com/system/resources/previews/009/730/589/non_2x/women-with-banners-my-body-my-choice-my-right-vector.jpg"
+        // pictureCaption="https://static.vecteezy.com/system/resources/previews/009/730/589/non_2x/women-with-banners-my-body-my-choice-my-right-vector.jpg"
+        onClickBuy={() => orderProduct("Pay to enter community", 1, { productId: 'Abortion Rights' })}
+      />
+      <ProductCard
+        name="Abortion Rights"
+        description=" The new abortion laws in the United States are a great example of why abortion stigma is a big issue that has to be tackled. This community supports and openly talks about abortion to empower each other and educate the rest of the world."
+        price={1}
+        // pictureURL="https://static.vecteezy.com/system/resources/previews/009/730/589/non_2x/women-with-banners-my-body-my-choice-my-right-vector.jpg"
+        // pictureCaption="https://static.vecteezy.com/system/resources/previews/009/730/589/non_2x/women-with-banners-my-body-my-choice-my-right-vector.jpg"
+        onClickBuy={() => orderProduct("Pay to enter community", 1, { productId: 'Abortion Rights' })}
+      />
+      
 
       { showModal && 
       
