@@ -116,6 +116,7 @@ export default function Shop() {
    
   }
 
+  //random comment (test)
   const onCancel = (paymentId: string) => {
     console.log("onCancel", paymentId);
     return axiosClient.post('/payments/cancelled_payment', {paymentId});
