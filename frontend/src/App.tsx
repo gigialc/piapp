@@ -7,6 +7,7 @@ import Shop from './Shop';
 import Add from './Add';
 import Profile from './Profile';
 import Newsletter from "./Newsletter";
+import Chat from "./Chat";
 
 function App() {
     return (
@@ -16,6 +17,8 @@ function App() {
         <Route path="/Add" element={<Add />} />
         <Route path="/Profile" element={<Profile />} />
         <Route path="/Newsletter" element={<Newsletter />} />
+        <Route path="/Chat" element={<Chat />} />
+
 
     </Routes>  
     <MuiBottomNavigation />
