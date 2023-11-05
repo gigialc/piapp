@@ -27,7 +27,7 @@ const backendURL = _window.__ENV && _window.__ENV.backendURL;
 const axiosClient = axios.create({ baseURL: `${backendURL}`, timeout: 20000, withCredentials: true });
 const config = { headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } };
 
-export default function Profile() {
+export default function Newsletter() {
   const [user, setUser] = useState<User | null>(null);
   const [showModal, setShowModal] = useState<boolean>(false);
 
@@ -80,33 +80,7 @@ export default function Profile() {
     <>
       <Header user={user} onSignIn={signIn} onSignOut={signOut} />
 
-      <div style={{ position: 'relative' }}>
-        {/* Token count displayed in the top right corner */}
-        <div
-          style={{
-            position: 'absolute',
-            top: 10,
-            right: 10,
-            background: 'white',
-            padding: '5px 10px',
-            borderRadius: '5px',
-          }}
-        >
-          Tokens: {userData.tokens}
-        </div>
-      <div
-        style={{
-          position: 'absolute',
-          top: 35, // Adjust the vertical positioning as needed
-          right: 10,
-          background: 'white',
-          padding: '5px 10px',
-          borderRadius: '5px',
-        }}
-      >
-        Likes Received: {userData.likesReceived}
-      </div>
-    </div>
+      
 
       { showModal && 
       <SignIn onSignIn={signIn} 
@@ -116,32 +90,10 @@ export default function Profile() {
       } } /> 
       }
 
-    <p>
-        <div style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid pink', marginBottom: '10px'}}>
-          <strong>Name:</strong> {userData.firstName} {userData.lastName}
-        </div>
-      </p>
-      <p>
-        <div style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid pink', marginBottom: '10px'}}>
-          <strong>Email:</strong> {userData.email}
-        </div>
-        </p>
-      <p>
-        <div style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid pink', marginBottom: '10px' }}>
-          <strong>Communities Joined:</strong> {userData.communities_joined}
-        </div>
-      </p>
-
-      <p>
-        <div style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid pink', marginBottom: '10px' }}>
-          <strong>Communities Created:</strong> {userData.communities_created}
-        </div>
-      </p>
-      <p>
-        <div style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid pink', marginBottom: '10px' }}>
-          <strong>Recently Viewed:</strong> {userData.recentlyViewed}
-        </div>
-      </p>
+<div style={{ margin: 16 }}>
+        <h1>Welcome to Your Newsletter Page</h1>
+      </div>
     </>
+  
   );
 }
