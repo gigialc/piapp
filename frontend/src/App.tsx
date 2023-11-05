@@ -5,9 +5,9 @@ import { Routes,Route } from 'react-router-dom';
 import MuiBottomNavigation from './MuiBottomNavigation';
 import Shop from './Shop';
 import Add from './Add';
+import Chat from "./Chat";
 import Profile from './Profile';
 import Newsletter from "./Newsletter";
-import Chat from "./Chat";
 
 function App() {
     return (
