@@ -31,27 +31,21 @@ export default function Profile() {
   const [user, setUser] = useState<User | null>(null);
   const [showModal, setShowModal] = useState<boolean>(false);
 
-  useEffect(() => {
-    // Fetch user data when the component mounts if the user is already signed in
-    const fetchUser = async () => {
-      try {
-        const response = await axiosClient.get('/user/profile'); // Replace with the actual endpoint to fetch user profile data
-        setUser(response.data);
-      } catch (error) {
-        console.error('Fetch user data error:', error);
-      }
-    };
-
-    fetchUser();
-  }, []);
-
-  const signIn = () => {
-    setShowModal(true);
+  const signIn = async () => {
+    const scopes = ['username'];
+    const authResult: AuthResult = await window.Pi.authenticate(scopes);
+    signInUser(authResult);
+    setUser(authResult.user);
   }
 
   const signOut = () => {
     setUser(null);
     signOutUser();
+  }
+
+  const signInUser = (authResult: AuthResult) => {
+    axiosClient.post('http://localhost:3333/user/signin', {authResult});
+    return setShowModal(false);
   }
 
   const signOutUser = () => {
@@ -65,11 +59,9 @@ export default function Profile() {
   // Sample user data (you would typically fetch this from an API)
   const userData = {
     firstName: "Paula",
-    lastName: "Burgos",
-    email: "plopezburgos@gmail.com",
     communities_joined: "Abortion Rights",
     communities_created: "Beren's Skincare Essentials",
-    recentlyViewed: "Gigi's Fitness Community",
+    //recentlyViewed: "Gigi's Fitness Community",?
     tokens: 2000,
     likesReceived: 5000,
 
@@ -118,14 +110,9 @@ export default function Profile() {
 
     <p>
         <div style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid pink', marginBottom: '10px'}}>
-          <strong>Name:</strong> {userData.firstName} {userData.lastName}
+          <strong>Name:</strong> {userData.firstName} 
         </div>
       </p>
-      <p>
-        <div style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid pink', marginBottom: '10px'}}>
-          <strong>Email:</strong> {userData.email}
-        </div>
-        </p>
       <p>
         <div style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid pink', marginBottom: '10px' }}>
           <strong>Communities Joined:</strong> {userData.communities_joined}
@@ -135,11 +122,6 @@ export default function Profile() {
       <p>
         <div style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid pink', marginBottom: '10px' }}>
           <strong>Communities Created:</strong> {userData.communities_created}
-        </div>
-      </p>
-      <p>
-        <div style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid pink', marginBottom: '10px' }}>
-          <strong>Recently Viewed:</strong> {userData.recentlyViewed}
         </div>
       </p>
     </>

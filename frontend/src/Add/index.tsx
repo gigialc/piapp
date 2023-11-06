@@ -37,13 +37,21 @@ export default function Add() {
   const [user, setUser] = useState<User | null>(null);
   const [showModal, setShowModal] = useState<boolean>(false);
 
-  const signIn = () => {
-    setShowModal(true);
+  const signIn = async () => {
+    const scopes = ['username'];
+    const authResult: AuthResult = await window.Pi.authenticate(scopes);
+    signInUser(authResult);
+    setUser(authResult.user);
   }
 
   const signOut = () => {
     setUser(null);
     signOutUser();
+  }
+
+  const signInUser = (authResult: AuthResult) => {
+    axiosClient.post('http://localhost:3333/user/signin', {authResult});
+    return setShowModal(false);
   }
 
   const signOutUser = () => {

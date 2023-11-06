@@ -6,6 +6,8 @@ import { BottomNavigation, BottomNavigationAction } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
 import AddIcon from '@mui/icons-material/Add';
+import ChatIcon from '@mui/icons-material/Chat';
+import EditNoteIcon from '@mui/icons-material/EditNote';
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
@@ -38,14 +40,14 @@ const MuiBottomNavigation: React.FC = () => {
         onClick={() => navigate("/Add")} 
       />
       <BottomNavigationAction
-        label="My Newsletter"
-        icon={<HomeIcon />}
+        label="Newsletter"
+        icon={<EditNoteIcon />}
         value={bnValue}
         onClick={() => navigate("/Newsletter")}
       />
       <BottomNavigationAction
         label="Chat"
-        icon={<HomeIcon />}
+        icon={<ChatIcon />}
         value={bnValue}
         onClick={() => navigate("/Chat")}
       />

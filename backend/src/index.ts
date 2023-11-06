@@ -103,7 +103,6 @@ app.listen(3333, async () => {
     const db = client.db(dbName);
     app.locals.orderCollection = db.collection('orders');
     app.locals.userCollection = db.collection('users');
-
     //adding communities to the database, you can see the fields of communities in the types folder
     app.locals.communityCollection = db.collection('communities');
 

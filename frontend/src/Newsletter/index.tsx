@@ -31,27 +31,21 @@ export default function Newsletter() {
   const [user, setUser] = useState<User | null>(null);
   const [showModal, setShowModal] = useState<boolean>(false);
 
-  useEffect(() => {
-    // Fetch user data when the component mounts if the user is already signed in
-    const fetchUser = async () => {
-      try {
-        const response = await axiosClient.get('/user/profile'); // Replace with the actual endpoint to fetch user profile data
-        setUser(response.data);
-      } catch (error) {
-        console.error('Fetch user data error:', error);
-      }
-    };
-
-    fetchUser();
-  }, []);
-
-  const signIn = () => {
-    setShowModal(true);
+  const signIn = async () => {
+    const scopes = ['username'];
+    const authResult: AuthResult = await window.Pi.authenticate(scopes);
+    signInUser(authResult);
+    setUser(authResult.user);
   }
 
   const signOut = () => {
     setUser(null);
     signOutUser();
+  }
+
+  const signInUser = (authResult: AuthResult) => {
+    axiosClient.post('http://localhost:3333/user/signin', {authResult});
+    return setShowModal(false);
   }
 
   const signOutUser = () => {
@@ -61,7 +55,6 @@ export default function Newsletter() {
   const onModalClose = () => {
     setShowModal(false);
   }
-
   // Sample user data (you would typically fetch this from an API)
   const userData = {
     firstName: "Paula",

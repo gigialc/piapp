@@ -10,6 +10,7 @@ import Profile from './Profile';
 import Newsletter from "./Newsletter";
 
 function App() {
+    const user = null;
     return (
         <>
     <Routes>

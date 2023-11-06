@@ -27,18 +27,15 @@ export default function MuiForm() {
     const [title, setTitle] = useState<string>('');
     const [description, setDescription] = useState<string>('');
     const [price, setPrice] = useState<string>('');
-    // const [category, setCategory] = useState<string>('');
     
     const [titleError, setTitleError] = useState<boolean>(false);
     const [descriptionError, setDescriptionError] = useState<boolean>(false);
     const [priceError, setPriceError] = useState<boolean>(false);
-    // const [categoryError, setCategoryError] = useState<boolean>(false);
     
     const [titleErrorMessage, setTitleErrorMessage] = useState<string>('');
     const [descriptionErrorMessage, setDescriptionErrorMessage] = useState<string>('');
     const [priceErrorMessage, setPriceErrorMessage] = useState<string>('');
-    // const [categoryErrorMessage, setCategoryErrorMessage] = useState<string>('');
-    
+
     const [showModal, setShowModal] = useState<boolean>(false);
     
     const onTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,10 +49,6 @@ export default function MuiForm() {
     const onPriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPrice(event.target.value);
     }
-    
-    // const onCategoryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     setCategory(event.target.value);
-    // }
     
     const onModalClose = () => {
         setShowModal(false);
@@ -88,22 +81,13 @@ export default function MuiForm() {
         setPriceError(false);
         setPriceErrorMessage('');
         }
-    
-        // if (category === '') {
-        // setCategoryError(true);
-        // setCategoryErrorMessage('Category is required');
-        // } else {
-        // setCategoryError(false);
-        // setCategoryErrorMessage('');
-        // }
-    
+
         if (title !== '' && description !== '' && price !== '') {
         const data = {
             title,
             description,
             price
         };
-       
 
         axiosClient.post('/community/create', data)
             .then((response) => {
@@ -127,7 +111,7 @@ export default function MuiForm() {
         textAlign: 'center', 
         display: 'flex', 
         flexDirection: 'column', 
-        justifyContent: 'center'
+        justifyContent: 'center' 
     }
 
     return (
@@ -184,5 +168,4 @@ export default function MuiForm() {
         </div>
     )
 }
-
 

@@ -130,6 +130,10 @@ export default function Shop() {
     }
   }
 
+  const handleSignIn = (userData: User) => {
+    setUser(userData);
+  };
+
   return (
     <>
       <Header user={user} onSignIn={signIn} onSignOut={signOut}/>
@@ -186,11 +190,18 @@ export default function Shop() {
 
       { showModal && 
       
-      <SignIn onSignIn={signIn} 
-      onModalClose={onModalClose} 
-      onPosts={function (): void {
-        throw new Error('Function not implemented.');
-      } } /> 
+      <SignIn
+          onSignIn={async () => {
+            const scopes = ['username', 'payments'];
+            const authResult: AuthResult = await window.Pi.authenticate(scopes, onIncompletePaymentFound);
+            signInUser(authResult);
+            handleSignIn(authResult.user); // Call handleSignIn when sign-in is successful
+          }}
+          onModalClose={onModalClose} 
+          onPosts={function (): void {
+            throw new Error('Function not implemented.');
+          }}
+        /> 
       }
 
       <MuiBottomNavigation />
