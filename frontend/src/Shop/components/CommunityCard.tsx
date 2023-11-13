@@ -1,18 +1,20 @@
 import React from 'react';
 
-
 interface Props {
-  name: string,
-  description: string,
-  price: number,
-  // pictureCaption: string,
-  // pictureURL: string,
-  onClickBuy: () => void,
-  //onClickPost:() => void,
+    name: string,
+    description: string,
+    members: Array<string>,
+    posts: Array<string>,
+    admins: Array<string>,
+    moderators: Array<string>,
+    rules: Array<string>,
+//    tags: Array<string>,
+//    createdAt: Date,
+//    updatedAt: Date
 }
 
 //formatting json return, mapping through the array of objects
-export default function ProductCard(props: Props) {
+export default function CommunityCard(props: Props) {
   return (
     <div style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid pink', marginBottom: '60px'}}>
       <div style={{ display: 'flex', flexDirection: 'row' }}>

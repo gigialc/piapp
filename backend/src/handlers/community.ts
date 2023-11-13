@@ -4,22 +4,42 @@
 
 // Community endpoints under /community
 import { Router } from "express";
-import { ObjectId, Collection } from "mongodb";
+import { ObjectId } from "mongodb";
 
 export default function mountCommunityEndpoints(router: Router) {
     router.get('/create', async (req, res) => {
         const communityCollection = req.app.locals.communityCollection;
-        const communities = await communityCollection.find().toArray();
+        const communities = await communityCollection.find().toArray();//include only info you need, you don't need to see the community id
         return res.status(200).json({ communities });
     }
 );
 
     router.post('/create', async (req, res) => {
-        const communityCollection = req.app.locals.communityCollection;
-        const community = req.body.community;
-        const insertResult = await communityCollection.insertOne(community);
+        try {
+            const communityCollection = req.app.locals.communityCollection;
+        const community = req.body;
+        console.log(community);
+        const communityData = {
+            _id: new ObjectId(),
+            name: community.name,
+            description: community.description,
+            admins: community.admins,
+            moderators: community.moderators,
+            members: community.members,
+            invited: community.invited,
+            posts: community.posts,
+            rules: community.rules,
+            tags: community.tags,
+            createdAt: new Date(),
+            updatedAt: new Date()
+        }
+        const insertResult = await communityCollection.insertOne(communityData);
         const newCommunity = await communityCollection.findOne(insertResult.insertedId);
         return res.status(200).json({ newCommunity });
+        } catch (error) {
+            console.log(error);
+            return res.status(400).json({ message: "Error creating community", error });
+        }
     }
 );
 
