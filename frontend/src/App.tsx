@@ -4,10 +4,10 @@ import './defaults.css';// Don't forget to import React!
 import { Routes,Route } from 'react-router-dom';
 import MuiBottomNavigation from './MuiBottomNavigation';
 import Shop from './Shop';
-import Add from './Add';
-import Chat from "./Chat";
-import Profile from './Profile';
-import Newsletter from "./Newsletter";
+import Add from './Shop/pages/create';
+import Chat from "./Shop/pages/chat";
+import Profile from './Shop/pages/profile';
+import Newsletter from "./Shop/pages/newsletter";
 
 function App() {
     const user = null;

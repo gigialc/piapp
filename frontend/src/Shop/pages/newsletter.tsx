@@ -1,13 +1,7 @@
-// Date Created: 07/28/2021
-// Description: This is the main page for the Add page. It will display the header, the form, and the bottom navigation bar.
-// Created by Georgina Alacaraz
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Header from '../components/Header';
+import SignIn from '../components/SignIn';
 import axios from 'axios';
-import MuiBottomNavigation from '../MuiBottomNavigation';
-import SignIn from './Components/SignIn';
-import Header from './Components/Header';
-import MuiForm from './Components/MuiForm';
 
 type AuthResult = {
   accessToken: string,
@@ -30,10 +24,10 @@ interface WindowWithEnv extends Window {
 const _window: WindowWithEnv = window;
 const backendURL = _window.__ENV && _window.__ENV.backendURL;
 
-const axiosClient = axios.create({ baseURL: `${backendURL}`, timeout: 20000, withCredentials: true});
-const config = {headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}};
+const axiosClient = axios.create({ baseURL: `${backendURL}`, timeout: 20000, withCredentials: true });
+const config = { headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } };
 
-export default function Add() {
+export default function Newsletter() {
   const [user, setUser] = useState<User | null>(null);
   const [showModal, setShowModal] = useState<boolean>(false);
 
@@ -61,11 +55,26 @@ export default function Add() {
   const onModalClose = () => {
     setShowModal(false);
   }
+  // Sample user data (you would typically fetch this from an API)
+  const userData = {
+    firstName: "Paula",
+    lastName: "Burgos",
+    email: "plopezburgos@gmail.com",
+    communities_joined: "Abortion Rights",
+    communities_created: "Beren's Skincare Essentials",
+    recentlyViewed: "Gigi's Fitness Community",
+    tokens: 2000,
+    likesReceived: 5000,
+
+    // Add more user information as needed
+  };
 
   return (
     <>
-  <Header user={user} onSignIn={signIn} onSignOut={signOut} />
+      <Header user={user} onSignIn={signIn} onSignOut={signOut} />
+
       
+
       { showModal && 
       <SignIn onSignIn={signIn} 
       onModalClose={onModalClose} 
@@ -73,9 +82,11 @@ export default function Add() {
         throw new Error('Function not implemented.');
       } } /> 
       }
-      <MuiForm />
-      <MuiBottomNavigation />
-   
+
+<div style={{ margin: 16 }}>
+        <h1>Welcome to Your Newsletter Page</h1>
+      </div>
     </>
+  
   );
 }

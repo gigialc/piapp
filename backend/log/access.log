@@ -550,3 +550,10 @@
 ::ffff:127.0.0.1 - - [13/Nov/2023:20:09:06 +0000] "POST /community/create HTTP/1.1" 400 49
 ::ffff:127.0.0.1 - - [13/Nov/2023:20:09:34 +0000] "OPTIONS /community/create HTTP/1.1" 204 0
 ::ffff:127.0.0.1 - - [13/Nov/2023:20:09:34 +0000] "POST /community/create HTTP/1.1" 200 260
+::ffff:127.0.0.1 - - [14/Nov/2023:03:26:11 +0000] "OPTIONS /user/signin HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [14/Nov/2023:03:26:12 +0000] "POST /user/signin HTTP/1.1" 200 28
+::ffff:127.0.0.1 - - [14/Nov/2023:03:26:13 +0000] "GET /user/signout HTTP/1.1" 200 29
+::ffff:127.0.0.1 - - [14/Nov/2023:04:00:35 +0000] "OPTIONS /user/signin HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [14/Nov/2023:04:00:37 +0000] "POST /user/signin HTTP/1.1" 200 28
+::ffff:127.0.0.1 - - [14/Nov/2023:04:00:44 +0000] "OPTIONS /community/create HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [14/Nov/2023:04:00:44 +0000] "POST /community/create HTTP/1.1" 200 275
