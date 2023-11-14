@@ -562,3 +562,15 @@
 ::ffff:127.0.0.1 - - [14/Nov/2023:05:05:49 +0000] "OPTIONS /user/signin HTTP/1.1" 204 0
 ::ffff:127.0.0.1 - - [14/Nov/2023:05:05:52 +0000] "POST /user/signin HTTP/1.1" 200 28
 ::ffff:127.0.0.1 - - [14/Nov/2023:05:05:52 +0000] "POST /payments/refundable_payment HTTP/1.1" 404 167
+::ffff:127.0.0.1 - - [14/Nov/2023:05:16:11 +0000] "OPTIONS /user/signin HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [14/Nov/2023:05:16:14 +0000] "POST /user/signin HTTP/1.1" 200 28
+::ffff:127.0.0.1 - - [14/Nov/2023:05:16:17 +0000] "OPTIONS /payments/approve HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [14/Nov/2023:05:16:19 +0000] "POST /payments/approve HTTP/1.1" 200 63
+::ffff:127.0.0.1 - - [14/Nov/2023:05:16:29 +0000] "OPTIONS /payments/cancelled_payment HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [14/Nov/2023:05:16:29 +0000] "POST /payments/cancelled_payment HTTP/1.1" 200 64
+::ffff:127.0.0.1 - - [14/Nov/2023:06:04:18 +0000] "OPTIONS /user/signin HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [14/Nov/2023:06:04:21 +0000] "POST /user/signin HTTP/1.1" 200 28
+::ffff:127.0.0.1 - - [14/Nov/2023:06:15:32 +0000] "OPTIONS /payments/approve HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [14/Nov/2023:06:15:36 +0000] "POST /payments/approve HTTP/1.1" 200 63
+::ffff:127.0.0.1 - - [14/Nov/2023:06:15:45 +0000] "OPTIONS /payments/cancelled_payment HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [14/Nov/2023:06:15:45 +0000] "POST /payments/cancelled_payment HTTP/1.1" 200 64

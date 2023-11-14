@@ -16,18 +16,18 @@ interface Props {
 
 export default function ProductCard(props: Props) {
   return (
-    <Grid container style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid gray' }}>
+    <Grid container style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid pink' }}>
       <Grid container style={{ display: 'flex', flexDirection: 'row' }}>
         <Grid container style={{ width: "33%", marginRight: 8 }}>
         </Grid>
-        <Grid item style={{ width: "66%" }}>
+        <Grid item style={{ width: "90%" }}>
           <h3>{props.name}</h3>
           <p>{props.description}</p>  
       </Grid>
       </Grid>
       <Grid item style={{textAlign: 'center', marginBottom: 8}}>
         <strong>{props.price} Test-π</strong> <br />
-        <Button variant='contained' color='secondary' onClick={()=> {props.onClickBuy()}}>Order</Button>
+        <Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink' }} onClick={()=> {props.onClickBuy()}}>Join</Button>
       </Grid>
     </Grid>
   )
