@@ -1,3 +1,4 @@
+// Created by Georgina Alacaraz
 import * as React from "react";
 import 'normalize.css';
 import './defaults.css';// Don't forget to import React!

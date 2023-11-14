@@ -1,3 +1,4 @@
+// Created by Georgina Alacaraz
 import MuiBottomNavigation from "../MuiBottomNavigation";
 import Header from "./components/Header";
 import { Box, Grid, Typography } from "@mui/material";

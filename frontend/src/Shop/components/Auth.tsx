@@ -1,3 +1,4 @@
+//Created by Georgina Alacaraz
 import React from "react";
 import { User, AuthResult, UserContextType, WindowWithEnv } from "./Types";
 import axios from "axios";

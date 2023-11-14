@@ -1,3 +1,4 @@
+//Created by Georgina Alacaraz
 import React from "react";
 import { UserContextType } from "./Types";
 import AppBar from '@mui/material/AppBar';

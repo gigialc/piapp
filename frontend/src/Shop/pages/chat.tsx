@@ -1,3 +1,4 @@
+// Created by Georgina Alacaraz
 import { UserContextType, MyPaymentMetadata } from "../components/Types";
 import { onCancel, onError, onReadyForServerApproval, onReadyForServerCompletion } from "../components/Payments";
 import MuiBottomNavigation from "../../MuiBottomNavigation";

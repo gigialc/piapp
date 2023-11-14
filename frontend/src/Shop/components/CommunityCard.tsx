@@ -1,3 +1,4 @@
+//Created by Georgina Alacaraz
 import React from 'react';
 
 interface Props {

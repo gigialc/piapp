@@ -1,3 +1,5 @@
+// Created by Georgina Alacaraz
+
 /* DEVELOPER NOTE:
 * this file contains all of the types and interfaces that
 * are used by the various components of the front end.

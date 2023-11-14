@@ -1,3 +1,4 @@
+// Created by Georgina Alacaraz
 import { UserContextType, MyPaymentMetadata } from "../components/Types";
 import { onCancel, onError, onReadyForServerApproval, onReadyForServerCompletion } from "../components/Payments";
 import SignIn from "../components/SignIn";
@@ -37,6 +38,9 @@ export default function UserToAppPayments() {
 return(
     <>
         <Header/>
+        <Typography variant="h4" margin={3} color="hotpink">
+            Create a community
+        </Typography>
         <MuiForm/>
         <MuiBottomNavigation/>
     </>

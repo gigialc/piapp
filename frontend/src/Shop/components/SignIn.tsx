@@ -1,3 +1,4 @@
+//Created by Georgina Alacaraz
 import { Dialog, DialogContent, DialogContentText, DialogActions, Button } from '@mui/material';
 
 /* DEVELOPER NOTE:
