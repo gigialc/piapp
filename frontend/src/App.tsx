@@ -8,11 +8,12 @@ import Add from './Shop/pages/create';
 import Chat from "./Shop/pages/chat";
 import Profile from './Shop/pages/profile';
 import Newsletter from "./Shop/pages/newsletter";
+import AuthProvider from "./Shop/components/Auth";
 
 function App() {
     const user = null;
     return (
-        <>
+ <AuthProvider>
     <Routes>
         <Route path="/Shop" element={<Shop />} />
         <Route path="/Add" element={<Add />} />
@@ -23,7 +24,7 @@ function App() {
 
     </Routes>  
     <MuiBottomNavigation />
-    </>
+    </AuthProvider>
     );  
 }
 

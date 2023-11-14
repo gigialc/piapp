@@ -557,3 +557,8 @@
 ::ffff:127.0.0.1 - - [14/Nov/2023:04:00:37 +0000] "POST /user/signin HTTP/1.1" 200 28
 ::ffff:127.0.0.1 - - [14/Nov/2023:04:00:44 +0000] "OPTIONS /community/create HTTP/1.1" 204 0
 ::ffff:127.0.0.1 - - [14/Nov/2023:04:00:44 +0000] "POST /community/create HTTP/1.1" 200 275
+::ffff:127.0.0.1 - - [14/Nov/2023:05:05:41 +0000] "OPTIONS /community/create HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [14/Nov/2023:05:05:41 +0000] "POST /community/create HTTP/1.1" 200 273
+::ffff:127.0.0.1 - - [14/Nov/2023:05:05:49 +0000] "OPTIONS /user/signin HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [14/Nov/2023:05:05:52 +0000] "POST /user/signin HTTP/1.1" 200 28
+::ffff:127.0.0.1 - - [14/Nov/2023:05:05:52 +0000] "POST /payments/refundable_payment HTTP/1.1" 404 167
