@@ -574,3 +574,5 @@
 ::ffff:127.0.0.1 - - [14/Nov/2023:06:15:36 +0000] "POST /payments/approve HTTP/1.1" 200 63
 ::ffff:127.0.0.1 - - [14/Nov/2023:06:15:45 +0000] "OPTIONS /payments/cancelled_payment HTTP/1.1" 204 0
 ::ffff:127.0.0.1 - - [14/Nov/2023:06:15:45 +0000] "POST /payments/cancelled_payment HTTP/1.1" 200 64
+::ffff:127.0.0.1 - - [15/Nov/2023:05:54:02 +0000] "OPTIONS /user/signin HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [15/Nov/2023:05:54:04 +0000] "POST /user/signin HTTP/1.1" 200 28

@@ -41,10 +41,6 @@ return(
         <Typography variant="h4" margin={3} color="hotpink">
               Profile
         </Typography>
-
-
-        
-                    
        { showModal && <SignIn onSignIn={saveUser} onModalClose={onModalClose} showModal={showModal}/> }
 
        <MuiBottomNavigation />

@@ -13,8 +13,6 @@ interface Props {
   name: string,
   description: string,
   price: number,
-  pictureCaption: string,
-  pictureURL: string,
   onClickBuy: () => void,
 }
 
