@@ -42,17 +42,17 @@ return(
              My newsletter
         </Typography>
         <ProductCard
-        name="Apple Pie"
-        description="You know what this is. Pie. Apples. Apple pie."
-        price={3}
-        onClickBuy={() => orderProduct("Order Apple Pie", 3, { productId: 'apple_pie_1' })}
+          name="Cherry Pie"
+          description="A sweet and tart classic. Made with fresh cherries."
+          price={5}
+          onClickBuy={() => orderProduct("Order Cherry Pie", 5, { productId: 'cherry_pie_1' })}
         />
 
         <ProductCard
-        name="Lemon Meringue Pie"
-        description="Non-contractual picture. We might have used oranges because we had no lemons. Order at your own risk."
-        price={5}
-        onClickBuy={() => orderProduct("Order Lemon Meringue Pie", 5, { productId: 'lemon_pie_1' })}
+          name="Blueberry Pie"
+          description="A classic pie with a twist. Bursting with fresh blueberries."
+          price={4}
+          onClickBuy={() => orderProduct("Order Blueberry Pie", 4, { productId: 'blueberry_pie_1' })}
         /> 
                     
        { showModal && <SignIn onSignIn={saveUser} onModalClose={onModalClose} showModal={showModal}/> }

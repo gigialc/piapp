@@ -1,6 +1,6 @@
 //Created by Georgina Alacaraz
 import React from "react";
-import { User, AuthResult, UserContextType, WindowWithEnv } from "./Types";
+import { User, AuthResult, UserContextType, WindowWithEnv, CommunityType } from "./Types";
 import axios from "axios";
 import { onIncompletePaymentFound } from "./Payments";
 
@@ -14,6 +14,14 @@ const axiosClient = axios.create({ baseURL: `${backendURL}`, timeout: 20000, wit
 const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [user, setUser] = React.useState<User>( { uid: '', username: '' } )
     const [showModal, setShowModal] = React.useState<boolean>(false);
+    const [community, setCommunity] = React.useState<CommunityType[]>(
+      [{
+        _id: '',
+        name: '',
+        description: '',
+        price: 0,
+      }]);
+
 
     const signIn = async () => {
       const scopes = ['username', 'payments', 'wallet_address'];
@@ -21,6 +29,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
       await signInUser(authResult);
       setUser(authResult.user);
       setShowModal(false);
+      getCommunity();
     }
 
     const signInUser = async (authResult: AuthResult) => {
@@ -45,12 +54,24 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
       saveShowModal(false);
     }
 
+    const getCommunity = async () => {
+      const response = await fetch('/community');
+      const community = await response.json();
+      setCommunity(community);
+    }
+
+    React.useEffect(() => {
+      getCommunity();
+    }, []);
+
+
     const userContext: UserContextType = {
       user, 
       saveUser, 
       showModal, 
       saveShowModal,
       onModalClose,
+      community
     }
 
     return (
