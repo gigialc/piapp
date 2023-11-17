@@ -1,49 +1,56 @@
-import React, { CSSProperties } from "react";
-import { User } from "../";
+//Created by Georgina Alacaraz
+import React from "react";
+import { UserContextType } from "./Types";
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import { Container } from "@mui/material";
+import { UserContext } from "./Auth";
 
-interface Props {
-  //onPosts:() => void;
-  onSignIn: () => void;
-  onSignOut: () => void;
-  
-  user: User | null
-}
+export default function Header() {
+  const { user, saveUser } = React.useContext(UserContext) as UserContextType;
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
-const headerStyle: CSSProperties = {
-  padding: 8,
-  backgroundColor: "white",
-  color: "red",
-  width: "100%",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-};
+  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
 
-//add more headers on the top bars
-export default function Header(props: Props) {
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
-    <header style={headerStyle}>
-      <div style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid pink', marginBottom: '10px'}}>
-        <h2 style={{ color: 'pink' }}>Communities</h2>
-      </div>
-     
-      <div>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static" sx={{ backgroundColor: 'white' }} >
+        <Toolbar>
 
-        {props.user === null ? (
-          <button style={{borderRadius: "30px"}} onClick={props.onSignIn}>Sign in</button>
-        ) : (
-          <div>
-            @{props.user.username} <button type="button" onClick={props.onSignOut}>Sign out</button>
-          </div>
-        )}
-
-      </div>
-    
-    </header>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 , color: 'black'}}>
+            Destig Femme
+          </Typography>
+          
+              <IconButton
+                    size="large"
+                    aria-label="account of current user"
+                    aria-controls="menu-appbar"
+                    onClick={user.uid === '' ? (saveUser ) : (saveUser)}
+                    color="inherit"
+                  >
+                  { user.uid === '' ? (
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: 'black' }}>
+                      Sign-In
+                    </Typography>
+                    ) : (
+                  <Container>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 , color: 'black'}}>
+                    @{user.username}  |  Sign Out
+                    </Typography>
+                  </Container>
+              )}
+              </IconButton>
+        </Toolbar>
+      </AppBar>
+    </Box>
   );
-  
-  
-
 }
-
-

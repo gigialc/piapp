@@ -2,15 +2,11 @@
 // Creator: Gigi
 import { ObjectId } from "mongodb";
 
-export interface Community {
+export interface CommunityType {
     _id: ObjectId,
     name: string,
     description: string,
-    members: Array<string>,
-    posts: Array<string>,
-    admins: Array<string>,
-    moderators: Array<string>,
-    rules: Array<string>,
+   price: number,
 //    tags: Array<string>,
 //    createdAt: Date,
 //    updatedAt: Date

@@ -4,32 +4,61 @@
 
 // Community endpoints under /community
 import { Router } from "express";
-import { ObjectId, Collection } from "mongodb";
+import { ObjectId } from "mongodb";
 
 export default function mountCommunityEndpoints(router: Router) {
     router.get('/create', async (req, res) => {
         const communityCollection = req.app.locals.communityCollection;
-        const communities = await communityCollection.find().toArray();
+        const communities = await communityCollection.find().toArray();//include only info you need, you don't need to see the community id
         return res.status(200).json({ communities });
     }
 );
 
     router.post('/create', async (req, res) => {
-        const communityCollection = req.app.locals.communityCollection;
-        const community = req.body.community;
-        const insertResult = await communityCollection.insertOne(community);
+        try {
+            const communityCollection = req.app.locals.communityCollection;
+        const community = req.body;
+        console.log(community);
+        const communityData = {
+            _id: new ObjectId(),
+            name: community.name,
+            description: community.description,
+            price: community.price,
+            admins: community.admins,
+            moderators: community.moderators,
+            members: community.members,
+            invited: community.invited,
+            posts: community.posts,
+            rules: community.rules,
+            tags: community.tags,
+            createdAt: new Date(),
+            updatedAt: new Date()
+        }
+        const insertResult = await communityCollection.insertOne(communityData);
         const newCommunity = await communityCollection.findOne(insertResult.insertedId);
         return res.status(200).json({ newCommunity });
+        } catch (error) {
+            console.log(error);
+            return res.status(400).json({ message: "Error creating community", error });
+        }
     }
+
 );
 
-    router.get('/community/:id', async (req, res) => {
+router.get('/hi', async (req, res) => {
+    try {
         const communityCollection = req.app.locals.communityCollection;
-        const id = req.params.id;
-        const community = await communityCollection.findOne({ _id: new ObjectId(id) });
-        return res.status(200).json({ community });
+
+        // Find all community documents in the collection
+        const communities = await communityCollection.find({}).toArray();
+
+        // Send the array of communities back to the client
+        return res.status(200).json(communities);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ message: "Error fetching communities", error });
     }
-);
+});
 
     router.put('/community/:id', async (req, res) => {
         const communityCollection = req.app.locals.communityCollection;
@@ -115,54 +144,6 @@ export default function mountCommunityEndpoints(router: Router) {
         return res.status(200).json({ updatedCommunity });
     }
 );
-
-    router.post('/community/:id/moderator', async (req, res) => {
-        const communityCollection = req.app.locals.communityCollection;
-        const id = req.params.id;
-        const user = req.body.user;
-        const community = await communityCollection.findOne({ _id: new ObjectId(id) });
-        if (community.moderators.includes(user.uid)) {
-            return res.status(200).json({ message: "User is already a moderator" });
-        }
-        const updateResult = await communityCollection.updateOne({ _id: new ObjectId(id) }, { $push: { moderators: user.uid } });
-        const updatedCommunity = await communityCollection.findOne({ _id: new ObjectId(id) });
-        return res.status(200).json({ updatedCommunity });
-    }
-);
-
-    router.post('/community/:id/unmoderator', async (req, res) => {
-        const communityCollection = req.app.locals.communityCollection;
-        const id = req.params.id;
-        const user = req.body.user;
-        const community = await communityCollection.findOne({ _id: new ObjectId(id) });
-        if (!community.moderators.includes(user.uid)) {
-            return res.status(200).json({ message: "User is not a moderator" });
-        }
-        const updateResult = await communityCollection.updateOne({ _id: new ObjectId(id) }, { $pull: { moderators: user.uid } });
-        const updatedCommunity = await communityCollection.findOne({ _id: new ObjectId(id) });
-        return res.status(200).json({ updatedCommunity });
-    }
-);
-
-    router.post('/community/:id/rule', async (req, res) => {
-        const communityCollection = req.app.locals.communityCollection;
-        const id = req.params.id;
-        const rule = req.body.rule;
-        const updateResult = await communityCollection.updateOne({ _id: new ObjectId(id) }, { $push: { rules: rule } });
-        const updatedCommunity = await communityCollection.findOne({ _id: new ObjectId(id) });
-        return res.status(200).json({ updatedCommunity });
-    }
-);
-
-    router.post('/community/:id/tag', async (req, res) => {
-        const communityCollection = req.app.locals.communityCollection;
-        const id = req.params.id;
-        const tag = req.body.tag;
-        const updateResult = await communityCollection.updateOne({ _id: new ObjectId(id) }, { $push: { tags: tag } });
-        const updatedCommunity = await communityCollection.findOne({ _id: new ObjectId(id) });
-        return res.status(200).json({ updatedCommunity });
-    }
-    );
 
     router.post('/community/:id/invite', async (req, res) => {
 
