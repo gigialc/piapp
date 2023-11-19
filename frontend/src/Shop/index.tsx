@@ -10,6 +10,11 @@ import { UserContext } from "./components/Auth";
 import React from "react";
 import { useState, useEffect } from "react";
 import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
+
+// testing to link blog posts to blog pages
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import BlogPostPage from "./pages/BlogPostPage";
 
 
 
@@ -61,9 +66,10 @@ export default function HomePage() {
 
 return(
     <>
+    
     <Header/>
     
-    <Typography variant="h4" margin={3} color="hotpink"> 
+        <Typography variant="h4" margin={2} color="primary">
         </Typography>
       <h1>Create Community</h1>
 
@@ -93,88 +99,123 @@ return(
       },)
     }
 
-    <div style={{ overflowY: 'auto', height: '150vh' }}>
+    <div style={{ overflowY: 'auto', height: '150vh',marginLeft: '20px' }}>
 
       {/* Add "blog posts" heading */}
-      <Typography variant="h5" margin={2} color="primary">
-      </Typography>
-      <h2>Blog Posts</h2>
       
-      <div style={{ display: "flex", overflowX: "auto" }}>
-        {/* Scrollable container for text boxes */}
-        <div style={{ display: "flex", marginRight: "10px" }}>
-          {/* First text box content */}
-          <Paper style={{ width: "300px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
-            <Typography variant="body1">
-              Dive into the complex world of body image on social media! 📸💔 In an era dominated by filters and perfected images, the impact on our self-esteem is undeniable.  Join the conversation on the blog to explore the push for diversity and body positivity, and let's navigate the nuances of self-perception in the age of social media. Click to read more! #BodyImage #SocialMediaImpact
-            </Typography>
-          </Paper>
-
-          {/* Second text box content */}
-          <Paper style={{ width: "300px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
-            <Typography variant="body1">
-            Sex education goes beyond the basics; it's about fostering a healthy and respectful attitude towards our bodies, relationships, and consent. By providing accurate information about anatomy, contraception, and communication, we equip individuals with the tools they need to make informed decisions and navigate the complexities of intimacy.
-            </Typography>
-          </Paper>
-{/* Second text box content */}
-<Paper style={{ width: "300px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
-            <Typography variant="body1">
-            Let's work together to create a supportive community that encourages positive body image. By fostering conversations, sharing our stories, and uplifting each other, we can inspire a generation to love and appreciate their bodies for the incredible vessels they are.
-            </Typography>
-          </Paper>
-
-
-          {/* Second text box content */}
-          <Paper style={{ width: "300px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
-            <Typography variant="body1">
-            It's time to challenge conventional beauty standards and redefine what it means to be beautiful. Beauty is diverse, and it goes beyond the external. By appreciating our unique features and embracing individuality, we contribute to a more inclusive and accepting perception of beauty.
-            </Typography>
-          </Paper>
-
-
-          {/* Add more text boxes as needed */}
-        </div>
-      </div>
- {/* Add "my communities" heading */}
- <Typography variant="h5" margin={2} color="primary">
-        My Communities
+  
+<h2>Blog Posts</h2>
+<div style={{ display: "flex", overflowX: "auto" }}>
+  {/* Scrollable container for text boxes */}
+  <div style={{ display: "flex", marginRight: "10px" }}>
+    {/* First text box content */}
+    <Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
+      <Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
+        Body Image on Social Media
       </Typography>
-
-      <div style={{ display: "flex", overflowX: "auto" }}>
-        {/* Scrollable container for text boxes */}
-        <div style={{ display: "flex", marginRight: "10px" }}>
-         {/* First text box content for "My Communities" */}
-<Paper style={{ width: "400px", height: "200px", padding: "10px", marginRight: "10px", backgroundColor: "lightblue" }}>
-  <Typography variant="body1">
-    Explore the vibrant community of like-minded individuals who share your passion for technology! 🚀💻 Join discussions, ask questions, and stay updated on the latest trends in the tech world. Click to join now! #TechEnthusiasts #Community
-  </Typography>
-</Paper>
-
-{/* Second text box content for "My Communities" */}
-<Paper style={{ width: "400px", height: "200px", padding: "10px", marginRight: "10px", backgroundColor: "lightblue" }}>
-  <Typography variant="body1">
-    Connect with fellow foodies in the culinary community! 🍔🍜 Share your favorite recipes, discover new cooking techniques, and indulge in conversations about the art of gastronomy. Click to become a member! #FoodieCommunity #CulinaryArts
-  </Typography>
-</Paper>
-
-          {/* Add more text boxes for "My Communities" as needed */}
-        </div>
+      <Typography variant="body2"> {/* Adjust the variant and style as needed for the description */}
+        Dive into the complex world of body image on social media! 📸💔 
+      </Typography>
+      <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
+        <Button variant="contained" color="secondary" size="small">
+          Read Now
+        </Button>
       </div>
+    </Paper>
 
-      {showModal && (
-        <SignIn onSignIn={saveUser} onModalClose={onModalClose} showModal={showModal} />
-      )}
+    {/* Second text box content */}
+    <Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
+      <Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
+        Body Image on Social Media
+      </Typography>
+      <Typography variant="body2"> {/* Adjust the variant and style as needed for the description */}
+        Dive into the complex world of body image on social media! 📸💔 
+      </Typography>
+      <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
+        <Button variant="contained" color="secondary" size="small">
+          Read Now
+        </Button>
+      </div>
+    </Paper>
 
-<MuiBottomNavigation />
-    </div>
-    
-       { showModal && <SignIn onSignIn={saveUser} onModalClose={onModalClose} showModal={showModal}/> }
+    {/* Third text box content */}
+    <Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
+      <Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
+        Body Image on Social Media
+      </Typography>
+      <Typography variant="body2"> {/* Adjust the variant and style as needed for the description */}
+        Dive into the complex world of body image on social media! 📸💔 
+      </Typography>
+      <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
+        <Button variant="contained" color="secondary" size="small">
+          Read Now
+        </Button>
+      </div>
+    </Paper>
 
-    <MuiBottomNavigation/>
-    </>
+    {/* Fourth text box content */}
+    <Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
+      <Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
+        Body Image on Social Media
+      </Typography>
+      <Typography variant="body2"> {/* Adjust the variant and style as needed for the description */}
+        Dive into the complex world of body image on social media! 📸💔 
+      </Typography>
+      <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
+        <Button variant="contained" color="secondary" size="small">
+          Read Now
+        </Button>
+      </div>
+    </Paper>
+    {/* Add more text boxes as needed */}
+  </div>
+</div>
 
-    
+
+<div style={{ marginBottom: '20px' }}></div>
+
+{/* Add "my communities" heading */}
+<h2>My Communities</h2>
+<div style={{ display: "flex", overflowX: "auto" }}>
+  {/* Scrollable container for text boxes */}
+  <div style={{ display: "flex", marginRight: "10px" }}>
+    {/* First text box content for "My Communities" */}
+    <Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
+      <Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
+        Body Image on Social Media
+      </Typography>
+      <Typography variant="body2"> {/* Adjust the variant and style as needed for the description */}
+        Dive into the complex world of body image on social media! 📸💔 
+      </Typography>
+      <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
+        <Button variant="contained" color="secondary" size="small">
+          Read Now
+        </Button>
+      </div>
+    </Paper>
+
+    {/* Second text box content for "My Communities" */}
+    <Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
+      <Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
+        Body Image on Social Media
+      </Typography>
+      <Typography variant="body2"> {/* Adjust the variant and style as needed for the description */}
+        Dive into the complex world of body image on social media! 📸💔 
+      </Typography>
+      <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
+        <Button variant="contained" color="secondary" size="small">
+          Read Now
+        </Button>
+      </div>
+    </Paper>
+    {/* Add more text boxes for "My Communities" as needed */}
+  </div>
+</div>
+</div>
+
+{ showModal && <SignIn onSignIn={saveUser} onModalClose={onModalClose} showModal={showModal}/> }
+
+<MuiBottomNavigation/>
+</>
 );
-
 };
-
