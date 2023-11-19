@@ -8,6 +8,8 @@ import Typography from "@mui/material/Typography";
 import { UserContext } from "../components/Auth";
 import React from "react";
 import MuiBottomNavigation from "../../MuiBottomNavigation";
+import Paper from "@mui/material/Paper";
+
 
 /* DEVELOPER NOTE:
 * this page facilitates the purchase of pies for pi. all of the callbacks
@@ -32,15 +34,13 @@ export default function UserToAppPayments() {
     const payment = await window.Pi.createPayment(paymentData, callbacks);
     console.log(payment);
   }
-
-
-return(
+  return (
     <>
         <Header/>
         
         <Typography variant="h4" margin={3} color="hotpink">
-              Profile
         </Typography>
+        <h1>Profile</h1>
        { showModal && <SignIn onSignIn={saveUser} onModalClose={onModalClose} showModal={showModal}/> }
 
        <MuiBottomNavigation />
