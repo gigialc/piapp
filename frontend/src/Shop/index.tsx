@@ -11,11 +11,24 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-
+import axios from 'axios';
 // testing to link blog posts to blog pages
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import BlogPostPage from "./pages/BlogPostPage";
 
+// Make TS accept the existence of our window.__ENV object - defined in index.html:
+interface WindowWithEnv extends Window {
+  __ENV?: {
+    backendURL: string, // REACT_APP_BACKEND_URL environment variable
+    sandbox: "true" | "false", // REACT_APP_SANDBOX_SDK environment variable - string, not boolean!
+  }
+}
+
+const _window: WindowWithEnv = window;
+const backendURL = _window.__ENV && _window.__ENV.backendURL;
+
+
+const axiosClient = axios.create({ baseURL: `${backendURL}`, timeout: 20000, withCredentials: true});
+const config = {headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}};
 
 
 export default function HomePage() {
@@ -47,22 +60,17 @@ export default function HomePage() {
   
   useEffect(() => {
     // Make an API call to fetch the create community data
-    fetch('/hi')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
+    axiosClient.get('/community/hi')
+            .then((response) => {
+            console.log(response);
+            setCreateCommunityData(response.data);
+            })
+            .catch((error) => {
+            console.log(error);
+            });
         }
-        return response.json();
-      })
-      .then(communitiesArray => {
-        // Set the fetched data to state
-        setCreateCommunityData(communitiesArray);
-      })
-      .catch(error => {
-        // Handle any errors
-        console.error('There has been a problem with your fetch operation:', error);
-      });
-  }, []);
+    
+    , []);
 
 return(
     <>
@@ -73,31 +81,33 @@ return(
         </Typography>
       <h1>Create Community</h1>
 
-      {createCommunityData === null ?
+      { createCommunityData ?
+      createCommunityData.map((order) =>{    
+        console.log(order);
+        return <ProductCard 
+          name={order.name}
+          description={order.description}
+          price={order.price}
+          onClickBuy={() => orderProduct("Community", order.price, { community_id: order._id })}
+        />
+      })
+      :
       <ProductCard
         name="Loading..."
         description="Loading..."
         price={0}
         onClickBuy={() => console.log('Buy clicked')} // Pass the createCommunityData prop here
       />
-      :
+     /* :
       community.length === 0 ?
       <ProductCard
         name="None"
         description="No new communities"
         price={0}
         onClickBuy={() => console.log('Buy clicked')} // Pass the createCommunityData prop here
-      />
-      :
-      createCommunityData.map((order: CommunityType) =>{    
-        <ProductCard
-          name={order.name}
-          description={order.description}
-          price={order.price}
-          onClickBuy={() => orderProduct("Community", order.price, { community_id: order._id })}
-        />
-      },)
-    }
+      /> */
+
+ }
 
     <div style={{ overflowY: 'auto', height: '150vh',marginLeft: '20px' }}>
 

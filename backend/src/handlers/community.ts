@@ -21,7 +21,7 @@ export default function mountCommunityEndpoints(router: Router) {
         console.log(community);
         const communityData = {
             _id: new ObjectId(),
-            name: community.name,
+            name: community.title,
             description: community.description,
             price: community.price,
             admins: community.admins,
@@ -51,7 +51,7 @@ router.get('/hi', async (req, res) => {
 
         // Find all community documents in the collection
         const communities = await communityCollection.find({}).toArray();
-
+        console.log(communities);
         // Send the array of communities back to the client
         return res.status(200).json(communities);
     } catch (error) {
