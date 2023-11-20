@@ -594,3 +594,14 @@
 ::ffff:127.0.0.1 - - [16/Nov/2023:06:07:47 +0000] "POST /community/create HTTP/1.1" 200 273
 ::ffff:127.0.0.1 - - [16/Nov/2023:06:34:09 +0000] "OPTIONS /community/create HTTP/1.1" 204 0
 ::ffff:127.0.0.1 - - [16/Nov/2023:06:34:09 +0000] "POST /community/create HTTP/1.1" 200 274
+::ffff:127.0.0.1 - - [19/Nov/2023:21:59:54 +0000] "OPTIONS /user/signin HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [19/Nov/2023:21:59:56 +0000] "POST /user/signin HTTP/1.1" 200 28
+::ffff:127.0.0.1 - - [19/Nov/2023:22:00:03 +0000] "OPTIONS /payments/approve HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [19/Nov/2023:22:00:05 +0000] "POST /payments/approve HTTP/1.1" 200 63
+::ffff:127.0.0.1 - - [19/Nov/2023:22:00:09 +0000] "OPTIONS /payments/cancelled_payment HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [19/Nov/2023:22:00:09 +0000] "POST /payments/cancelled_payment HTTP/1.1" 200 64
+::ffff:127.0.0.1 - - [19/Nov/2023:22:00:13 +0000] "OPTIONS /user/signin HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [19/Nov/2023:22:00:14 +0000] "POST /user/signin HTTP/1.1" 200 28
+::ffff:127.0.0.1 - - [19/Nov/2023:22:00:16 +0000] "POST /user/signin HTTP/1.1" 200 28
+::ffff:127.0.0.1 - - [19/Nov/2023:22:00:34 +0000] "OPTIONS /community/create HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [19/Nov/2023:22:00:34 +0000] "POST /community/create HTTP/1.1" 200 273
