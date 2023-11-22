@@ -39,22 +39,8 @@ return(
     <>
         <Header/>
         
-        <Typography variant="h4" margin={3}>
-             My newsletter
-        </Typography>
-        <ProductCard
-          name="Cherry Pie"
-          description="A sweet and tart classic. Made with fresh cherries."
-          price={5}
-          onClickBuy={() => orderProduct("Order Cherry Pie", 5, { productId: 'cherry_pie_1' })}
-        />
-
-        <ProductCard
-          name="Blueberry Pie"
-          description="A classic pie with a twist. Bursting with fresh blueberries."
-          price={4}
-          onClickBuy={() => orderProduct("Order Blueberry Pie", 4, { productId: 'blueberry_pie_1' })}
-        /> 
+       <br></br>
+        
                
     <div style={{ overflowY: 'auto', height: '150vh',marginLeft: '20px' }}>
 
