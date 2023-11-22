@@ -40,7 +40,7 @@ const MuiBottomNavigation: React.FC = () => {
         onClick={() => navigate("/Add")} 
       />
       <BottomNavigationAction
-        label="Newsletter"
+        label="Blogs"
         icon={<EditNoteIcon />}
         value={bnValue}
         onClick={() => navigate("/Newsletter")}
