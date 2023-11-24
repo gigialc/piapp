@@ -8,7 +8,7 @@ import { Button, Grid } from '@mui/material';
 */
 
 interface Props {
-  name: string
+  name: string,
 }
 
 export default function ProfileCard(props: Props) {

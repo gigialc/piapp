@@ -21,8 +21,8 @@ export default function UserToAppPayments() {
     if(user.uid === "") {
       return saveShowModal(true);
     }
+    const paymentData = { amount, memo, metadata: { ...paymentMetadata, user_id: user.uid } };
 
-    const paymentData = { amount, memo, metadata: paymentMetadata };
     const callbacks = {
       onReadyForServerApproval,
       onReadyForServerCompletion,
@@ -38,7 +38,7 @@ export default function UserToAppPayments() {
 return(
     <>
         <Header/>
-        <Typography variant="h4" margin={3} color="hotpink">
+        <Typography variant="h5" margin={2} color="pink">
             Create a community
         </Typography>
         <MuiForm/>

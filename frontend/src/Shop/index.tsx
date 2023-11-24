@@ -9,11 +9,9 @@ import ProductCard from "./components/ProductCard";
 import { UserContext } from "./components/Auth";
 import React from "react";
 import { useState, useEffect } from "react";
-import Paper from "@mui/material/Paper";
-import Button from "@mui/material/Button";
+
 import axios from 'axios';
 // testing to link blog posts to blog pages
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 // Make TS accept the existence of our window.__ENV object - defined in index.html:
 interface WindowWithEnv extends Window {
@@ -32,7 +30,7 @@ const config = {headers: {'Content-Type': 'application/json', 'Access-Control-Al
 
 
 export default function HomePage() {
-  const { user, saveUser, showModal, saveShowModal, onModalClose, community } = React.useContext(UserContext) as UserContextType;
+  const { user, saveUser, showModal, saveShowModal, onModalClose } = React.useContext(UserContext) as UserContextType;
 
   const [createCommunityData, setCreateCommunityData] = useState<CommunityType[] | null>(null);
 
@@ -40,6 +38,7 @@ export default function HomePage() {
   const orderProduct = async (memo: string, amount: number, paymentMetadata: MyPaymentMetadata) => {
     if(user.uid === "") {
       return saveShowModal(true);
+
     }
 
     const paymentData = { amount, memo, metadata: paymentMetadata };
@@ -77,9 +76,10 @@ return(
     
     <Header/>
     
-        <Typography variant="h4" margin={2} color="primary">
+    <Typography variant="h5" margin={2} color="pink">
+            Communities
         </Typography>
-      <h1>Create Community</h1>
+      
 
       { createCommunityData ?
       createCommunityData.map((order) =>{    
@@ -88,12 +88,12 @@ return(
           name={order.name}
           description={order.description}
           price={order.price}
-          onClickBuy={() => orderProduct("Community", order.price, { community_id: order._id })}
+          onClickBuy={() => orderProduct("Community", order.price, { community_id: order._id, user_id: user.uid })}
         />
       })
       :
       <ProductCard
-        name="Loading..."
+        name="Loading.. ."
         description="Loading..."
         price={0}
         onClickBuy={() => console.log('Buy clicked')} // Pass the createCommunityData prop here

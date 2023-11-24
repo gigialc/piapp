@@ -1,6 +1,8 @@
 //Created by Georgina Alacaraz
 
 import { Button, Grid } from '@mui/material';
+import { StringDecoder } from 'string_decoder';
+import { UserContextType } from './Types';
 
 /* DEVELOPER NOTE:
 * the productCard is used to create the standard output of pies
@@ -23,12 +25,12 @@ export default function ProductCard(props: Props) {
         <Grid container style={{ width: "33%", marginRight: 8 }}>
         </Grid>
         <Grid item style={{ width: "90%" }}>
-          <h3>{props.name}</h3>
+          <h3>{props.name}</h3> 
           <p>{props.description}</p>  
       </Grid>
       </Grid>
       <Grid item style={{textAlign: 'center', marginBottom: 8}}>
-        <strong>{props.price} Test-π</strong> <br />
+        <strong>{props.price} Test-π</strong> < br />
         <Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink' }} onClick={()=> {props.onClickBuy()}}>Join</Button>
   
       </Grid>

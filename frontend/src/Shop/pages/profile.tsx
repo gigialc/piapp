@@ -9,6 +9,7 @@ import { UserContext } from "../components/Auth";
 import React from "react";
 import MuiBottomNavigation from "../../MuiBottomNavigation";
 import Paper from "@mui/material/Paper";
+import ProfileCard from "../components/ProfileCard";
 
 
 /* DEVELOPER NOTE:
@@ -38,11 +39,13 @@ export default function UserToAppPayments() {
     <>
         <Header/>
         
-        <Typography variant="h4" margin={3} color="hotpink">
+        <Typography variant="h5" margin={2} color="pink">
+            Profile
         </Typography>
-        <h1>Profile</h1>
        { showModal && <SignIn onSignIn={saveUser} onModalClose={onModalClose} showModal={showModal}/> }
-
+       <ProfileCard
+       name={"Hello " + user.username}
+        />
        <MuiBottomNavigation />
     </>
 );

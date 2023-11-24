@@ -5,6 +5,9 @@
 import React, { CSSProperties, useState } from 'react';
 import axios from 'axios';
 import { TextField, Button, Stack, colors, FormControl } from '@mui/material';
+import { UserContext } from "../components/Auth";
+import { UserContextType } from './Types';
+import { userInfo } from 'os';
 
 // Make TS accept the existence of our window.__ENV object - defined in index.html:
 interface WindowWithEnv extends Window {
@@ -36,7 +39,8 @@ export default function MuiForm() {
     const [descriptionErrorMessage, setDescriptionErrorMessage] = useState<string>('');
     const [priceErrorMessage, setPriceErrorMessage] = useState<string>('');
 
-    const [showModal, setShowModal] = useState<boolean>(false);
+    const { user, saveUser, showModal, saveShowModal, onModalClose } = React.useContext(UserContext) as UserContextType;
+
     
     const onTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setTitle(event.target.value);
@@ -50,13 +54,9 @@ export default function MuiForm() {
         setPrice(event.target.value);
     }
     
-    const onModalClose = () => {
-        setShowModal(false);
-    }
-    
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-    
+        
     
         if (title === '') {
         setTitleError(true);
@@ -82,17 +82,18 @@ export default function MuiForm() {
         setPriceErrorMessage('');
         }
 
+
         if (title !== '' && description !== '' && price !== '') {
         const data = {
             title,
             description,
-            price
+            price,
+            useState : user.uid
         };
 
         axiosClient.post('/community/create', data)
             .then((response) => {
             console.log(response);
-            setShowModal(true);
             })
             .catch((error) => {
             console.log(error);
@@ -145,15 +146,6 @@ export default function MuiForm() {
                         error={priceError}
                         helperText={priceErrorMessage}
                     />
-                    {/* <TextField
-                        id="category"
-                        label="Category"
-                        variant="outlined"
-                        value={category}
-                        onChange={onCategoryChange}
-                        error={categoryError}
-                        helperText={categoryErrorMessage}
-                    /> */}
                     <Button type="submit" variant="contained"style={{ backgroundColor:"pink", color:"black", borderRadius:"100px" }} >Submit</Button>
                 </Stack>
             </form>

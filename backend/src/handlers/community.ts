@@ -5,6 +5,8 @@
 // Community endpoints under /community
 import { Router } from "express";
 import { ObjectId } from "mongodb";
+import { CommunityType } from "../types/community";
+
 
 export default function mountCommunityEndpoints(router: Router) {
     router.get('/create', async (req, res) => {
@@ -16,27 +18,26 @@ export default function mountCommunityEndpoints(router: Router) {
 
     router.post('/create', async (req, res) => {
         try {
-            const communityCollection = req.app.locals.communityCollection;
-        const community = req.body;
-        console.log(community);
-        const communityData = {
-            _id: new ObjectId(),
-            name: community.title,
-            description: community.description,
-            price: community.price,
-            admins: community.admins,
-            moderators: community.moderators,
-            members: community.members,
-            invited: community.invited,
-            posts: community.posts,
-            rules: community.rules,
-            tags: community.tags,
-            createdAt: new Date(),
-            updatedAt: new Date()
-        }
-        const insertResult = await communityCollection.insertOne(communityData);
-        const newCommunity = await communityCollection.findOne(insertResult.insertedId);
-        return res.status(200).json({ newCommunity });
+            const communityCollection = req.app.locals.communityCollection;// Add a check for null or undefined
+            const community = req.body;
+            console.log(community);
+            const communityData = {
+                _id: new ObjectId(),
+                name: community.title,
+                description: community.description,
+                price: community.price,
+                moderators: community.moderators,
+                members: community.members,
+                invited: community.invited,
+                posts: community.posts,
+                rules: community.rules,
+                tags: community.tags,
+                createdAt: new Date(),
+                updatedAt: new Date()
+            }
+            const insertResult = await communityCollection.insertOne(communityData);
+            const newCommunity = await communityCollection.findOne(insertResult.insertedId);
+            return res.status(200).json({ newCommunity });
         } catch (error) {
             console.log(error);
             return res.status(400).json({ message: "Error creating community", error });
@@ -214,4 +215,8 @@ router.get('/hi', async (req, res) => {
 //onchan    
 //onsubmit
 
+}
+
+function userInfo() {
+    throw new Error("Function not implemented.");
 }

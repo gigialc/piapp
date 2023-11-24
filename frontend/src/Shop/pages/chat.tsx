@@ -38,7 +38,7 @@ return(
     <>
         <Header/>
         
-        <Typography variant="h4" margin={3} color="hotpink">
+        <Typography variant="h5" margin={2} color="pink">
               Chat 
         </Typography>
         
