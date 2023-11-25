@@ -810,3 +810,8 @@
 ::ffff:127.0.0.1 - - [25/Nov/2023:18:18:27 +0000] "GET /community/hi HTTP/1.1" 200 933
 ::ffff:127.0.0.1 - - [25/Nov/2023:18:19:22 +0000] "GET /community/hi HTTP/1.1" 304 -
 ::ffff:127.0.0.1 - - [25/Nov/2023:18:19:24 +0000] "GET /community/hi HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [25/Nov/2023:18:20:08 +0000] "GET /community/hi HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [25/Nov/2023:18:29:16 +0000] "GET /community/hi HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [25/Nov/2023:18:29:24 +0000] "OPTIONS /community/create HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [25/Nov/2023:18:29:24 +0000] "POST /community/create HTTP/1.1" 200 340
+::ffff:127.0.0.1 - - [25/Nov/2023:18:29:26 +0000] "GET /community/hi HTTP/1.1" 200 1257

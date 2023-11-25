@@ -10,7 +10,6 @@ import { UserData } from "../types/user";
 import "../types/session";
 import platformAPIClient from "../services/platformAPIClient";
 
-
 export default function mountCommunityEndpoints(router: Router) {
     router.get('/create', async (req, res) => {
         const communityCollection = req.app.locals.communityCollection;
@@ -21,7 +20,8 @@ export default function mountCommunityEndpoints(router: Router) {
 
     router.post('/create', async (req, res) => {
         try {
-            const communityCollection = req.app.locals.communityCollection;// Add a check for null or undefined
+            const communityCollection = req.app.locals.communityCollection;
+            const userId = req.session.currentUser?.uid;// Add a check for null or undefined
             const community = req.body;
             console.log(community);
             if (!req.session.currentUser) {
@@ -45,6 +45,14 @@ export default function mountCommunityEndpoints(router: Router) {
             }
             const insertResult = await communityCollection.insertOne(communityData);
             const newCommunity = await communityCollection.findOne(insertResult.insertedId);
+            const userData = app.locals.userCollection;
+            const user = await userData.findOne({ uid: userId });
+            if (!user) {
+                return res.status(401).json({ error: 'unauthorized', message: "User needs to sign in first" });
+              }
+              const updateResult = await userData.updateOne({ _id: user._id }, { $push: { communities: newCommunity._id } });
+                const updatedUser = await userData.findOne({ _id: user._id });
+                req.session.currentUser = updatedUser;
             return res.status(200).json({ newCommunity });
         } catch (error) {
             console.log(error);
