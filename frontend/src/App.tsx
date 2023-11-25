@@ -22,6 +22,8 @@ function App() {
         <Route path="/Profile" element={<Profile />} />
         <Route path="/Newsletter" element={<Newsletter />} />
         <Route path="/mybody" element={<Mybody />} />
+        <Route path="/Chat" element={<Chat />} />
+        
 
 
     </Routes>  

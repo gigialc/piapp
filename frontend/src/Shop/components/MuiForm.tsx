@@ -2,12 +2,11 @@
 // Description: This is the main page for the Add page. It will display the header, the form, and the bottom navigation bar.
 // Created by Georgina Alacaraz
 
-import React, { CSSProperties, useState } from 'react';
+import React, { CSSProperties, useContext, useState } from 'react';
 import axios from 'axios';
 import { TextField, Button, Stack, colors, FormControl } from '@mui/material';
 import { UserContext } from "../components/Auth";
 import { UserContextType } from './Types';
-import { userInfo } from 'os';
 
 // Make TS accept the existence of our window.__ENV object - defined in index.html:
 interface WindowWithEnv extends Window {
@@ -22,8 +21,7 @@ const backendURL = _window.__ENV && _window.__ENV.backendURL;
 
 
 const axiosClient = axios.create({ baseURL: `${backendURL}`, timeout: 20000, withCredentials: true});
-const config = {headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}};
-
+const config = {headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}}; // Add null check
 
 export default function MuiForm() {
 
@@ -39,7 +37,7 @@ export default function MuiForm() {
     const [descriptionErrorMessage, setDescriptionErrorMessage] = useState<string>('');
     const [priceErrorMessage, setPriceErrorMessage] = useState<string>('');
 
-    const { user, saveUser, showModal, saveShowModal, onModalClose } = React.useContext(UserContext) as UserContextType;
+    const { user, showModal, saveShowModal, onModalClose, addCommunityToUser } = useContext(UserContext) as UserContextType;
 
     
     const onTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,49 +54,53 @@ export default function MuiForm() {
     
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-    
+
         if (title === '') {
-        setTitleError(true);
-        setTitleErrorMessage('Title is required');
+            setTitleError(true);
+            setTitleErrorMessage('Title is required');
         } else {
-        setTitleError(false);
-        setTitleErrorMessage('');
-        }
-    
-        if (description === '') {
-        setDescriptionError(true);
-        setDescriptionErrorMessage('Description is required');
-        } else {
-        setDescriptionError(false);
-        setDescriptionErrorMessage('');
-        }
-    
-        if (price === '') {
-        setPriceError(true);
-        setPriceErrorMessage('Price is required');
-        } else {
-        setPriceError(false);
-        setPriceErrorMessage('');
+            setTitleError(false);
+            setTitleErrorMessage('');
         }
 
+        if (description === '') {
+            setDescriptionError(true);
+            setDescriptionErrorMessage('Description is required');
+        } else {
+            setDescriptionError(false);
+            setDescriptionErrorMessage('');
+        }
+
+        if (price === '') {
+            setPriceError(true);
+            setPriceErrorMessage('Price is required');
+        } else {
+            setPriceError(false);
+            setPriceErrorMessage('');
+        }
 
         if (title !== '' && description !== '' && price !== '') {
-        const data = {
-            title,
-            description,
-            price,
-            user_id: user.uid
-        };
+            const data = {
+                title,
+                description,
+                price,
+                user_id: user?.uid // Add null check for user
+            };
 
-        axiosClient.post('/community/create', data)
-            .then((response) => {
-            console.log(response);
-            })
-            .catch((error) => {
-            console.log(error);
-            });
+            axiosClient
+                .post('/community/create', data, config)
+                .then((response) => {
+                    console.log(response);
+                    saveShowModal(true);
+                    if (addCommunityToUser) { // Add null check for addCommunityToUser
+                        addCommunityToUser(response.data);
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         }
-    }
+    };
 
     const modalStyle: CSSProperties = {
         background: 'white', 
@@ -113,10 +115,16 @@ export default function MuiForm() {
         flexDirection: 'column', 
         justifyContent: 'center' 
     }
+    const inputStyle = {
+        backgroundColor: "white",
+        margin: "8px 0",
+        borderRadius: "4px"
+      };
 
     return (
-        <div>
+        <div style={{ padding: '32px', textAlign: 'center' }}>
             <form onSubmit={handleSubmit}>
+                <h2 style={{ marginBottom: '24px' }}>Create your community here!</h2>
                 <Stack spacing={2} sx={{ width: '80%', margin: '10%' }}>
                     <TextField
                         id="title"
@@ -126,6 +134,8 @@ export default function MuiForm() {
                         onChange={onTitleChange}
                         error={titleError}
                         helperText={titleErrorMessage}
+                        style={inputStyle}
+                        fullWidth
                     />
                     <TextField
                         id="description"
@@ -135,6 +145,8 @@ export default function MuiForm() {
                         onChange={onDescriptionChange}
                         error={descriptionError}
                         helperText={descriptionErrorMessage}
+                        style={inputStyle}
+                        fullWidth
                     />
                     <TextField
                         id="price"
@@ -144,6 +156,8 @@ export default function MuiForm() {
                         onChange={onPriceChange}
                         error={priceError}
                         helperText={priceErrorMessage}
+                        style={inputStyle}
+                        fullWidth
                     />
                     <Button type="submit" variant="contained"style={{ backgroundColor:"pink", color:"black", borderRadius:"100px" }} >Submit</Button>
                 </Stack>

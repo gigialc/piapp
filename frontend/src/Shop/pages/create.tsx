@@ -38,7 +38,6 @@ return(
     <>
         <Header/>
         <Typography variant="h5" margin={2} color="pink">
-            Create a community
         </Typography>
         <MuiForm/>
         <MuiBottomNavigation/>

@@ -12,7 +12,9 @@ export type AuthResult = {
     user: {
       uid: string,
       username: string
+      community: CommunityType[]
     }
+
     };
     
     export type User = AuthResult['user'];
@@ -26,13 +28,14 @@ export type AuthResult = {
     };
     
     export type UserContextType = {
-      user: { uid: string; username: string; };
+      user: { uid: string; username: string; community: CommunityType[]};
       saveUser: () => void;
       showModal: boolean;
       saveShowModal: (value: boolean) => void;
       onModalClose: () => void;
       community: CommunityType[];
-    }
+      addCommunityToUser: (newCommunity: CommunityType) => void;
+    };
 
 
     export type MyPaymentMetadata = {};
