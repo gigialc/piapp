@@ -1,13 +1,14 @@
 // Define community types
 // Creator: Gigi
 import { ObjectId } from "mongodb";
+import { UserData } from "./user";
 
 export interface CommunityType {
     _id: ObjectId,
     name: string,
     description: string,
     price: number,
-    creator: ObjectId,
+    uid: string,
     members: Array<ObjectId>,
 //    tags: Array<string>,
 //    createdAt: Date,

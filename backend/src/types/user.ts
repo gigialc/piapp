@@ -5,5 +5,6 @@ export interface UserData {
   username: string,
   uid: string,
   roles: Array<string>,
-  accessToken: string
+  accessToken: string,
+  communities: Array<ObjectId>
 }

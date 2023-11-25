@@ -30,7 +30,7 @@ export default function ProductCard(props: Props) {
       </Grid>
       </Grid>
       <Grid item style={{textAlign: 'center', marginBottom: 8}}>
-        <strong>{props.price} Test-π</strong> < br />
+        <strong>{props.price} Test-π</strong>  < br />
         <Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink' }} onClick={()=> {props.onClickBuy()}}>Join</Button>
   
       </Grid>

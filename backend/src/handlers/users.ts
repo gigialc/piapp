@@ -32,7 +32,8 @@ export default function mountUserEndpoints(router: Router) {
         username: auth.user.username,
         uid: auth.user.uid,
         roles: auth.user.roles,
-        accessToken: auth.accessToken
+        accessToken: auth.accessToken,
+        communities: []
       });
       
       currentUser = await userCollection.findOne(insertResult.insertedId);

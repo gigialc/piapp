@@ -6,6 +6,9 @@
 import { Router } from "express";
 import { ObjectId } from "mongodb";
 import { CommunityType } from "../types/community";
+import { UserData } from "../types/user";
+import "../types/session";
+import platformAPIClient from "../services/platformAPIClient";
 
 
 export default function mountCommunityEndpoints(router: Router) {
@@ -21,10 +24,15 @@ export default function mountCommunityEndpoints(router: Router) {
             const communityCollection = req.app.locals.communityCollection;// Add a check for null or undefined
             const community = req.body;
             console.log(community);
+            if (!req.session.currentUser) {
+                return res.status(401).json({ error: 'unauthorized', message: "User needs to sign in first" });
+              }
+              const app = req.app;
             const communityData = {
                 _id: new ObjectId(),
                 name: community.title,
                 description: community.description,
+                user: req.session.currentUser.uid,
                 price: community.price,
                 moderators: community.moderators,
                 members: community.members,

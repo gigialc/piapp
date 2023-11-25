@@ -56,7 +56,6 @@ export default function MuiForm() {
     
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        
     
         if (title === '') {
         setTitleError(true);
@@ -88,7 +87,7 @@ export default function MuiForm() {
             title,
             description,
             price,
-            useState : user.uid
+            user_id: user.uid
         };
 
         axiosClient.post('/community/create', data)
