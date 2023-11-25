@@ -15,14 +15,16 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
     const [user, setUser] = React.useState<User>( { uid: '', username: '' } )
     const [showModal, setShowModal] = React.useState<boolean>(false);
     const [community, setCommunity] = React.useState<CommunityType[]>(
-      [{
-        _id: '',
-        name: '',
-        description: '',
-        price: 0,
-      }]);
-
-
+      [
+        {
+          _id: '',
+          name: '',
+          description: '',
+          price: 0,
+          user_uid: '',
+        }
+      ]
+    );
     const signIn = async () => {
       const scopes = ['username', 'payments', 'wallet_address'];
       const authResult: AuthResult = await window.Pi.authenticate(scopes, onIncompletePaymentFound);
@@ -30,6 +32,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
       setUser(authResult.user);
       setShowModal(false);
       getCommunity();
+
     }
 
     const signInUser = async (authResult: AuthResult) => {

@@ -45,6 +45,7 @@ export default function UserToAppPayments() {
        { showModal && <SignIn onSignIn={saveUser} onModalClose={onModalClose} showModal={showModal}/> }
        <ProfileCard
        name={"Hello " + user.username}
+
         />
        <MuiBottomNavigation />
     </>
