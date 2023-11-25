@@ -45,12 +45,7 @@ const MuiBottomNavigation: React.FC = () => {
         value={bnValue}
         onClick={() => navigate("/Newsletter")}
       />
-      <BottomNavigationAction
-        label="Chat"
-        icon={<ChatIcon />}
-        value={bnValue}
-        onClick={() => navigate("/Chat")}
-      />
+     
     </BottomNavigation>
   );
 };

@@ -10,6 +10,7 @@ import Chat from "./Shop/pages/chat";
 import Profile from './Shop/pages/profile';
 import Newsletter from "./Shop/pages/newsletter";
 import AuthProvider from "./Shop/components/Auth";
+import Mybody from "./Shop/pages/mybody";
 
 function App() {
     const user = null;
@@ -20,7 +21,7 @@ function App() {
         <Route path="/Add" element={<Add />} />
         <Route path="/Profile" element={<Profile />} />
         <Route path="/Newsletter" element={<Newsletter />} />
-        <Route path="/Chat" element={<Chat />} />
+        <Route path="/mybody" element={<Mybody />} />
 
 
     </Routes>  
