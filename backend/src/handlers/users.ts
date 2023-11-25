@@ -50,4 +50,22 @@ export default function mountUserEndpoints(router: Router) {
     req.session.currentUser = null;
     return res.status(200).json({ message: "User signed out" });
   });
+
+  // get the current user
+  router.get('/me', async (req, res) => {
+    try {
+      const currentUser = req.session.currentUser;
+      console.log(currentUser);
+      if (currentUser) {
+        return res.status(200).json(currentUser);
+      } else {
+        return res.status(401).json({error: "User not signed in"}) 
+      }
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json({error: "Internal server error"})
+    }
+  }
+  );
+
 }

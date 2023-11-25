@@ -9,6 +9,9 @@ import { Button, Grid } from '@mui/material';
 
 interface Props {
   name: string,
+  description: string,
+  community: string[],
+
 }
 
 export default function ProfileCard(props: Props) {
@@ -19,6 +22,15 @@ export default function ProfileCard(props: Props) {
         </Grid>
         <Grid item style={{ width: "90%" }}>
           <h3>{props.name}</h3>
+          <p>{props.description}</p>
+          <div>
+        <h5>Your Communities:</h5>
+        <ul>
+          {props.community.map((community) => (
+            <li>{community}</li>
+          ))}
+        </ul>
+      </div>
       </Grid>
       </Grid>
       <Grid item style={{textAlign: 'center', marginBottom: 8}}>
