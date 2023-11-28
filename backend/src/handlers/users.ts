@@ -1,6 +1,7 @@
 import { Router } from "express";
 
 import platformAPIClient from "../services/platformAPIClient";
+import { ObjectId } from "mongodb";
 
 export default function mountUserEndpoints(router: Router) {
   // handle the user auth accordingly
@@ -51,21 +52,33 @@ export default function mountUserEndpoints(router: Router) {
     return res.status(200).json({ message: "User signed out" });
   });
 
-  // get the current user
+
   router.get('/me', async (req, res) => {
     try {
       const currentUser = req.session.currentUser;
+      if (!currentUser) {
+        return res.status(401).json(currentUser);
+      }
       console.log(currentUser);
-      if (currentUser) {
-        return res.status(200).json(currentUser);
+      const communityUser = await Promise.all(currentUser.communities.map(async (community: any) => {
+        const communityCollection = req.app.locals.communityCollection;
+        // Find all community documents in the collection
+        const communities = await communityCollection.find({ _id: new ObjectId(community) }).toArray();
+        console.log(communities);
+        return communities;
+        //const communityData = await platformAPIClient.get(url);
+        // return communityData.data;
+      }));
+      if (communityUser) {
+        return res.status(200).json(communityUser);
       } else {
-        return res.status(401).json({error: "User not signed in"}) 
+        return res.status(401).json({ error: "Users did not create any communities" });
       }
     } catch (err) {
       console.log(err);
-      return res.status(500).json({error: "Internal server error"})
+      return res.status(500).json({ error: "Internal server error" });
     }
-  }
-  );
+  });
+  
 
 }

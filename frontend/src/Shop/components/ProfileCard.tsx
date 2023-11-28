@@ -7,14 +7,13 @@ import { Button, Grid } from '@mui/material';
 * on the User to App payments page of the app.
 */
 
-interface Props {
-  name: string,
-  description: string,
-  community: string[],
-
+interface CommunityType {
+  _id: string; // Make sure _id is defined in the CommunityType interface
+  name: string;
+  description: string;
 }
 
-export default function ProfileCard(props: Props) {
+export default function ProfileCard(props: CommunityType) {
   return (
     <Grid container style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid pink' }}>
       <Grid container style={{ display: 'flex', flexDirection: 'row' }}>
@@ -22,13 +21,8 @@ export default function ProfileCard(props: Props) {
         </Grid>
         <Grid item style={{ width: "90%" }}>
           <h3>{props.name}</h3>
-          <p>{props.description}</p>
           <div>
-        <h5>Your Communities:</h5>
         <ul>
-          {props.community.map((community) => (
-            <li>{community}</li>
-          ))}
         </ul>
       </div>
       </Grid>

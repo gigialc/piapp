@@ -56,9 +56,10 @@ export default function  UserToAppPayments() {
   , [user]);
 
   useEffect(() => {
-    axiosClient.get('/users/me')
+    axiosClient.get('/user/me')
       .then((response) => {
         console.log(response);
+        setCreateCommunityData(response.data);
       })  
       .catch((error) => {
         console.log(error);
@@ -73,12 +74,19 @@ export default function  UserToAppPayments() {
       <Typography variant="h5" margin={2} color="pink">
         Profile
       </Typography>
-      {/* Make sure user and user.community exist and are in the correct format */}
-      <ProfileCard
-        name={user.username}
-        description={"Welcome to your profile page"} // Add a description if needed
-        community={user.community ? user.community.map(community => community.name) : []}
-      />
+      <Typography variant="h6" margin={2} color="black">
+      Your Communities 
+      </Typography>
+      {createCommunityData ? 
+      createCommunityData.map((community) =>{ 
+      return <ProfileCard // Ensure a unique key for each community
+      key={community._id}
+    name={community.name} 
+    />
+  })
+ : (
+  <p>No community data available</p>
+)}
       {showModal && <SignIn onSignIn={saveUser} onModalClose={onModalClose} showModal={showModal}/>}
 
       <MuiBottomNavigation />

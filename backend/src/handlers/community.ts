@@ -21,7 +21,7 @@ export default function mountCommunityEndpoints(router: Router) {
     router.post('/create', async (req, res) => {
         try {
             const communityCollection = req.app.locals.communityCollection;
-            const userId = req.session.currentUser?.uid;// Add a check for null or undefined
+            const creatorId = req.session.currentUser?.uid;// Add a check for null or undefined
             const community = req.body;
             console.log(community);
             if (!req.session.currentUser) {
@@ -46,12 +46,12 @@ export default function mountCommunityEndpoints(router: Router) {
             const insertResult = await communityCollection.insertOne(communityData);
             const newCommunity = await communityCollection.findOne(insertResult.insertedId);
             const userData = app.locals.userCollection;
-            const user = await userData.findOne({ uid: userId });
-            if (!user) {
+            const creator = await userData.findOne({ uid: creatorId });
+            if (!creator) {
                 return res.status(401).json({ error: 'unauthorized', message: "User needs to sign in first" });
               }
-              const updateResult = await userData.updateOne({ _id: user._id }, { $push: { communities: newCommunity._id } });
-                const updatedUser = await userData.findOne({ _id: user._id });
+              const updateResult = await userData.updateOne({ _id: creator._id }, { $push: { communities: newCommunity._id } });
+                const updatedUser = await userData.findOne({ _id: creator._id });
                 req.session.currentUser = updatedUser;
             return res.status(200).json({ newCommunity });
         } catch (error) {
@@ -76,6 +76,16 @@ router.get('/hi', async (req, res) => {
         return res.status(500).json({ message: "Error fetching communities", error });
     }
 });
+
+    router.get('/community/:id', async (req, res) => {
+        const communityCollection = req.app.locals.communityCollection;
+        const id = req.params.id;
+      console.log(id);
+        const community = await communityCollection.findOne({ _id: id });
+        console.log(community);
+        return res.status(200).json({ name: community.name });
+    }
+);
 
     router.put('/community/:id', async (req, res) => {
         const communityCollection = req.app.locals.communityCollection;
