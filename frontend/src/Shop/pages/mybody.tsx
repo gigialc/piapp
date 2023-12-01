@@ -1,4 +1,4 @@
-// Created by Georgina Alacaraz
+// Created by Paula Lopez Burgos and Beren Donmez
 import { UserContextType, MyPaymentMetadata } from "../components/Types";
 import { onCancel, onError, onReadyForServerApproval, onReadyForServerCompletion } from "../components/Payments";
 import MuiBottomNavigation from "../../MuiBottomNavigation";
@@ -9,11 +9,9 @@ import Typography from "@mui/material/Typography";
 import { UserContext } from "../components/Auth";
 import React from "react";
 import Mybodycard from "../components/mybodycard";
+import { useNavigate } from 'react-router-dom';
 
-/* DEVELOPER NOTE:
-* this page facilitates the purchase of pies for pi. all of the callbacks
-* can be found on the Payments.tsx file in components file. 
-*/
+
 export default function UserToAppPayments() {
   const { user, saveUser, showModal, saveShowModal, onModalClose } = React.useContext(UserContext) as UserContextType;
 
@@ -32,6 +30,7 @@ export default function UserToAppPayments() {
 
     const payment = await window.Pi.createPayment(paymentData, callbacks);
     console.log(payment);
+    
   }
 
 
@@ -47,6 +46,8 @@ return(
             price={10.99}
             onClickBuy={() => {
                 // Handle buy button click
+                // button and go to individual blog page
+
             }}
         />
         <Mybodycard

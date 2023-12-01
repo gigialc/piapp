@@ -1,8 +1,7 @@
 //Created by Georgina Alacaraz
 
 import { Button, Grid } from '@mui/material';
-import { StringDecoder } from 'string_decoder';
-import { UserContextType } from './Types';
+import { useNavigate } from 'react-router-dom';
 
 /* DEVELOPER NOTE:
 * the productCard is used to create the standard output of pies
@@ -14,10 +13,17 @@ import { UserContextType } from './Types';
 interface Props {
   description: string,
   price: number,
-  onClickBuy: () => void,
+  onClickBuy: () => void
 }
 
 export default function ProductCard(props: Props) {
+
+  const navigate = useNavigate();
+
+  const handleReadNowClick = () => {
+    navigate('/socialmediaBlog');
+  }
+
   return (
     <Grid container style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid pink' }}>
       <Grid container style={{ display: 'flex', flexDirection: 'row' }}>
@@ -28,9 +34,11 @@ export default function ProductCard(props: Props) {
       </Grid>
       </Grid>
       <Grid item style={{textAlign: 'center', marginBottom: 8}}>
-        <Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink' }} onClick={()=> {props.onClickBuy()}}>Select</Button>
-  
+        <Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink' }} onClick={()=> {props.onClickBuy(); handleReadNowClick()}}>Select</Button>
+
       </Grid>
     </Grid>
   )
 }
+
+
