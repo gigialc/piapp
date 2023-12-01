@@ -26,6 +26,11 @@ export default function UserToAppPayments() {
     navigate('/mybody');
   }
 
+
+  const handleBirthControlClick = () => {
+    navigate('/birthcontrol'); // Change '/birthcontrol' to the actual route of 'birthcontrol.tsx'
+  };
+
   const orderProduct = async (memo: string, amount: number, paymentMetadata: MyPaymentMetadata) => {
     if(user.uid === "") {
       return saveShowModal(true);
@@ -82,24 +87,24 @@ return(
 <div style={{ marginBottom: '20px' }}></div>
 
 {/* Add "my communities" heading */}
-<h2>Hormones</h2>
-<div style={{ display: "flex", overflowX: "auto" }}>
-{/* Scrollable container for text boxes */}
-<div style={{ display: "flex", marginRight: "10px" }}>
-{/* First text box content for "My Communities" */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
-<Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
-  Body Image on Social Media
-</Typography>
-<Typography variant="body2"> {/* Adjust the variant and style as needed for the description */}
-  Dive into the complex world of body image on social media! 📸💔 
-</Typography>
-<div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-  <Button variant="contained" color="secondary" size="small">
-    Read Now
-  </Button>
-</div>
-</Paper>
+<h2>Birth Control Methods</h2>
+<div style={{ display: 'flex', overflowX: 'auto' }}>
+  {/* Scrollable container for text boxes */}
+  <div style={{ display: 'flex', marginRight: '10px' }}>
+    {/* First text box content for "My Communities" */}
+    <Paper style={{ display: 'flex', flexDirection: 'column', width: '200px', padding: '10px', marginRight: '10px', backgroundColor: 'pink' }}>
+      <Typography variant="h6">
+        Choosing a Method of Contraception
+      </Typography>
+      <Typography variant="body2">
+        Elements include safety, effectiveness, availability, and acceptability
+      </Typography>
+      <div style={{ marginTop: 'auto' }}>
+      <Button variant="contained" color="secondary" size="small" onClick={handleReadNowClick}>
+          Read Now
+        </Button>
+      </div>
+    </Paper>
 
 {/* Second text box content for "My Communities" */}
 
