@@ -15,3 +15,7 @@ h4, h5, h6 {
 *, *::before, *::after {
   box-sizing: border-box;
 }
+
+.myParagraph {
+  margin-bottom: 16px;
+}
