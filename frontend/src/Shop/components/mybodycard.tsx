@@ -1,5 +1,7 @@
 //Created by Georgina Alacaraz
 
+// Altered by Paula, since each Select should be unique to a certain page dont need this code anymore
+
 import { Button, Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 

@@ -12,6 +12,8 @@ import Newsletter from "./Shop/pages/newsletter";
 import AuthProvider from "./Shop/components/Auth";
 import Mybody from "./Shop/pages/mybody";
 import SocialMediaBlog from "./Shop/pages/SocialMediaBlog";
+import Blogilates from "./Shop/pages/Blogilates";
+import BodyImage from "./Shop/pages/BodyImage";
 
 function App() {
     const user = null;
@@ -25,6 +27,8 @@ function App() {
                 <Route path="/mybody" element={<Mybody />} />
                 <Route path="/Chat" element={<Chat />} />
                 <Route path="/socialmediaBlog" element={<SocialMediaBlog />} />
+                <Route path="/Blogilates" element={<Blogilates />} />
+                <Route path="/BodyImage" element={<BodyImage />} />
             </Routes>
             <MuiBottomNavigation />
         </AuthProvider>

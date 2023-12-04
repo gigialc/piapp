@@ -8,11 +8,17 @@ import ProductCard from "../components/ProductCard";
 import Typography from "@mui/material/Typography";
 import { UserContext } from "../components/Auth";
 import React from "react";
-import Mybodycard from "../components/mybodycard";
 import { useNavigate } from 'react-router-dom';
-
+import { Button, Grid } from '@mui/material';
 
 export default function UserToAppPayments() {
+
+  const navigate = useNavigate();
+
+  const handleClick = (page: string) => {
+    navigate(page);
+  }
+
   const { user, saveUser, showModal, saveShowModal, onModalClose } = React.useContext(UserContext) as UserContextType;
 
   const orderProduct = async (memo: string, amount: number, paymentMetadata: MyPaymentMetadata) => {
@@ -36,41 +42,30 @@ export default function UserToAppPayments() {
 
 return(
     <>
-        <Header/>
-        
-        <Typography variant="h5" margin={2} color="pink">
-              My Body 
-        </Typography>
-        <Mybodycard
-            description="Why are so many people on social media so perfect?"
-            price={10.99}
-            onClickBuy={() => {
-                // Handle buy button click
-                // button and go to individual blog page
+        <Header />
 
-            }}
-        />
-        <Mybodycard
-            description="How do I become more confident in my own skin?"
-            price={10.99}
-            onClickBuy={() => {
-                // Handle buy button click
-            }}
-        />
-        <Mybodycard
-            description="Why are so many people on social media so perfect?"
-            price={10.99}
-            onClickBuy={() => {
-                // Handle buy button click
-            }}
-        />
-        
-            
-        
-       { showModal && <SignIn onSignIn={saveUser} onModalClose={onModalClose} showModal={showModal}/> }
+    <Typography variant="h5" margin={2} color="pink">
+      My Body
+    </Typography>
 
-      <MuiBottomNavigation/>
+    {/* Replace Mybodycard components with buttons */}
+    <Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%' }} onClick={() => handleClick('/socialmediaBlog')}>
+      Why are so many people on social media so perfect?
+    </Button>
+
+    <Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%' }} onClick={() => handleClick('/BodyImage')}>
+    "Perfect" Body Image Stereotypes in Society
+    </Button>
+
+    <Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/Blogilates')}>
+      Blogilates on Body Image 
+    </Button>
+
+    {/* Remove the Mybodycard components */}
+
+    {showModal && <SignIn onSignIn={saveUser} onModalClose={onModalClose} showModal={showModal} />}
+
+    <MuiBottomNavigation />
     </>
-);
-
-};
+  );
+}
