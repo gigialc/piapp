@@ -15,6 +15,7 @@ import SocialMediaBlog from "./Shop/pages/SocialMediaBlog";
 import Blogilates from "./Shop/pages/Blogilates";
 import BodyImage from "./Shop/pages/BodyImage";
 import Eatingdisorders from "./Shop/pages/Eatingdisorders";
+import Sexed from "./Shop/pages/sexed";
 
 function App() {
     const user = null;
@@ -26,6 +27,7 @@ function App() {
                 <Route path="/Profile" element={<Profile />} />// Make sure Profile is a valid React component
                 <Route path="/Newsletter" element={<Newsletter />} />
                 <Route path="/mybody" element={<Mybody />} />
+                <Route path="/sexed" element={<Sexed />} />
                 <Route path="/Chat" element={<Chat />} />
                 <Route path="/socialmediaBlog" element={<SocialMediaBlog />} />
                 <Route path="/Blogilates" element={<Blogilates />} />

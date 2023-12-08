@@ -22,8 +22,8 @@ export default function UserToAppPayments() {
 
   const navigate = useNavigate();
 
-  const handleReadNowClick = () => {
-    navigate('/mybody');
+  const handleClick = (page: string) => {
+    navigate(page);
   }
 
   const orderProduct = async (memo: string, amount: number, paymentMetadata: MyPaymentMetadata) => {
@@ -69,7 +69,7 @@ return(
   Dive into the complex world of body image on social media! 📸💔 
 </Typography>
 <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-<Button variant="contained" color="secondary" size="small" onClick={handleReadNowClick}>
+<Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/mybody')}>
     Read Now
   </Button>
 </div>
@@ -82,20 +82,18 @@ return(
 <div style={{ marginBottom: '20px' }}></div>
 
 {/* Add "my communities" heading */}
-<h2>Hormones</h2>
+<h2>Sex Education</h2>
 <div style={{ display: "flex", overflowX: "auto" }}>
 {/* Scrollable container for text boxes */}
 <div style={{ display: "flex", marginRight: "10px" }}>
 {/* First text box content for "My Communities" */}
 <Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
 <Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
-  Body Image on Social Media
-</Typography>
+All you need to know about healthy relationships</Typography>
 <Typography variant="body2"> {/* Adjust the variant and style as needed for the description */}
-  Dive into the complex world of body image on social media! 📸💔 
-</Typography>
+Embarking on a journey to prioritize your sexual health and empowering you through resources.</Typography>
 <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-  <Button variant="contained" color="secondary" size="small">
+<Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/sexed')}>
     Read Now
   </Button>
 </div>
