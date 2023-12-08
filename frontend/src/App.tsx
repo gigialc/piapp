@@ -14,6 +14,7 @@ import Mybody from "./Shop/pages/mybody";
 import SocialMediaBlog from "./Shop/pages/SocialMediaBlog";
 import Blogilates from "./Shop/pages/Blogilates";
 import BodyImage from "./Shop/pages/BodyImage";
+import Eatingdisorders from "./Shop/pages/Eatingdisorders";
 
 function App() {
     const user = null;
@@ -29,6 +30,8 @@ function App() {
                 <Route path="/socialmediaBlog" element={<SocialMediaBlog />} />
                 <Route path="/Blogilates" element={<Blogilates />} />
                 <Route path="/BodyImage" element={<BodyImage />} />
+                <Route path="/Eatingdisorders" element={<Eatingdisorders />} />
+
             </Routes>
             <MuiBottomNavigation />
         </AuthProvider>

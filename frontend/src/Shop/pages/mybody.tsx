@@ -61,6 +61,9 @@ return(
       Blogilates on Body Image 
     </Button>
 
+    <Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/Eatingdisorders')}>
+    Social Media Use and Body Image Disorders
+    </Button>
     {/* Remove the Mybodycard components */}
 
     {showModal && <SignIn onSignIn={saveUser} onModalClose={onModalClose} showModal={showModal} />}
