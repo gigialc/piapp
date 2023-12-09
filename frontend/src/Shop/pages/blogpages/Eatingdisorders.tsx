@@ -1,11 +1,11 @@
 // Created by Paula Lopez Burgos and Beren Donmez
-import { UserContextType, MyPaymentMetadata } from "../components/Types";
-import { onCancel, onError, onReadyForServerApproval, onReadyForServerCompletion } from "../components/Payments";
-import MuiBottomNavigation from "../../MuiBottomNavigation";
-import SignIn from "../components/SignIn";
-import Header from "../components/Header";
+import { UserContextType, MyPaymentMetadata } from "../../components/Types";
+import { onCancel, onError, onReadyForServerApproval, onReadyForServerCompletion } from "../../components/Payments";
+import MuiBottomNavigation from "../../../MuiBottomNavigation";
+import SignIn from "../../components/SignIn";
+import Header from "../../components/Header";
 import Typography from "@mui/material/Typography";
-import { UserContext } from "../components/Auth";
+import { UserContext } from "../../components/Auth";
 import React from "react";
 
 

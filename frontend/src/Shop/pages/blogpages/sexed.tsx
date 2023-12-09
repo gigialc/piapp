@@ -1,13 +1,13 @@
 
 // Created by Paula Lopez Burgos and Beren Donmez
-import { UserContextType, MyPaymentMetadata } from "../components/Types";
-import { onCancel, onError, onReadyForServerApproval, onReadyForServerCompletion } from "../components/Payments";
-import MuiBottomNavigation from "../../MuiBottomNavigation";
-import SignIn from "../components/SignIn";
-import Header from "../components/Header";
-import ProductCard from "../components/ProductCard";
+import { UserContextType, MyPaymentMetadata } from "../../components/Types";
+import { onCancel, onError, onReadyForServerApproval, onReadyForServerCompletion } from "../../components/Payments";
+import MuiBottomNavigation from "../../../MuiBottomNavigation";
+import SignIn from "../../components/SignIn";
+import Header from "../../components/Header";
+import ProductCard from "../../components/ProductCard";
 import Typography from "@mui/material/Typography";
-import { UserContext } from "../components/Auth";
+import { UserContext } from "../../components/Auth";
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { Button, Grid } from '@mui/material';
@@ -51,11 +51,11 @@ return(
 
     {/* Replace Mybodycard components with buttons */}
     <Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%' }} onClick={() => handleClick('/socialmediaBlog')}>
-    Sex Education
+      Sex Education
     </Button>
 
     <Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%' }} onClick={() => handleClick('/BodyImage')}>
-    Sex Education
+      Sex Education
     </Button>
 
     <Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/Blogilates')}>

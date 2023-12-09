@@ -45,7 +45,7 @@ return(
         <Header />
 
     <Typography variant="h5" margin={2} color="pink">
-      My Body
+      Body Image
     </Typography>
 
     {/* Replace Mybodycard components with buttons */}
@@ -62,7 +62,7 @@ return(
     </Button>
 
     <Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/Eatingdisorders')}>
-    Social Media Use and Body Image Disorders
+      Social Media Use and Body Image Disorders
     </Button>
     {/* Remove the Mybodycard components */}
 

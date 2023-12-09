@@ -1,11 +1,11 @@
 // Created by Paula Lopez Burgos and Beren Donmez
-import { UserContextType, MyPaymentMetadata } from "../components/Types";
-import { onCancel, onError, onReadyForServerApproval, onReadyForServerCompletion } from "../components/Payments";
-import MuiBottomNavigation from "../../MuiBottomNavigation";
-import SignIn from "../components/SignIn";
-import Header from "../components/Header";
+import { UserContextType, MyPaymentMetadata } from "../../components/Types";
+import { onCancel, onError, onReadyForServerApproval, onReadyForServerCompletion } from "../../components/Payments";
+import MuiBottomNavigation from "../../../MuiBottomNavigation";
+import SignIn from "../../components/SignIn";
+import Header from "../../components/Header";
 import Typography from "@mui/material/Typography";
-import { UserContext } from "../components/Auth";
+import { UserContext } from "../../components/Auth";
 import React from "react";
 
 
@@ -30,12 +30,10 @@ export default function UserToAppPayments(){
   }
   return(
     <>
-        <Header/>     
+        <Header/>   
+        <div style={{ overflowY: 'auto', height: '150vh',marginLeft: '20px' }}>  
 
         <h2>What I’d look like if I had the “perfect” body throughout history…</h2>
-            
- 
-        <div style={{ overflowY: 'auto', height: '150vh',marginLeft: '20px' }}>
           
         <Typography variant="body2" sx={{ marginBottom: '16px' }}>
             Sometimes, I stare at myself in the mirror and I wonder how I would look if I had a “perfect” body, like the ones I see splashed all over magazines and on the explore page of Instagram. But…what if it wasn’t 2018? What would my “ideal” body look like then?
