@@ -66,11 +66,23 @@ export default function mountUserEndpoints(router: Router) {
         const communities = await communityCollection.find({ _id: new ObjectId(community) }).toArray();
         console.log(communities);
         return communities;
-        //const communityData = await platformAPIClient.get(url);
-        // return communityData.data;
       }));
-      if (communityUser) {
-        return res.status(200).json(communityUser);
+      const communityMap = communityUser.map((community: any) => {
+        return {
+          //_id: community._id,
+          name: community[0].name,
+         // description: community.description,
+        // posts: community.posts,
+         // users: community.users,
+         // tags: community.tags,
+         // createdAt: community.createdAt,
+          //updatedAt: community.updatedAt,
+        }
+      }
+      )
+      console.log(communityMap);
+      if (communityMap) {
+        return res.status(200).json(communityMap);
       } else {
         return res.status(401).json({ error: "Users did not create any communities" });
       }

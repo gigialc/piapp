@@ -79,8 +79,9 @@ export default function  UserToAppPayments() {
       </Typography>
       {createCommunityData ? 
       createCommunityData.map((community) =>{ 
+        console.log(community);
       return <ProfileCard // Ensure a unique key for each community
-      // added by paula, was giving an error because of missing attributes
+      // added by paula, was giving an error because of missing attribute
         key={community._id}
         name={community.name} _id={""} description={""}    />
   })

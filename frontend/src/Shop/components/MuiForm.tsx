@@ -103,7 +103,7 @@ export default function MuiForm() {
     };
 
     const modalStyle: CSSProperties = {
-        background: 'white', 
+        backgroundColor: '#FEEAEE', 
         position: 'absolute', 
         left: '15vw', 
         top: '40%', 
@@ -122,9 +122,9 @@ export default function MuiForm() {
       };
 
     return (
-        <div style={{ padding: '32px', textAlign: 'center' }}>
+        <div style={{ padding: '32px', textAlign: 'center', backgroundColor: '#FEEAEE' }}>
             <form onSubmit={handleSubmit}>
-                <h2 style={{ marginBottom: '24px' }}>Create your community here!</h2>
+                <h2 style={{ marginBottom: '24px' ,color: "#9E4291",}}>Create your community here!</h2>
                 <Stack spacing={2} sx={{ width: '80%', margin: '10%' }}>
                     <TextField
                         id="title"
@@ -159,7 +159,7 @@ export default function MuiForm() {
                         style={inputStyle}
                         fullWidth
                     />
-                    <Button type="submit" variant="contained"style={{ backgroundColor:"pink", color:"black", borderRadius:"100px" }} >Submit</Button>
+                    <Button type="submit" variant="contained"style={{ backgroundColor:"#9E4291", color:"white", borderRadius:"100px" }} >Submit</Button>
                 </Stack>
             </form>
             {showModal && (
