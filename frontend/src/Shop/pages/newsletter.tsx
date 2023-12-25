@@ -87,7 +87,7 @@ return(
       {/* Scrollable container for text box */}
       <Paper style={{ display: 'flex', flexDirection: 'column', width: '200px', padding: '10px', marginRight: '10px',backgroundColor: '	#ffb6d3' }}>
         <Typography variant="h6" color="#9E4291">
-          All you need to know about healthy relationships
+          All you need to know about healthy relationships, hi
         </Typography>
         <Typography variant="body2">
           Embarking on a journey to prioritize your sexual health and empowering you through resources. Read on to learn more.
