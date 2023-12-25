@@ -9,8 +9,9 @@ export interface CommunityType {
     description: string,
     price: number,
     uid: string,
+    owner : string,
     members: Array<ObjectId>,
 //    tags: Array<string>,
-//    createdAt: Date,
-//    updatedAt: Date
+    createdAt: Date,
+    updatedAt: Date
 }

@@ -32,7 +32,7 @@ export default function mountCommunityEndpoints(router: Router) {
                 _id: new ObjectId(),
                 name: community.title,
                 description: community.description,
-                user: req.session.currentUser.uid,
+                owner: req.session.currentUser.uid,
                 price: community.price,
                 moderators: community.moderators,
                 members: community.members,

@@ -77,20 +77,54 @@ export default function  UserToAppPayments() {
       <Typography variant="h6" margin={2} color="black">
       Your Communities 
       </Typography>
-      {createCommunityData ? 
-      createCommunityData.map((community) =>{ 
-        console.log(community);
-      return <ProfileCard // Ensure a unique key for each community
-      // added by paula, was giving an error because of missing attribute
-        key={community._id}
-        name={community.name} _id={""} description={""}    />
+  {createCommunityData ? (
+  createCommunityData.map((community) => {
+    if (community.owner === user.uid) {
+      return (
+        <ProfileCard
+          key={community._id}
+          name={community.name}
+          _id={user.uid}
+          description={"kfdkjfdjkdfjk"}
+          owner = {community.owner}
+        />
+      );
+    }
+    return null; // Return null if the condition is not met
   })
- : (
+) : (
   <p>No community data available</p>
 )}
+
+    <Typography variant="h6" margin={2} color="black">
+        Joined Communities
+    </Typography>
+    {createCommunityData ? (
+  createCommunityData.map((community) => {
+    const isUserMember = community.member.some((mem) => mem === user);
+
+    if (isUserMember) {
+      return (
+        <ProfileCard
+          key={community._id}
+          name={community.name}
+          _id={user.uid}
+          description={"kfdkjfdjkdfjk"}
+          owner = {community.owner}
+        />
+      );
+    }
+    return null; // Return null if the condition is not met
+  })
+) : (
+  <p>No community data available</p>
+)}
+
+
       {showModal && <SignIn onSignIn={saveUser} onModalClose={onModalClose} showModal={showModal}/>}
 
       <MuiBottomNavigation />
     </>
   );
+
 }
