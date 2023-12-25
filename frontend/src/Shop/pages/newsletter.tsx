@@ -51,100 +51,55 @@ return(
        <br></br>
         
                
-    <div style={{ overflowY: 'auto', height: '150vh',marginLeft: '20px' }}>
+    <div style={{ overflowY: 'auto', height: '150vh',marginLeft: '20px' , marginRight:"20px"}}>
 
 {/* Add "blog posts" heading */}
 
 
-<h2>Body Image</h2>
-<div style={{ display: "flex", overflowX: "auto" }}>
-{/* Scrollable container for text boxes */}
-<div style={{ display: "flex", marginRight: "10px" }}>
-{/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
-<Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
-  The Impact of Social Media on Body Image
-</Typography>
-<Typography variant="body2"> 
-  Ever had doubts when posting your body on social media? Read this blog post to learn more about the negative side of social media and how we can avoid it.
-</Typography>
-<div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-<Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/mybody')}>
-    Read Now
-  </Button>
-</div>
-</Paper>
+{/* Add text boxes as needed */}
 
-{/* Add "my communities" heading */}
-<h2>Sex Education</h2>
-<div style={{ display: "flex", overflowX: "auto" }}>
-{/* Scrollable container for text boxes */}
-<div style={{ display: "flex", marginRight: "10px" }}>
-{/* First text box content for "My Communities" */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
-<Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
-All you need to know about healthy relationships</Typography>
-<Typography variant="body2"> {/* Adjust the variant and style as needed for the description */}
-Embarking on a journey to prioritize your sexual health and empowering you through resources. Read on to learn more</Typography>
-<div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-<Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/sexed')}>
-    Read Now
-  </Button>
-</div>
-</Paper>
+<div style={{ display: 'flex', alignItems: 'flex-start' }}>
+  {/* First set of content */}
+  <div style={{ marginRight: '10px', color:"#9E4291"}}>
+    <h2>Body Image</h2>
+    <div style={{ display: 'flex', overflowX: 'auto' }}>
+      {/* Scrollable container for text box */}
+      <Paper style={{ display: 'flex', flexDirection: 'column', width: '200px', padding: '10px', marginRight: '10px', backgroundColor: '	#ffb6d3' }}>
+        <Typography variant="h6" color="#9E4291">
+          The Impact of Social Media on Body Image
+        </Typography>
+        <Typography variant="body2">
+          Ever had doubts when posting your body on social media? Read this blog post to learn more about the negative side of social media and how we can avoid it.
+        </Typography>
+        <div style={{ marginTop: 'auto' }}>
+          <Button variant="contained" color="secondary" sx={{ backgroundColor:'#9E4291"', marginBottom: '16px', width: '100%', color:"black" }} onClick={() => handleClick('/mybody')}>
+            Read Now
+          </Button>
+        </div>
+      </Paper>
+    </div>
+  </div>
 
-{/* Add more text boxes as needed */}
-</div>
-</div>
-
-
-
-{/* Add more text boxes for "My Communities" as needed */}
-</div>
-</div>
-<h2>3</h2>
-<div style={{ display: "flex", overflowX: "auto" }}>
-{/* Scrollable container for text boxes */}
-<div style={{ display: "flex", marginRight: "10px" }}>
-{/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
-<Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
-  The Impact of Social Media on Body Image
-</Typography>
-<Typography variant="body2"> 
-  Ever had doubts when posting your body on social media? Read this blog post to learn more about the negative side of social media and how we can avoid it.
-</Typography>
-<div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-<Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/mybody')}>
-    Read Now
-  </Button>
-</div>
-</Paper>
-
-{/* Add more text boxes as needed */}
-</div>
-</div>
-<h2>4</h2>
-<div style={{ display: "flex", overflowX: "auto" }}>
-{/* Scrollable container for text boxes */}
-<div style={{ display: "flex", marginRight: "10px" }}>
-{/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
-<Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
-  The Impact of Social Media on Body Image
-</Typography>
-<Typography variant="body2"> 
-  Ever had doubts when posting your body on social media? Read this blog post to learn more about the negative side of social media and how we can avoid it.
-</Typography>
-<div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-<Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/mybody')}>
-    Read Now
-  </Button>
-</div>
-</Paper>
-
-{/* Add more text boxes as needed */}
-</div>
+  {/* Second set of content */}
+  <div style={{ marginRight: '15px' , color:"#9E4291"}}>
+    <h2>Sex Education</h2>
+    <div style={{ display: 'flex', overflowX: 'auto' }}>
+      {/* Scrollable container for text box */}
+      <Paper style={{ display: 'flex', flexDirection: 'column', width: '200px', padding: '10px', marginRight: '10px',backgroundColor: '	#ffb6d3' }}>
+        <Typography variant="h6" color="#9E4291">
+          All you need to know about healthy relationships
+        </Typography>
+        <Typography variant="body2">
+          Embarking on a journey to prioritize your sexual health and empowering you through resources. Read on to learn more.
+        </Typography>
+        <div style={{ marginTop: 'auto'  }}>
+          <Button variant="contained" color="secondary" sx={{ backgroundColor: '#9E4291"', marginBottom: '16px', width: '100%' , color:"black"}} onClick={() => handleClick('/sexed')}>
+            Read Now
+          </Button>
+        </div>
+      </Paper>
+    </div>
+  </div>
 </div>
 
 </div>     

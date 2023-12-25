@@ -76,7 +76,7 @@ return(
     
     <Header/>
     
-    <Typography variant="h5" margin={2} color="#9E4291" >
+    <Typography variant="h5" margin={2} color="#9E4291" style={{ fontWeight: 'bold' }}>
             Communities
         </Typography>
       

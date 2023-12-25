@@ -15,12 +15,12 @@ interface CommunityType {
 
 export default function ProfileCard(props: CommunityType) {
   return (
-    <Grid container style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid pink' }}>
+    <Grid container style={{ margin: 20, marginRight: 8 ,paddingBottom: 16, borderBottom: '1px solid pink', backgroundColor: '#FEEAEE'}}>
       <Grid container style={{ display: 'flex', flexDirection: 'row' }}>
-        <Grid container style={{ width: "33%", marginRight: 8 }}>
+        <Grid container style={{ width: "33%",marginRight: 8  }}>
         </Grid>
-        <Grid item style={{ width: "90%" }}>
-          <h3>{props.name}</h3>
+        <Grid item style={{ width: "90%", margin: 3}}>
+          <h4>{props.name}</h4>
           <div>
         <ul>
         </ul>

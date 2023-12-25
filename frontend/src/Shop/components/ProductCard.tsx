@@ -20,7 +20,7 @@ interface Props {
 
 export default function ProductCard(props: Props) {
   return (
-    <Grid container style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid pink', color:"#9E4291", }}>
+    <Grid container style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid pink' }}>
       <Grid container style={{ display: 'flex', flexDirection: 'row' }}>
         <Grid container style={{ width: "33%", marginRight: 8 }}>
         </Grid>

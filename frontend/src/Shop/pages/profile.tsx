@@ -67,21 +67,21 @@ export default function  UserToAppPayments() {
     }
   , []);
 
-  return (
+  return ( 
     <>
       <Header/>
-
-      <Typography variant="h5" margin={2} color="pink">
+      
+      <Typography variant="h5" margin={2}  color="#9E4291" style={{ fontWeight: 'bold' } }>
         Profile
       </Typography>
-      <Typography variant="h6" margin={2} color="black">
+      <Typography variant="h6" margin={2} style={{ fontWeight: 'bold' } }>
       Your Communities 
-      </Typography>
+      </Typography >
       {createCommunityData ? 
       createCommunityData.map((community) =>{ 
         console.log(community);
       return <ProfileCard // Ensure a unique key for each community
-      // added by paula, was giving an error because of missing attribute
+      // added by paula, was giving an error because of missing attribute  --> fixed this 
         key={community._id}
         name={community.name} _id={""} description={""}    />
   })
