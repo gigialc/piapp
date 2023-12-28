@@ -28,6 +28,7 @@ export default function mountCommunityEndpoints(router: Router) {
                 return res.status(401).json({ error: 'unauthorized', message: "User needs to sign in first" });
               }
               const app = req.app;
+
             const communityData = {
                 _id: new ObjectId(),
                 name: community.title,

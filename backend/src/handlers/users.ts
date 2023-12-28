@@ -2,6 +2,7 @@ import { Router } from "express";
 
 import platformAPIClient from "../services/platformAPIClient";
 import { ObjectId } from "mongodb";
+import { UserData } from "../types/user";
 
 export default function mountUserEndpoints(router: Router) {
   // handle the user auth accordingly
@@ -67,11 +68,24 @@ export default function mountUserEndpoints(router: Router) {
         console.log(communities);
         return communities;
       }));
+
+      const mockUserData: UserData = {
+        _id: new ObjectId(), // Automatically generates a new ObjectId
+        username: 'mockUser',
+        uid: 'mockUserId',
+        roles: ['user'],
+        accessToken: 'mockAccessToken',
+        communities: [new ObjectId(), new ObjectId()],
+        // communitiesJoined: [new ObjectId()] // Uncomment if needed
+      };
+
       const communityMap = communityUser.map((community: any) => {
         return {
           //_id: community._id,
           name: community[0].name,
-         // description: community.description,
+          members: [mockUserData],
+          owner: community[0].owner         
+          // description: community.description,
         // posts: community.posts,
          // users: community.users,
          // tags: community.tags,

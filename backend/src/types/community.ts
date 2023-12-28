@@ -10,7 +10,7 @@ export interface CommunityType {
     price: number,
     uid: string,
     owner : string,
-    members: Array<ObjectId>,
+    member: Array<UserData>,
 //    tags: Array<string>,
     createdAt: Date,
     updatedAt: Date
