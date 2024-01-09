@@ -52,7 +52,16 @@ export default function HomePage() {
 
     const payment = await window.Pi.createPayment(paymentData, callbacks);
     console.log(payment);
+    // Make an API call to add person to the community if the payment was successful
+    axiosClient.post('/user/addUser', paymentMetadata)
+            .then((response) => {
+            console.log(response);
+            })
+            .catch((error) => {
+            console.log(error);
+            });
   }
+
   useEffect(() => {
     console.log(createCommunityData);
   }, [createCommunityData]);

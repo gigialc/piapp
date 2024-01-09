@@ -50,7 +50,7 @@ export default function mountCommunityEndpoints(router: Router) {
             if (!creator) {
                 return res.status(401).json({ error: 'unauthorized', message: "User needs to sign in first" });
               }
-              const updateResult = await userData.updateOne({ _id: creator._id }, { $push: { communities: newCommunity._id } });
+              const updateResult = await userData.updateOne({ _id: creator._id }, { $push: { communitiesCreated: newCommunity._id } });
                 const updatedUser = await userData.findOne({ _id: creator._id });
                 req.session.currentUser = updatedUser;
             return res.status(200).json({ newCommunity });
@@ -105,17 +105,17 @@ router.get('/hi', async (req, res) => {
     }
 );
 
-    router.post('/community/:id/join', async (req, res) => {
+    //adding user to a community
+
+    router.post('/community/:id/addUser', async (req, res) => {
         const communityCollection = req.app.locals.communityCollection;
-        const id = req.params.id;
-        const user = req.body.user;
+        const id = req.body.community_id;
+        const user = req.body.user_id;
         const community = await communityCollection.findOne({ _id: new ObjectId(id) });
-        if (community.members.includes(user.uid)) {
+        if (community.members.includes(user)) {
             return res.status(200).json({ message: "User is already a member" });
         }
-        const updateResult = await communityCollection.updateOne({ _id: new ObjectId(id) }, { $push: { members: user.uid } });
-        const updatedCommunity = await communityCollection.findOne({ _id: new ObjectId(id) });
-        return res.status(200).json({ updatedCommunity });
+  
     }
 );
 
