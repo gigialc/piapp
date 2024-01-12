@@ -32,7 +32,8 @@
     "mongodb": "^5.8.1",
     "mongosh": "^1.10.3",
     "morgan": "^1.10.0",
-    "react-hook-form": "^7.45.2"
+    "react-hook-form": "^7.45.2",
+    "socket.io-client": "^4.7.3"
   },
   "devDependencies": {
     "@types/cors": "^2.8.11",

@@ -99,6 +99,10 @@ console.log("hi2");
 
     // let Pi server know that the payment is completed
     await platformAPIClient.post(`/v2/payments/${paymentId}/complete`, { txid });
+
+    // addUser to the community
+    await platformAPIClient.post(`/v2/communities/${req.body.communityId}/users`, { uid: req.body.uid });
+
     return res.status(200).json({ message: `Completed the payment ${paymentId}` });
   });
 

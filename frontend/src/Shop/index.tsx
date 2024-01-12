@@ -9,6 +9,8 @@ import ProductCard from "./components/ProductCard";
 import { UserContext } from "./components/Auth";
 import React from "react";
 import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
+
 
 import axios from 'axios';
 // testing to link blog posts to blog pages
@@ -31,7 +33,7 @@ const config = {headers: {'Content-Type': 'application/json', 'Access-Control-Al
 
 export default function HomePage() {
   const { user, saveUser, showModal, saveShowModal, onModalClose } = React.useContext(UserContext) as UserContextType;
-
+  const navigate = useNavigate(); // also added this!!!!!!
   const [createCommunityData, setCreateCommunityData] = useState<CommunityType[] | null>(null);
 
 
@@ -56,11 +58,13 @@ export default function HomePage() {
     axiosClient.post('/user/addUser', paymentMetadata)
             .then((response) => {
             console.log(response);
+            navigate('/pages/chat'); // Redirect to the chat page!!!!!!!1
             })
             .catch((error) => {
             console.log(error);
             });
   }
+  
 
   useEffect(() => {
     console.log(createCommunityData);
@@ -123,4 +127,4 @@ return(
 <MuiBottomNavigation/>
 </>
 );
-};
+}
