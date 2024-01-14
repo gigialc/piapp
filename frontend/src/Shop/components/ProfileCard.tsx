@@ -11,6 +11,7 @@ interface CommunityType {
   _id: string; // Make sure _id is defined in the CommunityType interface
   name: string;
   description: string;
+  owner:string;
 }
 
 export default function ProfileCard(props: CommunityType) {
@@ -21,6 +22,8 @@ export default function ProfileCard(props: CommunityType) {
         </Grid>
         <Grid item style={{ width: "90%" }}>
           <h3>{props.name}</h3>
+          <h3>{props._id}</h3> 
+          <h3>{props.owner}</h3> 
           <div>
         <ul>
         </ul>

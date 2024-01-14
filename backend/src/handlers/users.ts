@@ -2,6 +2,7 @@ import { Router } from "express";
 
 import platformAPIClient from "../services/platformAPIClient";
 import { ObjectId } from "mongodb";
+import { UserData } from "../types/user";
 
 export default function mountUserEndpoints(router: Router) {
   // handle the user auth accordingly
@@ -66,11 +67,36 @@ export default function mountUserEndpoints(router: Router) {
         const communities = await communityCollection.find({ _id: new ObjectId(community) }).toArray();
         console.log(communities);
         return communities;
-        //const communityData = await platformAPIClient.get(url);
-        // return communityData.data;
       }));
-      if (communityUser) {
-        return res.status(200).json(communityUser);
+
+      const mockUserData: UserData = {
+        _id: new ObjectId(), // Automatically generates a new ObjectId
+        username: 'mockUser',
+        uid: 'mockUserId',
+        roles: ['user'],
+        accessToken: 'mockAccessToken',
+        communities: [new ObjectId(), new ObjectId()],
+        // communitiesJoined: [new ObjectId()] // Uncomment if needed
+      };
+
+      const communityMap = communityUser.map((community: any) => {
+        return {
+          //_id: community._id,
+          name: community[0].name,
+          members: [mockUserData],
+          owner: community[0].owner         
+          // description: community.description,
+        // posts: community.posts,
+         // users: community.users,
+         // tags: community.tags,
+         // createdAt: community.createdAt,
+          //updatedAt: community.updatedAt,
+        }
+      }
+      )
+      console.log(communityMap);
+      if (communityMap) {
+        return res.status(200).json(communityMap);
       } else {
         return res.status(401).json({ error: "Users did not create any communities" });
       }

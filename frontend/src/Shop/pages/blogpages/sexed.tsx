@@ -51,8 +51,7 @@ return(
 
     {/* Replace Mybodycard components with buttons */}
     <Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%' }} onClick={() => handleClick('/socialmediaBlog')}>
-      Sex Education
-    </Button>
+    The Role of Parents in Sex Education    </Button>
 
     <Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%' }} onClick={() => handleClick('/BodyImage')}>
       Sex Education
