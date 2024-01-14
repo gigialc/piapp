@@ -7,14 +7,9 @@ import Typography from "@mui/material/Typography";
 import { UserContext } from "../components/Auth";
 import React, { useEffect, useState } from "react";
 import MuiBottomNavigation from "../../MuiBottomNavigation";
-import ProfileCard from "../components/ProfileCard";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-
-/* DEVELOPER NOTE:
-* this page facilitates the purchase of pies for pi. all of the callbacks
-* can be found on the Payments.tsx file in components file. 
-*/
 
 // Make TS accept the existence of our window.__ENV object - defined in index.html:
 interface WindowWithEnv extends Window {
@@ -35,13 +30,15 @@ export default function  UserToAppPayments() {
   const { user, saveUser, showModal, saveShowModal, onModalClose } = React.useContext(UserContext) as UserContextType;
   const [createCommunityData, setCreateCommunityData] = useState<CommunityType[] | null>(null);
   const [selectedCommunity, setSelectedCommunity] = useState<CommunityType | null>(null); // Moved here
+  const navigate = useNavigate();
 
   const handleCommunityClick = (community: CommunityType) => {
     // You can do whatever you need with the selected community here
     // For example, update the state to store the selected community
     setSelectedCommunity(community);
     // Or you can perform some navigation or other actions
-    // depending on your application's logic
+    // For example, navigate to the chat page 
+    navigate("/Chat");
   };
 
   const orderProduct = async (memo: string, amount: number, paymentMetadata: MyPaymentMetadata) => {

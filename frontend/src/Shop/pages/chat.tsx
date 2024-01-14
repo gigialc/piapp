@@ -1,12 +1,5 @@
 // Created by Georgina Alacaraz
-import { UserContextType, MyPaymentMetadata } from "../components/Types";
-import { onCancel, onError, onReadyForServerApproval, onReadyForServerCompletion } from "../components/Payments";
-import MuiBottomNavigation from "../../MuiBottomNavigation";
-import SignIn from "../components/SignIn";
-import Header from "../components/Header";
-import ProductCard from "../components/ProductCard";
-import Typography from "@mui/material/Typography";
-import { UserContext } from "../components/Auth";
+import { UserContextType, MyPaymentMetadata , CommunityType} from "../components/Types";
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 

@@ -33,6 +33,7 @@ function App() {
                 <Route path="/Blogilates" element={<Blogilates />} />
                 <Route path="/BodyImage" element={<BodyImage />} />
                 <Route path="/Eatingdisorders" element={<Eatingdisorders />} />
+                <Route path="/Chat" element={<Chat />} />
 
             </Routes>
             <MuiBottomNavigation />
