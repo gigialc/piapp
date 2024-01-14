@@ -32,7 +32,7 @@ export default function UserToAppPayments(){
     <>
         <Header/>   
         <div style={{ overflowY: 'auto', height: '150vh',marginLeft: '20px' }}>  
-
+        <br/>
         <h2>What I’d look like if I had the “perfect” body throughout history…</h2>
           
         <Typography variant="body2" sx={{ marginBottom: '16px' }}>

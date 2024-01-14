@@ -45,6 +45,7 @@ return(
     <>
         <Header />
 
+    <br/>
     <Typography variant="h5" margin={2} color="pink">
       Sex Education
     </Typography>

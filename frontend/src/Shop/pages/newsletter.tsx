@@ -51,239 +51,239 @@ return(
        <br></br>
         
                
-    <div style={{ overflowY: 'auto', height: '150vh',marginLeft: '20px' }}>
+    <div style={{ overflowY: 'auto', height: '150vh',marginLeft: '20px', fontFamily: 'Bodoni'}}>
 
-<h2>Body Image</h2>
-<div style={{ display: "flex", overflowX: "auto" }}>
-{/* Scrollable container for text boxes */}
-<div style={{ display: "flex", marginRight: "10px" }}>
-{/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
-<Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
-  Why are so many people on social media so perfect?
-</Typography>
-<Typography variant="body2"> 
- blah blah blah...
-</Typography>
-<div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-<Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/SocialMediaBlog')}>
-  Read More
-</Button>
-</div>
-</Paper>
+    <h2 style={{ fontWeight: 'normal', color: '#9E4291'}}>Body Image</h2>
+    <div style={{ display: "flex", overflowX: "auto" }}>
+    {/* Scrollable container for text boxes */}
+    <div style={{ display: "flex", fontWeight: 'bold', marginRight: "10px" }}>
+    {/* First text box content */}
+    <Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
+    <Typography variant="h6" sx={{ fontFamily: 'Bodoni', color: '#FFFFFF' }}> {/* Adjust the variant and style as needed for the title */}
+      Perfection on Social Media
+    </Typography>
+    <Typography variant="body2" sx={{ fontFamily: 'Baskerville' }}> 
+      Behind the meaning of a like on social media 
+    </Typography>
+    <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
+    <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/SocialMediaBlog')}>
+      Read More
+    </Button>
+    </div>
+    </Paper>
 
-<div style={{ display: "flex", overflowX: "auto" }}>
-{/* Scrollable container for text boxes */}
-<div style={{ display: "flex", marginRight: "10px" }}>
-{/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
-<Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
-  Blogilates on Body Image
-</Typography>
-<Typography variant="body2"> 
-  blah blah blah...
-</Typography>
-<div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-<Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/Blogilates')}>
-  Read More
-</Button>
-</div>
-</Paper>
+    <div style={{ display: "flex", overflowX: "auto" }}>
+    {/* Scrollable container for text boxes Didot*/}
+    <div style={{ display: "flex", marginRight: "10px" }}>
+    {/* First text box content */}
+    <Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
+    <Typography variant="h6" sx={{ fontFamily: 'Bodoni', color: '#FFFFFF' }}> {/* Adjust the variant and style as needed for the title */}
+      Blogilates on Body Image
+    </Typography>
+    <Typography variant="body2" sx={{ fontFamily: 'Baskerville' }}> 
+      blah blah blah...
+    </Typography>
+    <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
+    <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/Blogilates')}>
+      Read More
+    </Button>
+    </div>
+    </Paper>
 
-<div style={{ display: "flex", overflowX: "auto" }}>
-{/* Scrollable container for text boxes */}
-<div style={{ display: "flex", marginRight: "10px" }}>
-{/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
-<Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
-  "Perfect" Body Image Stereotypes in Society
-</Typography>
-<Typography variant="body2"> 
-  blah blah blah...
-</Typography>
-<div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-<Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/BodyImage')}>
-  Read More
-</Button>
-</div>
-</Paper>
+    <div style={{ display: "flex", overflowX: "auto" }}>
+    {/* Scrollable container for text boxes */}
+    <div style={{ display: "flex", marginRight: "10px" }}>
+    {/* First text box content */}
+    <Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
+    <Typography variant="h6" sx={{ fontFamily: 'Bodoni', color: '#FFFFFF' }}> {/* Adjust the variant and style as needed for the title */}
+      Stereotypes in Society
+    </Typography>
+    <Typography variant="body2" sx={{ fontFamily: 'Baskerville' }}> 
+      blah blah blah...
+    </Typography>
+    <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
+    <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/BodyImage')}>
+      Read More
+    </Button>
+    </div>
+    </Paper>
 
-<div style={{ display: "flex", overflowX: "auto" }}>
-{/* Scrollable container for text boxes */}
-<div style={{ display: "flex", marginRight: "10px" }}>
-{/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
-<Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
-  Social Media Use and Body Image Disorders
-</Typography>
-<Typography variant="body2"> 
-  blah blah blah...
-</Typography>
-<div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-<Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/Eatingdisorders')}>
-  Read More
-</Button>
-</div>
-</Paper>
+    <div style={{ display: "flex", overflowX: "auto" }}>
+    {/* Scrollable container for text boxes */}
+    <div style={{ display: "flex", marginRight: "10px" }}>
+    {/* First text box content */}
+    <Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
+    <Typography variant="h6" sx={{ fontFamily: 'Bodoni', color: '#FFFFFF' }}> {/* Adjust the variant and style as needed for the title */}
+      Body Image Disorders
+    </Typography>
+    <Typography variant="body2" sx={{ fontFamily: 'Baskerville' }}> 
+      blah blah blah...
+    </Typography>
+    <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
+    <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/Eatingdisorders')}>
+      Read More
+    </Button>
+    </div>
+    </Paper>
 
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div> 
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div> 
 
-<br />
+    <br />
 
-<h2>Sex Education</h2>
-<div style={{ display: "flex", overflowX: "auto" }}>
-{/* Scrollable container for text boxes */}
-<div style={{ display: "flex", marginRight: "10px" }}>
-{/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
-<Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
-  Contraception Methods and their Importance
-</Typography>
-<Typography variant="body2"> 
-  blah blah blah...
-</Typography>
-<div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-<Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/sexed')}>
-  Read More
-</Button>
-</div>
-</Paper>
+    <h2 style={{ fontWeight: 'normal', color: '#9E4291' }}>Sex Education</h2>
+    <div style={{ display: "flex", overflowX: "auto" }}>
+    {/* Scrollable container for text boxes */}
+    <div style={{ display: "flex", marginRight: "10px" }}>
+    {/* First text box content */}
+    <Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
+    <Typography variant="h6" sx={{ fontFamily: 'Bodoni', color: '#FFFFFF' }}> {/* Adjust the variant and style as needed for the title */}
+      Contraception Methods
+    </Typography>
+    <Typography variant="body2" sx={{ fontFamily: 'Baskerville' }}> 
+      blah blah blah...
+    </Typography>
+    <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
+    <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/sexed')}>
+      Read More
+    </Button>
+    </div>
+    </Paper>
 
-<div style={{ display: "flex", overflowX: "auto" }}>
-{/* Scrollable container for text boxes */}
-<div style={{ display: "flex", marginRight: "10px" }}>
-{/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
-<Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
-  Sexual Education and Parenting
-</Typography>
-<Typography variant="body2"> 
-  blah blah blah...
-</Typography>
-<div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-<Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/sexed')}>
-  Read More
-</Button>
-</div>
-</Paper>
+    <div style={{ display: "flex", overflowX: "auto" }}>
+    {/* Scrollable container for text boxes */}
+    <div style={{ display: "flex", marginRight: "10px" }}>
+    {/* First text box content */}
+    <Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
+    <Typography variant="h6" sx={{ fontFamily: 'Bodoni', color: '#FFFFFF' }}> {/* Adjust the variant and style as needed for the title */}
+      Sexual Education and Parenting
+    </Typography>
+    <Typography variant="body2" sx={{ fontFamily: 'Baskerville' }}> 
+      blah blah blah...
+    </Typography>
+    <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
+    <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/sexed')}>
+      Read More
+    </Button>
+    </div>
+    </Paper>
 
-<div style={{ display: "flex", overflowX: "auto" }}>
-{/* Scrollable container for text boxes */}
-<div style={{ display: "flex", marginRight: "10px" }}>
-{/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
-<Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
-  Covid-19 vs Sexual Health
-</Typography>
-<Typography variant="body2"> 
-  blah blah blah...
-</Typography>
-<div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-<Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/sexed')}>
-  Read More
-</Button>
-</div>
-</Paper>
+    <div style={{ display: "flex", overflowX: "auto" }}>
+    {/* Scrollable container for text boxes */}
+    <div style={{ display: "flex", marginRight: "10px" }}>
+    {/* First text box content */}
+    <Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
+    <Typography variant="h6" sx={{ fontFamily: 'Bodoni', color: '#FFFFFF' }}> {/* Adjust the variant and style as needed for the title */}
+      Covid-19 vs Sexual Health
+    </Typography>
+    <Typography variant="body2" sx={{ fontFamily: 'Baskerville' }}> 
+      blah blah blah...
+    </Typography>
+    <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
+    <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/sexed')}>
+      Read More
+    </Button>
+    </div>
+    </Paper>
 
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
 
-<br />
+    <br />
 
-<h2>Other Trending Articles</h2>
-<div style={{ display: "flex", overflowX: "auto" }}>
-{/* Scrollable container for text boxes */}
-<div style={{ display: "flex", marginRight: "10px" }}>
-{/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
-<Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
-  PCOS and its effects on the body
-</Typography>
-<Typography variant="body2"> 
-  blah blah blah...
-</Typography>
-<div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-<Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/mybody')}>
-  Read More
-</Button>
-</div>
-</Paper>
+    <h2 style={{ fontWeight: 'normal', color: '#9E4291'}}>Other Trending Articles</h2>
+    <div style={{ display: "flex", overflowX: "auto" }}>
+    {/* Scrollable container for text boxes */}
+    <div style={{ display: "flex", marginRight: "10px" }}>
+    {/* First text box content */}
+    <Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
+    <Typography variant="h6" sx={{ fontFamily: 'Bodoni', color: '#FFFFFF' }}> {/* Adjust the variant and style as needed for the title */}
+      PCOS and its effects on the body
+    </Typography>
+    <Typography variant="body2" sx={{ fontFamily: 'Baskerville' }}> 
+      blah blah blah...
+    </Typography>
+    <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
+    <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/mybody')}>
+      Read More
+    </Button>
+    </div>
+    </Paper>
 
-<div style={{ display: "flex", overflowX: "auto" }}>
-{/* Scrollable container for text boxes */}
-<div style={{ display: "flex", marginRight: "10px" }}>
-{/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
-<Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
-  IBS
-</Typography>
-<Typography variant="body2"> 
-  blah blah blah...
-</Typography>
-<div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-<Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/mybody')}>
-  Read More
-</Button>
-</div>
-</Paper>
+    <div style={{ display: "flex", overflowX: "auto" }}>
+    {/* Scrollable container for text boxes */}
+    <div style={{ display: "flex", marginRight: "10px" }}>
+    {/* First text box content */}
+    <Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
+    <Typography variant="h6" sx={{ fontFamily: 'Bodoni', color: '#FFFFFF' }}> {/* Adjust the variant and style as needed for the title */}
+      First Time Mother Diaries
+    </Typography>
+    <Typography variant="body2" sx={{ fontFamily: 'Baskerville' }}> 
+      blah blah blah...
+    </Typography>
+    <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
+    <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/mybody')}>
+      Read More
+    </Button>
+    </div>
+    </Paper>
 
-<div style={{ display: "flex", overflowX: "auto" }}>
-{/* Scrollable container for text boxes */}
-<div style={{ display: "flex", marginRight: "10px" }}>
-{/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
-<Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
-  First Time Mother Diaries
-</Typography>
-<Typography variant="body2"> 
-  blah blah blah...
-</Typography>
-<div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-<Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/mybody')}>
-  Read More
-</Button>
-</div>
-</Paper>
+    <div style={{ display: "flex", overflowX: "auto" }}>
+    {/* Scrollable container for text boxes */}
+    <div style={{ display: "flex", marginRight: "10px" }}>
+    {/* First text box content */}
+    <Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
+    <Typography variant="h6" sx={{ fontFamily: 'Bodoni', color: '#FFFFFF' }}> {/* Adjust the variant and style as needed for the title */}
+      Menstruation Changes
+    </Typography>
+    <Typography variant="body2" sx={{ fontFamily: 'Baskerville' }}> 
+      blah blah blah...
+    </Typography>
+    <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
+    <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/mybody')}>
+      Read More
+    </Button>
+    </div>
+    </Paper>
 
-<div style={{ display: "flex", overflowX: "auto" }}>
-{/* Scrollable container for text boxes */}
-<div style={{ display: "flex", marginRight: "10px" }}>
-{/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
-<Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
-  Menstruation Changes
-</Typography>
-<Typography variant="body2"> 
-  blah blah blah...
-</Typography>
-<div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-<Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/mybody')}>
-  Read More
-</Button>
-</div>
-</Paper>
+    <div style={{ display: "flex", overflowX: "auto" }}>
+    {/* Scrollable container for text boxes */}
+    <div style={{ display: "flex", marginRight: "10px" }}>
+    {/* First text box content */}
+    <Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
+    <Typography variant="h6" sx={{ fontFamily: 'Bodoni', color: '#FFFFFF' }}> {/* Adjust the variant and style as needed for the title */}
+      Irritable Bowel Syndrome
+    </Typography>
+    <Typography variant="body2" sx={{ fontFamily: 'Baskerville' }}> 
+      blah blah blah...
+    </Typography>
+    <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
+    <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/mybody')}>
+      Read More
+    </Button>
+    </div>
+    </Paper>
 
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
 
-<br />
+    <br />
 </div>     
        { showModal && <SignIn onSignIn={saveUser} onModalClose={onModalClose} showModal={showModal}/> }
 

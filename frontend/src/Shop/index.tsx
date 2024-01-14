@@ -76,7 +76,7 @@ return(
     
     <Header/>
     
-    <Typography variant="h5" margin={2} color="#9E4291" >
+    <Typography variant="h5" margin={2} color="#9E4291" fontFamily='Bodoni' >
             Communities
         </Typography>
       
@@ -93,7 +93,7 @@ return(
       })
       :
       <ProductCard
-        name="Loading.. ."
+        name="Loading..."
         description="Loading..."
         price={0}
         onClickBuy={() => console.log('Buy clicked')} // Pass the createCommunityData prop here

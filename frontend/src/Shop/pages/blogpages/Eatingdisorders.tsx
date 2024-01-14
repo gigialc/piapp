@@ -31,11 +31,8 @@ export default function UserToAppPayments(){
   return(
     <>
         <Header/>     
-
+        <br/>
         <h2>Social Media and Health</h2>
-    
-        
- 
         <div style={{ overflowY: 'auto', height: '150vh',marginLeft: '20px' }}>
           
         <Typography variant="body2" sx={{ marginBottom: '16px' }}>
@@ -50,7 +47,7 @@ export default function UserToAppPayments(){
         The implications suggest that individuals who frequently engage in comparing their physical appearance on social media may be more vulnerable to developing eating disorders. Importantly, the study advocates for the integration of these insights into general population prevention programs and tailored treatment plans for patients, emphasizing the need to address the influence of social media on body image in mental health interventions.        </Typography>
         <Typography variant="body2" sx={{ marginBottom: '16px' }}>
         As social media continues to play a central role in shaping societal norms and individual perceptions, understanding its impact on mental health, particularly in the realm of body image and eating disorders, is crucial. This research provides valuable insights that underscore the necessity of incorporating social media considerations into broader mental health initiatives, aiming to mitigate the potential negative consequences associated with the virtual comparison of physical appearances.
-     </Typography>
+        </Typography>
                 Source: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8001450/
 
         </div>

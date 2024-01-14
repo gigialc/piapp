@@ -1,4 +1,13 @@
 // Created by Paula Lopez Burgos and Beren Donmez
+
+
+
+//IRRELERVANT CODE
+
+
+
+
+
 import { UserContextType, MyPaymentMetadata } from "../components/Types";
 import { onCancel, onError, onReadyForServerApproval, onReadyForServerCompletion } from "../components/Payments";
 import MuiBottomNavigation from "../../MuiBottomNavigation";

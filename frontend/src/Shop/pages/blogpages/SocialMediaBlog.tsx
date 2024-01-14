@@ -33,7 +33,7 @@ export default function UserToAppPayments(){
         <Header/>     
 
         <div style={{ overflowY: 'auto', height: '150vh',marginLeft: '20px' }}>
-
+        <br/>
         <h2>The negative side of social media and how we can avoid it</h2>
     
         <img src="Social_Media_Body-1480_0.jpg" alt="Social_Media_Body-1480_0" width="500" height="100"></img>       

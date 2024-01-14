@@ -100,10 +100,10 @@ export default function UserToAppPayments() {
     <>
       <Header />
 
-      <Typography variant="h5" margin={2} color="pink">
+      <Typography variant="h5" margin={2} color="#9E4291" fontFamily='Bodoni'>
         Profile
       </Typography>
-      <Typography variant="h6" margin={2} color="black">
+      <Typography variant="h6" margin={2} color="black" fontFamily='Bodoni'>
         Your Communities
       </Typography>
       {createCommunityData ? (
@@ -125,7 +125,7 @@ export default function UserToAppPayments() {
         <p>No community data available</p>
       )}
 
-      <Typography variant="h6" margin={2} color="black">
+      <Typography variant="h6" margin={2} color="black" fontFamily='Bodoni'>
         Joined Communities
       </Typography>
       {createCommunityData ? (

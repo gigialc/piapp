@@ -33,13 +33,16 @@ export default function UserToAppPayments(){
         <Header/>     
 
         <div style={{ overflowY: 'auto', height: '150vh',marginLeft: '20px' }}>
-
+        <br/>
         <h2>The negative side of social media and how we can avoid it</h2>
     
         <img src="1_liHouzcsOxIh9otdoouAjA@2x.jpg" alt="1_liHouzcsOxIh9otdoouAjA@2x.jpg" width="450" height="220"></img>       
           
         <Typography variant="body2" sx={{ marginBottom: '16px' }}>
-            Have you ever posted a photo of yourself on social media that received a lot of likes and comments? It’s nice to see that people are interested in you. In fact, you probably got a little boost in your self-esteem, which is great! But for some people, that boost can leave them wanting more…and more…and more.
+            Have you ever posted a photo of yourself on social media that received a lot of likes and comments? 
+            It's nice to see that people are interested in you. In fact, you probably got a 
+            little boost in your self-esteem, which is great! But for some people, that boost can leave 
+            them wanting more…and more…and more.
         </Typography>
 
         <Typography variant="body2" sx={{ marginBottom: '100px' }}>
