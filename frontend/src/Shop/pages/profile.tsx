@@ -34,11 +34,22 @@ const config = {headers: {'Content-Type': 'application/json', 'Access-Control-Al
 export default function  UserToAppPayments() {
   const { user, saveUser, showModal, saveShowModal, onModalClose } = React.useContext(UserContext) as UserContextType;
   const [createCommunityData, setCreateCommunityData] = useState<CommunityType[] | null>(null);
+  const [selectedCommunity, setSelectedCommunity] = useState<CommunityType | null>(null); // Moved here
+
+  const handleCommunityClick = (community: CommunityType) => {
+    // You can do whatever you need with the selected community here
+    // For example, update the state to store the selected community
+    setSelectedCommunity(community);
+    // Or you can perform some navigation or other actions
+    // depending on your application's logic
+  };
 
   const orderProduct = async (memo: string, amount: number, paymentMetadata: MyPaymentMetadata) => {
-    if(user.uid === "") {
+    if (user.uid === "") {
       return saveShowModal(true);
     }
+
+    // Define a state to track the selected community
 
     const paymentData = { amount, memo, metadata: paymentMetadata };
     const callbacks = {
@@ -77,15 +88,31 @@ export default function  UserToAppPayments() {
       <Typography variant="h6" margin={2} style={{ fontWeight: 'bold' } }>
       Your Communities 
       </Typography >
-      {createCommunityData ? 
+      {createCommunityData ? (
       createCommunityData.map((community) =>{ 
         console.log(community);
-      return <ProfileCard // Ensure a unique key for each community
-      // added by paula, was giving an error because of missing attribute  --> fixed this 
-        key={community._id}
-        name={community.name} _id={""} description={""}    />
-  })
- : (
+      return(
+        <div key={community._id}>
+          <button onClick={() => handleCommunityClick(community)} 
+           style={{
+            backgroundColor: 'pink', // Background color
+            color: 'black', // Text color
+            padding: 12, // Some padding
+            margin: 12, 
+          
+          }}
+        >
+            {community.name}
+          </button> 
+          {/* 
+          <ProfileCard
+          key={community._id}
+         name={community.name} _id={""} description={""}    /> 
+      */}
+          </div>
+        );
+  }) 
+  ) : (
   <p>No community data available</p>
 )}
       {showModal && <SignIn onSignIn={saveUser} onModalClose={onModalClose} showModal={showModal}/>}

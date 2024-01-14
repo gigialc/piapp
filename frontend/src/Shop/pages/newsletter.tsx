@@ -53,7 +53,7 @@ return(
                
     <div style={{ overflowY: 'auto', height: '150vh',marginLeft: '20px' }}>
 
-<h2>Body Image</h2>
+<h2>Body Image </h2>
 <div style={{ display: "flex", overflowX: "auto" }}>
 {/* Scrollable container for text boxes */}
 <div style={{ display: "flex", marginRight: "10px" }}>
