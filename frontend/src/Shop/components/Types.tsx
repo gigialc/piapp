@@ -25,6 +25,8 @@ export type AuthResult = {
       description: string,
       price: number,
       user_uid: string,
+      owner: string,
+      members: Array<object>
     };
     
     export type UserContextType = {

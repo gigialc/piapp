@@ -1,5 +1,7 @@
 //Created by Georgina Alacaraz
 
+// Altered by Paula, since each Select should be unique to a certain page dont need this code anymore
+
 import { Button, Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
@@ -25,7 +27,7 @@ export default function ProductCard(props: Props) {
   }
 
   return (
-    <Grid container style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid pink' }}>
+    <Grid container style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid pink',backgroundColor: '#FEEAEE',  }}>
       <Grid container style={{ display: 'flex', flexDirection: 'row' }}>
         <Grid container style={{ width: "33%", marginRight: 8 }}>
         </Grid>

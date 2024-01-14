@@ -11,7 +11,11 @@ import Profile from './Shop/pages/profile';
 import Newsletter from "./Shop/pages/newsletter";
 import AuthProvider from "./Shop/components/Auth";
 import Mybody from "./Shop/pages/mybody";
-import SocialMediaBlog from "./Shop/pages/SocialMediaBlog";
+import SocialMediaBlog from "./Shop/pages/blogpages/SocialMediaBlog";
+import Blogilates from "./Shop/pages/blogpages/Blogilates";
+import BodyImage from "./Shop/pages/blogpages/BodyImage";
+import Eatingdisorders from "./Shop/pages/blogpages/Eatingdisorders";
+import Sexed from "./Shop/pages/blogpages/sexed";
 
 function App() {
     const user = null;
@@ -23,8 +27,13 @@ function App() {
                 <Route path="/Profile" element={<Profile />} />// Make sure Profile is a valid React component
                 <Route path="/Newsletter" element={<Newsletter />} />
                 <Route path="/mybody" element={<Mybody />} />
+                <Route path="/sexed" element={<Sexed />} />
                 <Route path="/Chat" element={<Chat />} />
                 <Route path="/socialmediaBlog" element={<SocialMediaBlog />} />
+                <Route path="/Blogilates" element={<Blogilates />} />
+                <Route path="/BodyImage" element={<BodyImage />} />
+                <Route path="/Eatingdisorders" element={<Eatingdisorders />} />
+
             </Routes>
             <MuiBottomNavigation />
         </AuthProvider>
