@@ -55,14 +55,18 @@ export default function HomePage() {
     const payment = await window.Pi.createPayment(paymentData, callbacks);
     console.log(payment);
     // Make an API call to add person to the community if the payment was successful
+    if (payment.paymentCompleted === true){
+      console.log("Payment was successful");
     axiosClient.post('/user/addUser', paymentMetadata)
-            .then((response) => {
-            console.log(response);
-            navigate('/pages/chat'); // Redirect to the chat page!!!!!!!1
-            })
+            //.then((response) => {
+            //console.log(response);
+            // navigate('/pages/chat'); // Redirect to the chat page!!!!!!!1
+            //})
             .catch((error) => {
             console.log(error);
             });
+         }
+     
   }
   
 

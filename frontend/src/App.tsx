@@ -6,7 +6,7 @@ import { Routes, Route } from 'react-router-dom';
 import MuiBottomNavigation from './MuiBottomNavigation';
 import Shop from './Shop';
 import Add from './Shop/pages/create';
-import Chat from "./Shop/pages/chat";
+//import Chat from "./Shop/pages/chat";
 import Profile from './Shop/pages/profile';
 import Newsletter from "./Shop/pages/newsletter";
 import AuthProvider from "./Shop/components/Auth";
@@ -28,12 +28,12 @@ function App() {
                 <Route path="/Newsletter" element={<Newsletter />} />
                 <Route path="/mybody" element={<Mybody />} />
                 <Route path="/sexed" element={<Sexed />} />
-                <Route path="/Chat" element={<Chat />} />
+                {/*<Route path="/Chat" element={<Chat />} />*/}
                 <Route path="/socialmediaBlog" element={<SocialMediaBlog />} />
                 <Route path="/Blogilates" element={<Blogilates />} />
                 <Route path="/BodyImage" element={<BodyImage />} />
                 <Route path="/Eatingdisorders" element={<Eatingdisorders />} />
-                <Route path="/Chat" element={<Chat />} />
+                {/*<Route path="/Chat" element={<Chat />} />} */}
 
             </Routes>
             <MuiBottomNavigation />

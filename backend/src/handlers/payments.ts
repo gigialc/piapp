@@ -98,12 +98,12 @@ console.log("hi2");
     await orderCollection.updateOne({ pi_payment_id: paymentId }, { $set: { txid: txid, paid: true } });
 
     // let Pi server know that the payment is completed
-    await platformAPIClient.post(`/v2/payments/${paymentId}/complete`, { txid });
-
-    // addUser to the community
-    await platformAPIClient.post(`/v2/communities/${req.body.communityId}/users`, { uid: req.body.uid });
-
-    return res.status(200).json({ message: `Completed the payment ${paymentId}` });
+    const paymentDto = await platformAPIClient.post(`/v2/payments/${paymentId}/complete`, { txid });
+    if (paymentDto.data.status.developer_completed === true && paymentDto.data.status.transaction_verified === true) {
+      return res.status(200).json({ message: `Completed the payment ${paymentId}` , paymentCompleted : true});}
+    else {
+      return res.status(200).json({ message: `Completed the payment ${paymentId}` , paymentCompleted : false});
+    }
   });
 
   // handle the cancelled payment

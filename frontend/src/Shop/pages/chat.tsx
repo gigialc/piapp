@@ -1,27 +1,37 @@
-// Created by Georgina Alacaraz
-import { UserContextType, MyPaymentMetadata , CommunityType} from "../components/Types";
-import React, { useState, useEffect } from 'react';
-import io from 'socket.io-client';
-
-/* DEVELOPER NOTE:
-* this page facilitates the purchase of pies for pi. all of the callbacks
-* can be found on the Payments.tsx file in components file. 
-*/
-const socket = io('http://localhost:3333'); // Replace with your server address
-
+import React, { useState, useEffect, useContext, useRef } from 'react';
+import io, { Socket } from 'socket.io-client'; // Import the Socket type from socket.io-client
+//import { SocketContext } from '../contexts/SocketContext';
+{/*
 function Chat() {
   const [messages, setMessages] = useState<string[]>([]);
   const [message, setMessage] = useState<string>('');
-
+  //const socket: Socket = useContext(SocketContext); // Specify the type of socket
+ {/*
+  // Handling new messages
   useEffect(() => {
-    socket.on('message', (newMessage: string) => {
-      setMessages([...messages, newMessage]);
-    });
+    const messageListener = (newMessage: string) => {
+      setMessages(prevMessages => [...prevMessages, newMessage]);
+    };
+    
+    socket.on('message', messageListener);
+
+    return () => {
+      socket.off('message', messageListener);
+    };
+  }, [socket]);
+
+  const messageEndRef = useRef<HTMLDivElement>(null); // Specify the type of the ref
+
+  // Scroll to the latest message
+  useEffect(() => {
+    messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   const sendMessage = () => {
-    socket.emit('message', message);
-    setMessage('');
+    if (message.trim()) {
+      socket.emit('message', message);
+      setMessage('');
+    }
   };
 
   return (
@@ -31,15 +41,18 @@ function Chat() {
         {messages.map((msg, index) => (
           <div key={index}>{msg}</div>
         ))}
+        <div ref={messageEndRef} />
       </div>
       <input
         type="text"
         value={message}
         onChange={(e) => setMessage(e.target.value)}
+        onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
       />
-      <button onClick={sendMessage}>Send</button>
+      <button onClick={sendMessage}>Send</button> 
     </div>
   );
 }
 
 export default Chat;
+*/}
