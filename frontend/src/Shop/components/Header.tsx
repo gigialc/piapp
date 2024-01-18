@@ -26,7 +26,7 @@ export default function Header() {
       <AppBar position="static" sx={{ backgroundColor: 'white' }} >
         <Toolbar>
 
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 , color: 'black'}}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 , color: 'black', fontFamily:'Bodoni'}}>
             Destig Femme
           </Typography>
           
@@ -38,12 +38,12 @@ export default function Header() {
                     color="inherit"
                   >
                   { user.uid === '' ? (
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: 'black' }}>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: 'black', fontFamily:'Bodoni' }}>
                       Sign-In
                     </Typography>
                     ) : (
                   <Container>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 , color: 'black'}}>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 , color: 'black', fontFamily:'Bodoni'}}>
                     @{user.username}  |  Sign Out
                     </Typography>
                   </Container>
