@@ -166,25 +166,23 @@ return(
       The key to a healthy relationship with your child.
     </Typography>
     <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-    <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/sexed')}>
+    <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/Parenting')}>
       Read More
     </Button>
     </div>
     </Paper>
 
     <div style={{ display: "flex", overflowX: "auto" }}>
-    {/* Scrollable container for text boxes */}
     <div style={{ display: "flex", marginRight: "10px" }}>
-    {/* First text box content */}
     <Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
-    <Typography variant="h6" sx={{ fontFamily: 'Bodoni', color: '#FFFFFF' }}> {/* Adjust the variant and style as needed for the title */}
+    <Typography variant="h6" sx={{ fontFamily: 'Bodoni', color: '#FFFFFF' }}> 
       Covid-19 vs Sexual Health
     </Typography>
     <Typography variant="body2" sx={{ fontFamily: 'Baskerville' }}> 
       How has the pandemic affected sexual health?
     </Typography>
-    <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-    <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/sexed')}>
+    <div style={{ marginTop: 'auto' }}> 
+    <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/Covid19')}>
       Read More
     </Button>
     </div>
@@ -212,7 +210,7 @@ return(
       Polycystic Ovary Syndrome, what is it?
     </Typography>
     <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-    <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/Contraception')}>
+    <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/pcos')}>
       Read More
     </Button>
     </div>
@@ -230,7 +228,7 @@ return(
       How to be a good mother, the first time around.
     </Typography>
     <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-    <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/mybody')}>
+    <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/Mother')}>
       Read More
     </Button>
     </div>
