@@ -93,6 +93,8 @@ export default function UserToAppPayments(){
 
         <Typography variant="body2" sx={{ marginBottom: '16px' }}>
         Source: https://www.thepitchkc.com/could-covid-19-change-the-way-we-talk-about-sexual-health/
+
+        img: https://www.google.com/search?sca_esv=599503376&sxsrf=ACQVn08d-eri1Dpam-F5LrNNRfovYDOkqg:1705598639584&q=covid+19+and+sex+ed&tbm=isch&source=lnms&sa=X&ved=2ahUKEwjUjaqIuueDAxUphP0HHccRDwsQ0pQJegQIDRAB&biw=1440&bih=699&dpr=2#imgrc=Hw2Lp_BU0Hq1hM
         </Typography>
 
         <Typography variant="body2" sx={{ marginBottom: '16px' }}>

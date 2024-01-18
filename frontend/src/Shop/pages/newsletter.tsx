@@ -166,7 +166,7 @@ return(
       The key to a healthy relationship with your child.
     </Typography>
     <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-    <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/sexed')}>
+    <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/Parenting')}>
       Read More
     </Button>
     </div>
@@ -210,7 +210,7 @@ return(
       Polycystic Ovary Syndrome, what is it?
     </Typography>
     <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-    <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/Contraception')}>
+    <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/pcos')}>
       Read More
     </Button>
     </div>
@@ -228,7 +228,7 @@ return(
       How to be a good mother, the first time around.
     </Typography>
     <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-    <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/mybody')}>
+    <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/Mother')}>
       Read More
     </Button>
     </div>
