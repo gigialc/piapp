@@ -63,7 +63,7 @@ return(
       Perfection on Social Media
     </Typography>
     <Typography variant="body2" sx={{ fontFamily: 'Baskerville' }}> 
-      Behind the meaning of a like on social media 
+      Behind the meaning of a like on social media.
     </Typography>
     <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
     <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/SocialMediaBlog')}>
@@ -81,7 +81,7 @@ return(
       Blogilates on Body Image
     </Typography>
     <Typography variant="body2" sx={{ fontFamily: 'Baskerville' }}> 
-      blah blah blah...
+      Trends change, but does the pressure of perfection?
     </Typography>
     <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
     <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/Blogilates')}>
@@ -96,44 +96,42 @@ return(
     {/* First text box content */}
     <Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
     <Typography variant="h6" sx={{ fontFamily: 'Bodoni', color: '#FFFFFF' }}> {/* Adjust the variant and style as needed for the title */}
-      Stereotypes in Society
+      Body Dismorphia and the Consequences
     </Typography>
     <Typography variant="body2" sx={{ fontFamily: 'Baskerville' }}> 
-      blah blah blah...
+      The truth behind the battle of mind and body.
     </Typography>
     <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-    <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/BodyImage')}>
+    <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/BodyDismorphia')}>
       Read More
     </Button>
     </div>
     </Paper>
 
     <div style={{ display: "flex", overflowX: "auto" }}>
-    {/* Scrollable container for text boxes */}
-    <div style={{ display: "flex", marginRight: "10px" }}>
-    {/* First text box content */}
+    <div style={{ display: "flex", marginRight: "10px" }}> 
     <Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
-    <Typography variant="h6" sx={{ fontFamily: 'Bodoni', color: '#FFFFFF' }}> {/* Adjust the variant and style as needed for the title */}
-      Body Image Disorders
+    <Typography variant="h6" sx={{ fontFamily: 'Bodoni', color: '#FFFFFF' }}> 
+      Stereotypes in Society
     </Typography>
     <Typography variant="body2" sx={{ fontFamily: 'Baskerville' }}> 
-      blah blah blah...
+      The cause of body image issues in society.
     </Typography>
-    <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-    <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/Eatingdisorders')}>
+    <div style={{ marginTop: 'auto' }}> 
+    <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/BodyImage')}>
       Read More
     </Button>
     </div>
-    </Paper>
+    </Paper> 
 
     </div>
     </div>
     </div>
     </div>
     </div>
-    </div>
-    </div>
     </div> 
+    </div>
+    </div>
 
     <br />
 
@@ -147,10 +145,10 @@ return(
       Contraception Methods
     </Typography>
     <Typography variant="body2" sx={{ fontFamily: 'Baskerville' }}> 
-      blah blah blah...
+      12 different methods, which, when, how, why?
     </Typography>
     <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-    <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/sexed')}>
+    <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/Contraception')}>
       Read More
     </Button>
     </div>
@@ -165,7 +163,7 @@ return(
       Sexual Education and Parenting
     </Typography>
     <Typography variant="body2" sx={{ fontFamily: 'Baskerville' }}> 
-      blah blah blah...
+      The key to a healthy relationship with your child.
     </Typography>
     <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
     <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/sexed')}>
@@ -183,7 +181,7 @@ return(
       Covid-19 vs Sexual Health
     </Typography>
     <Typography variant="body2" sx={{ fontFamily: 'Baskerville' }}> 
-      blah blah blah...
+      How has the pandemic affected sexual health?
     </Typography>
     <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
     <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/sexed')}>
@@ -211,10 +209,10 @@ return(
       PCOS and its effects on the body
     </Typography>
     <Typography variant="body2" sx={{ fontFamily: 'Baskerville' }}> 
-      blah blah blah...
+      Polycystic Ovary Syndrome, what is it?
     </Typography>
     <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-    <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/mybody')}>
+    <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/Contraception')}>
       Read More
     </Button>
     </div>
@@ -229,7 +227,7 @@ return(
       First Time Mother Diaries
     </Typography>
     <Typography variant="body2" sx={{ fontFamily: 'Baskerville' }}> 
-      blah blah blah...
+      How to be a good mother, the first time around.
     </Typography>
     <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
     <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/mybody')}>
@@ -247,7 +245,7 @@ return(
       Menstruation Changes
     </Typography>
     <Typography variant="body2" sx={{ fontFamily: 'Baskerville' }}> 
-      blah blah blah...
+      Normalizing the changes in your period cycle.
     </Typography>
     <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
     <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/mybody')}>
@@ -265,7 +263,7 @@ return(
       Irritable Bowel Syndrome
     </Typography>
     <Typography variant="body2" sx={{ fontFamily: 'Baskerville' }}> 
-      blah blah blah...
+      Is IBS the cause of your stomach pain?
     </Typography>
     <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
     <Button variant='contained' color='secondary'sx={{fontFamily: 'Baskerville', backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/mybody')}>
