@@ -53,7 +53,7 @@ export default function mountUserEndpoints(router: Router) {
     return res.status(200).json({ message: "User signed out" });
   });
 
-  // Get all the communitiesCreated the user has created
+  // Get all the communitiesCreated the user has created or joined
   router.get('/me', async (req, res) => {
     try {
       const currentUser = req.session.currentUser;

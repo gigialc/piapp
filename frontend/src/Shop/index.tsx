@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 import axios from 'axios';
+
 // testing to link blog posts to blog pages
 
 // Make TS accept the existence of our window.__ENV object - defined in index.html:
@@ -47,29 +48,28 @@ export default function HomePage() {
     const callbacks = {
       onReadyForServerApproval,
       onReadyForServerCompletion,
-      onCancel,
-      onError
+      //onCancel,
+      //onError
 
-    };
+    }
 
-    const payment = await window.Pi.createPayment(paymentData, callbacks);
-    console.log(payment);
+    //make a payment
+    //const payment = await window.Pi.createPayment(paymentData, callbacks);
+
     // Make an API call to add person to the community if the payment was successful
-    if (payment.paymentCompleted === true){
+    //if (payment.paymentCompleted === true){
       console.log("Payment was successful");
-    axiosClient.post('/user/addUser', paymentMetadata)
-            //.then((response) => {
-            //console.log(response);
+        axiosClient.post('/user/addUser', paymentMetadata)
+            .then((response) => {
+            console.log(response);
             // navigate('/pages/chat'); // Redirect to the chat page!!!!!!!1
-            //})
+            })
             .catch((error) => {
             console.log(error);
             });
-         }
+         //}
      
   }
-  
-
   useEffect(() => {
     console.log(createCommunityData);
   }, [createCommunityData]);
