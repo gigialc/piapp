@@ -1,58 +1,48 @@
-import React, { useState, useEffect, useContext, useRef } from 'react';
-import io, { Socket } from 'socket.io-client'; // Import the Socket type from socket.io-client
-//import { SocketContext } from '../contexts/SocketContext';
-{/*
-function Chat() {
-  const [messages, setMessages] = useState<string[]>([]);
-  const [message, setMessage] = useState<string>('');
-  //const socket: Socket = useContext(SocketContext); // Specify the type of socket
- {/*
-  // Handling new messages
-  useEffect(() => {
-    const messageListener = (newMessage: string) => {
-      setMessages(prevMessages => [...prevMessages, newMessage]);
-    };
-    
-    socket.on('message', messageListener);
+import { UserContextType, MyPaymentMetadata } from "../components/Types";
+import { onCancel, onError, onReadyForServerApproval, onReadyForServerCompletion } from "../components/Payments";
+import MuiBottomNavigation from "../../MuiBottomNavigation";
+import Header from "../components/Header";
+import { UserContext } from "../components/Auth";
+import React from "react";
+import Typography from "@mui/material/Typography";
+import Posts from "../components/posts";
+import Comments from "../components/comments";
 
-    return () => {
-      socket.off('message', messageListener);
-    };
-  }, [socket]);
+/* DEVELOPER NOTE:
+* this page facilitates the purchase of pies for pi. all of the callbacks
+* can be found on the Payments.tsx file in components file. 
+*/
+export default function Chat() {
+  const { user, saveUser, showModal, saveShowModal, onModalClose } = React.useContext(UserContext) as UserContextType;
 
-  const messageEndRef = useRef<HTMLDivElement>(null); // Specify the type of the ref
-
-  // Scroll to the latest message
-  useEffect(() => {
-    messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
-
-  const sendMessage = () => {
-    if (message.trim()) {
-      socket.emit('message', message);
-      setMessage('');
+  const orderProduct = async (memo: string, amount: number, paymentMetadata: MyPaymentMetadata) => {
+    if(user.uid === "") {
+      return saveShowModal(true);
     }
-  };
+    const paymentData = { amount, memo, metadata: { ...paymentMetadata, user_id: user.uid } };
 
-  return (
-    <div>
-      <h1>Chat App</h1>
-      <div className="chat-box">
-        {messages.map((msg, index) => (
-          <div key={index}>{msg}</div>
-        ))}
-        <div ref={messageEndRef} />
-      </div>
-      <input
-        type="text"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
-      />
-      <button onClick={sendMessage}>Send</button> 
-    </div>
-  );
-}
+    const callbacks = {
+      onReadyForServerApproval,
+      onReadyForServerCompletion,
+      onCancel,
+      onError
+    };
 
-export default Chat;
-*/}
+    const payment = await window.Pi.createPayment(paymentData, callbacks);
+    console.log(payment);
+  }
+
+return(
+    <>
+        <Header/>
+        <Typography variant="h5" margin={2}  color="#9E4291" style={{ fontWeight: 'bold' } }>
+        Welcome!
+        </Typography>
+        <Comments/>
+        <Posts/>
+
+    </>
+);
+
+};
+// Created by Georgina Alacaraz

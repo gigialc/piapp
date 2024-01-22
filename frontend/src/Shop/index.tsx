@@ -37,7 +37,6 @@ export default function HomePage() {
   const navigate = useNavigate(); // also added this!!!!!!
   const [createCommunityData, setCreateCommunityData] = useState<CommunityType[] | null>(null);
 
-
   const orderProduct = async (memo: string, amount: number, paymentMetadata: MyPaymentMetadata) => {
     if(user.uid === "") {
       return saveShowModal(true);
@@ -62,11 +61,14 @@ export default function HomePage() {
         axiosClient.post('/user/addUser', paymentMetadata)
             .then((response) => {
             console.log(response);
-            // navigate('/pages/chat'); // Redirect to the chat page!!!!!!!1
+             // Redirect to the chat page!!!!!!!1\
+              navigate("/Chat");
+             
             })
             .catch((error) => {
             console.log(error);
             });
+
          //}
      
   }

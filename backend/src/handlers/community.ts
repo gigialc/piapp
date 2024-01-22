@@ -62,6 +62,79 @@ export default function mountCommunityEndpoints(router: Router) {
 
 );
 
+//adding an array of posts to a community
+router.post('/posts', async (req, res) => {
+    if (!req.session.currentUser) {
+        return res.status(401).json({ error: 'unauthorized', message: "User needs to sign in first" });
+    }
+    // Assuming req.body is structured correctly with a community_id and the post data
+    const communityCollection = req.app.locals.communityCollection;
+    const communityId = req.body.community_id; // The ID of the community
+    const post = req.body.post; // The post data
+
+    if (!communityId || !post) {
+        // If there's no community ID or post data, return a bad request response
+        return res.status(400).json({ error: 'bad request', message: "Missing community ID or post data" });
+    }
+
+    try {
+        // Update the community document by adding the new post to the 'posts' array
+        const updateResult = await communityCollection.updateOne(
+            { _id: new ObjectId(communityId) },
+            { $push: { posts: post } }
+        );
+
+        if (updateResult.matchedCount === 0) {
+            // If no community matches the given ID, return a not found response
+            return res.status(404).json({ error: 'not found', message: "Community not found" });
+        }
+
+        // Retrieve the updated community document
+        const updatedCommunity = await communityCollection.findOne({ _id: new ObjectId(communityId) });
+
+        // Return the updated community
+        return res.status(200).json({ updatedCommunity });
+    } catch (error) {
+        // If an error occurs, return an error response
+        console.error(error);
+        return res.status(500).json({ error: 'internal server error', message: "An error occurred while updating the community" });
+    }
+});
+
+
+//get the array of posts from a community
+router.get('/posts', async (req, res) => {
+    if (!req.session.currentUser) {
+        return res.status(401).json({ error: 'unauthorized', message: "User needs to sign in first" });
+    }
+    // Assuming req.query is structured correctly with a community_id
+    const communityCollection = req.app.locals.communityCollection;
+    const communityId = req.query.community_id; // The ID of the community
+
+    if (!communityId) {
+        // If there's no community ID, return a bad request response
+        return res.status(400).json({ error: 'bad request', message: "Missing community ID" });
+    }
+
+    try {
+        // Retrieve the community document
+        const community = await communityCollection.findOne({ _id: new String(communityId) });
+
+        if (!community) {
+            // If no community matches the given ID, return a not found response
+            return res.status(404).json({ error: 'not found', message: "Community not found" });
+        }
+
+        // Return the community's posts
+        return res.status(200).json({ posts: community.posts });
+    } catch (error) {
+        // If an error occurs, return an error response
+        console.error(error);
+        return res.status(500).json({ error: 'internal server error', message: "An error occurred while retrieving the community's posts" });
+    }
+});
+
+
 router.get('/hi', async (req, res) => {
     try {
         const communityCollection = req.app.locals.communityCollection;
@@ -76,6 +149,8 @@ router.get('/hi', async (req, res) => {
         return res.status(500).json({ message: "Error fetching communities", error });
     }
 });
+
+    router.post
 
     router.get('/community/:id', async (req, res) => {
         const communityCollection = req.app.locals.communityCollection;
