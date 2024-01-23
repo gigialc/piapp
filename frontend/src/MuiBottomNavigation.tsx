@@ -10,10 +10,14 @@ import ChatIcon from '@mui/icons-material/Chat';
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { red } from '@mui/material/colors';
+
+ <HomeIcon sx={{ color: red[800] }} />
 
 const MuiBottomNavigation: React.FC = () => {
   const [bnValue, setBNValue] = useState(0);
   const navigate = useNavigate();
+  const blackLabelStyle = { color: 'black' }; // Define the pink label style
 
   return (
     <BottomNavigation
@@ -23,27 +27,34 @@ const MuiBottomNavigation: React.FC = () => {
     >
       <BottomNavigationAction
         label="Profile"
-        icon={<PersonIcon />}
+        icon={<PersonIcon sx={{ color: red[200] }} />}
         value={bnValue}
         onClick={() => navigate("/Profile")}
+        style={blackLabelStyle}
       />
       <BottomNavigationAction
         label="Home"
-        icon={<HomeIcon />}
+        icon={<HomeIcon sx={{ color: red[200] }} />}
         value={bnValue}
         onClick={() => navigate("/Shop")}
+        style={blackLabelStyle}
+
       />
       <BottomNavigationAction
         label="Add"
-        icon={<AddIcon />}
+        icon={<AddIcon sx={{ color: red[200] }} />}
         value={bnValue}
         onClick={() => navigate("/Add")} 
+        style={blackLabelStyle}
+
       />
       <BottomNavigationAction
         label="Blogs"
-        icon={<EditNoteIcon />}
+        icon={<EditNoteIcon sx={{ color: red[200] }} />}
         value={bnValue}
         onClick={() => navigate("/Newsletter")}
+        style={blackLabelStyle}
+
       />
      
     </BottomNavigation>
