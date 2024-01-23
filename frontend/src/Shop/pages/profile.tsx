@@ -31,7 +31,16 @@ export default function  UserToAppPayments() {
   const [createCommunityData, setCreateCommunityData] = useState<CommunityType[] | null>(null);
   const [selectedCommunity, setSelectedCommunity] = useState<CommunityType | null>(null); // Moved here
   const navigate = useNavigate();
-
+  const getGreeting = () => {
+    const currentHour = new Date().getHours();
+    if (currentHour >= 0 && currentHour < 12) {
+      return "Good Morning";
+    } else if (currentHour >= 12 && currentHour < 18) {
+      return "Good Afternoon";
+    } else {
+      return "Good Night";
+    }
+  };
   const handleCommunityClick = (community: CommunityType) => {
     // You can do whatever you need with the selected community here
     // For example, update the state to store the selected community
@@ -45,6 +54,7 @@ export default function  UserToAppPayments() {
     if (user.uid === "") {
       return saveShowModal(true);
     }
+    
 
     // Define a state to track the selected community
 
@@ -79,10 +89,18 @@ export default function  UserToAppPayments() {
     <>
       <Header/>
       
-      <Typography variant="h5" margin={2}  color="#ef9a9a" style={{ fontWeight: 'bold' } }>
+      <Typography variant="h5" margin={2}  color="#ef9a9a" style={{ fontWeight: 'bold',fontFamily: 'Comic Sans' }}>
         Profile
       </Typography>
-      <Typography variant="h6" margin={2} style={{ fontWeight: 'bold' } }>
+
+      <Typography variant="h6" margin={1} style={{ fontStyle: 'italic', fontFamily: 'Comic Sans' }}>
+        {getGreeting()}👋  
+        All of your communities in a single page
+      </Typography>
+{/* Add your user information rendering logic here */}
+  {/* Horizontal Line */}
+  <hr style={{ margin: '20px 0' }} />
+      <Typography variant="h6" margin={2} style={{ fontFamily: 'Comic Sans'  } }>
       Your Communities 
       </Typography >
       {createCommunityData ? (
@@ -107,14 +125,21 @@ export default function  UserToAppPayments() {
          name={community.name} _id={""} description={""}    /> 
       */}
           </div>
+
+          
         );
   }) 
   ) : (
   <p>No community data available</p>
 )}
-      {showModal && <SignIn onSignIn={saveUser} onModalClose={onModalClose} showModal={showModal}/>}
+ {/* Title for Joined Communities */}
+ <Typography variant="h6" margin={2} style={{ fontFamily: 'Comic Sans' } }>
+      Joined Communities
+    </Typography>
 
-      <MuiBottomNavigation />
-    </>
-  );
+
+{showModal && <SignIn onSignIn={saveUser} onModalClose={onModalClose} showModal={showModal}/>}
+<MuiBottomNavigation />
+</>
+);
 }

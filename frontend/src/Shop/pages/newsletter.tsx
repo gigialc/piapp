@@ -58,7 +58,7 @@ return(
 {/* Scrollable container for text boxes */}
 <div style={{ display: "flex", marginRight: "10px" }}>
 {/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
+<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink",border: '2px solid #ef9a9a'}}>
 <Typography variant="h6" style={{ fontFamily: 'Your Chosen Font', fontSize: '20px', marginBottom: '8px' }}>
   Why Do People on Social Media Seem So Perfect?
 </Typography>
@@ -76,7 +76,7 @@ return(
 {/* Scrollable container for text boxes */}
 <div style={{ display: "flex", marginRight: "10px" }}>
 {/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
+<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink",border: '2px solid #ef9a9a'}}>
 <Typography variant="h6" style={{ fontFamily: 'Your Chosen Font', fontSize: '20px', marginBottom: '8px' }}>
   Blogilates on Body Image
 </Typography>
@@ -94,7 +94,7 @@ return(
 {/* Scrollable container for text boxes */}
 <div style={{ display: "flex", marginRight: "10px" }}>
 {/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
+<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px",backgroundColor: "pink",border: '2px solid #ef9a9a'}}>
 <Typography variant="h6" style={{ fontFamily: 'Your Chosen Font', fontSize: '20px', marginBottom: '8px' }}>
   "Perfect" Body Image Stereotypes in Society
 </Typography>
@@ -112,7 +112,7 @@ return(
 {/* Scrollable container for text boxes */}
 <div style={{ display: "flex", marginRight: "10px" }}>
 {/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
+<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink",border: '2px solid #ef9a9a'}}>
 <Typography variant="h6" style={{ fontFamily: 'Your Chosen Font', fontSize: '20px', marginBottom: '8px' }}>
   Social Media Use and Body Image Disorders
 </Typography>
@@ -142,7 +142,7 @@ return(
 {/* Scrollable container for text boxes */}
 <div style={{ display: "flex", marginRight: "10px" }}>
 {/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
+<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink",border: '2px solid #ef9a9a'}}>
 <Typography variant="h6" style={{ fontFamily: 'Your Chosen Font', fontSize: '20px', marginBottom: '8px' }}>
   Contraception Methods and their Importance
 </Typography>
@@ -160,7 +160,7 @@ return(
 {/* Scrollable container for text boxes */}
 <div style={{ display: "flex", marginRight: "10px" }}>
 {/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
+<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px",backgroundColor: "pink",border: '2px solid #ef9a9a'}}>
 <Typography variant="h6" style={{ fontFamily: 'Your Chosen Font', fontSize: '20px', marginBottom: '8px' }}>
   Sexual Education and Parenting
 </Typography>
@@ -178,7 +178,7 @@ return(
 {/* Scrollable container for text boxes */}
 <div style={{ display: "flex", marginRight: "10px" }}>
 {/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
+<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink",border: '2px solid #ef9a9a'}}>
 <Typography variant="h6" style={{ fontFamily: 'Your Chosen Font', fontSize: '20px', marginBottom: '8px' }}>
   Covid-19 vs Sexual Health
 </Typography>
@@ -206,7 +206,7 @@ return(
 {/* Scrollable container for text boxes */}
 <div style={{ display: "flex", marginRight: "10px" }}>
 {/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink"}}>
+<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink",border: '2px solid #ef9a9a'}}>
 <Typography variant="h6" style={{ fontFamily: 'Your Chosen Font', fontSize: '20px', marginBottom: '8px' }}>
   PCOS and its effects on the body
 </Typography>
@@ -224,7 +224,7 @@ return(
 {/* Scrollable container for text boxes */}
 <div style={{ display: "flex", marginRight: "10px" }}>
 {/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
+<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink",border: '2px solid #ef9a9a'}}>
 <Typography variant="h6" style={{ fontFamily: 'Your Chosen Font', fontSize: '20px', marginBottom: '8px' }}>
   IBS
 </Typography>
@@ -242,7 +242,7 @@ return(
 {/* Scrollable container for text boxes */}
 <div style={{ display: "flex", marginRight: "10px" }}>
 {/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
+<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink",border: '2px solid #ef9a9a'}}>
 <Typography variant="h6" style={{ fontFamily: 'Your Chosen Font', fontSize: '20px', marginBottom: '8px' }}>
   First Time Mother Diaries
 </Typography>
