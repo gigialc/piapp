@@ -37,7 +37,7 @@ export default function UserToAppPayments() {
 return(
     <>
         <Header/>
-        <Typography variant="h5" margin={2} color="pink">
+        <Typography variant="h5" margin={2} color="#ef9a9a">
         </Typography>
         <MuiForm/>
         <MuiBottomNavigation/>

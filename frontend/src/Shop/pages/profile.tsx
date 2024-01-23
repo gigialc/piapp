@@ -79,7 +79,7 @@ export default function  UserToAppPayments() {
     <>
       <Header/>
       
-      <Typography variant="h5" margin={2}  color="#9E4291" style={{ fontWeight: 'bold' } }>
+      <Typography variant="h5" margin={2}  color="#ef9a9a" style={{ fontWeight: 'bold' } }>
         Profile
       </Typography>
       <Typography variant="h6" margin={2} style={{ fontWeight: 'bold' } }>
