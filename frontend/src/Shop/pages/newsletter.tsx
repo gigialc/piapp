@@ -59,8 +59,8 @@ return(
 <div style={{ display: "flex", marginRight: "10px" }}>
 {/* First text box content */}
 <Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
-<Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
-  Why are so many people on social media so perfect?
+<Typography variant="h6" style={{ fontFamily: 'Your Chosen Font', fontSize: '20px', marginBottom: '8px' }}>
+  Why Do People on Social Media Seem So Perfect?
 </Typography>
 <Typography variant="body2"> 
 
@@ -77,7 +77,7 @@ return(
 <div style={{ display: "flex", marginRight: "10px" }}>
 {/* First text box content */}
 <Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
-<Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
+<Typography variant="h6" style={{ fontFamily: 'Your Chosen Font', fontSize: '20px', marginBottom: '8px' }}>
   Blogilates on Body Image
 </Typography>
 <Typography variant="body2"> 
@@ -95,7 +95,7 @@ return(
 <div style={{ display: "flex", marginRight: "10px" }}>
 {/* First text box content */}
 <Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
-<Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
+<Typography variant="h6" style={{ fontFamily: 'Your Chosen Font', fontSize: '20px', marginBottom: '8px' }}>
   "Perfect" Body Image Stereotypes in Society
 </Typography>
 <Typography variant="body2"> 
@@ -113,7 +113,7 @@ return(
 <div style={{ display: "flex", marginRight: "10px" }}>
 {/* First text box content */}
 <Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
-<Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
+<Typography variant="h6" style={{ fontFamily: 'Your Chosen Font', fontSize: '20px', marginBottom: '8px' }}>
   Social Media Use and Body Image Disorders
 </Typography>
 <Typography variant="body2"> 
@@ -143,7 +143,7 @@ return(
 <div style={{ display: "flex", marginRight: "10px" }}>
 {/* First text box content */}
 <Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
-<Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
+<Typography variant="h6" style={{ fontFamily: 'Your Chosen Font', fontSize: '20px', marginBottom: '8px' }}>
   Contraception Methods and their Importance
 </Typography>
 <Typography variant="body2"> 
@@ -161,7 +161,7 @@ return(
 <div style={{ display: "flex", marginRight: "10px" }}>
 {/* First text box content */}
 <Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
-<Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
+<Typography variant="h6" style={{ fontFamily: 'Your Chosen Font', fontSize: '20px', marginBottom: '8px' }}>
   Sexual Education and Parenting
 </Typography>
 <Typography variant="body2"> 
@@ -179,7 +179,7 @@ return(
 <div style={{ display: "flex", marginRight: "10px" }}>
 {/* First text box content */}
 <Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
-<Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
+<Typography variant="h6" style={{ fontFamily: 'Your Chosen Font', fontSize: '20px', marginBottom: '8px' }}>
   Covid-19 vs Sexual Health
 </Typography>
 <Typography variant="body2"> 
@@ -207,7 +207,7 @@ return(
 <div style={{ display: "flex", marginRight: "10px" }}>
 {/* First text box content */}
 <Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink"}}>
-<Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
+<Typography variant="h6" style={{ fontFamily: 'Your Chosen Font', fontSize: '20px', marginBottom: '8px' }}>
   PCOS and its effects on the body
 </Typography>
 <Typography variant="body2"> 
@@ -225,7 +225,7 @@ return(
 <div style={{ display: "flex", marginRight: "10px" }}>
 {/* First text box content */}
 <Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
-<Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
+<Typography variant="h6" style={{ fontFamily: 'Your Chosen Font', fontSize: '20px', marginBottom: '8px' }}>
   IBS
 </Typography>
 <Typography variant="body2"> 
@@ -243,7 +243,7 @@ return(
 <div style={{ display: "flex", marginRight: "10px" }}>
 {/* First text box content */}
 <Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
-<Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
+<Typography variant="h6" style={{ fontFamily: 'Your Chosen Font', fontSize: '20px', marginBottom: '8px' }}>
   First Time Mother Diaries
 </Typography>
 <Typography variant="body2"> 
@@ -261,7 +261,7 @@ return(
 <div style={{ display: "flex", marginRight: "10px" }}>
 {/* First text box content */}
 <Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
-<Typography variant="h6"> {/* Adjust the variant and style as needed for the title */}
+<Typography variant="h6" style={{ fontFamily: 'Your Chosen Font', fontSize: '20px', marginBottom: '8px' }}>
   Menstruation Changes
 </Typography>
 <Typography variant="body2"> 
