@@ -47,7 +47,7 @@ export default function  UserToAppPayments() {
     setSelectedCommunity(community);
     // Or you can perform some navigation or other actions
     // For example, navigate to the chat page 
-    navigate("/Chat");
+    navigate("/ChatCreator");
   };
 
   const orderProduct = async (memo: string, amount: number, paymentMetadata: MyPaymentMetadata) => {
@@ -89,7 +89,7 @@ export default function  UserToAppPayments() {
     <>
       <Header/>
       
-      <Typography variant="h5" margin={2}  color="#ef9a9a" style={{ fontWeight: 'bold',fontFamily: 'Comic Sans' }}>
+      <Typography variant="h5" margin={2}  color="#9E4291" style={{ fontWeight: 'bold',fontFamily: 'Comic Sans' }}>
         Profile
       </Typography>
 

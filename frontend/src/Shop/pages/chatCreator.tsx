@@ -12,7 +12,7 @@ import Comments from "../components/comments";
 * this page facilitates the purchase of pies for pi. all of the callbacks
 * can be found on the Payments.tsx file in components file. 
 */
-export default function Chat() {
+export default function ChatCreator() {
   const { user, saveUser, showModal, saveShowModal, onModalClose } = React.useContext(UserContext) as UserContextType;
 
   const orderProduct = async (memo: string, amount: number, paymentMetadata: MyPaymentMetadata) => {
@@ -38,7 +38,7 @@ return(
         <Typography variant="h5" margin={2}  color="#ef9a9a" style={{ fontWeight: 'bold' } }>
         Welcome!
         </Typography>
-        <Comments/>
+        <Posts/>
 
     </>
 );
