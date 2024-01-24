@@ -88,7 +88,7 @@ export default function  UserToAppPayments() {
   return ( 
     <>
       <Header/>
-      
+      <div style={{ marginBottom: 80}} >
       <Typography variant="h5" margin={2}  color="#9E4291" style={{ fontWeight: 'bold',fontFamily: 'Comic Sans' }}>
         Profile
       </Typography>
@@ -132,11 +132,38 @@ export default function  UserToAppPayments() {
   ) : (
   <p>No community data available</p>
 )}
+
  {/* Title for Joined Communities */}
- <Typography variant="h6" margin={2} style={{ fontFamily: 'Comic Sans' } }>
+ <Typography variant="h6" margin={2}  style={{ fontFamily: 'Comic Sans' } }>
       Joined Communities
     </Typography>
-
+    {createCommunityData ? (
+      createCommunityData.map((community) =>{ 
+        console.log(community);
+      return(
+        <div key={community._id}>
+          <button onClick={() => handleCommunityClick(community)} 
+           style={{
+            backgroundColor: 'pink', // Background color
+            color: 'black', // Text color
+            padding: 12, // Some padding
+            margin: 12, 
+          }}
+        >
+            {community.name}
+          </button> 
+          {/* 
+          <ProfileCard
+          key={community._id}
+         name={community.name} _id={""} description={""}    /> 
+      */}
+          </div>         
+        );
+  })
+  ) : (
+  <p>No community data available</p>
+)}
+</div>
 
 {showModal && <SignIn onSignIn={saveUser} onModalClose={onModalClose} showModal={showModal}/>}
 <MuiBottomNavigation />
