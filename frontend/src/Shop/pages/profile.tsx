@@ -89,18 +89,18 @@ export default function  UserToAppPayments() {
     <>
       <Header/>
       <div style={{ marginBottom: 80}} >
-      <Typography variant="h5" margin={2}  color="#9E4291" style={{ fontWeight: 'bold',fontFamily: 'Comic Sans' }}>
+      <Typography variant="h5" margin={2}  color="#9E4291" style={{ fontWeight: 'bold'}}>
         Profile
       </Typography>
 
-      <Typography variant="h6" margin={1} style={{ fontStyle: 'italic', fontFamily: 'Comic Sans' }}>
+      <Typography fontSize={17} margin={1} >
         {getGreeting()}👋  
         All of your communities in a single page
       </Typography>
 {/* Add your user information rendering logic here */}
   {/* Horizontal Line */}
   <hr style={{ margin: '20px 0' }} />
-      <Typography variant="h6" margin={2} style={{ fontFamily: 'Comic Sans'  } }>
+      <Typography variant="h6" margin={2} >
       Your Communities 
       </Typography >
       {createCommunityData ? (
@@ -134,7 +134,7 @@ export default function  UserToAppPayments() {
 )}
 
  {/* Title for Joined Communities */}
- <Typography variant="h6" margin={2}  style={{ fontFamily: 'Comic Sans' } }>
+ <Typography variant="h6" margin={2} >
       Joined Communities
     </Typography>
     {createCommunityData ? (
