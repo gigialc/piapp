@@ -1,5 +1,4 @@
 // Date: 9/18/2021
-// Description: This is the main page for the Add page. It will display the header, the form, and the bottom navigation bar.
 // Created by Georgina Alacaraz
 
 import { BottomNavigation, BottomNavigationAction } from "@mui/material";

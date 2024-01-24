@@ -110,7 +110,7 @@ export default function mountUserEndpoints(router: Router) {
   });
 
   if (existingUser) {
-    return res.status(400).json({ message: "User is already part of the community" });
+    return res.status(400).json({ message: "User already in community" });
   }
 
     const insertUser = await userCollection.updateOne({
@@ -124,6 +124,7 @@ export default function mountUserEndpoints(router: Router) {
     if (insertUser) {
       return res.status(200).json({ message: "User added to community" });
     }
-}
+    return res.status(400).json({ message: "User not added to community" });
+  }
 );
 }
