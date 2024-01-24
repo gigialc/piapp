@@ -89,11 +89,6 @@ export default function  UserToAppPayments() {
 
 
   useEffect(() => {
-    console.log(user);
-  }
-  , [user]);
-
-  useEffect(() => {
     axiosClient.get('/user/joined')
       .then((response) => {
         console.log(response);

@@ -113,9 +113,9 @@ export default function mountUserEndpoints(router: Router) {
         return communities;
       }));
       const communityMap = communityUser.map((community: any) => {
-        return {
+        return  {
           //_id: community._id,
-          name: community[0].name,
+          name: community[0]?.name,
          // description: community.description,
         // posts: community.posts,
          // users: community.users,

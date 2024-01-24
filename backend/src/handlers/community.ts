@@ -137,20 +137,25 @@ router.get('/posts', async (req, res) => {
 
 router.get('/hi', async (req, res) => {
     try {
+        if (!req.session.currentUser) {
+            return res.status(401).json({ error: 'unauthorized', message: "User needs to sign in first" });
+        }
         const communityCollection = req.app.locals.communityCollection;
-
+        const creatorId = req.session.currentUser?.uid;
         // Find all community documents in the collection
         const communities = await communityCollection.find({}).toArray();
-        console.log(communities);
-        // Send the array of communities back to the client
-        return res.status(200).json(communities);
+        // if a community has the same id as the user id, then do not return the community
+        const filteredCommunities = communities.filter((community: any) => {
+            return community.user !== creatorId;
+        });
+       // Send the array of filtered communities back to the client
+       return res.status(200).json(filteredCommunities);
+       
     } catch (error) {
         console.log(error);
         return res.status(500).json({ message: "Error fetching communities", error });
     }
 });
-
-    router.post
 
     router.get('/community/:id', async (req, res) => {
         const communityCollection = req.app.locals.communityCollection;
