@@ -9,6 +9,7 @@ import React, { useEffect, useState } from "react";
 import MuiBottomNavigation from "../../MuiBottomNavigation";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Bloodtype } from "@mui/icons-material";
 
 
 // Make TS accept the existence of our window.__ENV object - defined in index.html:
@@ -29,8 +30,9 @@ const config = {headers: {'Content-Type': 'application/json', 'Access-Control-Al
 export default function  UserToAppPayments() {
   const { user, saveUser, showModal, saveShowModal, onModalClose } = React.useContext(UserContext) as UserContextType;
   const [createCommunityData, setCreateCommunityData] = useState<CommunityType[] | null>(null);
-  const [selectedCommunity, setSelectedCommunity] = useState<CommunityType | null>(null); // Moved here
+  const [selectedCommunity, setSelectedCommunity] = useState<CommunityType[] | null>(null); // Moved here
   const navigate = useNavigate();
+  
   const getGreeting = () => {
     const currentHour = new Date().getHours();
     if (currentHour >= 0 && currentHour < 12) {
@@ -44,7 +46,7 @@ export default function  UserToAppPayments() {
   const handleCommunityClick = (community: CommunityType) => {
     // You can do whatever you need with the selected community here
     // For example, update the state to store the selected community
-    setSelectedCommunity(community);
+    //setSelectedCommunity(community);
     // Or you can perform some navigation or other actions
     // For example, navigate to the chat page 
     navigate("/ChatCreator");
@@ -85,6 +87,24 @@ export default function  UserToAppPayments() {
     }
   , []);
 
+
+  useEffect(() => {
+    console.log(user);
+  }
+  , [user]);
+
+  useEffect(() => {
+    axiosClient.get('/user/joined')
+      .then((response) => {
+        console.log(response);
+        setSelectedCommunity(response.data);
+      })  
+      .catch((error) => {
+        console.log(error);
+      });
+    }
+  , []);
+
   return ( 
     <>
       <Header/>
@@ -93,7 +113,7 @@ export default function  UserToAppPayments() {
         Profile
       </Typography>
 
-      <Typography fontSize={17} margin={1} >
+      <Typography fontSize={17} margin={1} style={{ fontWeight: 'bold'}}>
         {getGreeting()}👋  
         All of your communities in a single page
       </Typography>
@@ -137,8 +157,8 @@ export default function  UserToAppPayments() {
  <Typography variant="h6" margin={2} >
       Joined Communities
     </Typography>
-    {createCommunityData ? (
-      createCommunityData.map((community) =>{ 
+    {selectedCommunity ? (
+      selectedCommunity.map((community) =>{ 
         console.log(community);
       return(
         <div key={community._id}>

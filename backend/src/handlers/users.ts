@@ -53,7 +53,7 @@ export default function mountUserEndpoints(router: Router) {
     return res.status(200).json({ message: "User signed out" });
   });
 
-  // Get all the communitiesCreated the user has created or joined
+  // Get all the communitiesCreated the user has created
   router.get('/me', async (req, res) => {
     try {
       const currentUser = req.session.currentUser;
@@ -94,6 +94,50 @@ export default function mountUserEndpoints(router: Router) {
       return res.status(500).json({ error: "Internal server error" });
     }
   }); 
+
+  // Get all the communitiesCreated the user has joined
+  router.get('/joined', async (req, res) => {
+    try {
+      const currentUser = req.session.currentUser;
+      if (!currentUser) {
+        return res.status(401).json(currentUser);
+      }
+      console.log(currentUser);
+      // Find all the communitiesCreated communities ids in the collection
+      const communityUser = await Promise.all(currentUser.communitiesJoined.map(async (community: any) => {
+        console.log(communityUser);
+        const communityCollection = req.app.locals.communityCollection;
+        // Find all community documents in the collection
+        const communities = await communityCollection.find({ _id: new ObjectId(community) }).toArray();
+        console.log(communities);
+        return communities;
+      }));
+      const communityMap = communityUser.map((community: any) => {
+        return {
+          //_id: community._id,
+          name: community[0].name,
+         // description: community.description,
+        // posts: community.posts,
+         // users: community.users,
+         // tags: community.tags,
+         // createdAt: community.createdAt,
+          //updatedAt: community.updatedAt,
+        }
+      }
+      )
+      console.log(communityMap);
+      if (communityMap) {
+        return res.status(200).json(communityMap);
+      } else {
+        return res.status(401).json({ error: "Users did not create any communities" });
+      }
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json({ error: "Internal server error" });
+    }
+  }); 
+
+
 
   //check if user is already in the community
   router.post('/addUser', async (req, res) => {
