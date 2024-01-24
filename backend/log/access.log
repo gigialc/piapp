@@ -3398,3 +3398,11 @@
 ::ffff:127.0.0.1 - - [24/Jan/2024:20:35:24 +0000] "POST /user/addUser HTTP/1.1" 400 51
 ::ffff:127.0.0.1 - - [24/Jan/2024:20:35:25 +0000] "POST /user/addUser HTTP/1.1" 200 37
 ::ffff:127.0.0.1 - - [24/Jan/2024:20:35:27 +0000] "GET /user/me HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [24/Jan/2024:20:42:49 +0000] "GET /community HTTP/1.1" 404 148
+::ffff:127.0.0.1 - - [24/Jan/2024:20:42:49 +0000] "GET /community/hi HTTP/1.1" 200 3350
+::ffff:127.0.0.1 - - [24/Jan/2024:20:42:50 +0000] "GET /user/me HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [24/Jan/2024:20:42:53 +0000] "GET /community/hi HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [24/Jan/2024:20:42:53 +0000] "GET /user/me HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [24/Jan/2024:20:42:55 +0000] "OPTIONS /user/signin HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [24/Jan/2024:20:42:57 +0000] "POST /user/signin HTTP/1.1" 200 28
+::ffff:127.0.0.1 - - [24/Jan/2024:20:42:57 +0000] "GET /community HTTP/1.1" 404 148

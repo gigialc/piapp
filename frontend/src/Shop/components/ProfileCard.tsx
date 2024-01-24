@@ -20,7 +20,6 @@ export default function ProfileCard(props: CommunityType) {
         <Grid container style={{ width: "33%",marginRight: 8  }}>
         </Grid>
         <Grid item style={{ width: "90%", margin: 3}}>
-          <h4>{props.name}</h4>
           <div>
         <ul>
         </ul>
