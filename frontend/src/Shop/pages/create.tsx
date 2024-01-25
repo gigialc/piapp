@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import { UserContext } from "../components/Auth";
 import React from "react";
 import MuiForm from "../components/MuiForm";
+import PostContent from "../components/PostContent";
 
 /* DEVELOPER NOTE:
 * this page facilitates the purchase of pies for pi. all of the callbacks

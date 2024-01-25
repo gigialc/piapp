@@ -84,17 +84,20 @@ export default function Posts() {
             };
         }
         //add posts to community document to community.posts
-        axiosClient.post('/community/posts', { title, description, user_id: user?.uid })
-            .then((response) => {
-                console.log(response);
-                saveShowModal(true);
-                addCommunityToUser(response.data);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        {/*axiosClient
+                .post('/community/posts', data, config)
+                .then((response) => {
+                    console.log(response);
+                    saveShowModal(true);
+                    if (addCommunityToUser) { // Add null check for addCommunityToUser
+                        addCommunityToUser(response.data);
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
 
-    };
+    };*/}
 
     const modalStyle: CSSProperties = {
         backgroundColor: '#FEEAEE', 
@@ -175,3 +178,4 @@ export default function Posts() {
 
 }
 
+}

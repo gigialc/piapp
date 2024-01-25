@@ -14,25 +14,17 @@ import { UserContextType } from './Types';
 interface Props {
   name: string,
   description: string,
-  price: number,
-  onClickBuy: () => void,
 }
 
-export default function ProductCard(props: Props) {
+export default function PostContent(props: Props) {
   return (
-    <Grid container style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid pink' }}>
+    <Grid container style={{ margin: 16, paddingBottom: 10, borderBottom: '1px solid pink' }}>
       <Grid container style={{ display: 'flex', flexDirection: 'row' }}>
         <Grid container style={{ width: "33%", marginRight: 8 }}>
         </Grid>
         <Grid item style={{ width: "90%" }}>
-          <h3>{props.name}</h3> 
-          <p>{props.description}</p>  
+          <h3>this is where content is added  </h3>
       </Grid>
-      </Grid>
-      <Grid item style={{textAlign: 'center', marginBottom: 8}}>
-        <strong>{props.price} Test-π</strong>  < br />
-        <Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink' }} onClick={()=> {props.onClickBuy()}}>Join</Button>
-  
       </Grid>
     </Grid>
   )

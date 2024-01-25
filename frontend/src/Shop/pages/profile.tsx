@@ -44,13 +44,16 @@ export default function  UserToAppPayments() {
     }
   };
   const handleCommunityClick = (community: CommunityType) => {
-    // You can do whatever you need with the selected community here
-    // For example, update the state to store the selected community
-    //setSelectedCommunity(community);
-    // Or you can perform some navigation or other actions
-    // For example, navigate to the chat page 
+    // get the community id and make it a current session
+    console.log(community._id);
     navigate("/ChatCreator");
   };
+
+  const handleCommunityClick1 = (community: CommunityType) => {
+   
+    navigate("/Chat");
+  };
+
 
   const orderProduct = async (memo: string, amount: number, paymentMetadata: MyPaymentMetadata) => {
     if (user.uid === "") {
@@ -157,7 +160,7 @@ export default function  UserToAppPayments() {
         console.log(community);
       return(
         <div key={community._id}>
-          <button onClick={() => handleCommunityClick(community)} 
+          <button onClick={() => handleCommunityClick1(community)} 
            style={{
             backgroundColor: 'pink', // Background color
             color: 'black', // Text color
