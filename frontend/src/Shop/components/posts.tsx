@@ -1,7 +1,7 @@
 import React, { CSSProperties, useContext, useState } from 'react';
 import axios from 'axios';
 import { TextField, Button, Stack, colors, FormControl } from '@mui/material';
-import { UserContext } from "../components/Auth";
+import { UserContext } from "./Auth";
 import { UserContextType } from './Types';
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 
@@ -49,11 +49,11 @@ export default function Posts() {
     
     const onTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setTitle(event.target.value);
-    }
+    };
     
     const onDescriptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setDescription(event.target.value);
-    }
+    };
     
     
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -65,7 +65,7 @@ export default function Posts() {
         } else {
             setTitleError(false);
             setTitleErrorMessage('');
-        }
+        } 
 
         if (description === '') {
             setDescriptionError(true);
@@ -82,22 +82,22 @@ export default function Posts() {
                 description,
                 user_id: user?.uid // Add null check for user
             };
-        }
+        } 
         //add posts to community document to community.posts
-        {/*axiosClient
-                .post('/community/posts', data, config)
-                .then((response) => {
-                    console.log(response);
-                    saveShowModal(true);
-                    if (addCommunityToUser) { // Add null check for addCommunityToUser
-                        addCommunityToUser(response.data);
-                    }
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+        // axiosClient
+        //         .post('/community/posts', data, config)
+        //         .then((response) => {
+        //             console.log(response);
+        //             saveShowModal(true);
+        //             if (addCommunityToUser) { // Add null check for addCommunityToUser
+        //                 addCommunityToUser(response.data);
+        //             }
+        //         })
+        //         .catch((error) => {
+        //             console.log(error);
+        //         });
 
-    };*/}
+     };
 
     const modalStyle: CSSProperties = {
         backgroundColor: '#FEEAEE', 
@@ -111,12 +111,13 @@ export default function Posts() {
         display: 'flex', 
         flexDirection: 'column', 
         justifyContent: 'center' 
-    }
+    };
     const inputStyle = {
         backgroundColor: "white",
         margin: "8px 0",
         borderRadius: "4px"
       };
+      
 
       return (
         <div style={{ padding: '32px', textAlign: 'right'}}>
@@ -175,7 +176,6 @@ export default function Posts() {
             )}
         </div>
     );
-
 }
 
-}
+

@@ -5,8 +5,9 @@ import Header from "../components/Header";
 import { UserContext } from "../components/Auth";
 import React from "react";
 import Typography from "@mui/material/Typography";
-import Posts from "../components/posts";
 import Comments from "../components/comments";
+import Posts from "../components/posts";
+import PostContent from "../components/PostContent";
 
 /* DEVELOPER NOTE:
 * this page facilitates the purchase of pies for pi. all of the callbacks
@@ -38,8 +39,9 @@ return(
         <Typography variant="h5" margin={2}  color="#ef9a9a" style={{ fontWeight: 'bold' } }>
         Welcome!
         </Typography>
+        <PostContent name="Community Name" description="Community Description" />
         <Posts/>
-
+        
     </>
 );
 

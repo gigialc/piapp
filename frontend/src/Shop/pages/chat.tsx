@@ -5,7 +5,6 @@ import Header from "../components/Header";
 import { UserContext } from "../components/Auth";
 import React from "react";
 import Typography from "@mui/material/Typography";
-import Posts from "../components/posts";
 import Comments from "../components/comments";
 import PostContent from "../components/PostContent";
 
