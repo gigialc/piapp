@@ -46,12 +46,13 @@ export default function  UserToAppPayments() {
   const handleCommunityClick = (community: CommunityType) => {
     // get the community id and make it a current session
     console.log(community._id);
-    navigate("/ChatCreator");
+    navigate("/ChatCreator", { state: { communityId: community._id } });
   };
 
   const handleCommunityClick1 = (community: CommunityType) => {
    
-    navigate("/Chat");
+    console.log(community._id);
+    navigate("/Chat", { state: { communityId: community._id } });
   };
 
 
@@ -81,27 +82,38 @@ export default function  UserToAppPayments() {
   useEffect(() => {
     axiosClient.get('/user/me')
       .then((response) => {
-        console.log(response);
-        setCreateCommunityData(response.data);
+        console.log('Response data for /user/me:', response.data);
+        // If response.data is an array, we can use forEach
+        if (Array.isArray(response.data)) {
+          response.data.forEach((community: CommunityType) => {
+            if (!community._id) {
+              console.error('Community does not have _id:', community);
+            }
+          });
+          setCreateCommunityData(response.data);
+        } else {
+          console.error('Expected an array for /user/me response data, but got:', response.data);
+        }
       })  
       .catch((error) => {
-        console.log(error);
+        console.error('Error fetching /user/me:', error);
       });
     }
   , []);
+  
 
 
   useEffect(() => {
     axiosClient.get('/user/joined')
       .then((response) => {
-        console.log(response);
+        console.log('Joined communities:', response.data);
         setSelectedCommunity(response.data);
       })  
       .catch((error) => {
-        console.log(error);
+        console.error('Error fetching joined communities:', error);
       });
-    }
-  , []);
+  }, []);
+  
 
   return ( 
     <>

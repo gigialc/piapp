@@ -1,20 +1,19 @@
 import { UserContextType, MyPaymentMetadata } from "../components/Types";
 import { onCancel, onError, onReadyForServerApproval, onReadyForServerCompletion } from "../components/Payments";
-import MuiBottomNavigation from "../../MuiBottomNavigation";
 import Header from "../components/Header";
 import { UserContext } from "../components/Auth";
 import React from "react";
 import Typography from "@mui/material/Typography";
-import Comments from "../components/comments";
 import Posts from "../components/posts";
 import PostContent from "../components/PostContent";
+import { useLocation } from 'react-router-dom';
 
-/* DEVELOPER NOTE:
-* this page facilitates the purchase of pies for pi. all of the callbacks
-* can be found on the Payments.tsx file in components file. 
-*/
+
 export default function ChatCreator() {
   const { user, saveUser, showModal, saveShowModal, onModalClose } = React.useContext(UserContext) as UserContextType;
+  const location = useLocation();
+  const communityId = location.state.communityId;
+  console.log(communityId);
 
   const orderProduct = async (memo: string, amount: number, paymentMetadata: MyPaymentMetadata) => {
     if(user.uid === "") {
@@ -41,7 +40,7 @@ return(
         </Typography>
         <PostContent name="Community Name" description="Community Description" />
         <Posts/>
-        
+
     </>
 );
 

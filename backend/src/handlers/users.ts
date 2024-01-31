@@ -58,84 +58,74 @@ export default function mountUserEndpoints(router: Router) {
     try {
       const currentUser = req.session.currentUser;
       if (!currentUser) {
-        return res.status(401).json(currentUser);
+        return res.status(401).json({ error: "No current user found" });
       }
-      console.log(currentUser);
-      // Find all the communitiesCreated communities ids in the collection
-      const communityUser = await Promise.all(currentUser.communitiesCreated.map(async (community: any) => {
-        console.log(communityUser);
-        const communityCollection = req.app.locals.communityCollection;
-        // Find all community documents in the collection
-        const communities = await communityCollection.find({ _id: new ObjectId(community) }).toArray();
-        console.log(communities);
-        return communities;
+  
+      const communityCollection = req.app.locals.communityCollection;
+      // Fetch communities in parallel
+      const communities = await Promise.all(
+        currentUser.communitiesCreated.map(async (communityId) => {
+          // Directly find a single community by _id
+          const community = await communityCollection.findOne({ _id: new ObjectId(communityId) });
+          return community; // May return null if not found
+        })
+      );
+  
+      // Filter out nulls and map to desired structure
+      const communityMap = communities.filter(c => c).map((community) => ({
+        _id: community._id.toString(), // Convert ObjectId to string
+        name: community.name,
+        description: community.description,
+        posts: community.posts,
+        // Add other fields as needed
       }));
-      const communityMap = communityUser.map((community: any) => {
-        return {
-          //_id: community._id,
-          name: community[0].name,
-         // description: community.description,
-        // posts: community.posts,
-         // users: community.users,
-         // tags: community.tags,
-         // createdAt: community.createdAt,
-          //updatedAt: community.updatedAt,
-        }
-      }
-      )
-      console.log(communityMap);
-      if (communityMap) {
+  
+      if (communityMap.length > 0) {
         return res.status(200).json(communityMap);
       } else {
-        return res.status(401).json({ error: "Users did not create any communities" });
+        return res.status(404).json({ error: "User did not create any communities" });
       }
     } catch (err) {
-      console.log(err);
+      console.error(err);
       return res.status(500).json({ error: "Internal server error" });
     }
-  }); 
+  });
+  
 
-  // Get all the communitiesCreated the user has joined
   router.get('/joined', async (req, res) => {
     try {
       const currentUser = req.session.currentUser;
       if (!currentUser) {
-        return res.status(401).json(currentUser);
+        return res.status(401).json({ error: "No current user found" });
       }
-      console.log(currentUser);
-      // Find all the communitiesCreated communities ids in the collection
-      const communityUser = await Promise.all(currentUser.communitiesJoined.map(async (community: any) => {
-        console.log(communityUser);
-        const communityCollection = req.app.locals.communityCollection;
-        // Find all community documents in the collection
-        const communities = await communityCollection.find({ _id: new ObjectId(community) }).toArray();
-        console.log(communities);
-        return communities;
+  
+      const communityCollection = req.app.locals.communityCollection;
+      const communities = await Promise.all(
+        currentUser.communitiesJoined.map(async (communityId) => {
+          const community = await communityCollection.findOne({ _id: new ObjectId(communityId) });
+          return community; // May return null if not found
+        })
+      );
+  
+      const communityMap = communities.filter(c => c).map((community) => ({
+        _id: community._id.toString(), // Convert ObjectId to string
+        name: community.name,
+        description: community.description,
+        posts: community.posts,
+        // Add other fields as needed
       }));
-      const communityMap = communityUser.map((community: any) => {
-        return  {
-          //_id: community._id,
-          name: community[0]?.name,
-         // description: community.description,
-        // posts: community.posts,
-         // users: community.users,
-         // tags: community.tags,
-         // createdAt: community.createdAt,
-          //updatedAt: community.updatedAt,
-        }
-      }
-      )
-      console.log(communityMap);
-      if (communityMap) {
+  
+      if (communityMap.length > 0) {
         return res.status(200).json(communityMap);
       } else {
-        return res.status(401).json({ error: "Users did not create any communities" });
+        return res.status(404).json({ error: "User has not joined any communities" });
       }
     } catch (err) {
-      console.log(err);
+      console.error(err);
       return res.status(500).json({ error: "Internal server error" });
     }
-  }); 
+  });
+  
 
 
 
