@@ -13,6 +13,7 @@ export type AuthResult = {
       uid: string,
       username: string
       community: CommunityType[]
+
     }
 
     };
@@ -25,6 +26,7 @@ export type AuthResult = {
       description: string,
       price: number,
       user_uid: string,
+      posts: PostType[],
     };
     
     export type UserContextType = {
@@ -37,6 +39,18 @@ export type AuthResult = {
       addCommunityToUser: (newCommunity: CommunityType) => void;
     };
 
+    export type PostType = {
+      _id: string,
+      title: string,
+      description: string,
+      community_id: string,
+      user_uid: string,
+    };
+
+    export type CommunityContextType = {
+      community: CommunityType[];
+      addPostToCommunity: (newPost: CommunityType) => void;
+    };
 
     export type MyPaymentMetadata = {};
     

@@ -15,10 +15,16 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
     const [user, setUser] = React.useState<User>( { uid: '', username: '',  community: []    } );
     const [showModal, setShowModal] = React.useState<boolean>(false);
     const [community, setCommunity] = React.useState<CommunityType[]>([]);
+    const [post, setPost] = React.useState<CommunityType[]>([]);
 
     const addCommunityToUser = (newCommunity: CommunityType) => {
       setCommunity((prevCommunities) => [...prevCommunities, newCommunity]);
     };
+
+    const addPostToUser = (newPost: CommunityType) => {
+      setPost((prevPosts) => [...prevPosts, newPost]);
+    }
+    
   
     const signIn = async () => {
       const scopes = ['username', 'payments', 'wallet_address'];

@@ -38,8 +38,8 @@ return(
         <Typography variant="h5" margin={2}  color="#ef9a9a" style={{ fontWeight: 'bold' } }>
         Welcome!
         </Typography>
-        <PostContent name="Community Name" description="Community Description" />
-        <Posts/>
+        <PostContent />
+        <Posts />
 
     </>
 );
