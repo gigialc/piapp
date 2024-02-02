@@ -123,7 +123,14 @@ export default function Posts({ communityId }: { communityId: string }) {
 
       return (
         <div style={{ padding: '32px', textAlign: 'right'}}>
-            <Button variant="contained" style={{ backgroundColor:"#9E4291", color:"white", borderRadius:"100px" }} onClick={handleClickOpen}>
+            <Button variant="contained" style={{
+                backgroundColor: "#9E4291",
+                color: "white",
+                borderRadius: "200px",
+                position: 'fixed', // Keep the button fixed at the viewport's bottom
+                bottom: '75px', // 20px from the bottom
+                right: '20px', // 20px from the right
+            }} onClick={handleClickOpen}>
                 +
             </Button>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
