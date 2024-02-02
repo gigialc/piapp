@@ -40,7 +40,7 @@ return(
         <Typography variant="h5" margin={2}  color="#9E4291" style={{ fontWeight: 'bold' } }>
         Welcome!
         </Typography>
-        <PostContent />
+        <PostContent communityId={communityId}/>
         <Comments/>
         <Posts communityId={communityId} />
 

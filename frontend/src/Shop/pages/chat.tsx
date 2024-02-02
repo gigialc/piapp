@@ -7,6 +7,7 @@ import React from "react";
 import Typography from "@mui/material/Typography";
 import Comments from "../components/comments";
 import PostContent from "../components/PostContent";
+import { useLocation } from 'react-router-dom';
 
 /* DEVELOPER NOTE:
 * this page facilitates the purchase of pies for pi. all of the callbacks
@@ -14,6 +15,9 @@ import PostContent from "../components/PostContent";
 */
 export default function Chat() {
   const { user, saveUser, showModal, saveShowModal, onModalClose } = React.useContext(UserContext) as UserContextType;
+  const location = useLocation();
+  const communityId = location.state.communityId;
+  console.log(communityId);
 
   const orderProduct = async (memo: string, amount: number, paymentMetadata: MyPaymentMetadata) => {
     if(user.uid === "") {
@@ -38,7 +42,7 @@ return(
         <Typography variant="h5" margin={2}  color="#ef9a9a" style={{ fontWeight: 'bold' } }>
         Welcome!
         </Typography>
-        <PostContent />  
+        <PostContent communityId={communityId} />  
         <Comments/>
 
     </>

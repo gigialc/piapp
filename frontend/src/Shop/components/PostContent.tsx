@@ -20,7 +20,7 @@ const backendURL = _window.__ENV && _window.__ENV.backendURL;
 const axiosClient = axios.create({ baseURL: `${backendURL}`, timeout: 20000, withCredentials: true });
 const config = { headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } };
 
-export default function PostContent() {
+export default function PostContent({ communityId }: { communityId: string }) {
   const { user, saveUser, showModal, saveShowModal, onModalClose } = useContext(UserContext) as UserContextType;
   const navigate = useNavigate();
   const [posts, setPosts] = useState<PostType[]>([]);
@@ -32,17 +32,16 @@ export default function PostContent() {
   
   // get the posts that have the same community id as the current session
   useEffect(() => {
-    // Make an API call to fetch the create community data
-    axiosClient.get('/posts/posts1')
-            .then((response) => {
-            console.log(response);
-            setPosts(response.data.posts || []);
-            })
-            .catch((error) => {
-            console.log(error);
-            });
-        }
-    , []); // Empty dependency array means this effect runs once on mount
+      const fetchPosts = async () => {
+          try {
+              const response = await axiosClient.get(`/posts/posts1?community_id=${communityId}`);
+              setPosts(response.data.posts || []);
+          } catch (error) {
+              console.error("Failed to fetch posts: ", error);
+          }
+      };
+      fetchPosts();
+  }, [communityId]); // Empty dependency array means this effect runs once on mount
 
     return (
       <Box sx={{ flexGrow: 1, margin: 3}}> {/* Adjusted for overall spacing */}

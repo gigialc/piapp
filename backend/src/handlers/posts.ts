@@ -38,20 +38,21 @@ export default function mountPostEndpoints(router: Router) {
     
     // Get all the posts from the specific community by checking the community id of all posts
     router.get('/posts1', async (req, res) => {
+        if (!req.session.currentUser) {
+            return res.status(401).json({ error: 'unauthorized', message: "User needs to sign in first" });
+        }
+    
         try {
-            if (!req.session.currentUser) {
-                return res.status(401).json({ error: 'unauthorized', message: "User needs to sign in first" });
-            }
             const postCollection = req.app.locals.postCollection;
-            const creatorId = req.session.currentUser?.uid;
-            // Find all community documents in the collection
-            const posts = await postCollection.find({}).toArray();
+            const communityId = new ObjectId(req.query.community_id as string); // Cast and convert to ObjectId
+    
+            // Directly find posts with the matching community_id
+            const posts = await postCollection.find({ community_id: communityId }).toArray();
+    
             return res.status(200).json({ posts });
-           
         } catch (error) {
-            console.log(error);
-            return res.status(500).json({ message: "Error fetching communities", error });
+            console.error(error);
+            return res.status(500).json({ message: "Error fetching posts", error });
         }
     });
-    
 }
