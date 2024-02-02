@@ -20,7 +20,8 @@ const backendURL = _window.__ENV && _window.__ENV.backendURL;
 const axiosClient = axios.create({ baseURL: `${backendURL}`, timeout: 20000, withCredentials: true});
 const config = {headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}}; // Add null check
 
-export default function Posts() {
+
+export default function Posts({ communityId }: { communityId: string }) {
 
     const [open, setOpen] = useState(false);
 
@@ -46,7 +47,6 @@ export default function Posts() {
 
 
     const { user, showModal, saveShowModal, onModalClose, addCommunityToUser } = useContext(UserContext) as UserContextType;
-    const [postData, setPostData] = useState<any>(null);
 
 
     const onTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -83,10 +83,12 @@ export default function Posts() {
             const data = {
                 title,
                 description,
-                user_id: user?.uid 
+                community_id: communityId,
+                user_id: user?.uid
             };
+
             axiosClient
-                .post('/posts/posts',data, config)
+                .post('/posts/posted',data, config)
                 .then((response) => {
                     console.log(response);
                     saveShowModal(true);
@@ -168,7 +170,7 @@ export default function Posts() {
             </Dialog>
             {showModal && (
                 <div style={modalStyle}>
-                    <p style={{ fontWeight: 'light' }}>Your community has been created.</p>
+                    <p style={{ fontWeight: 'light' }}>Your post has been created.</p>
                     <div>
                         <button onClick={onModalClose}>Close</button>
                     </div>

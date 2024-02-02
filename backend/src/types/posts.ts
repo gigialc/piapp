@@ -8,7 +8,7 @@ export interface PostType {
     title: string,
     content: string,
     user: UserData,
-    community: {
+    communityId: {
         _id: ObjectId,
     },
     comments: Array<ObjectId>,

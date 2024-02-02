@@ -7,6 +7,8 @@ import Typography from "@mui/material/Typography";
 import Posts from "../components/posts";
 import PostContent from "../components/PostContent";
 import { useLocation } from 'react-router-dom';
+import Comments from "../components/comments";
+import SignIn from "../components/SignIn";
 
 
 export default function ChatCreator() {
@@ -39,8 +41,10 @@ return(
         Welcome!
         </Typography>
         <PostContent />
-        <Posts />
+        <Comments/>
+        <Posts communityId={communityId} />
 
+        { showModal && <SignIn onSignIn={saveUser} onModalClose={onModalClose} showModal={showModal}/> }
     </>
 );
 

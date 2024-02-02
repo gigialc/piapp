@@ -7,47 +7,37 @@ import platformAPIClient from "../services/platformAPIClient";
 
 export default function mountPostEndpoints(router: Router) {
 
-    router.post('/posts', async (req, res) => {
+    router.post('/posted', async (req, res) => {
+        if (!req.session.currentUser) {
+            return res.status(401).json({ error: 'unauthorized', message: "User needs to sign in first" });
+        }
         try {
             const postCollection = req.app.locals.postCollection;
-            const creatorId = req.session.currentUser?.uid;// Add a check for null or undefined
             const posts = req.body;
-            console.log(posts);
-            if (!req.session.currentUser) {
-                return res.status(401).json({ error: 'unauthorized', message: "User needs to sign in first" });
-              }
-              const app = req.app;
+    
+            // Assuming community_id is directly passed and needs to be stored as ObjectId
+            const communityId = new ObjectId(posts.community_id); // Convert to ObjectId if it's passed as a string
+    
             const postsData = {
                 _id: new ObjectId(),
                 title: posts.title,
                 description: posts.description,
                 user: req.session.currentUser,
-                //community id
-                community: {
-                    _id: new ObjectId(),
-                },
+                community_id: communityId, // Store the community ID directly
                 comments: [],
-
             }
+    
             const insertResult = await postCollection.insertOne(postsData);
-            const newPosts = await postCollection.findOne(insertResult.insertedId);
-            const userData = app.locals.userCollection;
-            const creator = await userData.findOne({ uid: creatorId });
-            if (!creator) {
-                return res.status(401).json({ error: 'unauthorized', message: "User needs to sign in first" });
-              }
-              const updateResult = await userData.updateOne({ _id: creator._id }, { $push: { communitiesCreated: newPosts._id } });
-                const updatedUser = await userData.findOne({ _id: creator._id });
-                req.session.currentUser = updatedUser;
-            return res.status(200).json({ newPosts, message: "Post created successfully"});
+            // Other operations like updating user's communitiesCreated...
+            return res.status(200).json({ newPost: insertResult.ops[0], message: "Post created successfully" });
         } catch (error) {
             console.log(error);
-            return res.status(400).json({ message: "Error creating community", error });
+            return res.status(500).json({ message: "Error creating post", error });
         }
-    }
-
-);
-    router.get('/hi', async (req, res) => {
+    });
+    
+    // Get all the posts from the specific community by checking the community id of all posts
+    router.get('/posts1', async (req, res) => {
         try {
             if (!req.session.currentUser) {
                 return res.status(401).json({ error: 'unauthorized', message: "User needs to sign in first" });
@@ -57,12 +47,11 @@ export default function mountPostEndpoints(router: Router) {
             // Find all community documents in the collection
             const posts = await postCollection.find({}).toArray();
             return res.status(200).json({ posts });
-        
+           
         } catch (error) {
             console.log(error);
             return res.status(500).json({ message: "Error fetching communities", error });
         }
     });
-
-
+    
 }
