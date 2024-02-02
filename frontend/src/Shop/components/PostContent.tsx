@@ -1,11 +1,11 @@
 // Created by Georgina Alacaraz
 import React, { useContext, useEffect, useState } from "react";
-import { Box, Grid, Typography } from "@mui/material";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from "./Auth";
 import { PostType, UserContextType } from "./Types";
 import { set } from "mongoose";
+import { Box, Grid, Typography, Card, CardContent } from '@mui/material';
 
 interface WindowWithEnv extends Window {
   __ENV?: {
@@ -45,22 +45,22 @@ export default function PostContent() {
     , []); // Empty dependency array means this effect runs once on mount
 
     return (
-      <Box>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <Typography variant="h5" margin={2} color="#ef9a9a" style={{ fontWeight: 'bold' }}>
-              {Array.isArray(posts) && posts.map((post) => (
-                <React.Fragment key={post._id}>
-                  <Typography variant="h6" color="black" style={{ fontWeight: 'bold' }}>
+      <Box sx={{ flexGrow: 1, margin: 3}}> {/* Adjusted for overall spacing */}
+        <Grid container spacing={2} justifyContent="center">
+          {Array.isArray(posts) && posts.map((post) => (
+            <Grid item xs={12} md={8} key={post._id}> {/* Adjust grid sizing as needed */}
+              <Card variant="outlined" sx={{ backgroundColor: '#ffe6ff', marginY: 2 }}>
+                <CardContent>
+                  <Typography variant="h6" component="div" style={{ fontWeight: 'bold', color: '#333' }}>
                     {post.title}
                   </Typography>
-                  <Typography variant="body1" color="black">
+                  <Typography variant="body1" color="text.secondary">
                     {post.description}
                   </Typography>
-                </React.Fragment>
-              ))}
-            </Typography>
-          </Grid>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
         </Grid>
       </Box>
     );
