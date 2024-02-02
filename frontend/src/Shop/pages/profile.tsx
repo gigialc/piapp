@@ -140,7 +140,7 @@ export default function  UserToAppPayments() {
         <div key={community._id}>
           <button onClick={() => handleCommunityClick(community)} 
            style={{
-            backgroundColor: 'pink', // Background color
+            backgroundColor: '#ffe6ff', // Background color
             color: 'black', // Text color
             padding: 12, // Some padding
             margin: 12, 
@@ -174,7 +174,7 @@ export default function  UserToAppPayments() {
         <div key={community._id}>
           <button onClick={() => handleCommunityClick1(community)} 
            style={{
-            backgroundColor: 'pink', // Background color
+            backgroundColor: '#ffe6ff', // Background color
             color: 'black', // Text color
             padding: 12, // Some padding
             margin: 12, 
