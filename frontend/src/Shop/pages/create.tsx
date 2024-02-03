@@ -4,7 +4,6 @@ import { onCancel, onError, onReadyForServerApproval, onReadyForServerCompletion
 import SignIn from "../components/SignIn";
 import MuiBottomNavigation from "../../MuiBottomNavigation";
 import Header from "../components/Header";
-import ProductCard from "../components/ProductCard";
 import Typography from "@mui/material/Typography";
 import { UserContext } from "../components/Auth";
 import React from "react";

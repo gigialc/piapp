@@ -6,6 +6,8 @@ import { UserContext } from "./Auth";
 import { PostType, UserContextType } from "./Types";
 import { set } from "mongoose";
 import { Box, Grid, Typography, Card, CardContent } from '@mui/material';
+import CommentContent from "./CommentContent";
+
 
 interface WindowWithEnv extends Window {
   __ENV?: {
@@ -57,6 +59,7 @@ export default function PostContent({ communityId }: { communityId: string }) {
                     {post.description}
                   </Typography>
                 </CardContent>
+           {/* <CommentContent postId={post._id} /> */}
               </Card>
             </Grid>
           ))}
