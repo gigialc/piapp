@@ -7,6 +7,12 @@ import { PostType, UserContextType } from "./Types";
 import { set } from "mongoose";
 import { Box, Grid, Typography, Card, CardContent } from '@mui/material';
 import CommentContent from "./CommentContent";
+import Comments from "./comments";
+import { useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import CardActions from '@mui/material/CardActions';
+import IconButton from '@mui/material/IconButton';
+import CommentIcon from '@mui/icons-material/Comment';
 
 
 interface WindowWithEnv extends Window {
@@ -27,6 +33,10 @@ export default function PostContent({ communityId }: { communityId: string }) {
   const navigate = useNavigate();
   const [posts, setPosts] = useState<PostType[]>([]);
 
+  const handlePostClick = () => {
+
+  };
+ 
   // Fetch posts when component mounts
   useEffect(() => {
     console.log(posts);
@@ -43,28 +53,28 @@ export default function PostContent({ communityId }: { communityId: string }) {
           }
       };
       fetchPosts();
-  }, [communityId]); // Empty dependency array means this effect runs once on mount
+  }, [communityId]);// Empty dependency array means this effect runs once on mount
 
     return (
-      <Box sx={{ flexGrow: 1, margin: 3}}> {/* Adjusted for overall spacing */}
-        <Grid container spacing={2} justifyContent="center">
-          {Array.isArray(posts) && posts.map((post) => (
-            <Grid item xs={12} md={8} key={post._id}> {/* Adjust grid sizing as needed */}
-              <Card variant="outlined" sx={{ backgroundColor: '#ffe6ff', marginY: 2 }}>
-                <CardContent>
-                  <Typography variant="h6" component="div" style={{ fontWeight: 'bold', color: '#333' }}>
-                    {post.title}
-                  </Typography>
-                  <Typography variant="body1" color="text.secondary">
-                    {post.description}
-                  </Typography>
-                </CardContent>
-           {/* <CommentContent postId={post._id} /> */}
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
-    );
-    
-}
+      <Box sx={{ flexGrow: 1, margin: 3 }}>
+      <Grid container spacing={2} justifyContent="center">
+        {Array.isArray(posts) && posts.map((post) => (
+          <Grid item xs={12} md={8} key={post._id}>
+            <Card variant="outlined" sx={{ backgroundColor: '#ffe6ff', marginY: 2 }} onClick={() => handlePostClick()}>
+              <CardContent>
+                <Typography variant="h6" component="div" style={{ fontWeight: 'bold', color: '#333' }}>
+                  {post.title}
+                </Typography>
+                <Typography variant="body1" color="text.secondary">
+                  {post.description}
+                </Typography>
+              </CardContent>
+              <Comments/>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
+  );
+};
+

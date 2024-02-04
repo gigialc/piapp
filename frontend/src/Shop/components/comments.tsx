@@ -3,6 +3,9 @@ import axios from 'axios';
 import { TextField, Button, Stack, colors, FormControl } from '@mui/material';
 import { UserContext } from "../components/Auth";
 import { UserContextType } from './Types';
+import { useLocation } from 'react-router-dom';
+import { MyPaymentMetadata } from './Types';
+import { onReadyForServerApproval, onReadyForServerCompletion } from './Payments';
 
 // Make TS accept the existence of our window.__ENV object - defined in index.html:
 interface WindowWithEnv extends Window {
@@ -19,93 +22,96 @@ const axiosClient = axios.create({ baseURL: `${backendURL}`, timeout: 20000, wit
 const config = {headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}}; // Add null check
 
 export default function Comments() {
-
     const [description, setDescription] = useState<string>('');
-
-    const [descriptionError, setDescriptionError] = useState<boolean>(false);
-
-    const [descriptionErrorMessage, setDescriptionErrorMessage] = useState<string>('');
-
-
+    const [descriptionError, setDescriptionError] = useState<string | null>(null);
     const { user, showModal, saveShowModal, onModalClose, addCommunityToUser } = useContext(UserContext) as UserContextType;
+    const location = useLocation();
+    const postId = location.state.postId;
+    console.log(postId);
 
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        if (!description.trim()) {
+            setDescriptionError('Description is required');
+            return;
+        }
+
+        if(user.uid === "") {
+            saveShowModal(true);
+            return; // Exit if user is not signed in
+        }
+
+        orderProduct('Comment', 1, { postId }); // Call orderProduct with postId
+    };
+
+    const orderProduct = async (memo: string, amount: number, paymentMetadata: MyPaymentMetadata) => {
+        if(user.uid === "") {
+          return saveShowModal(true);
+        }
+      
+        const paymentData = { amount, memo, metadata: paymentMetadata };
+        const callbacks = {
+          onReadyForServerApproval,
+          onReadyForServerCompletion,
+          //onCancel,
+          //onError
+        }
+      
+        //make a payment
+        const payment = await window.Pi.createPayment(paymentData, callbacks);
+      
+        // Make an API call to add person to the community if the payment was successful
+        const data = {
+        description,
+        postId: postId,
+        user_id: user?.uid
+        };
+        
+        if (payment.paymentCompleted === true){
+        try {
+            const response = await axiosClient.post(`/community/posts/${postId}/comments`, data);
+            console.log(response);
+            saveShowModal(true);
+            addCommunityToUser(response.data); // Update UI accordingly
+        } catch (error) {
+            console.error(error);
+            setDescriptionError('Failed to post comment. Please try again.'); // Show error to user
+        }
+      }
+    };
 
     const onDescriptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setDescription(event.target.value);
-    }
-    
-    
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-
-        if (description === '') {
-            setDescriptionError(true);
-            setDescriptionErrorMessage('Description is required');
-        } else {
-            setDescriptionError(false);
-            setDescriptionErrorMessage('');
-        }
-
-        //add posts to community document to community.posts
-        axiosClient.post('/community/posts', { description, user_id: user?.uid })
-            .then((response) => {
-                console.log(response);
-                saveShowModal(true);
-                addCommunityToUser(response.data);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-
+        if(descriptionError) setDescriptionError(null); // Reset error when user starts typing
     };
-
-    const modalStyle: CSSProperties = {
-        position: 'absolute', 
-        left: '15vw', 
-        top: '40%', 
-        width: '70vw', 
-        height: '25vh', 
-        border: '1px solid pink', 
-        textAlign: 'center', 
-        display: 'flex', 
-        flexDirection: 'column', 
-        justifyContent: 'center' 
-    }
-    const inputStyle = {
-        backgroundColor: "white",
-        margin: "8px 0",
-        borderRadius: "4px"
-      };
+    
 
     return (
         <div style={{ padding: '32px', textAlign: 'center' }}>
             <form onSubmit={handleSubmit}>
-                {/*<h2 style={{color: "#9E4291",textAlign: 'left' , margin: '0'}}>Comment</h2>} */}
-                <Stack spacing={0.5} sx={{ width: '80%', marginTop: '16px', marginLeft: '10%', marginRight: '10%', marginBottom: "30%"}}>
+                <Stack spacing={2} sx={{ width: '80%', margin: 'auto' }}>
                     <TextField
                         id="description"
                         label="Comment"
                         variant="outlined"
                         value={description}
                         onChange={onDescriptionChange}
-                        error={descriptionError}
-                        helperText={descriptionErrorMessage}
-                        style={inputStyle}
+                        error={!!descriptionError}
+                        helperText={descriptionError || ''}
                         fullWidth
                     />
-                   
-                    <Button type="submit" variant="contained"style={{ backgroundColor:"#9E4291", color:"white", borderRadius:"100px" }} >Submit</Button>
+                    <Button type="submit" variant="contained" color="primary">
+                        Submit
+                    </Button>
                 </Stack>
             </form>
             {showModal && (
-                <div style={modalStyle}>
-                    <p style={{ fontWeight: 'light' }}>Your community has been created.</p>
-                    <div>
-                        <button onClick={onModalClose}>Close</button>
-                    </div>
+                <div style={{ position: 'absolute', top: '40%', left: '50%', transform: 'translate(-50%, -50%)', width: '50%', padding: '20px', border: '1px solid #ccc', borderRadius: '4px', backgroundColor: '#fff', textAlign: 'center' }}>
+                    <p>Your comment has been submitted.</p>
+                    <Button onClick={onModalClose}>Close</Button>
                 </div>
             )}
         </div>
-    )
+    );
 }
-

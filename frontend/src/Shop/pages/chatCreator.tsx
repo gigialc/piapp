@@ -41,7 +41,6 @@ return(
         Welcome!
         </Typography>
         <PostContent communityId={communityId}/>
-        <Comments/>
         <Posts communityId={communityId} />
 
         { showModal && <SignIn onSignIn={saveUser} onModalClose={onModalClose} showModal={showModal}/> }
