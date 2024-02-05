@@ -26,8 +26,10 @@ export default function Comments() {
     const [descriptionError, setDescriptionError] = useState<string | null>(null);
     const { user, showModal, saveShowModal, onModalClose, addCommunityToUser } = useContext(UserContext) as UserContextType;
     const location = useLocation();
-    const postId = location.state.postId;
-    console.log(postId);
+    const communityId = location.state.communityId;
+    if (!communityId) {
+        console.log("Community ID is not provided in the location state.");
+    }
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -42,7 +44,7 @@ export default function Comments() {
             return; // Exit if user is not signed in
         }
 
-        orderProduct('Comment', 1, { postId }); // Call orderProduct with postId
+        orderProduct('Comment', 1, { communityId }); // Call orderProduct with postId
     };
 
     const orderProduct = async (memo: string, amount: number, paymentMetadata: MyPaymentMetadata) => {
@@ -64,21 +66,21 @@ export default function Comments() {
         // Make an API call to add person to the community if the payment was successful
         const data = {
         description,
-        postId: postId,
+        postId: communityId,
         user_id: user?.uid
         };
         
         if (payment.paymentCompleted === true){
-        try {
-            const response = await axiosClient.post(`/community/posts/${postId}/comments`, data);
-            console.log(response);
-            saveShowModal(true);
-            addCommunityToUser(response.data); // Update UI accordingly
-        } catch (error) {
-            console.error(error);
-            setDescriptionError('Failed to post comment. Please try again.'); // Show error to user
+            console.log("Payment was successful");
+            axiosClient.post('/posts/comments', data, config)
+                .then((response) => {
+                    console.log(response);
+                    saveShowModal(true);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         }
-      }
     };
 
     const onDescriptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -101,7 +103,7 @@ export default function Comments() {
                         helperText={descriptionError || ''}
                         fullWidth
                     />
-                    <Button type="submit" variant="contained" color="primary">
+                    <Button type="submit" variant="contained" color="primary" >
                         Submit
                     </Button>
                 </Stack>

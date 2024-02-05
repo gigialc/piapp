@@ -60,7 +60,7 @@ export default function PostContent({ communityId }: { communityId: string }) {
       <Grid container spacing={2} justifyContent="center">
         {Array.isArray(posts) && posts.map((post) => (
           <Grid item xs={12} md={8} key={post._id}>
-            <Card variant="outlined" sx={{ backgroundColor: '#ffe6ff', marginY: 2 }} onClick={() => handlePostClick()}>
+            <Card variant="outlined" sx={{ backgroundColor: '#ffe6ff', marginY: 2 }}>
               <CardContent>
                 <Typography variant="h6" component="div" style={{ fontWeight: 'bold', color: '#333' }}>
                   {post.title}
@@ -69,12 +69,12 @@ export default function PostContent({ communityId }: { communityId: string }) {
                   {post.description}
                 </Typography>
               </CardContent>
-              <Comments/>
+              <Comments />
             </Card>
           </Grid>
         ))}
       </Grid>
     </Box>
   );
-};
+}
 

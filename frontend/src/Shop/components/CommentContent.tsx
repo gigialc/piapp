@@ -9,6 +9,7 @@ import { useLocation } from 'react-router-dom';
 import { UserContext } from './Auth';
 import { MyPaymentMetadata } from './Types';
 import { onReadyForServerApproval, onReadyForServerCompletion } from './Payments';
+import CommentContent from './CommentContent';
 //for community page
 
 interface WindowWithEnv extends Window {
