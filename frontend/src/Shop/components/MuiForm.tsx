@@ -84,7 +84,7 @@ export default function MuiForm() {
                 title,
                 description,
                 price,
-                user_id: user?.uid // Add null check for user
+             // Add null check for user
             };
 
             axiosClient

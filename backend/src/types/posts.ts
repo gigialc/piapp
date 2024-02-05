@@ -2,6 +2,7 @@
 // Creator: Gigi
 import { ObjectId } from "mongodb";
 import { UserData } from "./user";
+import { CommentType } from "./comments";
 
 export interface PostType {
     _id: ObjectId,
@@ -11,5 +12,5 @@ export interface PostType {
     communityId: {
         _id: ObjectId,
     },
-    comments: Array<ObjectId>,
+    comments: CommentType[],
 }

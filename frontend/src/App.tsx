@@ -18,6 +18,7 @@ import Eatingdisorders from "./Shop/pages/blogpages/Eatingdisorders";
 import Sexed from "./Shop/pages/blogpages/sexed";
 import Chat from "./Shop/pages/chat";
 import ChatCreator from "./Shop/pages/chatCreator";
+import Comments from "./Shop/components/comments";
 
 function App() {
     const user = null;
@@ -37,6 +38,7 @@ function App() {
                 <Route path="/Eatingdisorders" element={<Eatingdisorders />} />
                 <Route path="/Chat" element={<Chat />} />
                 <Route path="/ChatCreator" element={<ChatCreator />} />
+                <Route path="/comments" element={<Comments />} />
 
             </Routes>
             <MuiBottomNavigation />

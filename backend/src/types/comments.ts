@@ -2,13 +2,11 @@ import { ObjectId } from "mongodb";
 import { UserData } from "./user";
 
 export interface CommentType {
+    //it is an array of comments
     _id: ObjectId,
-    content: string,
+    description: string,
     user: UserData,
-    communityId: {
-        _id: ObjectId,
-    },
-    post: {
+    postId: {
         _id: ObjectId,
     },
 }

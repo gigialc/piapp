@@ -12,6 +12,7 @@ import mountPaymentsEndpoints from './handlers/payments';
 import mountUserEndpoints from './handlers/users';
 import mountCommunityEndpoints from './handlers/community';
 import mountPostEndpoints from './handlers/posts';
+import mountCommentEndpoints from './handlers/comments';
 
 // We must import typedefs for ts-node-dev to pick them up when they change (even though tsc would supposedly
 // have no problem here)
@@ -92,6 +93,10 @@ const postRouter = express.Router();
 mountPostEndpoints(postRouter);
 app.use('/posts', postRouter);
 
+const commentRouter = express.Router();
+mountCommentEndpoints (commentRouter);
+app.use('/comments', commentRouter);
+
 
 // Hello World page to check everything works:
 app.get('/', async (_, res) => {
@@ -110,6 +115,7 @@ app.listen(3333, async () => {
     //adding communities to the database, you can see the fields of communities in the types folder
     app.locals.communityCollection = db.collection('communities');
     app.locals.postCollection = db.collection('posts');
+    app.locals.commentCollection = db.collection('comments');
 
     console.log('Connected to MongoDB on: ', mongoUri)
   } catch (err) {

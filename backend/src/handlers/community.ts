@@ -24,15 +24,12 @@ export default function mountCommunityEndpoints(router: Router) {
             const creatorId = req.session.currentUser?.uid;// Add a check for null or undefined
             const community = req.body;
             console.log(community);
-            if (!req.session.currentUser) {
-                return res.status(401).json({ error: 'unauthorized', message: "User needs to sign in first" });
-              }
               const app = req.app;
             const communityData = {
                 _id: new ObjectId(),
                 name: community.title,
                 description: community.description,
-                user: req.session.currentUser.uid,
+                user: creatorId,
                 price: community.price,
                 moderators: community.moderators,
                 members: community.members,
@@ -64,9 +61,6 @@ export default function mountCommunityEndpoints(router: Router) {
 
 //adding an array of posts to a community
 router.post('/posts', async (req, res) => {
-    if (!req.session.currentUser) {
-        return res.status(401).json({ error: 'unauthorized', message: "User needs to sign in first" });
-    }
     // Assuming req.body is structured correctly with a community_id and the post data
     const communityCollection = req.app.locals.communityCollection;
     const communityId = req.body.community_id; // The ID of the community

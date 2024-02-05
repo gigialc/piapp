@@ -18,9 +18,7 @@ import { useLocation } from 'react-router-dom';
 */
 export default function UserToAppPayments() {
   const { user, saveUser, showModal, saveShowModal, onModalClose } = React.useContext(UserContext) as UserContextType;
-  const location = useLocation();
-  const communityId = location.state.communityId;
-  console.log(communityId);
+
 
   const orderProduct = async (memo: string, amount: number, paymentMetadata: MyPaymentMetadata) => {
     if(user.uid === "") {
@@ -45,8 +43,7 @@ return(
   <Typography variant="h5" margin={2}  color="#9E4291" style={{ fontWeight: 'bold' } }>
   Welcome!
   </Typography>
-  <PostContent communityId={communityId}/>
-  <Posts communityId={communityId} />
+  <MuiForm />
 
   { showModal && <SignIn onSignIn={saveUser} onModalClose={onModalClose} showModal={showModal}/> }
 </>

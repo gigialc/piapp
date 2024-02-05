@@ -13,7 +13,6 @@ export type AuthResult = {
       uid: string,
       username: string
       community: CommunityType[]
-
     }
 
     };
@@ -27,6 +26,8 @@ export type AuthResult = {
       price: number,
       user_uid: string,
       posts: PostType[],
+      comments: CommentType[],
+
     };
     
     export type UserContextType = {
@@ -37,6 +38,8 @@ export type AuthResult = {
       onModalClose: () => void;
       community: CommunityType[];
       addCommunityToUser: (newCommunity: CommunityType) => void;
+      addPostToCommunity: (newPost: CommunityType) => void;
+      addCommentToPost: (newComment: CommunityType) => void;
     };
 
     export type PostType = {
@@ -47,9 +50,18 @@ export type AuthResult = {
       user_uid: string,
     };
 
+    export type CommentType = {
+      _id: string,
+      comment: string,
+      post_id: string,
+      user_uid: string,
+    };
+
     export type CommunityContextType = {
       community: CommunityType[];
       addPostToCommunity: (newPost: CommunityType) => void;
+      addCommentToPost: (newComment: CommunityType) => void;
+      
     };
 
     export type MyPaymentMetadata = {};

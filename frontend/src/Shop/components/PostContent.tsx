@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom';
 import CardActions from '@mui/material/CardActions';
 import IconButton from '@mui/material/IconButton';
 import CommentIcon from '@mui/icons-material/Comment';
+import { PodcastsOutlined, PostAddOutlined } from "@mui/icons-material";
 
 
 interface WindowWithEnv extends Window {
@@ -33,9 +34,9 @@ export default function PostContent({ communityId }: { communityId: string }) {
   const navigate = useNavigate();
   const [posts, setPosts] = useState<PostType[]>([]);
 
-  const handlePostClick = () => {
-
-  };
+  const location = useLocation();
+  const postId = location.state.postId;
+  console.log(postId);
  
   // Fetch posts when component mounts
   useEffect(() => {
@@ -69,7 +70,11 @@ export default function PostContent({ communityId }: { communityId: string }) {
                   {post.description}
                 </Typography>
               </CardContent>
-              <Comments />
+              <CardActions>
+                <IconButton aria-label="add a comment" onClick={() => navigate("/comments", { state: { postId: post._id } })}>
+                  <CommentIcon />
+                </IconButton>
+              </CardActions>
             </Card>
           </Grid>
         ))}

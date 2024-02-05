@@ -6,6 +6,9 @@ import { UserContextType } from './Types';
 import { useLocation } from 'react-router-dom';
 import { MyPaymentMetadata } from './Types';
 import { onReadyForServerApproval, onReadyForServerCompletion } from './Payments';
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
+import { CardContent, Typography } from '@mui/material';
+import PostContent from './PostContent';
 
 // Make TS accept the existence of our window.__ENV object - defined in index.html:
 interface WindowWithEnv extends Window {
@@ -24,12 +27,12 @@ const config = {headers: {'Content-Type': 'application/json', 'Access-Control-Al
 export default function Comments() {
     const [description, setDescription] = useState<string>('');
     const [descriptionError, setDescriptionError] = useState<string | null>(null);
-    const { user, showModal, saveShowModal, onModalClose, addCommunityToUser } = useContext(UserContext) as UserContextType;
+    const { user, showModal, saveShowModal, onModalClose, addCommentToPost, addPostToCommunity } = useContext(UserContext) as UserContextType;
+   //get the post id from the button
+
     const location = useLocation();
-    const communityId = location.state.communityId;
-    if (!communityId) {
-        console.log("Community ID is not provided in the location state.");
-    }
+    const postId = location.state.postId;
+    console.log(postId);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -43,8 +46,8 @@ export default function Comments() {
             saveShowModal(true);
             return; // Exit if user is not signed in
         }
-
-        orderProduct('Comment', 1, { communityId }); // Call orderProduct with postId
+        
+        orderProduct('Comment', 1, { postId }); // Call orderProduct with postId
     };
 
     const orderProduct = async (memo: string, amount: number, paymentMetadata: MyPaymentMetadata) => {
@@ -64,33 +67,40 @@ export default function Comments() {
         const payment = await window.Pi.createPayment(paymentData, callbacks);
       
         // Make an API call to add person to the community if the payment was successful
-        const data = {
-        description,
-        postId: communityId,
-        user_id: user?.uid
-        };
-        
-        if (payment.paymentCompleted === true){
-            console.log("Payment was successful");
-            axiosClient.post('/posts/comments', data, config)
+        if (description !== '' ) {
+            const data = {
+                content: description,
+                user_id: user?.uid,
+                post_id: postId,
+      
+            };
+                //check if payment was successful
+            
+                axiosClient.post('/posts/comments', data, config)
                 .then((response) => {
                     console.log(response);
+                    addCommentToPost(response.data.comment);
+                    setDescription(''); // Clear the input field
                     saveShowModal(true);
                 })
                 .catch((error) => {
                     console.log(error);
+                    // Add more specific error handling here
                 });
         }
+        
     };
 
     const onDescriptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setDescription(event.target.value);
         if(descriptionError) setDescriptionError(null); // Reset error when user starts typing
     };
-    
 
     return (
         <div style={{ padding: '32px', textAlign: 'center' }}>
+            <h2>Discussion</h2>
+            <p>Leave a comment</p>
+
             <form onSubmit={handleSubmit}>
                 <Stack spacing={2} sx={{ width: '80%', margin: 'auto' }}>
                     <TextField
@@ -103,9 +113,13 @@ export default function Comments() {
                         helperText={descriptionError || ''}
                         fullWidth
                     />
-                    <Button type="submit" variant="contained" color="primary" >
-                        Submit
+                    <Button
+                        type="submit" // Add type attribute to make the button work as a submit button
+                        variant="contained"
+                        startIcon={<ChatBubbleOutlineIcon />}
+                    >
                     </Button>
+                    
                 </Stack>
             </form>
             {showModal && (

@@ -56,28 +56,42 @@ export default function mountPostEndpoints(router: Router) {
         }
     });
 
-    //posting comments inside a specific post id
     router.post('/comments', async (req, res) => {
         if (!req.session.currentUser) {
             return res.status(401).json({ error: 'unauthorized', message: "User needs to sign in first" });
         }
         try {
             const postCollection = req.app.locals.postCollection;
-            const postId = new ObjectId(req.body.post_id);
-            const comment = req.body.comment;
+            const postId = req.body.post_id;
+            const content = req.body.content;
     
+            // Create a new ObjectId for the comment (if you're using MongoDB's built-in _id)
+            const commentId = new ObjectId();
+    
+            const commentData = {
+                _id: commentId,
+                content: content,
+                user: req.session.currentUser,
+                createdAt: new Date(), // Adding a timestamp for when the comment is created
+            };
+    
+            // Update the post to include the new comment
             const updateResult = await postCollection.updateOne(
-                { _id: postId },
-                { $push: { comments: comment } }
+                { _id: new ObjectId(postId) }, // Ensure to convert postId to ObjectId
+                { $push: { comments: commentData } }
             );
     
             if (updateResult.matchedCount === 0) {
                 return res.status(404).json({ message: "Post not found" });
             }
     
-            return res.status(200).json({ message: "Comment added successfully" });
+            if (updateResult.modifiedCount === 0) {
+                return res.status(400).json({ message: "Failed to add comment" });
+            }
+    
+            return res.status(200).json({ newComment: commentData, message: "Comment added successfully" });
         } catch (error) {
-            console.error(error);
+            console.log(error);
             return res.status(500).json({ message: "Error adding comment", error });
         }
     });
