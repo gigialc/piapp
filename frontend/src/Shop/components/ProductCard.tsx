@@ -27,7 +27,7 @@ export default function ProductCard(props: Props) {
   // Define a function to handle the click and navigate to the chat page
   const handleNavigateToChat = () => {
     props.onClickBuy(); // Call the onClickBuy function from props
-    navigate('/chat'); // Navigate to the chat page
+    navigate('./Chat'); // Navigate to the chat page
   };
 
   return (

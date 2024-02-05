@@ -10,8 +10,7 @@ import { UserContext } from "./components/Auth";
 import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-
-
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 // testing to link blog posts to blog pages
@@ -31,11 +30,27 @@ const backendURL = _window.__ENV && _window.__ENV.backendURL;
 const axiosClient = axios.create({ baseURL: `${backendURL}`, timeout: 20000, withCredentials: true});
 const config = {headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}};
 
-
 export default function HomePage() {
-  const { user, saveUser, showModal, saveShowModal, onModalClose } = React.useContext(UserContext) as UserContextType;
-  const navigate = useNavigate(); // also added this!!!!!!
-  const [createCommunityData, setCreateCommunityData] = useState<CommunityType[] | null>(null);
+  const { user, saveUser, showModal, saveShowModal, onModalClose } = React.useContext(UserContext) as UserContextType; // also added this!!!!!!
+  const [createCommunityData, setCreateCommunityData] = useState<CommunityType[] | null>(null);;
+  const [selectedCommunity, setSelectedCommunity] = useState<CommunityType | null>(null);
+  const navigate = useNavigate();
+  
+  const getGreeting = () => {
+    const currentHour = new Date().getHours();
+    if (currentHour >= 0 && currentHour < 12) {
+      return "Good Morning";
+    } else if (currentHour >= 12 && currentHour < 18) {
+      return "Good Afternoon";
+    } else {
+      return "Good Night";
+    }
+  };
+  
+  const handleCommunityClick = (community: CommunityType) => {
+    console.log(community._id);
+    navigate("/Chat", { state: { communityId: community._id } });
+  };
 
   const orderProduct = async (memo: string, amount: number, paymentMetadata: MyPaymentMetadata) => {
     if(user.uid === "") {
@@ -51,7 +66,6 @@ export default function HomePage() {
       //onError
 
     }
-
     //make a payment
     //const payment = await window.Pi.createPayment(paymentData, callbacks);
 
@@ -61,8 +75,8 @@ export default function HomePage() {
         axiosClient.post('/user/addUser', paymentMetadata)
             .then((response) => {
             console.log(response);
-             // Redirect to the chat page!!!!!!!1\
-              navigate("/Chat");
+             // Redirect to the chat page
+              navigate("/Chat", { state: { communityId: selectedCommunity?._id } });
              
             })
             .catch((error) => {
@@ -101,13 +115,13 @@ return(
       
 
       { createCommunityData ?
-      createCommunityData.map((order) =>{    
-        console.log(order);
+      createCommunityData.map((community) =>{    
+        console.log(community);
         return <ProductCard 
-          name={order.name}
-          description={order.description}
-          price={order.price}
-          onClickBuy={() => orderProduct("Community", order.price, { community_id: order._id, user_id: user.uid })}
+          name={community.name}
+          description={community.description}
+          price={community.price}
+          onClickBuy={() => handleCommunityClick(community)} 
         />
       })
       :
@@ -134,3 +148,4 @@ return(
 </>
 );
 }
+
