@@ -19,6 +19,8 @@ export default function Chat() {
   const communityId = location.state.communityId;
   console.log(communityId);
 
+  const location1 = useLocation();
+  console.log(location1);
   const orderProduct = async (memo: string, amount: number, paymentMetadata: MyPaymentMetadata) => {
     if(user.uid === "") {
       return saveShowModal(true);

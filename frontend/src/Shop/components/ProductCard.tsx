@@ -5,6 +5,7 @@ import { StringDecoder } from 'string_decoder';
 import { UserContextType } from './Types';
 import { UserContext } from './Auth';
 import { useNavigate } from 'react-router-dom';
+import { CommunityType } from './Types';
 
 /* DEVELOPER NOTE:
 * the productCard is used to create the standard output of pies
@@ -17,7 +18,7 @@ interface Props {
   name: string,
   description: string,
   price: number,
-  onClickBuy: () => void
+  community: CommunityType 
 }
 
 
@@ -25,9 +26,10 @@ export default function ProductCard(props: Props) {
   const navigate = useNavigate();
 
   // Define a function to handle the click and navigate to the chat page
-  const handleNavigateToChat = () => {
-    props.onClickBuy(); // Call the onClickBuy function from props
-    navigate('./Chat'); // Navigate to the chat page
+  const handleNavigateToChat = (community: CommunityType) => {
+    // get the community id and make it a current session
+    console.log(community._id);
+    navigate("/Chat", { state: { communityId: community._id } });
   };
 
   return (
@@ -46,7 +48,7 @@ export default function ProductCard(props: Props) {
           variant='contained'
           color='secondary'
           sx={{ backgroundColor: '#ffe6ff', color: "black" }}
-          onClick={handleNavigateToChat} // Use the handleNavigateToChat function for the onClick event
+          onClick={() => handleNavigateToChat(props.community)}  // Use the handleNavigateToChat function for the onClick event
         > Enter</Button>
   
       </Grid>

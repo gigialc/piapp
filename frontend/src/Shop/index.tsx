@@ -46,11 +46,6 @@ export default function HomePage() {
       return "Good Night";
     }
   };
-  
-  const handleCommunityClick = (community: CommunityType) => {
-    console.log(community._id);
-    navigate("/Chat", { state: { communityId: community._id } });
-  };
 
   const orderProduct = async (memo: string, amount: number, paymentMetadata: MyPaymentMetadata) => {
     if(user.uid === "") {
@@ -77,19 +72,18 @@ export default function HomePage() {
             console.log(response);
              // Redirect to the chat page
               navigate("/Chat", { state: { communityId: selectedCommunity?._id } });
-             
             })
             .catch((error) => {
             console.log(error);
             });
-
          //}
-     
   }
+
   useEffect(() => {
     console.log(createCommunityData);
   }, [createCommunityData]);
   
+
   useEffect(() => {
     // Make an API call to fetch the create community data
     axiosClient.get('/community/hi')
@@ -103,6 +97,7 @@ export default function HomePage() {
         }
     
     , []);
+
 
 return(
     <>
@@ -121,16 +116,18 @@ return(
           name={community.name}
           description={community.description}
           price={community.price}
-          onClickBuy={() => handleCommunityClick(community)} 
+          community={community}
+          
         />
       })
       :
-      <ProductCard
-        name="Loading.. ."
-        description="Loading..."
-        price={0}
-        onClickBuy={() => console.log('Buy clicked')} // Pass the createCommunityData prop here
-      />
+      // <ProductCard
+      //   name="Loading.. ."
+      //   description="Loading..."
+      //   price={0}
+      //   community={null}
+      //  // Pass the createCommunityData prop here
+      // />
      /* :
       community.length === 0 ?
       <ProductCard
@@ -139,8 +136,9 @@ return(
         price={0}
         onClickBuy={() => console.log('Buy clicked')} // Pass the createCommunityData prop here
       /> */
-
- }
+      <p>No community data available</p>
+      }
+ 
 
 { showModal && <SignIn onSignIn={saveUser} onModalClose={onModalClose} showModal={showModal}/> }
 
