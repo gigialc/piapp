@@ -28,7 +28,7 @@ export const onReadyForServerApproval = (paymentId: string) => {
   
 export const onReadyForServerCompletion = (paymentId: string, txid: string) => {
     console.log("onReadyForServerCompletion", paymentId, txid);
-    axiosClient.post('/payments/complete', {paymentId, txid}, config);
+    return axiosClient.post('/payments/complete', {paymentId, txid}, config);
   }
   
 export const onCancel = (paymentId: string) => {

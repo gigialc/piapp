@@ -65,16 +65,17 @@ export default function Comments() {
       
         //make a payment
         const payment = await window.Pi.createPayment(paymentData, callbacks);
-      
+        console.log(payment);
+
         // Make an API call to add person to the community if the payment was successful
         if (description !== '' ) {
             const data = {
                 content: description,
                 user_id: user?.uid,
-                post_id: postId,
-      
+                post_id: postId,    
             };
                 //check if payment was successful
+                if (payment.paymentCompleted === true){
             
                 axiosClient.post('/posts/comments', data, config)
                 .then((response) => {
@@ -87,7 +88,7 @@ export default function Comments() {
                     console.log(error);
                     // Add more specific error handling here
                 });
-        }
+        }}
         
     };
 
