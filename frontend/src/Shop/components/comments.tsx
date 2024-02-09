@@ -102,7 +102,6 @@ export default function Comments() {
         <div style={{ padding: '32px', textAlign: 'center' }}>
             <h2>Discussion</h2>
             <p>Leave a comment</p>
-            <Comments  />
             <form onSubmit={handleSubmit}>
                 <Stack spacing={2} sx={{ width: '80%', margin: 'auto' }}>
                     <TextField
@@ -123,7 +122,9 @@ export default function Comments() {
                     >
                     </Button>
                 </Stack>
+               
             </form>
+            <CommentContent />
             {showModal && (
                 <div style={{ position: 'absolute', top: '40%', left: '50%', transform: 'translate(-50%, -50%)', width: '50%', padding: '20px', border: '1px solid #ccc', borderRadius: '4px', backgroundColor: '#fff', textAlign: 'center' }}>
                     <p>Your comment has been submitted.</p>

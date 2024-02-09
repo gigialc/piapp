@@ -35,26 +35,6 @@ export default function CommentContent() {
   const postId = location.state.postId;
   console.log(postId);
 
-  const orderProduct = async (memo: string, amount: number, paymentMetadata: MyPaymentMetadata) => {
-    if(user.uid === "") {
-      return saveShowModal(true);
-
-    }
-
-    const paymentData = { amount, memo, metadata: paymentMetadata };
-    const callbacks = {
-      onReadyForServerApproval,
-      onReadyForServerCompletion,
-      //onCancel,
-      //onError
-
-    }
-
-
-  // Fetch posts when component mounts
-    useEffect(() => {
-      console.log(comment);
-    }, [setComment]);
 
     // get the posts that have the same community id as the current session
     useEffect(() => {
@@ -67,8 +47,7 @@ export default function CommentContent() {
             }
         };
         fetchComments();
-    }, [postId]);// Empty dependency array means this effect runs once on mount
-  }
+    }, [ ]);// Empty dependency array means this effect runs once on mount
 
   return (
     <div>
