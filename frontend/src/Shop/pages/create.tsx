@@ -39,11 +39,14 @@ export default function UserToAppPayments() {
 
 return(
   <>
-  <Header/>
-  <Typography variant="h5" margin={2}  color="#9E4291" style={{ fontWeight: 'bold' } }>
-  Welcome!
-  </Typography>
+  <Header />
+  <div style={{ padding: '20px', marginBottom: '80px' }}>
+    <Typography variant="h5" style={{ fontWeight: 'bold', color: '#9E4291', marginBottom: '16px' }}>
+        Start your own community
+    </Typography>
   <MuiForm />
+  </div>
+
 
   { showModal && <SignIn onSignIn={saveUser} onModalClose={onModalClose} showModal={showModal}/> }
 </>

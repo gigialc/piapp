@@ -33,17 +33,19 @@ export default function ProductCard(props: Props) {
   };
 
   return (
-    <Grid container style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid pink' }}>
+    <Grid container style={{ margin: 16, paddingBottom: 16, marginLeft:20 }}>
       <Grid container style={{ display: 'flex', flexDirection: 'row' }}>
         <Grid container style={{ width: "33%", marginRight: 8 }}>
         </Grid>
-        <Grid item style={{ width: "90%" }}>
+        <Grid item style={{ width: "90%", fontSize:25 }}>
           <h3>{props.name}</h3> 
-          <p>{props.description}</p>  
+      </Grid>
+      <Grid style={{ width: "90%" }}>
+      <p>{props.description}</p>  
       </Grid>
       </Grid>
-      <Grid item style={{textAlign: 'center', marginBottom: 8}}>
-        <strong>{props.price} Test-π</strong>  < br />
+      <Grid item style={{ marginBottom: 8}}>
+      {props.price} Test-π  < br />
         <Button
           variant='contained'
           color='secondary'

@@ -7,6 +7,7 @@ import axios from 'axios';
 import { TextField, Button, Stack, colors, FormControl } from '@mui/material';
 import { UserContext } from "../components/Auth";
 import { UserContextType } from './Types';
+import { light } from '@mui/material/styles/createPalette';
 
 // Make TS accept the existence of our window.__ENV object - defined in index.html:
 interface WindowWithEnv extends Window {
@@ -121,56 +122,63 @@ export default function MuiForm() {
         borderRadius: "4px"
       };
 
-    return (
-        <div style={{ padding: '32px', textAlign: 'center', backgroundColor: '#ffe6ff' }}>
-            <form onSubmit={handleSubmit}>
-                <h2 style={{ marginBottom: '24px' ,color: "#9E4291",}}>Create your community here!</h2>
-                <Stack spacing={2} sx={{ width: '80%', margin: '10%' }}>
-                    <TextField
-                        id="title"
-                        label="Title"
-                        variant="outlined"
-                        value={title}
-                        onChange={onTitleChange}
-                        error={titleError}
-                        helperText={titleErrorMessage}
-                        style={inputStyle}
-                        fullWidth
-                    />
-                    <TextField
-                        id="description"
-                        label="Mission Statement"
-                        variant="outlined"
-                        value={description}
-                        onChange={onDescriptionChange}
-                        error={descriptionError}
-                        helperText={descriptionErrorMessage}
-                        style={inputStyle}
-                        fullWidth
-                    />
-                    <TextField
-                        id="price"
-                        label="Subsription Price"
-                        variant="outlined"
-                        value={price}
-                        onChange={onPriceChange}
-                        error={priceError}
-                        helperText={priceErrorMessage}
-                        style={inputStyle}
-                        fullWidth
-                    />
-                    <Button type="submit" variant="contained"style={{ backgroundColor:"#9E4291", color:"white", borderRadius:"100px" }} >Submit</Button>
-                </Stack>
-            </form>
-            {showModal && (
-                <div style={modalStyle}>
-                    <p style={{ fontWeight: 'light' }}>Your community has been created.</p>
-                    <div>
-                        <button onClick={onModalClose}>Close</button>
-                    </div>
-                </div>
-            )}
+      return (
+        <div style={{ padding: '32px', textAlign: 'center', backgroundColor: 'white', borderRadius: '20px' }}>
+          <form onSubmit={handleSubmit}>
+            <h3 style={{ marginBottom: '24px', color: "black" , fontWeight: "light"}}>Create Your Community</h3>
+            <Stack spacing={4} sx={{ width: '80%', margin: '0 auto' }}>
+              <TextField
+                id="title"
+                label="Community Title"
+                variant="outlined"
+                value={title}
+                onChange={onTitleChange}
+                error={titleError}
+                helperText={titleErrorMessage}
+                fullWidth
+                required
+                style={{ backgroundColor: '#ffe6ff', borderRadius: '20px', border: 'none' }} // Remove grey outline
+              />
+              <TextField
+                id="description"
+                label="Mission Statement"
+                variant="outlined"
+                value={description}
+                onChange={onDescriptionChange}
+                error={descriptionError}
+                helperText={descriptionErrorMessage}
+                fullWidth
+                required
+                multiline // Enable multiline functionality
+                rows={4} // Set initial number of rows
+                style={{ backgroundColor: '#ffe6ff', borderRadius: '20px', border: 'none' }} // Remove grey outline
+              />
+              <TextField
+                id="price"
+                label="Subscription Price"
+                variant="outlined"
+                value={price}
+                onChange={onPriceChange}
+                error={priceError}
+                helperText={priceErrorMessage}
+                fullWidth
+                required
+                style={{ backgroundColor: '#ffe6ff', borderRadius: '20px', border: 'none' }} // Remove grey outline
+              />
+              <Button type="submit" variant="contained" style={{ backgroundColor: "#9E4291", color: "white", borderRadius: "100px", padding: '10px 40px' }}>Create Community</Button>
+            </Stack>
+          </form>
+          {showModal && (
+            <div style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', backgroundColor: 'rgba(255, 255, 255, 0.9)', padding: '20px', borderRadius: '10px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)' }}>
+              <p style={{ fontWeight: 'light', marginBottom: '16px', color: '#333' }}>Your community has been created successfully!</p>
+              <Button onClick={onModalClose} variant="contained" style={{ backgroundColor: "#9E4291", color: "white", borderRadius: "100px", padding: '8px 32px' }}>Close</Button>
+            </div>
+          )}
         </div>
-    )
+      );
+      
+      
+      
+      
 }
 
