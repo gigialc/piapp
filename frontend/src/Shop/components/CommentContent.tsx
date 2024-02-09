@@ -9,7 +9,10 @@ import { useLocation } from 'react-router-dom';
 import { UserContext } from './Auth';
 import { MyPaymentMetadata } from './Types';
 import { onReadyForServerApproval, onReadyForServerCompletion } from './Payments';
-import CommentContent from './CommentContent';
+import CardActions from '@mui/material/CardActions';
+import IconButton from '@mui/material/IconButton';
+import CommentIcon from '@mui/icons-material/Comment';
+import { Card, CardContent, Typography } from '@mui/material';
 //for community page
 
 interface WindowWithEnv extends Window {
@@ -25,7 +28,7 @@ const backendURL = _window.__ENV && _window.__ENV.backendURL;
 const axiosClient = axios.create({ baseURL: `${backendURL}`, timeout: 20000, withCredentials: true });
 const config = { headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } };
 
-export default function ProductCard() {
+export default function CommentContent() {
   const { user, saveUser, showModal, saveShowModal, onModalClose } = React.useContext(UserContext) as UserContextType;
   const [comment, setComment] = useState (null);
   const location = useLocation();
@@ -65,20 +68,23 @@ export default function ProductCard() {
         };
         fetchComments();
     }, [postId]);// Empty dependency array means this effect runs once on mount
-
+  }
 
   return (
-    <Grid container style={{ margin: 16, paddingBottom: 16, borderBottom: '1px solid pink' }}>
-      <Grid container style={{ display: 'flex', flexDirection: 'row' }}>
-        <Grid container style={{ width: "33%", marginRight: 8 }}>
-        </Grid>
-        <Grid item style={{ width: "90%" }}>
-
-          <p>{ }</p>  
+    <div>
+    <Grid container spacing={2} justifyContent="center">
+        {Array.isArray(postId) && postId.map((post) => (
+        
+            <Card variant="outlined" sx={{ backgroundColor: '#ffe6ff', marginY: 2 }}>
+              <CardContent>
+                <Typography variant="h6" component="div" style={{ fontWeight: 'bold', color: '#333' }}>
+                  {post.content}
+                </Typography>
+              </CardContent>
+            </Card>
+        
+        ))}
       </Grid>
-      </Grid>
-      <Grid item style={{textAlign: 'center', marginBottom: 5}}>
-      </Grid>
-    </Grid>
-  )
-}}
+    </div>
+  );
+}

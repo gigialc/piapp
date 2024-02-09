@@ -92,8 +92,8 @@ export default function MuiForm() {
                 .then((response) => {
                     console.log(response);
                     saveShowModal(true);
-                    if (addCommunityToUser) { // Add null check for addCommunityToUser
-                        addCommunityToUser(response.data);
+                     if (addCommunityToUser) { // Add null check for addCommunityToUser
+                         addCommunityToUser(response.data);
                     }
                 })
                 .catch((error) => {

@@ -47,7 +47,7 @@ export default function ProductCard(props: Props) {
         <Button
           variant='contained'
           color='secondary'
-          sx={{ backgroundColor: '#ffe6ff', color: "black" }}
+          sx={{ backgroundColor: '#ffe6ff', color: "black",borderRadius: '30px', marginTop: 2}}
           onClick={() => handleNavigateToChat(props.community)}  // Use the handleNavigateToChat function for the onClick event
         > Enter</Button>
   

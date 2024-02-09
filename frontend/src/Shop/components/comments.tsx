@@ -9,6 +9,7 @@ import { onReadyForServerApproval, onReadyForServerCompletion } from './Payments
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import { CardContent, Typography } from '@mui/material';
 import PostContent from './PostContent';
+import CommentContent from './CommentContent';
 
 // Make TS accept the existence of our window.__ENV object - defined in index.html:
 interface WindowWithEnv extends Window {
@@ -75,7 +76,7 @@ export default function Comments() {
                 post_id: postId,    
             };
                 //check if payment was successful
-                if (payment.paymentCompleted === true){
+                // if (payment.paymentCompleted === true){
             
                 axiosClient.post('/posts/comments', data, config)
                 .then((response) => {
@@ -88,7 +89,7 @@ export default function Comments() {
                     console.log(error);
                     // Add more specific error handling here
                 });
-        }}
+        }
         
     };
 
@@ -101,7 +102,7 @@ export default function Comments() {
         <div style={{ padding: '32px', textAlign: 'center' }}>
             <h2>Discussion</h2>
             <p>Leave a comment</p>
-
+            <Comments  />
             <form onSubmit={handleSubmit}>
                 <Stack spacing={2} sx={{ width: '80%', margin: 'auto' }}>
                     <TextField
@@ -118,9 +119,9 @@ export default function Comments() {
                         type="submit" // Add type attribute to make the button work as a submit button
                         variant="contained"
                         startIcon={<ChatBubbleOutlineIcon />}
+                        style={{ backgroundColor: '#ff69b4' }}
                     >
                     </Button>
-                    
                 </Stack>
             </form>
             {showModal && (

@@ -100,45 +100,28 @@ export default function HomePage() {
 
 
 return(
-    <>
-    
-    <Header/>
-    
-    <Typography variant="h5" margin={2} color="#9E4291" style={{ fontWeight: 'bold' }}>
-            Communities
-        </Typography>
-      
+  <>
+  <Header />
+  <Typography variant="h5" margin={2} style={{ color: '#9E4291', fontWeight: 'bold' }}>
+    Communities
+  </Typography>
 
-      { createCommunityData ?
-      createCommunityData.map((community) =>{    
-        console.log(community);
-        return <ProductCard 
+  {createCommunityData ? (
+    createCommunityData.map((community) => {
+      console.log(community);
+      return (
+        <ProductCard 
+          key={community._id} // Make sure to include a unique key prop for each element in the array
           name={community.name}
           description={community.description}
           price={community.price}
           community={community}
-          
         />
-      })
-      :
-      // <ProductCard
-      //   name="Loading.. ."
-      //   description="Loading..."
-      //   price={0}
-      //   community={null}
-      //  // Pass the createCommunityData prop here
-      // />
-     /* :
-      community.length === 0 ?
-      <ProductCard
-        name="None"
-        description="No new communities"
-        price={0}
-        onClickBuy={() => console.log('Buy clicked')} // Pass the createCommunityData prop here
-      /> */
-      <p>No community data available</p>
-      }
- 
+      );
+    })
+  ) : (
+    <Typography variant="body1" style={{ color: '#ff69b4' }}>No community data available</Typography>
+  )}
 
 { showModal && <SignIn onSignIn={saveUser} onModalClose={onModalClose} showModal={showModal}/> }
 

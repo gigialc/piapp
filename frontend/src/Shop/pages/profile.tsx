@@ -10,6 +10,7 @@ import MuiBottomNavigation from "../../MuiBottomNavigation";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Bloodtype } from "@mui/icons-material";
+import { Button, Divider } from "@mui/material";
 
 
 // Make TS accept the existence of our window.__ENV object - defined in index.html:
@@ -115,88 +116,76 @@ export default function  UserToAppPayments() {
   }, []);
   
 
-  return ( 
+  return (
     <>
-      <Header/>
-      <div style={{ marginBottom: 80}} >
-      <Typography variant="h5" margin={2}  color="#9E4291" style={{ fontWeight: 'bold'}}>
-        Profile
-      </Typography>
-
-      <Typography fontSize={17} margin={1} style={{ fontWeight: 'bold'}}>
-        {getGreeting()}👋  
-        All of your communities in a single page
-      </Typography>
-{/* Add your user information rendering logic here */}
-  {/* Horizontal Line */}
-  <hr style={{ margin: '20px 0' }} />
-      <Typography variant="h6" margin={2} >
-      Your Communities 
-      </Typography >
-      {createCommunityData ? (
-      createCommunityData.map((community) =>{ 
-        console.log(community);
-      return(
-        <div key={community._id}>
-          <button onClick={() => handleCommunityClick(community)} 
-           style={{
-            backgroundColor: '#ffe6ff', // Background color
-            color: 'black', // Text color
-            padding: 12, // Some padding
-            margin: 12, 
-          
-          }}
-        >
-            {community.name}
-          </button> 
-          {/* 
-          <ProfileCard
-          key={community._id}
-         name={community.name} _id={""} description={""}    /> 
-      */}
+      <Header />
+      <div style={{ padding: '20px', marginBottom: '80px' }}>
+        {/* Profile Section */}
+        <div>
+          <Typography variant="h5" style={{ fontWeight: 'bold', color: '#9E4291', marginBottom: '16px' }}>
+            Profile
+          </Typography>
+          <Typography variant="body1" style={{ fontSize: '17px', marginBottom: '16px' }}>
+            {getGreeting()} beautiful 💗
+          </Typography>
+          {/* <hr style={{ margin: '10px 0', color: "#ff69b4" }} /> */}
+        </div>
+  
+        {/* Your Communities Section */}
+        <div>
+          <Typography variant="h6" style={{ marginBottom: '16px' }}>
+            Your Communities
+          </Typography>
+          <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+            {createCommunityData ? (
+              createCommunityData.map((community) => (
+                <Button
+                  key={community._id}
+                  onClick={() => handleCommunityClick(community)}
+                  variant="contained"
+                  style={{ backgroundColor: '#ffe6ff', color: 'black', padding: '12px', margin: '12px',borderRadius: '30px' }}
+                >
+                  {community.name}
+                </Button>
+              ))
+            ) : (
+              <Typography variant="body1">No community data available</Typography>
+            )}
           </div>
+        </div>
+  
+        <Divider style={{ margin: '25px 0', height: 0, borderTop: 'none', borderBottom: 'none' }} />
 
-          
-        );
-  }) 
-  ) : (
-  <p>No community data available</p>
-)}
-
- {/* Title for Joined Communities */}
- <Typography variant="h6" margin={2} >
-      Joined Communities
-    </Typography>
-    {selectedCommunity ? (
-      selectedCommunity.map((community) =>{ 
-        console.log(community);
-      return(
-        <div key={community._id}>
-          <button onClick={() => handleCommunityClick1(community)} 
-           style={{
-            backgroundColor: '#ffe6ff', // Background color
-            color: 'black', // Text color
-            padding: 12, // Some padding
-            margin: 12, 
-          }}
-        >
-            {community.name}
-          </button> 
-          {/* 
-          <ProfileCard
-          key={community._id}
-         name={community.name} _id={""} description={""}    /> 
-      */}
-          </div>         
-        );
-  })
-  ) : (
-  <p>No community data available</p>
-)}
-</div>
-
-{showModal && <SignIn onSignIn={saveUser} onModalClose={onModalClose} showModal={showModal}/>}
-<MuiBottomNavigation />
-</>
-);
+  
+        {/* Joined Communities Section */}
+        <div>
+          <Typography variant="h6" style={{ marginBottom: '16px' }}>
+            Joined Communities
+          </Typography>
+          <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+            {selectedCommunity ? (
+              selectedCommunity.map((community) => (
+                <Button
+                  key={community._id}
+                  onClick={() => handleCommunityClick1(community)}
+                  variant="contained"
+                  style={{ backgroundColor: '#ffe6ff', color: 'black', padding: '12px', margin: '12px',borderRadius: '30px' }}
+                >
+                  {community.name}
+                </Button>
+              ))
+            ) : (
+              <Typography variant="body1">No community data available</Typography>
+            )}
+          </div>
+        </div>
+      </div>
+  
+      {/* SignIn Modal */}
+      {showModal && <SignIn onSignIn={saveUser} onModalClose={onModalClose} showModal={showModal} />}
+  
+      {/* Bottom Navigation */}
+      <MuiBottomNavigation />
+    </>
+  );
 }

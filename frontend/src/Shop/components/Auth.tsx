@@ -36,7 +36,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
       await signInUser(authResult);
       setUser(authResult.user);
       setShowModal(false);
-      getCommunity();
+      // getCommunity();
     }
 
     const signInUser = async (authResult: AuthResult) => {
@@ -61,22 +61,22 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
       saveShowModal(false);
     }
 
-    const getCommunity = async () => {
-      try {
-        const response = await fetch(`${backendURL}/community`, { credentials: 'include' });
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const communityData = await response.json();
-        setCommunity(communityData);
-      } catch (error) {
-        console.error('Failed to fetch communities:', error);
-      }
-    }
+    // // const getCommunity = async () => {
+    // //   try {
+    // //     const response = await fetch(`${backendURL}/community`, { credentials: 'include' });
+    // //     if (!response.ok) {
+    // //       throw new Error('Network response was not ok');
+    // //     }
+    // //     const communityData = await response.json();
+    // //     setCommunity(communityData);
+    // //   } catch (error) {
+    // //     console.error('Failed to fetch communities:', error);
+    // //   }
+    // // }
 
-    React.useEffect(() => {
-      getCommunity();
-    }, []);
+    // React.useEffect(() => {
+    //   getCommunity();
+    // }, []);
 
     const userContext: UserContextType = {
       user,
