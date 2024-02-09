@@ -53,15 +53,15 @@ return(
       Why are so many people on social media so perfect?
     </Button>
 
-    <Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%' }} onClick={() => handleClick('/BodyImage')}>
+    <Button variant='contained' color='secondary'sx={{ marginBottom: '16px', width: '100%',backgroundColor: '#ffe6ff', color: 'black', padding: '12px', margin: '12px',borderRadius: "30px" }} onClick={() => handleClick('/BodyImage')}>
     "Perfect" Body Image Stereotypes in Society
     </Button>
 
-    <Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/Blogilates')}>
+    <Button variant='contained' color='secondary'sx={{ marginBottom: '16px', width: '100%',backgroundColor: '#ffe6ff', color: 'black', padding: '12px', margin: '12px',borderRadius: "30px" }} onClick={() => handleClick('/Blogilates')}>
       Blogilates on Body Image 
     </Button>
 
-    <Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/Eatingdisorders')}>
+    <Button variant='contained' color='secondary'sx={{marginBottom: '16px', width: '100%',backgroundColor: '#ffe6ff', color: 'black', padding: '12px', margin: '12px',borderRadius: "30px" }} onClick={() => handleClick('/Eatingdisorders')}>
       Social Media Use and Body Image Disorders
     </Button>
     {/* Remove the Mybodycard components */}
