@@ -53,12 +53,12 @@ return(
                
     <div style={{ overflowY: 'auto', height: '150vh',marginLeft: '20px' }}>
     
-<h2 style={{ color: '#ef9a9a', fontFamily: 'comic-sans' }}>Body Image</h2>
+<h2 style={{ color: '#9E4291', fontFamily: 'comic-sans' }}>Body Image</h2>
 <div style={{ display: "flex", overflowX: "auto" }}>
 {/* Scrollable container for text boxes */}
 <div style={{ display: "flex", marginRight: "10px" }}>
 {/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink",border: '2px solid #ef9a9a'}}>
+<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "white",border: '2px solid #ef9a9a'}}>
 <Typography variant="h6" style={{ fontFamily: 'Your Chosen Font', fontSize: '20px', marginBottom: '8px' }}>
   Why Do People on Social Media Seem So Perfect?
 </Typography>
@@ -66,7 +66,7 @@ return(
 
 </Typography>
 <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-<Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/SocialMediaBlog')}>
+<Button variant='contained' color='secondary'sx={{  backgroundColor: '#ffe6ff', marginBottom: '16px', width: '100%', color: "black"}} onClick={() => handleClick('/SocialMediaBlog')}>
   Read More
 </Button>
 </div>
@@ -76,7 +76,7 @@ return(
 {/* Scrollable container for text boxes */}
 <div style={{ display: "flex", marginRight: "10px" }}>
 {/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink",border: '2px solid #ef9a9a'}}>
+<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "white",border: '2px solid #ef9a9a'}}>
 <Typography variant="h6" style={{ fontFamily: 'Your Chosen Font', fontSize: '20px', marginBottom: '8px' }}>
   Blogilates on Body Image
 </Typography>
@@ -84,7 +84,7 @@ return(
 
 </Typography>
 <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-<Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/Blogilates')}>
+<Button variant='contained' color='secondary'sx={{ backgroundColor: '#ffe6ff', marginBottom: '16px', width: '100%', color: "black"}} onClick={() => handleClick('/Blogilates')}>
   Read More
 </Button>
 </div>
@@ -94,7 +94,7 @@ return(
 {/* Scrollable container for text boxes */}
 <div style={{ display: "flex", marginRight: "10px" }}>
 {/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px",backgroundColor: "pink",border: '2px solid #ef9a9a'}}>
+<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px",backgroundColor: "white",border: '2px solid #ef9a9a'}}>
 <Typography variant="h6" style={{ fontFamily: 'Your Chosen Font', fontSize: '20px', marginBottom: '8px' }}>
   "Perfect" Body Image Stereotypes in Society
 </Typography>
@@ -102,7 +102,7 @@ return(
 
 </Typography>
 <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-<Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/BodyImage')}>
+<Button variant='contained' color='secondary'sx={{  backgroundColor: '#ffe6ff', marginBottom: '16px', width: '100%', color: "black"}} onClick={() => handleClick('/BodyImage')}>
   Read More
 </Button>
 </div>
@@ -112,7 +112,7 @@ return(
 {/* Scrollable container for text boxes */}
 <div style={{ display: "flex", marginRight: "10px" }}>
 {/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink",border: '2px solid #ef9a9a'}}>
+<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "white",border: '2px solid #ef9a9a'}}>
 <Typography variant="h6" style={{ fontFamily: 'Your Chosen Font', fontSize: '20px', marginBottom: '8px' }}>
   Social Media Use and Body Image Disorders
 </Typography>
@@ -120,7 +120,7 @@ return(
 
 </Typography>
 <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-<Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/Eatingdisorders')}>
+<Button variant='contained' color='secondary'sx={{  backgroundColor: '#ffe6ff', marginBottom: '16px', width: '100%', color: "black"}} onClick={() => handleClick('/Eatingdisorders')}>
   Read More
 </Button>
 </div>
@@ -137,12 +137,12 @@ return(
 
 <br />
 
-<h2 style={{ color: '#ef9a9a', fontFamily: 'comic-sans' }}>Sex Education</h2>
+<h2 style={{ color: '#9E4291', fontFamily: 'comic-sans' }}>Sex Education</h2>
 <div style={{ display: "flex", overflowX: "auto" }}>
 {/* Scrollable container for text boxes */}
 <div style={{ display: "flex", marginRight: "10px" }}>
 {/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink",border: '2px solid #ef9a9a'}}>
+<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "white",border: '2px solid #ef9a9a'}}>
 <Typography variant="h6" style={{ fontFamily: 'Your Chosen Font', fontSize: '20px', marginBottom: '8px' }}>
   Contraception Methods and their Importance
 </Typography>
@@ -150,7 +150,7 @@ return(
 
 </Typography>
 <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-<Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/sexed')}>
+<Button variant='contained' color='secondary'sx={{  backgroundColor: '#ffe6ff', marginBottom: '16px', width: '100%', color: "black"}} onClick={() => handleClick('/sexed')}>
   Read More
 </Button>
 </div>
@@ -160,7 +160,7 @@ return(
 {/* Scrollable container for text boxes */}
 <div style={{ display: "flex", marginRight: "10px" }}>
 {/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px",backgroundColor: "pink",border: '2px solid #ef9a9a'}}>
+<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px",backgroundColor: "white",border: '2px solid #ef9a9a'}}>
 <Typography variant="h6" style={{ fontFamily: 'Your Chosen Font', fontSize: '20px', marginBottom: '8px' }}>
   Sexual Education and Parenting
 </Typography>
@@ -168,7 +168,7 @@ return(
 
 </Typography>
 <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-<Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/sexed')}>
+<Button variant='contained' color='secondary'sx={{   backgroundColor: '#ffe6ff', marginBottom: '16px', width: '100%', color: "black"}} onClick={() => handleClick('/sexed')}>
   Read More
 </Button>
 </div>
@@ -178,7 +178,7 @@ return(
 {/* Scrollable container for text boxes */}
 <div style={{ display: "flex", marginRight: "10px" }}>
 {/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink",border: '2px solid #ef9a9a'}}>
+<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "white",border: '2px solid #ef9a9a'}}>
 <Typography variant="h6" style={{ fontFamily: 'Your Chosen Font', fontSize: '20px', marginBottom: '8px' }}>
   Covid-19 vs Sexual Health
 </Typography>
@@ -186,7 +186,7 @@ return(
 
 </Typography>
 <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-<Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/sexed')}>
+<Button variant='contained' color='secondary'sx={{   backgroundColor: '#ffe6ff', marginBottom: '16px', width: '100%', color: "black"}} onClick={() => handleClick('/sexed')}>
   Read More
 </Button>
 </div>
@@ -201,12 +201,12 @@ return(
 
 <br />
 
-<h2 style={{ color: '#ef9a9a', fontFamily: 'comic-sans' }}>Other Trending Articles</h2>
+<h2 style={{ color: '#9E4291', fontFamily: 'comic-sans' }}>Other Trending Articles</h2>
 <div style={{ display: "flex", overflowX: "auto" }}>
 {/* Scrollable container for text boxes */}
 <div style={{ display: "flex", marginRight: "10px" }}>
 {/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink",border: '2px solid #ef9a9a'}}>
+<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "white",border: '2px solid #ef9a9a'}}>
 <Typography variant="h6" style={{ fontFamily: 'Your Chosen Font', fontSize: '20px', marginBottom: '8px' }}>
   PCOS and its effects on the body
 </Typography>
@@ -214,7 +214,7 @@ return(
 
 </Typography>
 <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-<Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/mybody')}>
+<Button variant='contained' color='secondary'sx={{  backgroundColor: '#ffe6ff', marginBottom: '16px', width: '100%', color: "black"}} onClick={() => handleClick('/mybody')}>
   Read More
 </Button>
 </div>
@@ -224,7 +224,7 @@ return(
 {/* Scrollable container for text boxes */}
 <div style={{ display: "flex", marginRight: "10px" }}>
 {/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink",border: '2px solid #ef9a9a'}}>
+<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "white",border: '2px solid #ef9a9a'}}>
 <Typography variant="h6" style={{ fontFamily: 'Your Chosen Font', fontSize: '20px', marginBottom: '8px' }}>
   IBS
 </Typography>
@@ -232,7 +232,7 @@ return(
 
 </Typography>
 <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-<Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/mybody')}>
+<Button variant='contained' color='secondary'sx={{  backgroundColor: '#ffe6ff', marginBottom: '16px', width: '100%', color: "black"}} onClick={() => handleClick('/mybody')}>
   Read More
 </Button>
 </div>
@@ -242,7 +242,7 @@ return(
 {/* Scrollable container for text boxes */}
 <div style={{ display: "flex", marginRight: "10px" }}>
 {/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink",border: '2px solid #ef9a9a'}}>
+<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "white",border: '2px solid #ef9a9a'}}>
 <Typography variant="h6" style={{ fontFamily: 'Your Chosen Font', fontSize: '20px', marginBottom: '8px' }}>
   First Time Mother Diaries
 </Typography>
@@ -250,7 +250,7 @@ return(
 
 </Typography>
 <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-<Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/mybody')}>
+<Button variant='contained' color='secondary'sx={{ backgroundColor: '#ffe6ff', marginBottom: '16px', width: '100%', color: "black"}} onClick={() => handleClick('/mybody')}>
   Read More
 </Button>
 </div>
@@ -260,7 +260,7 @@ return(
 {/* Scrollable container for text boxes */}
 <div style={{ display: "flex", marginRight: "10px" }}>
 {/* First text box content */}
-<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "pink" }}>
+<Paper style={{ display: 'flex', flexDirection: 'column', width: "200px", padding: "10px", marginRight: "10px", backgroundColor: "white" }}>
 <Typography variant="h6" style={{ fontFamily: 'Your Chosen Font', fontSize: '20px', marginBottom: '8px' }}>
   Menstruation Changes
 </Typography>
@@ -268,7 +268,7 @@ return(
 
 </Typography>
 <div style={{ marginTop: 'auto' }}> {/* Add this div for bottom alignment */}
-<Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%'}} onClick={() => handleClick('/mybody')}>
+<Button variant='contained'sx={{ backgroundColor: '#ffe6ff', marginBottom: '16px', width: '100%', color: "black"}} onClick={() => handleClick('/mybody')}>
   Read More
 </Button>
 </div>

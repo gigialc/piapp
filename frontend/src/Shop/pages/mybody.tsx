@@ -44,12 +44,12 @@ return(
     <>
         <Header />
 
-    <Typography variant="h5" margin={2} color="pink">
+    <Typography variant="h5" margin={2} color="#9E4291">
       Body Image
     </Typography>
 
     {/* Replace Mybodycard components with buttons */}
-    <Button variant='contained' color='secondary'sx={{ backgroundColor: 'pink', marginBottom: '16px', width: '100%' }} onClick={() => handleClick('/socialmediaBlog')}>
+    <Button variant='contained'sx={{ marginBottom: '16px', width: '100%',backgroundColor: '#ffe6ff', color: 'black', padding: '12px', margin: '12px',borderRadius: '30px' }} onClick={() => handleClick('/socialmediaBlog')}>
       Why are so many people on social media so perfect?
     </Button>
 
