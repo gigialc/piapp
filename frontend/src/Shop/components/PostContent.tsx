@@ -56,30 +56,39 @@ export default function PostContent({ communityId }: { communityId: string }) {
       fetchPosts();
   }, [communityId]);// Empty dependency array means this effect runs once on mount
 
-    return (
-      <Box sx={{ flexGrow: 1, margin: 3 }}>
+  return (
+    <Box sx={{ flexGrow: 1, margin: 3 }}>
       <Grid container spacing={2} justifyContent="center">
-        {Array.isArray(posts) && posts.map((post) => (
-          <Grid item xs={12} md={8} key={post._id}>
-            <Card variant="outlined" sx={{ backgroundColor: '#ffe6ff', marginY: 2 }}>
-              <CardContent>
-                <Typography variant="h6" component="div" style={{ fontWeight: 'bold', color: '#333' }}>
-                  {post.title}
-                </Typography>
-                <Typography variant="body1" color="text.secondary">
-                  {post.description}
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <IconButton aria-label="add a comment" onClick={() => navigate("/comments", { state: { postId: post._id } })}>
-                  <CommentIcon />
-                </IconButton>
-              </CardActions>
-            </Card>
+        {Array.isArray(posts) && posts.length > 0 ? (
+          posts.map((post) => (
+            <Grid item xs={12} md={8} key={post._id}>
+              <Card variant="outlined" sx={{ backgroundColor: '#ffe6ff', marginY: 2 }}>
+                <CardContent>
+                  <Typography variant="h6" component="div" style={{ fontWeight: 'bold', color: '#333' }}>
+                    {post.title}
+                  </Typography>
+                  <Typography variant="body1" color="text.secondary">
+                    {post.description}
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <IconButton aria-label="add a comment" onClick={() => navigate("/comments", { state: { postId: post._id } })}>
+                    <CommentIcon />
+                  </IconButton>
+                </CardActions>
+              </Card>
+            </Grid>
+          ))
+        ) : (
+          <Grid item xs={12}>
+            <Typography textAlign="center">
+              There are no posts in this community yet.
+            </Typography>
           </Grid>
-        ))}
+        )}
       </Grid>
     </Box>
   );
-}
+};
+
 
