@@ -32,22 +32,29 @@ export default function mountCommentEndpoints(router: Router) {
 
     
     // Get all the posts from the specific community by checking the community id of all posts
-    router.get('/comments1', async (req, res) => {
+    router.get('/commentsByPostId', async (req, res) => {
         if (!req.session.currentUser) {
-            return res.status(401).json({ error: 'unauthorized', message: "User needs to sign in first" });
+            return res.status(401).json({ error: 'Unauthorized', message: "User needs to sign in first" });
         }
-    
         try {
             const postCollection = req.app.locals.postCollection;
-            const communityId = new ObjectId(req.query.community_id as string); // Cast and convert to ObjectId
+            const postId = new ObjectId(req.query.post_id as string); // Cast and convert to ObjectId
     
-            // Directly find posts with the matching community_id
-            const posts = await postCollection.find({ community_id: communityId }).toArray();
+            // Directly find the post with the matching post_id
+            const post = await postCollection.findOne({ _id: postId });
     
-            return res.status(200).json({ posts });
+            if (!post) {
+                return res.status(404).json({ error: 'Not Found', message: "Post not found" });
+            }
+    
+            // Extracting comments from the found post
+            const comments = post.comments;
+    
+            return res.status(200).json({ comments });
         } catch (error) {
             console.error(error);
-            return res.status(500).json({ message: "Error fetching posts", error });
+            return res.status(500).json({ message: "Error fetching comments", error });
         }
     });
+    
 }

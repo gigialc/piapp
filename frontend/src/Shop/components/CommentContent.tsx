@@ -7,11 +7,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import { UserContext } from './Auth';
-import { MyPaymentMetadata } from './Types';
-import { onReadyForServerApproval, onReadyForServerCompletion } from './Payments';
-import CardActions from '@mui/material/CardActions';
-import IconButton from '@mui/material/IconButton';
-import CommentIcon from '@mui/icons-material/Comment';
+import { Paper } from '@mui/material';
 import { Card, CardContent, Typography } from '@mui/material';
 //for community page
 
@@ -30,40 +26,54 @@ const config = { headers: { 'Content-Type': 'application/json', 'Access-Control-
 
 export default function CommentContent() {
   const { user, saveUser, showModal, saveShowModal, onModalClose } = React.useContext(UserContext) as UserContextType;
-  const [comment, setComment] = useState (null);
+  const [comment, setComment] = useState<{ content: string, user: { username: string } }[]>([]);
   const location = useLocation();
   const postId = location.state.postId;
   console.log(postId);
 
-
     // get the posts that have the same community id as the current session
     useEffect(() => {
-        const fetchComments = async () => {
-            try {
-                const response = await axiosClient.get(`/posts/comments?post_id=${[postId]}`);
-                setComment(response.data.posts || []);
-            } catch (error) {
-                console.error("Failed to fetch posts: ", error);
-            }
-        };
-        fetchComments();
-    }, [ ]);// Empty dependency array means this effect runs once on mount
+      const fetchComments = async () => {
+          try {
+              const response = await axiosClient.get(`/comments/commentsByPostId?post_id=${postId}`);
+              setComment(response.data.comments || []);
+          } catch (error) {
+              console.error("Failed to fetch comments: ", error);
+          }
+      };
+      if (postId) { // Only fetch comments if postId is available
+          fetchComments();
+      }
+  }, [postId]);// Empty dependency array means this effect runs once on mount
 
   return (
-    <div>
-    <Grid container spacing={2} justifyContent="center">
-        {Array.isArray(postId) && postId.map((post) => (
-        
-            <Card variant="outlined" sx={{ backgroundColor: '#ffe6ff', marginY: 2 }}>
-              <CardContent>
-                <Typography variant="h6" component="div" style={{ fontWeight: 'bold', color: '#333' }}>
-                  {post.content}
-                </Typography>
-              </CardContent>
-            </Card>
-        
-        ))}
-      </Grid>
+    <div style={{ maxWidth: '600px', margin: 'auto' }}>
+      {comment.map((comment, index) => (
+        <Paper
+          key={index}
+          elevation={3}
+          sx={{
+            backgroundColor: 'white', 
+            marginY: 2,
+            padding: 2,
+            borderRadius: '40px',
+            display: 'flex', 
+            justifyContent: 'flex-start',
+            marginLeft: 'auto', 
+            marginRight: '0',
+          }}
+        >
+          {/* Combine the username and comment content */}
+          <Typography variant="body1" component="div" sx={{ wordBreak: 'break-word' }}>
+            <span style={{ fontWeight: 'bold', marginRight: '8px' }}>
+              {comment.user.username || 'Anonymous'}:
+            </span>
+            {comment.content}
+          </Typography>
+        </Paper>
+      ))}
     </div>
   );
-}
+};
+  
+

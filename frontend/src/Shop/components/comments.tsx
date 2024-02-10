@@ -7,9 +7,9 @@ import { useLocation } from 'react-router-dom';
 import { MyPaymentMetadata } from './Types';
 import { onReadyForServerApproval, onReadyForServerCompletion } from './Payments';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
-import { CardContent, Typography } from '@mui/material';
-import PostContent from './PostContent';
 import CommentContent from './CommentContent';
+import AddIcon from '@mui/icons-material/Add';
+import Typography from '@mui/material/Typography';
 
 // Make TS accept the existence of our window.__ENV object - defined in index.html:
 interface WindowWithEnv extends Window {
@@ -26,6 +26,7 @@ const axiosClient = axios.create({ baseURL: `${backendURL}`, timeout: 20000, wit
 const config = {headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}}; // Add null check
 
 export default function Comments() {
+    const [showForm, setShowForm] = useState(false);
     const [description, setDescription] = useState<string>('');
     const [descriptionError, setDescriptionError] = useState<string | null>(null);
     const { user, showModal, saveShowModal, onModalClose, addCommentToPost, addPostToCommunity } = useContext(UserContext) as UserContextType;
@@ -99,37 +100,53 @@ export default function Comments() {
     };
 
     return (
+        
         <div style={{ padding: '32px', textAlign: 'center' }}>
-            <h2>Discussion</h2>
-            <p>Leave a comment</p>
-            <form onSubmit={handleSubmit}>
-                <Stack spacing={2} sx={{ width: '80%', margin: 'auto' }}>
-                    <TextField
-                        id="description"
-                        label="Comment"
-                        variant="outlined"
-                        value={description}
-                        onChange={onDescriptionChange}
-                        error={!!descriptionError}
-                        helperText={descriptionError || ''}
-                        fullWidth
-                    />
-                    <Button
-                        type="submit" // Add type attribute to make the button work as a submit button
-                        variant="contained"
-                        startIcon={<ChatBubbleOutlineIcon />}
-                        style={{ backgroundColor: '#ff69b4' }}
-                    >
-                    </Button>
-                </Stack>
-               
-            </form>
+             <Typography variant="h5" margin={2} style={{ color: '#9E4291', fontWeight: 'bold', textAlign:"left" }}>
+             Discussion
+            </Typography>
+            <br />
             <CommentContent />
-            {showModal && (
-                <div style={{ position: 'absolute', top: '40%', left: '50%', transform: 'translate(-50%, -50%)', width: '50%', padding: '20px', border: '1px solid #ccc', borderRadius: '4px', backgroundColor: '#fff', textAlign: 'center' }}>
-                    <p>Your comment has been submitted.</p>
-                    <Button onClick={onModalClose}>Close</Button>
-                </div>
+            {showForm ? (
+                <form onSubmit={handleSubmit}>
+                    <Stack spacing={2} sx={{ width: '80%', margin: 'auto' }}>
+                        <TextField
+                            id="description"
+                            label="Comment"
+                            variant="outlined"
+                            value={description}
+                            onChange={onDescriptionChange}
+                            error={!!descriptionError}
+                            helperText={descriptionError || ''}
+                            fullWidth
+                        />
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            startIcon={<ChatBubbleOutlineIcon />}
+                            style={{ backgroundColor: '#ff69b4' }}
+                        >
+                            Submit Comment
+                        </Button>
+                        <Button
+                            variant="outlined"
+                            onClick={() => setShowForm(false)} // Hide form on cancel
+                            style={{ marginTop: '10px' }}
+                        >
+                            Cancel
+                        </Button>
+                    </Stack>
+                </form>
+            ) : (
+                <Button
+                    variant="contained"
+                    onClick={() => setShowForm(true)} // Show form when "+" button is clicked
+                    startIcon={<AddIcon />}
+                    style={{ backgroundColor: '#ff69b4', color: '#fff' }}
+                >
+                    Add Comment
+                </Button>
+
             )}
         </div>
     );
