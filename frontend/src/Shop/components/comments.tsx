@@ -102,7 +102,7 @@ export default function Comments() {
     return (
         
         <div style={{ padding: '32px', textAlign: 'center' }}>
-             <Typography variant="h5" margin={2} style={{ color: '#9E4291', fontWeight: 'bold', textAlign:"left" }}>
+             <Typography variant="h5" margin={2} style={{ color: '#9E4291', fontWeight: 'bold' }}>
              Discussion
             </Typography>
             <br />

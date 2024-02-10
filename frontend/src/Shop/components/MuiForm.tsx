@@ -124,8 +124,7 @@ export default function MuiForm() {
 
       return (
         <div style={{ padding: '32px', textAlign: 'center', backgroundColor: 'white', borderRadius: '20px' }}>
-          <form onSubmit={handleSubmit}>
-            <h3 style={{ marginBottom: '24px', color: "black" , fontWeight: "light"}}>Create Your Community</h3>
+          <form onSubmit={handleSubmit}>         
             <Stack spacing={4} sx={{ width: '80%', margin: '0 auto' }}>
               <TextField
                 id="title"
