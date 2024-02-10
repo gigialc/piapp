@@ -82,7 +82,7 @@ export default function PostContent({ communityId }: { communityId: string }) {
         ) : (
           <Grid item xs={12}>
             <Typography textAlign="center">
-              There are no posts in this community yet.
+              There are no posts in this community :(
             </Typography>
           </Grid>
         )}
