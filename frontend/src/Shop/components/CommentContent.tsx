@@ -47,33 +47,41 @@ export default function CommentContent() {
   }, [postId]);// Empty dependency array means this effect runs once on mount
 
   return (
-    <div style={{ maxWidth: '600px', margin: 'auto' }}>
-      {comment.map((comment, index) => (
-        <Paper
-          key={index}
-          elevation={3}
-          sx={{
-            backgroundColor: 'white', 
-            marginY: 2,
-            padding: 2,
-            borderRadius: '40px',
-            display: 'flex', 
-            justifyContent: 'flex-start',
-            marginLeft: 'auto', 
-            marginRight: '0',
-          }}
-        >
-          {/* Combine the username and comment content */}
-          <Typography variant="body1" component="div" sx={{ wordBreak: 'break-word' }}>
-            <span style={{ fontWeight: 'bold', marginRight: '8px' }}>
-              {comment.user.username || 'Anonymous'}:
-            </span>
-            {comment.content}
-          </Typography>
-        </Paper>
-      ))}
+    <div style={{ maxWidth: '600px', margin: 'auto', textAlign: 'center' }}>
+      {comment.length > 0 ? (
+        comment.map((comment, index) => (
+          <Paper
+            key={index}
+            elevation={3}
+            sx={{
+              backgroundColor: 'white',
+              marginY: 2,
+              padding: 2,
+              borderRadius: '40px',
+              display: 'flex',
+              justifyContent: 'flex-start',
+              marginLeft: 'auto',
+              marginRight: '0',
+            }}
+          >
+            {/* Combine the username and comment content */}
+            <Typography variant="body1" component="div" sx={{ wordBreak: 'break-word' }}>
+              <span style={{ fontWeight: 'bold', marginRight: '8px' }}>
+                {comment.user.username || 'Anonymous'}:
+              </span>
+              {comment.content}
+            </Typography>
+          </Paper>
+        ))
+      ) : (
+        // Display a message if there are no comments
+        <Typography variant="subtitle1" style={{ marginTop: '5px' }}>
+          There are no comments, be the first :)
+        </Typography>
+      )}
     </div>
   );
 };
+
   
 
