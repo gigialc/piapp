@@ -4,6 +4,8 @@ import { TextField, Button, Stack, colors, FormControl } from '@mui/material';
 import { UserContext } from "./Auth";
 import { UserContextType } from './Types';
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import Fab from '@mui/material/Fab';
 
 // Make TS accept the existence of our window.__ENV object - defined in index.html:
 interface WindowWithEnv extends Window {
@@ -122,19 +124,23 @@ export default function Posts({ communityId }: { communityId: string }) {
       
 
       return (
-        <div style={{ padding: '32px', textAlign: 'right'}}>
-            <Button variant="contained" style={{
-                backgroundColor: "#9E4291",
-                color: "white",
-                borderRadius: "200px",
-                position: 'fixed', // Keep the button fixed at the viewport's bottom
-                bottom: '75px', // 20px from the bottom
-                right: '20px', // 20px from the right
-            }} onClick={handleClickOpen}>
-                +
-            </Button>
+        <div style={{ padding: '32px', textAlign: 'center' }}> {/* Adjusted to center for consistency */}
+            <Fab
+                color="primary"
+                aria-label="add"
+                style={{
+                    backgroundColor: "#9E4291",
+                    color: "white",
+                    position: 'fixed',
+                    bottom: '75px',
+                    right: '20px',
+                }}
+                onClick={handleClickOpen}
+            >
+                <AddIcon />
+            </Fab>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title"> Add a post </DialogTitle>
+                <DialogTitle id="form-dialog-title">Add a post</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
                         Fill in the details for your new post.
@@ -147,28 +153,28 @@ export default function Posts({ communityId }: { communityId: string }) {
                                 variant="outlined"
                                 value={title}
                                 onChange={onTitleChange}
-                                error={titleError}
-                                helperText={titleErrorMessage}
-                                style={inputStyle}
+                                error={!!titleError}
+                                helperText={titleErrorMessage || ''}
                                 fullWidth
                             />
                             <TextField
                                 id="description"
-                                label="Post"
+                                label="Description"
                                 variant="outlined"
                                 value={description}
                                 onChange={onDescriptionChange}
-                                error={descriptionError}
-                                helperText={descriptionErrorMessage}
-                                style={inputStyle}
+                                error={!!descriptionError}
+                                helperText={descriptionErrorMessage || ''}
                                 fullWidth
+                                multiline
+                                rows={4}
                             />
                         </Stack>
                         <DialogActions>
-                            <Button onClick={handleClose} color="primary">
+                            <Button onClick={handleClose} style={{ color: '#9E4291' }}>
                                 Cancel
                             </Button>
-                            <Button type="submit" color="primary">
+                            <Button type="submit" variant="contained" style={{ backgroundColor: '#9E4291', color: 'white' }}>
                                 Submit
                             </Button>
                         </DialogActions>
@@ -176,16 +182,17 @@ export default function Posts({ communityId }: { communityId: string }) {
                 </DialogContent>
             </Dialog>
             {showModal && (
-                <div style={modalStyle}>
-                    <p style={{ fontWeight: 'light' }}>Your post has been created.</p>
-                    <div>
-                        <button onClick={onModalClose}>Close</button>
-                    </div>
-                </div>
+                <Dialog open={showModal} onClose={onModalClose}>
+                    <DialogTitle>Your post has been created</DialogTitle>
+                    <DialogActions>
+                        <Button onClick={onModalClose} color="primary">Close</Button>
+                    </DialogActions>
+                </Dialog>
             )}
         </div>
     );
-}
+};
+
 
 
 

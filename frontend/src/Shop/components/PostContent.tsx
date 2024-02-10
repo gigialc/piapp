@@ -62,7 +62,7 @@ export default function PostContent({ communityId }: { communityId: string }) {
         {Array.isArray(posts) && posts.length > 0 ? (
           posts.map((post) => (
             <Grid item xs={12} md={8} key={post._id}>
-              <Card variant="outlined" sx={{ backgroundColor: '#ffe6ff', marginY: 2 }}>
+              <Card sx={{ backgroundColor: '#ffe6ff' }}>
                 <CardContent>
                   <Typography variant="h6" component="div" style={{ fontWeight: 'bold', color: '#333' }}>
                     {post.title}
