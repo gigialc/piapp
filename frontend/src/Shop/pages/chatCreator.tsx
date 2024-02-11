@@ -38,7 +38,11 @@ return(
     <>
         <Header/>
         <Typography variant="h5" margin={2}  color="#9E4291" style={{ fontWeight: 'bold' } }>
-        Welcome!
+        {communityId && (
+          <Typography variant="h5" margin={2} color="#9E4291" style={{ fontWeight: 'bold' }}>
+            {communityId.name || "Welcome!"}
+          </Typography>
+        )}
         </Typography>
         <PostContent communityId={communityId}/>
         <Posts communityId={communityId} />

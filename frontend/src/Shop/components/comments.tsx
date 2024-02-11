@@ -105,6 +105,7 @@ export default function Comments() {
              <Typography variant="h5" margin={2} style={{ color: '#9E4291', fontWeight: 'bold' }}>
              Discussion
             </Typography>
+            
             <CommentContent />
             <br />
             {showForm ? (

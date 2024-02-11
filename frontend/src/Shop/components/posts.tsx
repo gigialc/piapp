@@ -6,7 +6,6 @@ import { UserContextType } from './Types';
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import Fab from '@mui/material/Fab';
-
 // Make TS accept the existence of our window.__ENV object - defined in index.html:
 interface WindowWithEnv extends Window {
   __ENV?: {
@@ -129,8 +128,8 @@ export default function Posts({ communityId }: { communityId: string }) {
                 color="primary"
                 aria-label="add"
                 style={{
-                    backgroundColor: "#9E4291",
-                    color: "white",
+                    backgroundColor: "#ffe6ff",
+                    color: "black",
                     position: 'fixed',
                     bottom: '75px',
                     right: '20px',

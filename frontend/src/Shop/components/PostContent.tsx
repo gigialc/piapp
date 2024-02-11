@@ -6,14 +6,14 @@ import { UserContext } from "./Auth";
 import { PostType, UserContextType } from "./Types";
 import { set } from "mongoose";
 import { Box, Grid, Typography, Card, CardContent } from '@mui/material';
-import CommentContent from "./CommentContent";
-import Comments from "./comments";
+import ButtonBase from '@mui/material/ButtonBase';
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import CardActions from '@mui/material/CardActions';
 import IconButton from '@mui/material/IconButton';
 import CommentIcon from '@mui/icons-material/Comment';
 import { PodcastsOutlined, PostAddOutlined } from "@mui/icons-material";
+import CommentContent from "./CommentContent";
 
 
 interface WindowWithEnv extends Window {
@@ -58,25 +58,37 @@ export default function PostContent({ communityId }: { communityId: string }) {
 
   return (
     <Box sx={{ flexGrow: 1, margin: 3 }}>
+     <Box sx={{ textAlign: 'right' }}> {/* This Box component will align its content to the right */}
+      <Typography component="div" style={{ color: '#333' }}>
+        {user.uid === "" ? "Creator" : "By: @" + user.username}
+      </Typography>
+    </Box>
+      <br />
       <Grid container spacing={2} justifyContent="center">
         {Array.isArray(posts) && posts.length > 0 ? (
           posts.map((post) => (
             <Grid item xs={12} md={8} key={post._id}>
-              <Card sx={{ backgroundColor: '#ffe6ff' }}>
-                <CardContent>
-                  <Typography variant="h6" component="div" style={{ fontWeight: 'bold', color: '#333' }}>
-                    {post.title}
-                  </Typography>
-                  <Typography variant="body1" color="text.secondary">
-                    {post.description}
-                  </Typography>
-                </CardContent>
-                <CardActions>
-                  <IconButton aria-label="add a comment" onClick={() => navigate("/comments", { state: { postId: post._id } })}>
-                    <CommentIcon />
-                  </IconButton>
-                </CardActions>
-              </Card>
+              {/* Wrap the Card with ButtonBase */}
+              <ButtonBase 
+                sx={{ display: 'block', textAlign: 'initial', width: '100%' }} 
+                onClick={() => navigate("/comments", { state: { postId: post._id } })}
+              >
+                <Card sx={{ backgroundColor: '#FFEDFE', ':hover': { boxShadow: 6 } /* Add hover effect for better UX */ }}>
+                  <CardContent>
+                    <Typography variant="h6" component="div" style={{ fontWeight: 'bold', color: '#333' }}>
+                      {post.title}
+                    </Typography>
+                    <Typography variant="body1" color="text.secondary">
+                      {post.description}
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <IconButton aria-label="add a comment" sx={{color: "#9E4291"}}>
+                      <CommentIcon />
+                    </IconButton>
+                  </CardActions>
+                </Card>
+              </ButtonBase>
             </Grid>
           ))
         ) : (
@@ -90,5 +102,4 @@ export default function PostContent({ communityId }: { communityId: string }) {
     </Box>
   );
 };
-
 

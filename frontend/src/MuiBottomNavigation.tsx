@@ -27,14 +27,14 @@ const MuiBottomNavigation: React.FC = () => {
     >
       <BottomNavigationAction
         label="Profile"
-        icon={<PersonIcon sx={{ color: red[200] }} />}
+        icon={<PersonIcon sx={{ color:"#9E4291"}} />}
         value={bnValue}
         onClick={() => navigate("/Profile")}
         style={blackLabelStyle}
       />
       <BottomNavigationAction
         label="Home"
-        icon={<HomeIcon sx={{ color: red[200] }} />}
+        icon={<HomeIcon sx={{ color: "#9E4291" }} />}
         value={bnValue}
         onClick={() => navigate("/Shop")}
         style={blackLabelStyle}
@@ -42,7 +42,7 @@ const MuiBottomNavigation: React.FC = () => {
       />
       <BottomNavigationAction
         label="Add"
-        icon={<AddIcon sx={{ color: red[200] }} />}
+        icon={<AddIcon sx={{ color: "#9E4291" }} />}
         value={bnValue}
         onClick={() => navigate("/Add")} 
         style={blackLabelStyle}
@@ -50,7 +50,7 @@ const MuiBottomNavigation: React.FC = () => {
       />
       <BottomNavigationAction
         label="Blogs"
-        icon={<EditNoteIcon sx={{ color: red[200] }} />}
+        icon={<EditNoteIcon sx={{ color: "#9E4291" }} />}
         value={bnValue}
         onClick={() => navigate("/Newsletter")}
         style={blackLabelStyle}
