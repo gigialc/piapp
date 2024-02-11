@@ -151,13 +151,20 @@ router.get('/hi', async (req, res) => {
     }
 });
 
-    router.get('/community/:id', async (req, res) => {
-        const communityCollection = req.app.locals.communityCollection;
-        const id = req.params.id;
-      console.log(id);
-        const community = await communityCollection.findOne({ _id: id });
-        console.log(community);
-        return res.status(200).json({ name: community.name });
+router.get('/community/:id', async (req, res) => {
+    const communityCollection = req.app.locals.communityCollection;
+    const id = req.params.id;
+    try {
+      const community = await communityCollection.findOne({ _id: new ObjectId(id) });
+      if (!community) {
+        return res.status(404).json({ error: 'Community not found' });
+      }
+      console.log(community);
+      return res.status(200).json({ name: community.name });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ message: "Error fetching community", error });
+    }
     }
 );
 

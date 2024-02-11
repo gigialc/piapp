@@ -7,7 +7,7 @@ import axios from 'axios';
 import { TextField, Button, Stack, colors, FormControl } from '@mui/material';
 import { UserContext } from "../components/Auth";
 import { UserContextType } from './Types';
-import { light } from '@mui/material/styles/createPalette';
+import Box from '@mui/material/Box';
 
 // Make TS accept the existence of our window.__ENV object - defined in index.html:
 interface WindowWithEnv extends Window {
@@ -164,8 +164,24 @@ export default function MuiForm() {
                 required
                 style={{ backgroundColor: '#ffe6ff', borderRadius: '20px', border: 'none' }} // Remove grey outline
               />
-              <Button type="submit" variant="contained" style={{ backgroundColor: "#9E4291", color: "white", borderRadius: "100px", padding: '10px 40px' }}>Create Community</Button>
             </Stack>
+                <br />
+                <br />
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end', width: '90%' }}>
+            <Button 
+              type="submit" 
+              variant="contained" 
+              sx={{
+                backgroundColor: "#9E4291",
+                color: "white",
+                borderRadius: "100px",
+                padding: '8px 20px',
+                display: 'inline-flex', // Change here to make the button only as wide as its content
+                justifyContent: 'right',
+                }}>
+                    create
+            </Button>
+            </Box>
           </form>
           {showModal && (
             <div style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', backgroundColor: 'rgba(255, 255, 255, 0.9)', padding: '20px', borderRadius: '10px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)' }}>

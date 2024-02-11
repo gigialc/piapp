@@ -58,48 +58,37 @@ export default function PostContent({ communityId }: { communityId: string }) {
 
   return (
     <Box sx={{ flexGrow: 1, margin: 3 }}>
-     <Box sx={{ textAlign: 'right' }}> {/* This Box component will align its content to the right */}
-      <Typography component="div" style={{ color: '#333' }}>
-        {user.uid === "" ? "Creator" : "By: @" + user.username}
-      </Typography>
-    </Box>
-      <br />
-      <Grid container spacing={2} justifyContent="center">
-        {Array.isArray(posts) && posts.length > 0 ? (
-          posts.map((post) => (
-            <Grid item xs={12} md={8} key={post._id}>
-              {/* Wrap the Card with ButtonBase */}
-              <ButtonBase 
-                sx={{ display: 'block', textAlign: 'initial', width: '100%' }} 
-                onClick={() => navigate("/comments", { state: { postId: post._id } })}
-              >
-                <Card sx={{ backgroundColor: '#FFEDFE', ':hover': { boxShadow: 6 } /* Add hover effect for better UX */ }}>
-                  <CardContent>
-                    <Typography variant="h6" component="div" style={{ fontWeight: 'bold', color: '#333' }}>
-                      {post.title}
-                    </Typography>
-                    <Typography variant="body1" color="text.secondary">
-                      {post.description}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <IconButton aria-label="add a comment" sx={{color: "#9E4291"}}>
-                      <CommentIcon />
-                    </IconButton>
-                  </CardActions>
-                </Card>
-              </ButtonBase>
-            </Grid>
-          ))
-        ) : (
-          <Grid item xs={12}>
-            <Typography textAlign="center">
-              There are no posts in this community :(
+    <Grid container spacing={2} justifyContent="center">
+      {Array.isArray(posts) && posts.length > 0 ? (
+        posts.map((post) => (
+          <Grid item xs={12} md={8} key={post._id} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            <Box sx={{ textAlign: 'left' }}>
+              <Typography variant="h6" sx={{  color: 'black', marginBottom: 1 }}>
+                 {post.title}
+              </Typography>
+              <Typography variant="body1" color="black">
+                {post.description}
+              </Typography>
+            </Box>
+            {/* Action area at the bottom */}
+            <Box sx={{ display: 'flex', alignItems: 'center', paddingTop: 2 }} onClick={() => navigate("/comments", { state: { postId: post._id } })}>
+            <IconButton aria-label="add a comment" sx={{ color: "#9E4291" }} >
+              <CommentIcon />
+            </IconButton>
+            <Typography variant="body2" sx={{ color: "#9E4291", display: 'inline' }}>
+              Comment
             </Typography>
+          </Box>
           </Grid>
-        )}
-      </Grid>
-    </Box>
-  );
+        ))
+      ) : (
+        <Grid item xs={12}>
+          <Typography textAlign="center">
+            There are no posts in this community :(
+          </Typography>
+        </Grid>
+      )}
+    </Grid>
+  </Box>
+);
 };
-

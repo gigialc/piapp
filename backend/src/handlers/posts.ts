@@ -95,5 +95,22 @@ export default function mountPostEndpoints(router: Router) {
             return res.status(500).json({ message: "Error adding comment", error });
         }
     });
+
+    router.get('/post/:id', async (req, res) => {
+        const postCollection = req.app.locals.postCollection;
+        const id = req.params.id; // Make sure to require ObjectId from mongodb
+        try {
+          const post = await postCollection.findOne({ _id: new ObjectId(id) });
+          if (!post) {
+            return res.status(404).json({ error: 'Post not found' });
+          }
+          console.log(post);
+          return res.status(200).json({ title: post.title, description: post.description });
+
+        } catch (error) {
+          console.error(error);
+          return res.status(500).json({ message: "Error fetching post", error });
+        }
+    });
     
 }

@@ -8,8 +8,7 @@ import { MyPaymentMetadata } from './Types';
 import { onReadyForServerApproval, onReadyForServerCompletion } from './Payments';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import CommentContent from './CommentContent';
-import AddIcon from '@mui/icons-material/Add';
-import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
 // Make TS accept the existence of our window.__ENV object - defined in index.html:
 interface WindowWithEnv extends Window {
@@ -100,55 +99,38 @@ export default function Comments() {
     };
 
     return (
-        
-        <div style={{ padding: '32px', textAlign: 'center' }}>
-             <Typography variant="h5" margin={2} style={{ color: '#9E4291', fontWeight: 'bold' }}>
-             Discussion
-            </Typography>
-            
-            <CommentContent />
-            <br />
-            {showForm ? (
-                <form onSubmit={handleSubmit}>
-                    <Stack spacing={2} sx={{ width: '80%', margin: 'auto' }}>
-                        <TextField
-                            id="description"
-                            label="Comment"
-                            variant="outlined"
-                            value={description}
-                            onChange={onDescriptionChange}
-                            error={!!descriptionError}
-                            helperText={descriptionError || ''}
-                            fullWidth
-                        />
-                        <Button
-                            type="submit"
-                            variant="contained"
-                            startIcon={<ChatBubbleOutlineIcon />}
-                            style={{ backgroundColor: '#ff69b4' }}
-                        >
-                            Submit Comment
-                        </Button>
-                        <Button
-                            variant="outlined"
-                            onClick={() => setShowForm(false)} // Hide form on cancel
-                            style={{ marginTop: '10px' }}
-                        >
-                            Cancel
-                        </Button>
-                    </Stack>
-                </form>
-            ) : (
+        <div style={{ padding: '32px', textAlign: 'center' }}>   
+          <CommentContent />
+          <br />
+          <form onSubmit={handleSubmit}>
+            <Stack spacing={2} sx={{ width: '100%', margin: 'auto' }}>
+              <TextField
+                id="description"
+                label="Comment"
+                variant="outlined"
+                value={description}
+                onChange={onDescriptionChange}
+                error={!!descriptionError}
+                helperText={descriptionError || ''}
+                fullWidth
+                InputProps={{
+                  style: {
+                    borderRadius: '30px', // Adjust this value to control the roundness of the input field
+                  },
+                }}
+              />
+              <Box display="flex" justifyContent="flex-end" gap={2}>
                 <Button
-                    variant="contained"
-                    onClick={() => setShowForm(true)} // Show form when "+" button is clicked
-                    startIcon={<AddIcon />}
-                    style={{ backgroundColor: '#ff69b4', color: '#fff' }}
+                  type="submit"
+                  variant="contained"
+                  sx={{ backgroundColor: '#ff69b4', borderRadius: '30px', mt: 2 }}
                 >
-                    Add Comment
+                  Submit
                 </Button>
-
-            )}
+              </Box>
+            </Stack>
+          </form>
         </div>
-    );
+      );
+      
 }

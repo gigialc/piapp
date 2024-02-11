@@ -125,8 +125,8 @@ export default function  UserToAppPayments() {
           <Typography variant="h5" style={{ fontWeight: 'bold', color: '#9E4291', marginBottom: '16px' }}>
             Profile
           </Typography>
-          <Typography variant="body1" style={{ fontSize: '17px', marginBottom: '16px' }}>
-            {getGreeting()} beautiful 💗
+          <Typography variant="body1" style={{ fontSize: '17px', marginBottom: '16px', fontWeight:"bold" }}>
+            {getGreeting()} beautiful 🩷 
           </Typography>
           {/* <hr style={{ margin: '10px 0', color: "#ff69b4" }} /> */}
         </div>

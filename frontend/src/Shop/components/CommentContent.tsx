@@ -27,6 +27,7 @@ const config = { headers: { 'Content-Type': 'application/json', 'Access-Control-
 export default function CommentContent() {
   const { user, saveUser, showModal, saveShowModal, onModalClose } = React.useContext(UserContext) as UserContextType;
   const [comment, setComment] = useState<{ content: string, user: { username: string } }[]>([]);
+  const [post, setPost] = useState<any>(null);
   const location = useLocation();
   const postId = location.state.postId;
   console.log(postId);
@@ -44,10 +45,35 @@ export default function CommentContent() {
       if (postId) { // Only fetch comments if postId is available
           fetchComments();
       }
-  }, [postId]);// Empty dependency array means this effect runs once on mount
+  }, [postId]);
 
+  
+  useEffect(() => {
+    if (!postId) return; // Add a guard clause if communityId is not set
+  console.log(postId);
+    axiosClient.get(`/posts/post/${postId}`) // Use template literals to inject communityId
+      .then((response) => {
+        console.log(response.data);
+        setPost(response.data); // Assuming you want to set the entire response object
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [postId]);
+  
   return (
-    <div style={{ maxWidth: '600px', margin: 'auto', textAlign: 'center' }}>
+    <div style={{ maxWidth: '600px', margin: '1', textAlign: 'left' }}>
+      {post?.title && (
+      <Typography variant="h5" margin={1} style={{ color: '#9E4291', fontWeight: 'bold' }}>
+        {post.title}
+      </Typography>
+      )}
+      {post?.description && (
+      <Typography variant="body1" margin={1} style={{ color: 'black' }}>
+        {post.description}
+      </Typography>
+      )}
+      <br />
       {comment.length > 0 ? (
         comment.map((comment, index) => (
           <Paper
@@ -62,6 +88,7 @@ export default function CommentContent() {
               justifyContent: 'flex-start',
               marginLeft: 'auto',
               marginRight: '0',
+              
             }}
           >
             {/* Combine the username and comment content */}
@@ -75,7 +102,7 @@ export default function CommentContent() {
         ))
       ) : (
         // Display a message if there are no comments
-        <Typography variant="subtitle1" style={{ marginTop: '5px' }}>
+        <Typography variant="subtitle2" style={{ marginTop: '5px', fontStyle: "italic" }}>
           There are no comments, be the first :)
         </Typography>
       )}

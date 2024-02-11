@@ -7,15 +7,32 @@ import Typography from "@mui/material/Typography";
 import Posts from "../components/posts";
 import PostContent from "../components/PostContent";
 import { useLocation } from 'react-router-dom';
-import Comments from "../components/comments";
 import SignIn from "../components/SignIn";
+import { useState } from "react";
+import { useEffect } from "react";
+import axios from 'axios';
 
+interface WindowWithEnv extends Window {
+  __ENV?: {
+    backendURL: string, // REACT_APP_BACKEND_URL environment variable
+    sandbox: "true" | "false", // REACT_APP_SANDBOX_SDK environment variable - string, not boolean!
+  }
+}
+
+const _window: WindowWithEnv = window;
+const backendURL = _window.__ENV && _window.__ENV.backendURL;
+
+const axiosClient = axios.create({ baseURL: `${backendURL}`, timeout: 20000, withCredentials: true});
+
+const config = {headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}};
 
 export default function ChatCreator() {
   const { user, saveUser, showModal, saveShowModal, onModalClose } = React.useContext(UserContext) as UserContextType;
+  const [community, setCommunity] = useState<any>(null);
   const location = useLocation();
   const communityId = location.state.communityId;
   console.log(communityId);
+
 
   const orderProduct = async (memo: string, amount: number, paymentMetadata: MyPaymentMetadata) => {
     if(user.uid === "") {
@@ -34,15 +51,28 @@ export default function ChatCreator() {
     console.log(payment);
   }
 
-return(
+  useEffect(() => {
+    if (!communityId) return; // Add a guard clause if communityId is not set
+  console.log(communityId);
+    axiosClient.get(`/community/community/${communityId}`) // Use template literals to inject communityId
+      .then((response) => {
+        console.log(response.data);
+        setCommunity(response.data); // Assuming you want to set the entire response object
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [communityId]);
+
+  return(
     <>
         <Header/>
-        <Typography variant="h5" margin={2}  color="#9E4291" style={{ fontWeight: 'bold' } }>
-        {communityId && (
-          <Typography variant="h5" margin={2} color="#9E4291" style={{ fontWeight: 'bold' }}>
-            {communityId.name || "Welcome!"}
+        {community?.name && (
+          <Typography variant="h5" margin={2} color="black" style={{ fontWeight: 'Bold' }}>
+           🩷 {community.name}
           </Typography>
         )}
+        <Typography variant="h5" margin={2}  color="#9E4291" style={{ fontWeight: 'bold' } }>
         </Typography>
         <PostContent communityId={communityId}/>
         <Posts communityId={communityId} />

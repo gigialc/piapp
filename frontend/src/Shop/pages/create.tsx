@@ -41,8 +41,11 @@ return(
   <>
   <Header />
   <div style={{ padding: '20px', marginBottom: '80px' }}>
-    <Typography variant="h5" style={{ fontWeight: 'bold', color: '#9E4291', marginBottom: '16px' }}>
-        Start your own community
+    <Typography variant="h6" style={{ fontWeight: 'bold', color: 'black', marginBottom: '10px' }}>
+        Create your own community ✨
+    </Typography>
+    <Typography  margin={1}  color="#9E4291" style={{ fontWeight: 'bold' } }>
+     Once you submit your community you can add starting posts!
     </Typography>
   <MuiForm />
   </div>
