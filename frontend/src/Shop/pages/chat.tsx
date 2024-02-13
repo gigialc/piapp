@@ -72,6 +72,11 @@ return(
            🩷 {community.name}
           </Typography>
         )}
+        {community?.description && (
+        <Typography variant="body1" style={{ color: '#9E4291', fontWeight: 'bold', marginLeft: 20 }}>
+          {community.description}
+        </Typography>
+        )}
         <PostContent communityId={communityId} />  
 
     </>

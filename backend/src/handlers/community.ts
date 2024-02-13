@@ -184,7 +184,7 @@ router.get('/community/:id', async (req, res) => {
         return res.status(404).json({ error: 'Community not found' });
       }
       console.log(community);
-      return res.status(200).json({ name: community.name });
+      return res.status(200).json({ name: community.name, description: community.description, price: community.price, user: community.user, moderators: community.moderators, members: community.members, invited: community.invited, posts: community.posts, rules: community.rules, tags: community.tags, createdAt: community.createdAt, updatedAt: community.updatedAt});
     } catch (error) {
       console.error(error);
       return res.status(500).json({ message: "Error fetching community", error });

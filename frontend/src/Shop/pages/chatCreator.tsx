@@ -72,6 +72,11 @@ export default function ChatCreator() {
            🩷 {community.name}
           </Typography>
         )}
+        {community?.description && (
+        <Typography variant="body1" style={{ color: '#9E4291', fontWeight: 'bold', marginLeft: 20 }}>
+          {community.description}
+        </Typography>
+        )}
         <Typography variant="h5" margin={2}  color="#9E4291" style={{ fontWeight: 'bold' } }>
         </Typography>
         <PostContent communityId={communityId}/>
