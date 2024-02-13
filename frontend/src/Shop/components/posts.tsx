@@ -92,7 +92,6 @@ export default function Posts({ communityId }: { communityId: string }) {
                 .post('/posts/posted',data, config)
                 .then((response) => {
                     console.log(response);
-                    saveShowModal(true);
                 })
                 .catch((error) => {
                     console.log(error);
@@ -180,14 +179,12 @@ export default function Posts({ communityId }: { communityId: string }) {
                     </form>
                 </DialogContent>
             </Dialog>
-            {showModal && (
                 <Dialog open={showModal} onClose={onModalClose}>
                     <DialogTitle>Your post has been created</DialogTitle>
                     <DialogActions>
                         <Button onClick={onModalClose} color="primary">Close</Button>
                     </DialogActions>
                 </Dialog>
-            )}
         </div>
     );
 };

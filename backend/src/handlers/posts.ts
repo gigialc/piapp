@@ -8,9 +8,6 @@ import platformAPIClient from "../services/platformAPIClient";
 export default function mountPostEndpoints(router: Router) {
 
     router.post('/posted', async (req, res) => {
-        if (!req.session.currentUser) {
-            return res.status(401).json({ error: 'unauthorized', message: "User needs to sign in first" });
-        }
         try {
             const postCollection = req.app.locals.postCollection;
             const posts = req.body;
@@ -28,8 +25,12 @@ export default function mountPostEndpoints(router: Router) {
             }
     
             const insertResult = await postCollection.insertOne(postsData);
+            
+            // Fetch the newly created post using the insertedId
+            const newPost = await postCollection.findOne({ _id: insertResult.insertedId });
+    
             // Other operations like updating user's communitiesCreated...
-            return res.status(200).json({ newPost: insertResult.ops[0], message: "Post created successfully" });
+            return res.status(200).json({ newPost: newPost, message: "Post created successfully" });
         } catch (error) {
             console.log(error);
             return res.status(500).json({ message: "Error creating post", error });
