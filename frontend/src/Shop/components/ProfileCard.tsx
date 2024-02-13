@@ -5,21 +5,14 @@ import Typography from '@mui/material/Typography';
 
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
-
 //for community page
 
-
-/* DEVELOPER NOTE:
-* the productCard is used to create the standard output of pies
-* on the User to App payments page of the app.
-*/
 
 interface CommunityType {
   _id: string; // Make sure _id is defined in the CommunityType interface
   name: string;
   description: string;
   // price: number,
-  user: string;
 }
 
 export default function ProfileCard(props: CommunityType) {

@@ -119,6 +119,7 @@ return(
           community={community}
         />
       );
+    
     })
   ) : (
     <Typography variant="body1" style={{ color: '#ff69b4' }}>No community data available</Typography>
