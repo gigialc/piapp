@@ -123,7 +123,7 @@ export default function Comments() {
                 <Button
                   type="submit"
                   variant="contained"
-                  sx={{ backgroundColor: '#ff69b4', borderRadius: '30px', mt: 2 }}
+                  sx={{ backgroundColor: '#ffe6ff', borderRadius: '30px', mt: 2, color: 'black'}}
                 >
                   Submit
                 </Button>
