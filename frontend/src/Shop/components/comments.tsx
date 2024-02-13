@@ -83,7 +83,6 @@ export default function Comments() {
                     console.log(response);
                     addCommentToPost(response.data.comment);
                     setDescription(''); // Clear the input field
-                    saveShowModal(true);
                 })
                 .catch((error) => {
                     console.log(error);
