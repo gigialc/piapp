@@ -57,6 +57,13 @@ export type AuthResult = {
       user_uid: string,
     };
 
+    export type UserData = {
+      uid: string,
+      username: string,
+      community: CommunityType[],
+    };
+    
+
     export type CommunityContextType = {
       community: CommunityType[];
       addPostToCommunity: (newPost: CommunityType) => void;

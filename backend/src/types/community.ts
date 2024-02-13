@@ -7,8 +7,8 @@ export interface CommunityType {
     _id: ObjectId,
     name: string,
     description: string,
+    user: UserData,
     price: number,
-    uid: string,
     members: Array<ObjectId>,
     posts: Array<String>,
     comments : Array<String>
@@ -16,3 +16,4 @@ export interface CommunityType {
 //   createdAt: Date,
 //    updatedAt: Date
 }
+

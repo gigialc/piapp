@@ -18,6 +18,8 @@ interface CommunityType {
   _id: string; // Make sure _id is defined in the CommunityType interface
   name: string;
   description: string;
+  // price: number,
+  user: string;
 }
 
 export default function ProfileCard(props: CommunityType) {

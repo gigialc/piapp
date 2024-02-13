@@ -5,25 +5,21 @@ import { StringDecoder } from 'string_decoder';
 import { UserContextType } from './Types';
 import { UserContext } from './Auth';
 import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import { CommunityType } from './Types';
 
-/* DEVELOPER NOTE:
-* the productCard is used to create the standard output of pies
-* on the User to App payments page of the app.
-*/
-
-//for community page
 
 interface Props {
   name: string,
   description: string,
-  price: number,
-  community: CommunityType 
+  // price: number,
+  community: CommunityType,
 }
-
 
 export default function ProductCard(props: Props) {
   const navigate = useNavigate();
+
+  
 
   // Define a function to handle the click and navigate to the chat page
   const handleNavigateToChat = (community: CommunityType) => {
@@ -33,7 +29,7 @@ export default function ProductCard(props: Props) {
   };
 
   return (
-    <Grid container style={{ margin: 16, paddingBottom: 16, marginLeft:20 }}>
+    <Grid container style={{ margin: 16, paddingBottom: 10, marginLeft:20 }}>
       <Grid container style={{ display: 'flex', flexDirection: 'row' }}>
         <Grid container style={{ width: "33%", marginRight: 8 }}>
         </Grid>
@@ -44,8 +40,9 @@ export default function ProductCard(props: Props) {
       <p>{props.description}</p>  
       </Grid>
       </Grid>
+      {/* {props.price} Test-π  < br /> */}
       <Grid item style={{ marginBottom: 8}}>
-      {props.price} Test-π  < br />
+          {}
         <Button
           variant='contained'
           color='secondary'

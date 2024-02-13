@@ -10,9 +10,8 @@ import { UserContext } from "./components/Auth";
 import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { UserData } from "./components/Types";
 import axios from 'axios';
-
 // testing to link blog posts to blog pages
 
 // Make TS accept the existence of our window.__ENV object - defined in index.html:
@@ -34,7 +33,9 @@ export default function HomePage() {
   const { user, saveUser, showModal, saveShowModal, onModalClose } = React.useContext(UserContext) as UserContextType; // also added this!!!!!!
   const [createCommunityData, setCreateCommunityData] = useState<CommunityType[] | null>(null);;
   const [selectedCommunity, setSelectedCommunity] = useState<CommunityType | null>(null);
+  const [userData, setUserData] = useState<UserData | null>(null);
   const navigate = useNavigate();
+
   
   const getGreeting = () => {
     const currentHour = new Date().getHours();
@@ -82,7 +83,7 @@ export default function HomePage() {
   useEffect(() => {
     console.log(createCommunityData);
   }, [createCommunityData]);
-  
+
 
   useEffect(() => {
     // Make an API call to fetch the create community data
@@ -90,6 +91,8 @@ export default function HomePage() {
             .then((response) => {
             console.log(response);
             setCreateCommunityData(response.data);
+            console.log(response.data);
+          
             })
             .catch((error) => {
             console.log(error);
@@ -98,14 +101,12 @@ export default function HomePage() {
     
     , []);
 
-
 return(
   <>
   <Header />
   <Typography variant="h5" margin={2} style={{ color: '#9E4291', fontWeight: 'bold' }}>
     Communities ✨
   </Typography>
-
   {createCommunityData ? (
     createCommunityData.map((community) => {
       console.log(community);
@@ -114,7 +115,7 @@ return(
           key={community._id} // Make sure to include a unique key prop for each element in the array
           name={community.name}
           description={community.description}
-          price={community.price}
+          // price={community.price} // This line is commented out; remove the comment if price data is relevant
           community={community}
         />
       );
@@ -123,9 +124,15 @@ return(
     <Typography variant="body1" style={{ color: '#ff69b4' }}>No community data available</Typography>
   )}
 
-{ showModal && <SignIn onSignIn={saveUser} onModalClose={onModalClose} showModal={showModal}/> }
+  {showModal && <SignIn onSignIn={saveUser} onModalClose={onModalClose} showModal={showModal}/> }
 
-<MuiBottomNavigation/>
+  <div style={{ paddingTop: '20px' }}> {/* Add padding here */}
+  <br />
+  <br />
+  <br />
+  <br />
+    <MuiBottomNavigation/>
+  </div>
 </>
 );
 }

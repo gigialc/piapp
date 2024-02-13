@@ -11,6 +11,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Bloodtype } from "@mui/icons-material";
 import { Button, Divider } from "@mui/material";
+import {UserData } from "../components/Types";
 
 
 // Make TS accept the existence of our window.__ENV object - defined in index.html:
@@ -32,6 +33,8 @@ export default function  UserToAppPayments() {
   const { user, saveUser, showModal, saveShowModal, onModalClose } = React.useContext(UserContext) as UserContextType;
   const [createCommunityData, setCreateCommunityData] = useState<CommunityType[] | null>(null);
   const [selectedCommunity, setSelectedCommunity] = useState<CommunityType[] | null>(null); // Moved here
+  const [userData, setUserData] = useState<UserData | null>(null);
+  console.log("User Data :" , userData);
   const navigate = useNavigate();
   
   const getGreeting = () => {
@@ -114,6 +117,7 @@ export default function  UserToAppPayments() {
         console.error('Error fetching joined communities:', error);
       });
   }, []);
+
   
 
   return (

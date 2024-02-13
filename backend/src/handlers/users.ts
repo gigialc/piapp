@@ -2,6 +2,7 @@ import { Router } from "express";
 
 import platformAPIClient from "../services/platformAPIClient";
 import { ObjectId } from "mongodb";
+import { assert } from "console";
 
 export default function mountUserEndpoints(router: Router) {
   // handle the user auth accordingly
@@ -160,4 +161,15 @@ export default function mountUserEndpoints(router: Router) {
     }
 }
 );
+
+  //get username for the user id from community
+  router.get('/username', async (req, res) => {
+    const userCollection = req.app.locals.userCollection;
+    const user = req.query.user_id;
+    console.log(user);
+    const userObject = await userCollection.findOne({ uid: user });
+    console.log(userObject);
+    return res.status(200).json({ username: userObject.username });
+  });
 }
+

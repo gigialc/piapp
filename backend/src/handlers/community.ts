@@ -9,6 +9,7 @@ import { CommunityType } from "../types/community";
 import { UserData } from "../types/user";
 import "../types/session";
 import platformAPIClient from "../services/platformAPIClient";
+import { useActionData } from "react-router";
 
 export default function mountCommunityEndpoints(router: Router) {
     router.get('/create', async (req, res) => {
@@ -23,13 +24,22 @@ export default function mountCommunityEndpoints(router: Router) {
             const communityCollection = req.app.locals.communityCollection;
             const creatorId = req.session.currentUser?.uid;// Add a check for null or undefined
             const community = req.body;
+            const userCollection = req.app.locals.userCollection;
+            if (!creatorId) {
+                return res.status(401).json({ error: 'unauthorized', message: "User needs to sign in first" });
+            }
+            const creatorData = await userCollection.findOne({ uid: creatorId });
+            if (!creatorData) {
+                return res.status(404).json({ error: 'User not found', message: "The user does not exist in the database" });
+            }
             console.log(community);
+
               const app = req.app;
             const communityData = {
                 _id: new ObjectId(),
                 name: community.title,
                 description: community.description,
-                user: creatorId,
+                user: creatorData,
                 price: community.price,
                 moderators: community.moderators,
                 members: community.members,
@@ -39,24 +49,26 @@ export default function mountCommunityEndpoints(router: Router) {
                 tags: community.tags,
                 createdAt: new Date(),
                 updatedAt: new Date()
-            }
+            };
             const insertResult = await communityCollection.insertOne(communityData);
-            const newCommunity = await communityCollection.findOne(insertResult.insertedId);
-            const userData = app.locals.userCollection;
-            const creator = await userData.findOne({ uid: creatorId });
-            if (!creator) {
-                return res.status(401).json({ error: 'unauthorized', message: "User needs to sign in first" });
-              }
-              const updateResult = await userData.updateOne({ _id: creator._id }, { $push: { communitiesCreated: newCommunity._id } });
-                const updatedUser = await userData.findOne({ _id: creator._id });
-                req.session.currentUser = updatedUser;
+            const newCommunity = await communityCollection.findOne({ _id: insertResult.insertedId });
+    
+            // Update the user's document to include this new community's ID in their list of created communities
+            const updateResult = await userCollection.updateOne(
+                { _id: creatorData._id },
+                { $push: { communitiesCreated: newCommunity._id } }
+            );
+    
+            // Optionally, update the session's currentUser with the latest user data
+            const updatedUser = await userCollection.findOne({ _id: creatorData._id });
+            req.session.currentUser = updatedUser;
+    
             return res.status(200).json({ newCommunity });
         } catch (error) {
             console.log(error);
             return res.status(400).json({ message: "Error creating community", error });
         }
     }
-
 );
 
 //adding an array of posts to a community
@@ -136,20 +148,32 @@ router.get('/hi', async (req, res) => {
         }
         const communityCollection = req.app.locals.communityCollection;
         const creatorId = req.session.currentUser?.uid;
+        const userCollection = req.app.locals.userCollection;
+
         // Find all community documents in the collection
         const communities = await communityCollection.find({}).toArray();
-        // if a community has the same id as the user id, then do not return the community
-        const filteredCommunities = communities.filter((community: any) => {
-            return community.user !== creatorId;
+
+        const filteredCommunities = communities.filter((community: CommunityType) => {
+            return community.user.uid !== creatorId;
         });
-       // Send the array of filtered communities back to the client
-       return res.status(200).json(filteredCommunities);
+
+        // Send the array of filtered communities back to the client
+        return res.status(200).json(filteredCommunities);
        
     } catch (error) {
         console.log(error);
         return res.status(500).json({ message: "Error fetching communities", error });
     }
 });
+
+
+ router.get('/username', async (req, res) => {
+    const communityCollection = req.app.locals.communityCollection;
+    const community = await communityCollection.find().toArray();
+    const userId = community.user.username;
+    return res.status(200).json({ community, userId});
+}
+);
 
 router.get('/community/:id', async (req, res) => {
     const communityCollection = req.app.locals.communityCollection;
@@ -324,6 +348,3 @@ router.get('/community/:id', async (req, res) => {
 
 }
 
-function userInfo() {
-    throw new Error("Function not implemented.");
-}
