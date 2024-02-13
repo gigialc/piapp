@@ -103,7 +103,7 @@ return(
   <>
   <Header />
   <Typography variant="h5" margin={2} style={{ color: '#9E4291', fontWeight: 'bold' }}>
-    Communities
+    Communities ✨
   </Typography>
 
   {createCommunityData ? (

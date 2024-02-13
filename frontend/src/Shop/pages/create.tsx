@@ -45,7 +45,7 @@ return(
         Create your own community ✨
     </Typography>
     <Typography  margin={1}  color="#9E4291" style={{ fontWeight: 'bold' } }>
-     Once you submit your community you can add starting posts!
+     Create your own community and start earning pi 💸
     </Typography>
   <MuiForm />
   </div>

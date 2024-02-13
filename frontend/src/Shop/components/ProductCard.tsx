@@ -37,7 +37,7 @@ export default function ProductCard(props: Props) {
       <Grid container style={{ display: 'flex', flexDirection: 'row' }}>
         <Grid container style={{ width: "33%", marginRight: 8 }}>
         </Grid>
-        <Grid item style={{ width: "90%", fontSize:25 }}>
+        <Grid item style={{ width: "90%", fontSize:20 }}>
           <h3>{props.name}</h3> 
       </Grid>
       <Grid style={{ width: "90%" }}>
