@@ -69,13 +69,13 @@ export default function ChatCreator() {
         <Typography variant="h5" color="black" style={{ fontWeight: 'Bold' }}>
           🩷 {community.name}
         </Typography>
-        <Button
+        {/* <Button
           variant="contained"
           style={{ marginRight: 20, backgroundColor: '#9E4291', color: 'white' , borderRadius: 20}}
           onClick={handleFollow}
         >
           {isFollowing ? 'Following' : 'Follow'}
-        </Button>
+        </Button> */}
       </div>
     )}
     {community?.description && (

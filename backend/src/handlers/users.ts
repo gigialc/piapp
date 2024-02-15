@@ -93,6 +93,7 @@ export default function mountUserEndpoints(router: Router) {
   });
   
 
+  // Get all the communitiesJoined the user has joined
   router.get('/joined', async (req, res) => {
     try {
       const currentUser = req.session.currentUser;
@@ -128,40 +129,29 @@ export default function mountUserEndpoints(router: Router) {
   });
   
 
-
-
-  //check if user is already in the community
+  // Update the user collection by adding a community object to the joined communities
   router.post('/addUser', async (req, res) => {
-    const userCollection = req.app.locals.userCollection;
-    const id = req.body.community_id;
-    console.log(id);
-    const user = req.body.user_id;
-    console.log(user);
+    try {
+      const { userId, communityId } = req.body;
+      const userCollection = req.app.locals.userCollection;
 
-    // Check if the user is already part of the community
-  const existingUser = await userCollection.findOne({
-    uid: user,
-    communitiesJoined: new ObjectId(id)
-  });
+      const updatedUser = await userCollection.findOneAndUpdate(
+        { uid: userId },
+        { $addToSet: { communitiesJoined: communityId } }, // Use communityId directly if it's stored as a string
+        { new: true, returnDocument: 'after' }
+      );
 
-  if (existingUser) {
-    return res.status(400).json({ message: "User is already part of the community" });
-  }
-
-    const insertUser = await userCollection.updateOne({
-      //add the community object id to the user's communitiesJoined array
-      uid: user
-    }, {
-      $push: {
-        communitiesJoined: new ObjectId(id)
+      if (!updatedUser) {
+        return res.status(404).json({ error: "User not found" });
       }
-    });
-    if (insertUser) {
-      return res.status(200).json({ message: "User added to community" });
-    }
-}
-);
 
+      return res.status(200).json({ message: "Community added to joined communities successfully" });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: "Internal server error" });
+    }
+});
+  
   //get username for the user id from community
   router.get('/username', async (req, res) => {
     const userCollection = req.app.locals.userCollection;

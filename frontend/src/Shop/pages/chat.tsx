@@ -1,86 +1,94 @@
-import { UserContextType, MyPaymentMetadata } from "../components/Types";
-import { onCancel, onError, onReadyForServerApproval, onReadyForServerCompletion } from "../components/Payments";
-import MuiBottomNavigation from "../../MuiBottomNavigation";
-import Header from "../components/Header";
-import { UserContext } from "../components/Auth";
-import React from "react";
-import Typography from "@mui/material/Typography";
-import Comments from "../components/comments";
-import PostContent from "../components/PostContent";
-import { useLocation } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from "react";
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useEffect } from "react";
-import { useState } from "react";
+import { Button, Typography } from '@mui/material';
+import Header from "../components/Header";
+import PostContent from "../components/PostContent";
+import { UserContext } from "../components/Auth";
+import { UserContextType } from "../components/Types";
+import { CommunityType } from "../components/Types";
 
-interface WindowWithEnv extends Window {
-  __ENV?: {
-    backendURL: string, // REACT_APP_BACKEND_URL environment variable
-    sandbox: "true" | "false", // REACT_APP_SANDBOX_SDK environment variable - string, not boolean!
-  }
+const _window: Window & typeof globalThis & { __ENV?: { backendURL: string, sandbox: "true" | "false" } } = window;
+const backendURL = _window.__ENV?.backendURL;
+
+const axiosClient = axios.create({ baseURL: `${backendURL}`, timeout: 20000, withCredentials: true });
+
+interface Props {
+  name: string,
+  description: string,
+  // price: number,
+  community: CommunityType,
 }
 
-const _window: WindowWithEnv = window;
-const backendURL = _window.__ENV && _window.__ENV.backendURL;
-
-const axiosClient = axios.create({ baseURL: `${backendURL}`, timeout: 20000, withCredentials: true});
-
-const config = {headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}};
-
 export default function Chat() {
-  const { user, saveUser, showModal, saveShowModal, onModalClose } = React.useContext(UserContext) as UserContextType;
+  const { user, saveUser, showModal, saveShowModal, onModalClose } = useContext(UserContext) as UserContextType;
   const [community, setCommunity] = useState<any>(null);
+  const [createCommunityData, setCreateCommunityData] = useState<CommunityType[] | null>(null);;
+  const [selectedCommunity, setSelectedCommunity] = useState<CommunityType | null>(null);
+  const [isFollowing, setIsFollowing] = useState<boolean>(false);
+  const navigate = useNavigate();
   const location = useLocation();
-  const communityId = location.state.communityId;
-  console.log(communityId);
+  const communityId = location.state?.communityId;
 
-  const location1 = useLocation();
-  console.log(location1);
-  const orderProduct = async (memo: string, amount: number, paymentMetadata: MyPaymentMetadata) => {
-    if(user.uid === "") {
-      return saveShowModal(true);
-    }
-    const paymentData = { amount, memo, metadata: { ...paymentMetadata, user_id: user.uid } };
-
-    const callbacks = {
-      onReadyForServerApproval,
-      onReadyForServerCompletion,
-      onCancel,
-      onError
-    };
-
-    const payment = await window.Pi.createPayment(paymentData, callbacks);
-    console.log(payment);
-  }
   useEffect(() => {
-    if (!communityId) return; // Add a guard clause if communityId is not set
-  console.log(communityId);
-    axiosClient.get(`/community/community/${communityId}`) // Use template literals to inject communityId
+    if (!communityId) return;
+    axiosClient.get(`/community/community/${communityId}`)
       .then((response) => {
-        console.log(response.data);
-        setCommunity(response.data); // Assuming you want to set the entire response object
+        setCommunity(response.data);
       })
       .catch((error) => {
         console.error(error);
       });
   }, [communityId]);
 
-return(
+  const handleFollow = () => {
+    if (isFollowing) {
+      // Potentially handle "unfollow" logic here
+      return;
+    }
+  
+    // Ensure this matches what your backend expects
+    const data = {
+      userId: user.uid, // Assuming user.uid is the unique identifier for the user
+      communityId: communityId, // The ID of the community to follow
+    };
+  
+    axiosClient.post('/user/addUser', data)
+      .then((response) => {
+        console.log('Response:', response);
+        setIsFollowing(true); // Update following state based on response
+        // Optionally, refresh or update the community data to reflect the new state
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+
+  return (
     <>
-        <Header/>
-        {community?.name && (
-          <Typography variant="h5" margin={2} color="black" style={{ fontWeight: 'Bold' }}>
-           🩷 {community.name}
+      <Header />
+      {community?.name && (
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: 2, paddingTop: 20 }}>
+          <Typography variant="h5" color="black" style={{ fontWeight: 'Bold', marginLeft:15 }}>
+            🩷 {community.name}
           </Typography>
-        )}
-        {community?.description && (
-        <Typography variant="body1" style={{ color: '#9E4291', fontWeight: 'bold', marginLeft: 20 }}>
+          <Button
+            variant="contained"
+            style={{ marginRight: 20, backgroundColor: '#9E4291', color: 'white' , borderRadius: 20, display: 'inline-flex', height: '25px'}}
+            onClick= {handleFollow}
+
+          >
+            {isFollowing ? 'Following' : 'Follow'}
+          </Button>
+        </div>
+      )}
+      {community?.description && (
+        <Typography variant="body1" style={{ color: '#9E4291', fontWeight: 'bold', marginLeft: 20,marginTop:15 }}>
           {community.description}
         </Typography>
-        )}
-        <PostContent communityId={communityId} />  
-
+      )}
+      <PostContent communityId={communityId} />
+      {/* Additional content here */}
     </>
-);
-
-};
-// Created by Georgina Alacaraz
+  );
+}
