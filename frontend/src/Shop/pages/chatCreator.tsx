@@ -1,90 +1,94 @@
-import { UserContextType, MyPaymentMetadata } from "../components/Types";
-import { onCancel, onError, onReadyForServerApproval, onReadyForServerCompletion } from "../components/Payments";
+import React, { useState, useEffect, useContext } from "react";
+import { useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { Button, Typography } from '@mui/material';
 import Header from "../components/Header";
-import { UserContext } from "../components/Auth";
-import React from "react";
-import Typography from "@mui/material/Typography";
 import Posts from "../components/posts";
 import PostContent from "../components/PostContent";
-import { useLocation } from 'react-router-dom';
 import SignIn from "../components/SignIn";
-import { useState } from "react";
-import { useEffect } from "react";
-import axios from 'axios';
+import { UserContext } from "../components/Auth";
+import { UserContextType } from "../components/Types";
+
 
 interface WindowWithEnv extends Window {
   __ENV?: {
-    backendURL: string, // REACT_APP_BACKEND_URL environment variable
-    sandbox: "true" | "false", // REACT_APP_SANDBOX_SDK environment variable - string, not boolean!
+    backendURL: string,
+    sandbox: "true" | "false",
   }
 }
 
 const _window: WindowWithEnv = window;
 const backendURL = _window.__ENV && _window.__ENV.backendURL;
 
-const axiosClient = axios.create({ baseURL: `${backendURL}`, timeout: 20000, withCredentials: true});
+const axiosClient = axios.create({ baseURL: `${backendURL}`, timeout: 20000, withCredentials: true });
 
-const config = {headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}};
+const config = { headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } };
 
 export default function ChatCreator() {
-  const { user, saveUser, showModal, saveShowModal, onModalClose } = React.useContext(UserContext) as UserContextType;
+  const { user, saveUser, showModal, saveShowModal, onModalClose } = useContext(UserContext) as UserContextType;
   const [community, setCommunity] = useState<any>(null);
+  const [isFollowing, setIsFollowing] = useState<boolean>(false); // New state to track following status
+  const navigate = useNavigate(); // Hook from react-router-dom to navigate programmatically
   const location = useLocation();
   const communityId = location.state.communityId;
-  console.log(communityId);
-
-
-  const orderProduct = async (memo: string, amount: number, paymentMetadata: MyPaymentMetadata) => {
-    if(user.uid === "") {
-      return saveShowModal(true);
-    }
-    const paymentData = { amount, memo, metadata: { ...paymentMetadata, user_id: user.uid } };
-
-    const callbacks = {
-      onReadyForServerApproval,
-      onReadyForServerCompletion,
-      onCancel,
-      onError
-    };
-
-    const payment = await window.Pi.createPayment(paymentData, callbacks);
-    console.log(payment);
-  }
 
   useEffect(() => {
-    if (!communityId) return; // Add a guard clause if communityId is not set
-  console.log(communityId);
-    axiosClient.get(`/community/community/${communityId}`) // Use template literals to inject communityId
+    if (!communityId) return;
+    axiosClient.get(`/community/community/${communityId}`)
       .then((response) => {
-        console.log(response.data);
-        setCommunity(response.data); // Assuming you want to set the entire response object
+        setCommunity(response.data);
       })
       .catch((error) => {
         console.error(error);
       });
   }, [communityId]);
 
-  return(
+  const handleFollow = () => {
+    if (isFollowing) {
+      // If already following, possibly implement "unfollow" logic here
+      return;
+    }
+    // Assuming paymentMetadata needs to be defined or fetched before this call
+    const paymentMetadata = {}; // Define or update this according to your actual data structure
+    axiosClient.post('/user/addUser', paymentMetadata, config)
+      .then((response) => {
+        console.log(response);
+        setIsFollowing(true); // Update follow status
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  return (
     <>
-        <Header/>
-        {community?.name && (
-          <Typography variant="h5" margin={2} color="black" style={{ fontWeight: 'Bold' }}>
-           🩷 {community.name}
-          </Typography>
-        )}
-        {community?.description && (
-        <Typography variant="body1" style={{ color: '#9E4291', fontWeight: 'bold', marginLeft: 20 }}>
-          {community.description}
+  <Header />
+  <div style={{ paddingTop: '20px', marginLeft: 20 }}> {/* Add padding here */}
+    {community?.name && (
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: 2 }}>
+        <Typography variant="h5" color="black" style={{ fontWeight: 'Bold' }}>
+          🩷 {community.name}
         </Typography>
-        )}
-        <Typography variant="h5" margin={2}  color="#9E4291" style={{ fontWeight: 'bold' } }>
-        </Typography>
-        <PostContent communityId={communityId}/>
-        <Posts communityId={communityId} />
+        <Button
+          variant="contained"
+          style={{ marginRight: 20, backgroundColor: '#9E4291', color: 'white' , borderRadius: 20}}
+          onClick={handleFollow}
+        >
+          {isFollowing ? 'Following' : 'Follow'}
+        </Button>
+      </div>
+    )}
+    {community?.description && (
+      <Typography variant="body1" style={{ color: '#9E4291', fontWeight: 'bold', marginLeft: 20 }}>
+        {community.description}
+      </Typography>
+    )}
+    <PostContent communityId={communityId} />
+    <Posts communityId={communityId} />
 
-        { showModal && <SignIn onSignIn={saveUser} onModalClose={onModalClose} showModal={showModal}/> }
-    </>
-);
+    {showModal && <SignIn onSignIn={saveUser} onModalClose={onModalClose} showModal={showModal} />}
+  </div>
+</>
 
-};
-// Created by Georgina Alacaraz
+  );
+}

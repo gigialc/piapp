@@ -57,7 +57,7 @@ export default function PostContent({ communityId }: { communityId: string }) {
   }, [communityId]);// Empty dependency array means this effect runs once on mount
 
   return (
-    <Box sx={{ flexGrow: 1, margin: 3 }}>
+    <Box sx={{ flexGrow: 1, margin: 2}}>
     <Grid container spacing={2} justifyContent="center">
       {Array.isArray(posts) && posts.length > 0 ? (
         posts.map((post) => (
