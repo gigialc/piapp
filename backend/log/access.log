@@ -9051,3 +9051,16 @@
 ::ffff:127.0.0.1 - - [15/Feb/2024:23:02:21 +0000] "GET /posts/posts1?community_id=65cbdfb6b85a9ba937ac2731 HTTP/1.1" 304 -
 ::ffff:127.0.0.1 - - [15/Feb/2024:23:02:26 +0000] "OPTIONS /user/addUser HTTP/1.1" 204 0
 ::ffff:127.0.0.1 - - [15/Feb/2024:23:02:26 +0000] "POST /user/addUser HTTP/1.1" 200 64
+::ffff:127.0.0.1 - - [15/Feb/2024:23:03:25 +0000] "GET /user/joined HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [15/Feb/2024:23:03:25 +0000] "GET /user/me HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [15/Feb/2024:23:07:48 +0000] "GET /user/me HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [15/Feb/2024:23:07:57 +0000] "GET /community/hi HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [15/Feb/2024:23:07:58 +0000] "GET /user/me HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [15/Feb/2024:23:07:59 +0000] "OPTIONS /user/signin HTTP/1.1" 204 0
+::ffff:127.0.0.1 - - [15/Feb/2024:23:08:00 +0000] "POST /user/signin HTTP/1.1" 200 28
+::ffff:127.0.0.1 - - [15/Feb/2024:23:08:00 +0000] "POST /user/signin HTTP/1.1" 200 28
+::ffff:127.0.0.1 - - [15/Feb/2024:23:08:03 +0000] "GET /community/hi HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [15/Feb/2024:23:08:03 +0000] "GET /user/me HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [15/Feb/2024:23:08:20 +0000] "GET /user/joined HTTP/1.1" 200 335
+::ffff:127.0.0.1 - - [15/Feb/2024:23:08:20 +0000] "GET /user/me HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [15/Feb/2024:23:08:23 +0000] "GET /community/hi HTTP/1.1" 304 -
