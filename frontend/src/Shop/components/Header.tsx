@@ -52,6 +52,9 @@ export default function Header() {
             )}
           </IconButton>
         </Toolbar>
+        <Typography component="div" sx={{ flexGrow: 1, color: 'black', textAlign: 'right', paddingRight: 4 }}>
+          34 💎 (rewards)
+        </Typography>
       </AppBar>
     </Box>
   );

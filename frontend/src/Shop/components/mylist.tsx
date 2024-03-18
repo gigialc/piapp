@@ -1,17 +1,20 @@
 // Created by Georgina Alacaraz
 import { UserContextType, MyPaymentMetadata , CommunityType} from "../components/Types";
 import { onCancel, onError, onReadyForServerApproval, onReadyForServerCompletion } from "../components/Payments";
-import Header from "../components/Header";
 import Typography from "@mui/material/Typography";
 import { UserContext } from "../components/Auth";
-import React, { useEffect, useState,SyntheticEvent } from "react";
+import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import {UserData } from "../components/Types";
+import Dialog from '@mui/material/Dialog'; // Import Dialog component
+import MuiForm from "../components/MuiForm";
+import { Fab } from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
 import { Tabs, Tab, Box } from "@mui/material";
-import MyList from "../components/mylist";
-import Subscribed from "../components/subscribed";
-import { TextField, Button } from '@mui/material';
 
 
 // Make TS accept the existence of our window.__ENV object - defined in index.html:
@@ -29,20 +32,13 @@ const axiosClient = axios.create({ baseURL: `${backendURL}`, timeout: 20000, wit
 
 const config = {headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}};
 
-export default function  UserToAppPayments() {
+export default function  MyList() {
   const { user, saveUser, showModal, saveShowModal, onModalClose } = React.useContext(UserContext) as UserContextType;
   const [createCommunityData, setCreateCommunityData] = useState<CommunityType[] | null>(null);
   const [selectedCommunity, setSelectedCommunity] = useState<CommunityType[] | null>(null); // Moved here
   const [userData, setUserData] = useState<UserData | null>(null);
   const [openFormModal, setOpenFormModal] = useState(false);
-  const [username, setUsername] = useState(user.username || "anonymous");
-  const [inputValue, setInputValue] = useState("");
   const [tabValue, setTabValue] = useState(0); // Default to the first tab
-  const [showUpdate, setShowUpdate] = useState(false);
-  const [bio, setBio] = useState(user.bio || "No bio yet");
-  const [occupation, setOccupation] = useState(user.occupation || "No occupation yet");
-  const [coins, setCoins] = useState(0);
-
 
   console.log("User Data :" , userData);
   const navigate = useNavigate();
@@ -57,30 +53,28 @@ export default function  UserToAppPayments() {
       return "Good Night";
     }
   };
-
-   const handleUsernameChange = (event: any) => {
-    setInputValue(event.target.value);
+  const handleCommunityClick = (community: CommunityType) => {
+    // get the community id and make it a current session
+    console.log(community._id);
+    navigate("/ChatCreator", { state: { communityId: community._id } });
   };
 
-  const updateUsername = () => {
-    axiosClient.post('/user/update', { username: inputValue })
-      .then((response) => {
-        console.log('Response data for /user/update:', response.data);
-        setUsername(inputValue);
-      })
-      .catch((error) => {
-        console.error('Error updating username:', error);
-      });
-    console.log('Updating username to: ', inputValue);
-    setShowUpdate(false);
+  const handleCommunityClick1 = (community: CommunityType) => {
+   
+    console.log(community._id);
+    navigate("/Chat", { state: { communityId: community._id } });
   };
 
-  //get bio and occuptaion from user
-
-
-  const handleTabChange = (event: SyntheticEvent, newValue: number) => {
-    setTabValue(newValue);
+   // Function to open the modal
+   const handleOpenFormModal = () => {
+    setOpenFormModal(true);
   };
+
+  // Function to close the modal
+  const handleCloseFormModal = () => {
+    setOpenFormModal(false);
+  };
+
   
   const orderProduct = async (memo: string, amount: number, paymentMetadata: MyPaymentMetadata) => {
     if (user.uid === "") {
@@ -127,6 +121,7 @@ export default function  UserToAppPayments() {
   , []);
   
 
+
   useEffect(() => {
     axiosClient.get('/user/joined')
       .then((response) => {
@@ -138,38 +133,47 @@ export default function  UserToAppPayments() {
       });
   }, []);
 
-  
   return (
-    <>
-      <Header />
-      <div style={{ padding: '20px', marginBottom: '80px' }}>
-        <Typography variant="h6" style={{ fontWeight: 'bold', color: '#E69BD1', marginBottom: '10px' }}>
-          Welcome to your profile, {user.username} !
-        </Typography>
-        <Typography style={{ color: 'black', marginBottom: '5px' }}>
-          username: {user.username}
-        </Typography>
-      <Typography style={{ color: 'black', marginBottom: '5x'}}>
-        bio: {user.bio || "no bio yet"}
-      </Typography>
-      <Typography  style={{ color: 'black', marginBottom: '5px' }}>
-        occupation: {username.ocuppation || "no occupation yet"}
-      </Typography>
-       <br></br>
-        <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
-        <Tabs
-          value={tabValue}
-          onChange={handleTabChange}
-          TabIndicatorProps={{style: {background:'pink'}}}
-        >
-            <Tab label="my communities"  style={{ textTransform: 'none' , fontSize: 15, color:"black"}}/>
-            <Tab label="subscribed"style={{ textTransform: 'none' , fontSize: 15, color:"black"}} />
-          </Tabs>
-        </Box>
-        {tabValue === 0 && <MyList />}
-        {tabValue === 1 && <Subscribed />}
-      </div>
-      {/* Additional components like SignIn Modal and Bottom Navigation */}
-    </>
+         <div>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', marginBottom: '5px' }}>
+            <Typography variant="body2" style={{ marginRight: '10px', color: 'black' }}>
+                new community
+            </Typography>
+            <Fab
+                aria-label="add"
+                size="small"
+                style={{
+                backgroundColor: "#ffe6ff",
+                color: "black",
+                boxShadow: 'none',
+                }}
+                onClick={handleOpenFormModal}
+            >
+                <AddIcon />
+            </Fab>
+        </div>
+
+            <Dialog open={openFormModal} onClose={handleCloseFormModal} maxWidth="sm" fullWidth>
+            <MuiForm/>  
+           </Dialog>  
+           <List>
+                {createCommunityData ? (
+                  createCommunityData.map((community) => (
+                    <ListItem key={community._id}  onClick={() => handleCommunityClick(community)} style={{ backgroundColor: 'white', marginBottom: '10px', borderRadius: '4px', boxShadow: `
+                    0 -2px 4px rgba(255, 182, 193, 0.2), 
+                    0 2px 4px rgba(255, 182, 193, 0.2),
+                    0 2px 4px rgba(0,0,0,0.1)`
+                  }}>
+                      <ListItemText primary={community.name} secondary={community.description}  />
+                    </ListItem>
+                  ))
+                ) : (
+                  <Typography variant="body1">No community data available</Typography>
+                )}
+              </List>
+
+        </div>   
   );
 }
+
+// Created by Georgina Alacaraz
