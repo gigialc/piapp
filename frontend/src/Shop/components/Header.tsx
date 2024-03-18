@@ -41,12 +41,12 @@ export default function Header() {
           >
             {user.uid === '' ? (
               <Typography component="div" sx={{ color: 'black', paddingRight:3 }}>
-                Sign-In
+                sign-in
               </Typography>
             ) : (
               <Container>
                 <Typography sx={{ color: 'black' }}>
-                  @{user.username} | Sign Out
+                  @{user.username} | sign out
                 </Typography>
               </Container>
             )}

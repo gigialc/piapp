@@ -12,7 +12,13 @@ import { useNavigate } from 'react-router-dom';
 import { Bloodtype } from "@mui/icons-material";
 import { Button, Divider } from "@mui/material";
 import {UserData } from "../components/Types";
-
+import Dialog from '@mui/material/Dialog'; // Import Dialog component
+import MuiForm from "../components/MuiForm";
+import { Fab } from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
 
 // Make TS accept the existence of our window.__ENV object - defined in index.html:
 interface WindowWithEnv extends Window {
@@ -34,6 +40,7 @@ export default function  UserToAppPayments() {
   const [createCommunityData, setCreateCommunityData] = useState<CommunityType[] | null>(null);
   const [selectedCommunity, setSelectedCommunity] = useState<CommunityType[] | null>(null); // Moved here
   const [userData, setUserData] = useState<UserData | null>(null);
+  const [openFormModal, setOpenFormModal] = useState(false);
   console.log("User Data :" , userData);
   const navigate = useNavigate();
   
@@ -57,6 +64,16 @@ export default function  UserToAppPayments() {
    
     console.log(community._id);
     navigate("/Chat", { state: { communityId: community._id } });
+  };
+
+   // Function to open the modal
+   const handleOpenFormModal = () => {
+    setOpenFormModal(true);
+  };
+
+  // Function to close the modal
+  const handleCloseFormModal = () => {
+    setOpenFormModal(false);
   };
 
 
@@ -126,64 +143,67 @@ export default function  UserToAppPayments() {
       <div style={{ padding: '20px', marginBottom: '80px' }}>
         {/* Profile Section */}
         <div>
-          <Typography variant="h5" style={{ fontWeight: 'bold', color: '#9E4291', marginBottom: '16px' }}>
-            Profile
+          <Typography variant="h6" style={{ fontWeight: 'bold', color: '#E69BD1', marginBottom: '16px' }}>
+           Welcome to your profile, {user.username}!  
           </Typography>
-          <Typography variant="body1" style={{ fontSize: '17px', marginBottom: '16px', fontWeight:"bold" }}>
-            {getGreeting()} beautiful 🩷 
-          </Typography>
-          {/* <hr style={{ margin: '10px 0', color: "#ff69b4" }} /> */}
         </div>
-  
         {/* Your Communities Section */}
         <div>
-          <Typography variant="h6" style={{ marginBottom: '16px' }}>
-            Your Communities
+          <Typography style={{ marginBottom: '16px', fontWeight: "bold" }}>
+            my communities
           </Typography>
-          <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-            {createCommunityData ? (
-              createCommunityData.map((community) => (
-                <Button
-                  key={community._id}
-                  onClick={() => handleCommunityClick(community)}
-                  variant="contained"
-                  style={{ backgroundColor: '#ffe6ff', color: 'black', padding: '12px', margin: '12px',borderRadius: '30px' }}
-                >
-                  {community.name}
-                </Button>
-              ))
-            ) : (
-              <Typography variant="body1">No community data available</Typography>
-            )}
-          </div>
-        </div>
-  
-        <Divider style={{ margin: '25px 0', height: 0, borderTop: 'none', borderBottom: 'none' }} />
+          <Fab
+                aria-label="add"
+                size="small"
+                style={{
+                    backgroundColor: "#ffe6ff",
+                    color: "black",
+                    position: 'absolute',
+                    right: '20px',
+                    top: '150px',
+                    boxShadow: 'none',
+                }}
+                onClick={handleOpenFormModal}
+            >
+                <AddIcon />
+            </Fab>
 
-  
-        {/* Joined Communities Section */}
-        <div>
-          <Typography variant="h6" style={{ marginBottom: '16px' }}>
-            Joined Communities
-          </Typography>
-          <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-            {selectedCommunity ? (
-              selectedCommunity.map((community) => (
-                <Button
-                  key={community._id}
-                  onClick={() => handleCommunityClick1(community)}
-                  variant="contained"
-                  style={{ backgroundColor: '#ffe6ff', color: 'black', padding: '12px', margin: '12px',borderRadius: '30px' }}
-                >
-                  {community.name}
-                </Button>
-              ))
-            ) : (
-              <Typography variant="body1">No community data available</Typography>
-            )}
-          </div>
+            <Dialog open={openFormModal} onClose={handleCloseFormModal} maxWidth="sm" fullWidth>
+            <MuiForm/>  
+           </Dialog>  
+           <List>
+                {createCommunityData ? (
+                  createCommunityData.map((community) => (
+                    <ListItem key={community._id}  onClick={() => handleCommunityClick(community)} style={{ backgroundColor: 'white', marginBottom: '10px', borderRadius: '4px', boxShadow: '0 2px 4px rgba(255, 182, 193, 0.2), 0 2px 4px rgba(0,0,0,0.1)'
+                  }}>
+                      <ListItemText primary={community.name} secondary={community.description}  />
+                    </ListItem>
+                  ))
+                ) : (
+                  <Typography variant="body1">No community data available</Typography>
+                )}
+              </List>
+            </div>
+
+            {/* Joined Communities Section */}
+            <div>
+              <Typography style={{ marginBottom: '16px', fontWeight: "bold"}}>
+                subscribed communities
+              </Typography>
+              <List>
+                {selectedCommunity ? (
+                  selectedCommunity.map((community) => (
+                    <ListItem key={community._id} button onClick={() => handleCommunityClick1(community)} style={{ backgroundColor: 'white', marginBottom: '10px', borderRadius: '4px',boxShadow: '0 2px 4px rgba(255, 182, 193, 0.2), 0 2px 4px rgba(0,0,0,0.1)'
+                  }}>
+                      <ListItemText primary={community.name} secondary={community.description}/>
+                    </ListItem>
+                  ))
+                ) : (
+                  <Typography variant="body1">No community data available</Typography>
+                )}
+              </List>
+            </div>
         </div>
-      </div>
   
       {/* SignIn Modal */}
       {showModal && <SignIn onSignIn={saveUser} onModalClose={onModalClose} showModal={showModal} />}
