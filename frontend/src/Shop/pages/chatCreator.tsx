@@ -62,33 +62,41 @@ export default function ChatCreator() {
 
   return (
     <>
-  <Header />
-  <div style={{ paddingTop: '20px', marginLeft: 20 }}> {/* Add padding here */}
-    {community?.name && (
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: 2 }}>
-        <Typography variant="h5" color="black" style={{ fontWeight: 'Bold' }}>
-          🩷 {community.name}
-        </Typography>
-        {/* <Button
-          variant="contained"
-          style={{ marginRight: 20, backgroundColor: '#9E4291', color: 'white' , borderRadius: 20}}
-          onClick={handleFollow}
-        >
-          {isFollowing ? 'Following' : 'Follow'}
-        </Button> */}
+      <Header />
+      <div style={{ padding: '20px' }}>
+        <div style={{ marginBottom: '30px' }}>
+          {community ? (
+            <>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Typography variant="h4" style={{ fontWeight: 'Bold' }}>
+                  🩷 {community.name}
+                </Typography>
+                <Button
+                  variant="contained"
+                  onClick={handleFollow}
+                  style={{ borderRadius: 20, backgroundColor: isFollowing ? '#D3D3D3' : '#9E4291', color: 'white' }}
+                >
+                  {isFollowing ? 'Unfollow' : 'Follow'}
+                </Button>
+              </div>
+              <Typography variant="subtitle1" style={{ marginTop: '10px' }}>
+                {community.description}
+              </Typography>
+            </>
+          ) : (
+            <Typography variant="h6">Loading community details...</Typography>
+          )}
+        </div>
+  
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          <PostContent communityId={communityId} />
+          <Posts communityId={communityId} />
+        </div>
       </div>
-    )}
-    {community?.description && (
-      <Typography variant="body1" style={{ color: '#9E4291', fontWeight: 'bold', marginLeft: 20 }}>
-        {community.description}
-      </Typography>
-    )}
-    <PostContent communityId={communityId} />
-    <Posts communityId={communityId} />
-
-    {showModal && <SignIn onSignIn={saveUser} onModalClose={onModalClose} showModal={showModal} />}
-  </div>
-</>
-
+  
+      {showModal && <SignIn onSignIn={saveUser} onModalClose={onModalClose} showModal={showModal} />}
+    </>
   );
+  
+  
 }

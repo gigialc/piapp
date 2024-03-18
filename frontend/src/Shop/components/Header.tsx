@@ -9,6 +9,8 @@ import IconButton from '@mui/material/IconButton';
 import { Container } from "@mui/material";
 import { UserContext } from "./Auth";
 
+const logoImageUrl = 'df2.png'; // Replace with actual logo image URL
+
 export default function Header() {
   const { user, saveUser } = React.useContext(UserContext) as UserContextType;
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -23,32 +25,32 @@ export default function Header() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ backgroundColor: 'white' }} >
-        <Toolbar>
-
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 , color: 'black'}}>
-            Destig Femme
-          </Typography>
+      <AppBar position="static" sx={{ backgroundColor: 'white' }}elevation={0}>
+      <Toolbar disableGutters sx={{ justifyContent: 'space-between', paddingX: 0.4 }}>
+        {/* Adjusted Logo Box */}
+        <Box sx={{ display: 'flex', alignItems: 'center', overflow: 'hidden', height: '80px', width: '140px' }}>
+          <img src={logoImageUrl} alt="Destig Femme" style={{ height: 'auto', width: '100%', objectFit: 'cover' }} />
+        </Box>
           
-              <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="menu-appbar"
-                    onClick={user.uid === '' ? (saveUser ) : (saveUser)}
-                    color="inherit"
-                  >
-                  { user.uid === '' ? (
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: 'black' }}>
-                      Sign-In
-                    </Typography>
-                    ) : (
-                  <Container>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 , color: 'black'}}>
-                    @{user.username}  |  Sign Out
-                    </Typography>
-                  </Container>
-              )}
-              </IconButton>
+          <IconButton
+            size="large"
+            aria-label="account of current user"
+        
+            onClick={user.uid === '' ? saveUser : saveUser} // This seems redundant, consider simplifying
+            color="inherit"
+          >
+            {user.uid === '' ? (
+              <Typography component="div" sx={{ color: 'black', paddingRight:3 }}>
+                Sign-In
+              </Typography>
+            ) : (
+              <Container>
+                <Typography sx={{ color: 'black' }}>
+                  @{user.username} | Sign Out
+                </Typography>
+              </Container>
+            )}
+          </IconButton>
         </Toolbar>
       </AppBar>
     </Box>

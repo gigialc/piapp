@@ -43,7 +43,15 @@ export default function Chat() {
 
   const handleFollow = () => {
     if (isFollowing) {
-      // Potentially handle "unfollow" logic here
+      axiosClient.post("/users/joined", { communityId: communityId })
+        .then((response) => {
+          console.log(response);
+          setIsFollowing(false);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+
       return;
     }
   
@@ -88,7 +96,6 @@ export default function Chat() {
         </Typography>
       )}
       <PostContent communityId={communityId} />
-      {/* Additional content here */}
     </>
   );
 }
