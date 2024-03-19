@@ -78,8 +78,8 @@ export default function ProfileEdit() {
 
 
   return (
-    <Card style={{ maxWidth: "100%", margin: 'auto', marginTop: 0 }}>
-      <CardContent>
+    <Card style={{ maxWidth: "100%", margin: 'auto', marginTop: 0, boxShadow: 'none', border: 'none' }}>
+      <CardContent >
         <Grid container spacing={1}>
           <Grid item xs={12}>
             {editMode ? (

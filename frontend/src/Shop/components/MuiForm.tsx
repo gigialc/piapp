@@ -123,65 +123,60 @@ export default function MuiForm() {
       };
 
       return (
-        <div style={{ padding: '32px', textAlign: 'center', backgroundColor: 'white', borderRadius: '20px' }}>
-          <form onSubmit={handleSubmit}>         
-            <Stack spacing={4} sx={{ width: '80%', margin: '0 auto' }}>
-              <TextField
-                id="title"
-                label="Community Title"
-                variant="outlined"
-                value={title}
-                onChange={onTitleChange}
-                error={titleError}
-                helperText={titleErrorMessage}
-                fullWidth
-                required
-                style={{ backgroundColor: '#ffe6ff', borderRadius: '20px', border: 'none' }} // Remove grey outline
-              />
-              <TextField
-                id="description"
-                label="Mission Statement"
-                variant="outlined"
-                value={description}
-                onChange={onDescriptionChange}
-                error={descriptionError}
-                helperText={descriptionErrorMessage}
-                fullWidth
-                required
-                multiline // Enable multiline functionality
-                rows={4} // Set initial number of rows
-                style={{ backgroundColor: '#ffe6ff', borderRadius: '20px', border: 'none' }} // Remove grey outline
-              />
-              <TextField
-                id="price"
-                label="Cost of Commenting"
-                variant="outlined"
-                value={price}
-                onChange={onPriceChange}
-                error={priceError}
-                helperText={priceErrorMessage}
-                fullWidth
-                required
-                style={{ backgroundColor: '#ffe6ff', borderRadius: '20px', border: 'none' }} // Remove grey outline
-              />
-            </Stack>
-                <br />
-                <br />
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end', width: '90%' }}>
-            <Button 
-              type="submit" 
-              variant="contained" 
-              sx={{
-                backgroundColor: "#9E4291",
-                color: "white",
-                borderRadius: "100px",
-                padding: '8px 20px',
-                display: 'inline-flex', // Change here to make the button only as wide as its content
-                justifyContent: 'right',
-                }}>
-                    create
-            </Button>
-            </Box>
+        <div style={{ padding: '15px', backgroundColor: 'white' }}>
+            <form onSubmit={handleSubmit} style={{ maxWidth: '100%' }}>         
+                <Stack spacing={4}>
+                    <TextField
+                        id="title"
+                        label="Title"
+                        variant="outlined"
+                        value={title}
+                        onChange={onTitleChange}
+                        error={titleError}
+                        helperText={titleError ? "Title is required" : ""}
+                        fullWidth
+                        required
+                        style={{ backgroundColor: '#f8f8f8' }}
+                    />
+                    <TextField
+                        id="description"
+                        label="Content"
+                        variant="outlined"
+                        value={description}
+                        onChange={onDescriptionChange}
+                        error={descriptionError}
+                        helperText={descriptionError ? "Content is required" : ""}
+                        fullWidth
+                        required
+                        multiline
+                        rows={3}
+                        style={{ backgroundColor: '#f8f8f8' }}
+                    />
+                    <TextField
+                        id="price"
+                        label="Price"
+                        variant="outlined"
+                        value={price}
+                        onChange={onPriceChange}
+                        error={priceError}
+                        helperText={priceError ? "Price is required" : ""}
+                        required
+                        style={{ backgroundColor: '#f8f8f8' }}
+                    />
+                    <Button 
+                        type="submit" 
+                        variant="contained" 
+                        sx={{ alignSelf: 'start', mt: 2 }}
+                        style={{
+                            backgroundColor: "#9E4291",
+                            color: "white",
+                            borderRadius: "20px",
+                            padding: '10px 30px',
+                        }}
+                    >
+                        Create
+                    </Button>
+                </Stack>
           </form>
           {showModal && (
             <div style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', backgroundColor: 'rgba(255, 255, 255, 0.9)', padding: '20px', borderRadius: '10px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)' }}>

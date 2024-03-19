@@ -83,6 +83,17 @@ export default function HomePage() {
     console.log(createCommunityData);
   }, [createCommunityData]);
 
+  useEffect(() => {
+    axiosClient.get('/user/userInfo')
+      .then((response) => {
+        console.log('Response data for /user/me:', response.data);
+      })  
+      .catch((error) => {
+        console.error('Error fetching /user/me:', error);
+      });
+
+    }
+  , []);
 
   useEffect(() => {
     // Make an API call to fetch the create community data
@@ -103,7 +114,7 @@ export default function HomePage() {
 return(
   <>
   <Header />
-  <Typography variant="h5" margin={2} style={{ color: '#9E4291', fontWeight: 'bold' }}>
+  <Typography variant="h6" style={{ fontWeight: 'bold', color: '#E69BD1', marginBottom: '10px' , marginLeft: 20 }}>
     Communities ✨
   </Typography>
   {createCommunityData ? (

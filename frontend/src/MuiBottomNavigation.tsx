@@ -48,14 +48,14 @@ const MuiBottomNavigation: React.FC = () => {
         style={blackLabelStyle}
 
       />
-      <BottomNavigationAction
+      {/* <BottomNavigationAction
         label="Blogs"
         icon={<EditNoteIcon sx={{ color: "#9E4291" }} />}
         value={bnValue}
         onClick={() => navigate("/Newsletter")}
         style={blackLabelStyle}
 
-      />
+      /> */}
      
     </BottomNavigation>
   );

@@ -25,7 +25,7 @@ export default function Chat() {
   const [community, setCommunity] = useState<any>(null);
   const [createCommunityData, setCreateCommunityData] = useState<CommunityType[] | null>(null);;
   const [selectedCommunity, setSelectedCommunity] = useState<CommunityType | null>(null);
-  const [isFollowing, setIsFollowing] = useState<boolean>(false);
+  const [isFollowing, setIsFollowing] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const communityId = location.state?.communityId;
@@ -70,7 +70,21 @@ export default function Chat() {
       .catch((error) => {
         console.error('Error:', error);
       });
-  };
+
+  //   //check if user is already subscribed to the community
+  //   useEffect(() => {
+  //     axiosClient.get(`/user/joined/${communityId}`, { params: { userId: user.uid } })
+  //       .then((response) => {
+  //         setIsFollowing(response.data.isFollowing);
+  //         setIsFollowing(true);
+  //       })
+  //       .catch((error) => {
+  //         console.error(error);
+  //         setIsFollowing(false);
+  //       });
+  //   }, [communityId, user]);
+  }
+
 
   return (
     <>
@@ -82,11 +96,10 @@ export default function Chat() {
           </Typography>
           <Button
             variant="contained"
-            style={{ marginRight: 20, backgroundColor: '#9E4291', color: 'white' , borderRadius: 20, display: 'inline-flex', height: '25px'}}
+            style={{ marginRight: 20, backgroundColor: '#9E4291', color: 'white' , borderRadius: 20, display: 'inline-flex', height: '25px', textTransform: 'none'}}
             onClick= {handleFollow}
-
           >
-            {isFollowing ? 'Following' : 'Follow'}
+            {isFollowing ? 'Subscribed' : 'Subscribe'}
           </Button>
         </div>
       )}

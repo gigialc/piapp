@@ -25,6 +25,7 @@ export type AuthResult = {
     export type CommunityType = {
       _id: string,
       name: string,
+      user: Object,
       description: string,
       price: number,
       user_uid: string,

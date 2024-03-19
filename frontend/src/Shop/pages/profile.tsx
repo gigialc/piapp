@@ -146,11 +146,10 @@ export default function  UserToAppPayments() {
     <>
       <Header />
       <div style={{ padding: '20px', marginBottom: '80px' }}>
-        <Typography variant="h6" style={{ fontWeight: 'bold', color: '#E69BD1', marginBottom: '10px' }}>
+        <Typography variant="h6" style={{ fontWeight: 'bold', color: '#E69BD1', marginBottom: '0px' }}>
           Welcome to your profile, {user.username} !
         </Typography>
         <EditProfile />
-       <br></br>
         <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
         <Tabs
           value={tabValue}

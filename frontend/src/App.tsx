@@ -28,7 +28,7 @@ function App() {
                 <Route path="/Shop" element={<Shop />} />
                 <Route path="/Add" element={<Add />} />
                 <Route path="/Profile" element={<Profile />} />// Make sure Profile is a valid React component
-                <Route path="/Newsletter" element={<Newsletter />} />
+                {/* <Route path="/Newsletter" element={<Newsletter />} /> */}
                 <Route path="/mybody" element={<Mybody />} />
                 <Route path="/sexed" element={<Sexed />} />
                 {/*<Route path="/Chat" element={<Chat />} />*/}

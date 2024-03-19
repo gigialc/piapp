@@ -41,10 +41,10 @@ return(
   <>
   <Header />
   <div style={{ padding: '20px', marginBottom: '80px' }}>
-    <Typography variant="h6" style={{ fontWeight: 'bold', color: 'black', marginBottom: '10px' }}>
+  <Typography variant="h6" style={{ fontWeight: 'bold', color: '#E69BD1', marginBottom: '10px' }}>
         Create your own community ✨
     </Typography>
-    <Typography  margin={1}  color="#9E4291" style={{ fontWeight: 'bold' } }>
+    <Typography  margin={1}  color="black" style={{ } }>
      Create your own community and start earning pi 💸
     </Typography>
   <MuiForm />

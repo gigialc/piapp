@@ -7,6 +7,12 @@ import { UserContext } from './Auth';
 import { useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { CommunityType } from './Types';
+import axios from 'axios';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import CardActions from '@mui/material/CardActions';
+
 
 
 interface Props {
@@ -29,28 +35,33 @@ export default function ProductCard(props: Props) {
   };
 
   return (
-    <Grid container style={{ margin: 16, paddingBottom: 10, marginLeft:20 }}>
-      <Grid container style={{ display: 'flex', flexDirection: 'row' }}>
-        <Grid container style={{ width: "33%", marginRight: 8 }}>
-        </Grid>
-        <Grid item style={{ width: "90%", fontSize:20 }}>
-          <h3>{props.name}</h3> 
-      </Grid>
-      <Grid style={{ width: "90%" }}>
-      <p>{props.description}</p>  
-      </Grid>
-      </Grid>
-      {/* {props.price} Test-π  < br /> */}
-      <Grid item style={{ marginBottom: 8}}>
-          {}
+    <Card style={{ margin: 16, paddingBottom: 10, marginLeft: 20, width: 'calc(100% - 40px)', boxShadow: " 0 0 0 1px #E69BD1"}}>
+
+      <CardContent>
+        <Typography variant="h5" component="h2" gutterBottom style={{ fontWeight: 'bold' }}>
+          {props.name}
+        </Typography>
+        <Typography variant="body1" component="p">
+          {props.description}
+        </Typography>
+        {/* Example for price, uncomment if needed
+        <Typography variant="body2" color="textSecondary">
+          Price: {props.price}
+        </Typography>
+        */}
+      </CardContent>
+      <CardActions>
         <Button
-          variant='contained'
-          color='secondary'
-          sx={{ backgroundColor: '#ffe6ff', color: "black",borderRadius: '30px', marginTop: 2}}
-          onClick={() => handleNavigateToChat(props.community)}  // Use the handleNavigateToChat function for the onClick event
-        > Enter</Button>
-  
-      </Grid>
-    </Grid>
-  )
+          variant="contained"
+          color= "secondary"
+          style={{ textTransform: 'none' , height: '25px'}}
+          onClick={() => handleNavigateToChat(props.community)} // Use the handleNavigateToChat function for the onClick event
+        >
+          Enter
+        </Button>
+      </CardActions>
+    </Card>
+  );
 }
+
+            
