@@ -35,13 +35,12 @@ export default function ProductCard(props: Props) {
   };
 
   return (
-    <Card style={{ margin: 16, paddingBottom: 10, marginLeft: 20, width: 'calc(100% - 40px)', boxShadow: " 0 0 0 1px #E69BD1"}}>
-
+    <Card style={{ margin: 16, paddingBottom: 10, marginLeft: 20, width: 'calc(100% - 40px)', boxShadow: " 0 0 0 1px #E69BD1", backgroundColor: "#eec1e1"}}>
       <CardContent>
-        <Typography variant="h5" component="h2" gutterBottom style={{ fontWeight: 'bold' }}>
+        <Typography variant="body1"  gutterBottom style={{ fontWeight: 'bold' }}>
           {props.name}
         </Typography>
-        <Typography variant="body1" component="p">
+        <Typography variant="body2" component="p">
           {props.description}
         </Typography>
         {/* Example for price, uncomment if needed
@@ -54,7 +53,7 @@ export default function ProductCard(props: Props) {
         <Button
           variant="contained"
           color= "secondary"
-          style={{ textTransform: 'none' , height: '25px'}}
+          style={{ textTransform: 'none' , height: '25px', fontSize: '12px'}}
           onClick={() => handleNavigateToChat(props.community)} // Use the handleNavigateToChat function for the onClick event
         >
           Enter

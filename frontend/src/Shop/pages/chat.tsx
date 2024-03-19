@@ -104,7 +104,7 @@ export default function Chat() {
         </div>
       )}
       {community?.description && (
-        <Typography variant="body1" style={{ color: '#9E4291', fontWeight: 'bold', marginLeft: 20,marginTop:15 }}>
+        <Typography variant="body1" style={{ color: '#9E4291', marginLeft: 20,marginTop:15 }}>
           {community.description}
         </Typography>
       )}

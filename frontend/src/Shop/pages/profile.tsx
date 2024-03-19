@@ -150,18 +150,22 @@ export default function  UserToAppPayments() {
           Welcome to your profile, {user.username} !
         </Typography>
         <EditProfile />
-        <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
+        <div style={{}}>
+        <Box sx={{ width: '100%', bgcolor: 'background.paper' // This sets the background color of the Tabs
+        }}>
         <Tabs
           value={tabValue}
           onChange={handleTabChange}
           TabIndicatorProps={{style: {background:'pink'}}}
+        
         >
-            <Tab label="my communities"  style={{ textTransform: 'none' , fontSize: 15, color:"black"}}/>
-            <Tab label="subscribed"style={{ textTransform: 'none' , fontSize: 15, color:"black"}} />
+            <Tab label="my communities"  style={{ textTransform: 'none' , fontSize: 15, color:"black", fontWeight: "bold"}}/>
+            <Tab label="subscribed"style={{ textTransform: 'none' , fontSize: 15, color:"black", fontWeight: "bold"}} />
           </Tabs>
         </Box>
         {tabValue === 0 && <MyList />}
         {tabValue === 1 && <Subscribed />}
+      </div>
       </div>
       {/* Additional components like SignIn Modal and Bottom Navigation */}
     </>

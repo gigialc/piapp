@@ -159,7 +159,7 @@ export default function  MyList() {
            <List>
                 {createCommunityData ? (
                   createCommunityData.map((community) => (
-                    <ListItem key={community._id}  onClick={() => handleCommunityClick(community)} style={{ backgroundColor: 'white', marginBottom: '10px', borderRadius: '4px', boxShadow: `
+                    <ListItem key={community._id}  onClick={() => handleCommunityClick(community)} style={{ backgroundColor: '#efc9e4', marginBottom: '10px', borderRadius: '4px', boxShadow: `
                     0 -2px 4px rgba(255, 182, 193, 0.2), 
                     0 2px 4px rgba(255, 182, 193, 0.2),
                     0 2px 4px rgba(0,0,0,0.1)`

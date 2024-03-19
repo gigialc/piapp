@@ -172,6 +172,7 @@ export default function MuiForm() {
                             color: "white",
                             borderRadius: "20px",
                             padding: '10px 30px',
+                            textTransform: 'none'
                         }}
                     >
                         Create
