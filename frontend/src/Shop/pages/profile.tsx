@@ -12,6 +12,7 @@ import { Tabs, Tab, Box } from "@mui/material";
 import MyList from "../components/mylist";
 import Subscribed from "../components/subscribed";
 import { TextField, Button } from '@mui/material';
+import EditProfile from "../components/editProfile";
 
 
 // Make TS accept the existence of our window.__ENV object - defined in index.html:
@@ -45,6 +46,10 @@ export default function  UserToAppPayments() {
 
 
   console.log("User Data :" , userData);
+  console.log("User: ", user);
+  console.log("User Data: ", user.username);
+  console.log("User Data: ", user.bio);
+  console.log("User Data: ", user.occupation);
   const navigate = useNavigate();
   
   const getGreeting = () => {
@@ -63,10 +68,11 @@ export default function  UserToAppPayments() {
   };
 
   const updateUsername = () => {
-    axiosClient.post('/user/update', { username: inputValue })
+    axiosClient.post('/user/update', { username: inputValue , bio: bio, occupation: occupation, coinbalance: coins})
       .then((response) => {
         console.log('Response data for /user/update:', response.data);
         setUsername(inputValue);
+        setBio(bio);
       })
       .catch((error) => {
         console.error('Error updating username:', error);
@@ -74,9 +80,6 @@ export default function  UserToAppPayments() {
     console.log('Updating username to: ', inputValue);
     setShowUpdate(false);
   };
-
-  //get bio and occuptaion from user
-
 
   const handleTabChange = (event: SyntheticEvent, newValue: number) => {
     setTabValue(newValue);
@@ -146,15 +149,7 @@ export default function  UserToAppPayments() {
         <Typography variant="h6" style={{ fontWeight: 'bold', color: '#E69BD1', marginBottom: '10px' }}>
           Welcome to your profile, {user.username} !
         </Typography>
-        <Typography style={{ color: 'black', marginBottom: '5px' }}>
-          username: {user.username}
-        </Typography>
-      <Typography style={{ color: 'black', marginBottom: '5x'}}>
-        bio: {user.bio || "no bio yet"}
-      </Typography>
-      <Typography  style={{ color: 'black', marginBottom: '5px' }}>
-        occupation: {username.ocuppation || "no occupation yet"}
-      </Typography>
+        <EditProfile />
        <br></br>
         <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
         <Tabs

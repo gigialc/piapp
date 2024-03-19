@@ -136,10 +136,10 @@ export default function  MyList() {
   return (
          <div>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', marginBottom: '5px' }}>
-            <Typography variant="body2" style={{ marginRight: '10px', color: 'black' }}>
+            {/* <Typography variant="body2" style={{ marginRight: '10px', color: 'black' }}>
                 new community
-            </Typography>
-            <Fab
+            </Typography> */}
+            {/* <Fab
                 aria-label="add"
                 size="small"
                 style={{
@@ -150,12 +150,12 @@ export default function  MyList() {
                 onClick={handleOpenFormModal}
             >
                 <AddIcon />
-            </Fab>
+            </Fab> */}
         </div>
 
-            <Dialog open={openFormModal} onClose={handleCloseFormModal} maxWidth="sm" fullWidth>
+            {/* <Dialog open={openFormModal} onClose={handleCloseFormModal} maxWidth="sm" fullWidth>
             <MuiForm/>  
-           </Dialog>  
+           </Dialog>   */}
            <List>
                 {createCommunityData ? (
                   createCommunityData.map((community) => (

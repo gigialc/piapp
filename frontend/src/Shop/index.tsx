@@ -35,7 +35,6 @@ export default function HomePage() {
   const [selectedCommunity, setSelectedCommunity] = useState<CommunityType | null>(null);
   const [userData, setUserData] = useState<UserData | null>(null);
   const navigate = useNavigate();
-
   
   const getGreeting = () => {
     const currentHour = new Date().getHours();
@@ -119,7 +118,6 @@ return(
           community={community}
         />
       );
-    
     })
   ) : (
     <Typography variant="body1" style={{ color: '#ff69b4' }}>No community data available</Typography>

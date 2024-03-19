@@ -54,6 +54,34 @@ export default function mountUserEndpoints(router: Router) {
     return res.status(200).json({ message: "User signed out" });
   });
 
+  //Get info about user 
+  router.get('/userInfo', async (req, res) => {
+    const currentUser = req.session.currentUser;
+    if (!currentUser) {
+      return res.status(401).json({ error: "No current user found" });
+    }
+    return res.status(200).json(currentUser);
+  });
+
+  //Update user info
+  router.post('/update', async (req, res) => {
+    const currentUser = req.session.currentUser;
+    if (!currentUser) {
+      return res.status(401).json({ error: "No current user found" });
+    }
+    const userCollection = req.app.locals.userCollection;
+    const { username, bio, occupation, coinbalance } = req.body;
+    const updatedUser = await userCollection.findOneAndUpdate(
+      { uid: currentUser.uid },
+      { $set: { username: username, bio: bio, occupation: occupation, coinBalance: coinbalance } },
+      { new: true, returnDocument: 'after' }
+    );
+    if (!updatedUser) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    return res.status(200).json({ message: "User updated successfully" });
+  });
+
   // Get all the communitiesCreated the user has created
   router.get('/me', async (req, res) => {
     try {
