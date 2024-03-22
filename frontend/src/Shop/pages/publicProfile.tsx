@@ -14,6 +14,7 @@ import Subscribed from "../components/subscribed";
 import { TextField, Button } from '@mui/material';
 import EditProfile from "../components/editProfile";
 import { useLocation } from 'react-router-dom';
+import { Paper, Grid, Avatar, Link } from '@mui/material';
 
 // Make TS accept the existence of our window.__ENV object - defined in index.html:
 interface WindowWithEnv extends Window {
@@ -34,38 +35,20 @@ export default function  PublicProfile() {
   const { user, saveUser, showModal, saveShowModal, onModalClose } = React.useContext(UserContext) as UserContextType;
   const [createCommunityData, setCreateCommunityData] = useState<CommunityType[] | null>(null);
   const [selectedCommunity, setSelectedCommunity] = useState<CommunityType[] | null>(null); // Moved here
+  const [community, setCommunity] = useState<any>(null);
   const [userData, setUserData] = useState<UserData | null>(null);
-  const [openFormModal, setOpenFormModal] = useState(false);
   const [username, setUsername] = useState(user.username || "anonymous");
-  const [inputValue, setInputValue] = useState("");
-  const [tabValue, setTabValue] = useState(0); // Default to the first tab
-  const [showUpdate, setShowUpdate] = useState(false);
   const [bio, setBio] = useState(user.bio || "No bio yet");
   const [coins, setCoins] = useState(user.coinbalance || 0);
   const location = useLocation();
   const communityId = location.state?.communityId;
-
-  console.log("User Data :" , userData);
-  console.log("User: ", user);
-  console.log("User Data: ", user.username);
-  console.log("User Data: ", user.bio);
   const navigate = useNavigate();
-  
-  const getGreeting = () => {
-    const currentHour = new Date().getHours();
-    if (currentHour >= 0 && currentHour < 12) {
-      return "Good Morning";
-    } else if (currentHour >= 12 && currentHour < 18) {
-      return "Good Afternoon";
-    } else {
-      return "Good Night";
-    }
-  };
 
   const orderProduct = async (memo: string, amount: number, paymentMetadata: MyPaymentMetadata) => {
     if (user.uid === "") {
       return saveShowModal(true);
     }
+  
 
     // Define a state to track the selected community
 
@@ -75,52 +58,61 @@ export default function  PublicProfile() {
       onReadyForServerCompletion,
       onCancel,
       onError
-    };
+    }
     const payment = await window.Pi.createPayment(paymentData, callbacks);
     console.log(payment);
   }
-  useEffect(() => {
-    console.log(user);
-  }
-  , [user]);
 
-  //get user data for user object of communityId
     useEffect(() => {
-        axiosClient.get('/user/userInfo')
+      if (!communityId) return;
+      axiosClient.get(`/community/community/${communityId}`)
         .then((response) => {
-            console.log('User data:', response.data);
-            setUserData(response.data);
+          setCommunity(response.data);
+          setUserData(response.data);
+
         })
         .catch((error) => {
-            console.error('Error fetching user data:', error);
+          console.error(error);
         });
-    }, []);
-  
+    }, [communityId]);
 
-  useEffect(() => {
-    axiosClient.get('/user/joined')
-      .then((response) => {
-        console.log('Joined communities:', response.data);
-        setSelectedCommunity(response.data);
-      })  
-      .catch((error) => {
-        console.error('Error fetching joined communities:', error);
-      });
-  }, []);
 
   
-  return (
-    <>
-      <Header />
-      <div style={{ padding: '20px', marginBottom: '80px' }}>
-        <Typography variant="h6" style={{ fontWeight: 'bold', color: '#E69BD1', marginBottom: '0px' }}>
-          Welcome to your profile, {user.username} !
-        </Typography>
-      
-        {tabValue === 0 && <MyList />}
-        {tabValue === 1 && <Subscribed />}
-      </div>
-      {/* Additional components like SignIn Modal and Bottom Navigation */}
-    </>
-  );
-}
+    return (
+      <>
+  <Header />
+  <Paper style={{ padding: 16, margin: '16px auto', maxWidth: 600, boxShadow: 'none' }}>
+    <Grid container direction="column" alignItems="center" justifyContent="center" spacing={2}>
+      {community?.user && (
+        <>
+          <Grid item>
+            <Avatar
+              alt={community.user.username}
+              // src={community.user.avatarUrl} // Uncomment and use the actual path to the avatar image
+              sx={{ width: 100, height: 100 }} // Adjust size as needed
+            />
+          </Grid>
+          <Grid item>
+            <Typography variant="h5" component="h1" color="black" gutterBottom>
+              @{community.user.username}
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography variant="body1" color="textSecondary">
+              {community.user.coinbalance} 💎
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography variant="body1">
+              {community.user.bio || 'Bio not available.'}
+            </Typography>
+          </Grid>
+        </>
+      )}
+    </Grid>
+  </Paper>
+</>
+
+    );
+  }
+  
