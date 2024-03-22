@@ -19,6 +19,7 @@ import Sexed from "./Shop/pages/blogpages/sexed";
 import Chat from "./Shop/pages/chat";
 import ChatCreator from "./Shop/pages/chatCreator";
 import Comments from "./Shop/components/comments";
+import PublicProfile from "./Shop/pages/publicProfile";
 
 function App() {
     const user = null;
@@ -31,6 +32,7 @@ function App() {
                 {/* <Route path="/Newsletter" element={<Newsletter />} /> */}
                 <Route path="/mybody" element={<Mybody />} />
                 <Route path="/sexed" element={<Sexed />} />
+                <Route path="/publicProfile" element={<PublicProfile />} />
                 {/*<Route path="/Chat" element={<Chat />} />*/}
                 <Route path="/socialmediaBlog" element={<SocialMediaBlog />} />
                 <Route path="/Blogilates" element={<Blogilates />} />

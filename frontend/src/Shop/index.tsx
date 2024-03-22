@@ -59,7 +59,6 @@ export default function HomePage() {
       onReadyForServerCompletion,
       //onCancel,
       //onError
-
     }
     //make a payment
     //const payment = await window.Pi.createPayment(paymentData, callbacks);
@@ -111,6 +110,18 @@ export default function HomePage() {
     
     , []);
 
+  useEffect(() => {
+    axiosClient.get('/user/joined')
+      .then((response) => {
+        console.log('Joined communities:', response.data);
+        setSelectedCommunity(response.data);
+      })  
+      .catch((error) => {
+        console.error('Error fetching joined communities:', error);
+      });
+  }
+  , []);
+
 return(
   <>
   <Header />
@@ -125,7 +136,8 @@ return(
           key={community._id} // Make sure to include a unique key prop for each element in the array
           name={community.name}
           description={community.description}
-          // price={community.price} // This line is commented out; remove the comment if price data is relevant
+          price={community.price}
+          owner={community.user.username} 
           community={community}
         />
       );

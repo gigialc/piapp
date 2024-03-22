@@ -70,10 +70,10 @@ export default function mountUserEndpoints(router: Router) {
       return res.status(401).json({ error: "No current user found" });
     }
     const userCollection = req.app.locals.userCollection;
-    const { username, bio, occupation, coinbalance } = req.body;
+    const { username, bio, coinbalance } = req.body;
     const updatedUser = await userCollection.findOneAndUpdate(
       { uid: currentUser.uid },
-      { $set: { username: username, bio: bio, occupation: occupation, coinBalance: coinbalance } },
+      { $set: { username: username, bio: bio, coinBalance: coinbalance } },
       { new: true, returnDocument: 'after' }
     );
     if (!updatedUser) {

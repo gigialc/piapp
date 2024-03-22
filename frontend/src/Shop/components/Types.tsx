@@ -13,7 +13,6 @@ export type AuthResult = {
       uid: string,
       bio: string,
       coinbalance: number,
-      occupation: string,
       username: string
       community: CommunityType[]
     }
@@ -35,7 +34,7 @@ export type AuthResult = {
     };
     
     export type UserContextType = {
-      user: { uid: string; username: string; bio: string; coinbalance: number; occupation: string; community: CommunityType[]};
+      user: { uid: string; username: string; bio: string; coinbalance: number; community: CommunityType[]};
       saveUser: () => void;
       showModal: boolean;
       saveShowModal: (value: boolean) => void;
@@ -65,7 +64,6 @@ export type AuthResult = {
       uid: string,
       bio: string,
       coinbalance: number,
-      occupation: string,
       username: string,
       community: CommunityType[],
     };

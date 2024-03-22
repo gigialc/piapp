@@ -7,7 +7,6 @@ export interface UserData {
   uid: string,
   bio: string,
   coinBalance: number,
-  occupation: string,
   roles: Array<string>,
   accessToken: string,
   communitiesCreated: Array<ObjectId>,

@@ -36,8 +36,7 @@ export default function ProfileEdit() {
   const [userData, setUserData] = useState<UserData | null>(null);
   const [profile, setProfile] = useState({
     username: userData?.username, // Initial state, replace with user.username
-    bio: userData?.bio, // Initial state, replace with userData?.bio
-    occupation: userData?.occupation, // Initial state, replace with userData?.occupation
+    bio: userData?.bio, 
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,7 +51,6 @@ export default function ProfileEdit() {
     axiosClient.post('/user/update', {
       username: profile.username,
       bio: profile.bio,
-      occupation: profile.occupation,
     })
     .then((response) => {
       console.log('Response data for /user/update:', response.data);
