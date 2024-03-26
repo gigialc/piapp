@@ -51,6 +51,8 @@ export type AuthResult = {
       description: string,
       community_id: string,
       user_uid: string,
+      likes: number,
+      comments: CommentType[],
     };
 
     export type CommentType = {
@@ -58,6 +60,7 @@ export type AuthResult = {
       comment: string,
       post_id: string,
       user_uid: string,
+      likes: number,
     };
 
     export type UserData = {

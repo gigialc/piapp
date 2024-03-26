@@ -12,4 +12,5 @@ export interface CommentType {
             $oid: string;
         };
     };
+    likes: number;
 }

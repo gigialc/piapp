@@ -98,38 +98,51 @@ export default function Comments() {
     };
 
     return (
-        <div style={{ padding: '32px', textAlign: 'center' }}>   
-          <CommentContent />
-          <br />
-          <form onSubmit={handleSubmit}>
-            <Stack spacing={2} sx={{ width: '100%', margin: 'auto' }}>
-              <TextField
-                id="description"
-                label="Comment"
-                variant="outlined"
-                value={description}
-                onChange={onDescriptionChange}
-                error={!!descriptionError}
-                helperText={descriptionError || ''}
-                fullWidth
-                InputProps={{
+      <div style={{ padding: '32px', textAlign: 'center' }}>   
+        <CommentContent />
+        <br />
+        <form onSubmit={handleSubmit}>
+          <Stack spacing={1} direction="row" alignItems="center" justifyContent="center">
+            <TextField
+              id="description"
+              label="Comment"
+              value={description}
+              onChange={onDescriptionChange}
+              error={!!descriptionError}
+              helperText={descriptionError || ''}
+              fullWidth
+              InputProps={{
+                style: {
+                  borderRadius: '30px',
+                  height: "35px", // Adjust this value to control the roundness of the input field
+                  textAlign: 'center', // Center the text in the input field
+                },
+                inputProps: {
                   style: {
-                    borderRadius: '30px', // Adjust this value to control the roundness of the input field
+                    textAlign: 'center', // Center the text in the input field
                   },
-                }}
-              />
-              <Box display="flex" justifyContent="flex-end" gap={2}>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  sx={{ backgroundColor: '#ffe6ff', borderRadius: '30px', mt: 2, color: 'black'}}
-                >
-                  Submit
-                </Button>
-              </Box>
-            </Stack>
-          </form>
-        </div>
-      );
-      
-}
+                },
+              }}
+              InputLabelProps={{ // Move the label to the center
+                style: {
+                  textAlign: 'center',
+                },
+              }}
+            />
+            <Button
+              type="submit"
+              variant="contained"
+              sx={{ backgroundColor: '#ffe6ff', borderRadius: '20px', color: 'black', height: '30px' ,textTransform: 'none'}} // Adjust height here
+            >
+              Submit
+            </Button>
+          </Stack>
+        </form>
+        <br />
+        <br />
+        <br />
+        <br />
+      </div>
+    );
+  };
+  

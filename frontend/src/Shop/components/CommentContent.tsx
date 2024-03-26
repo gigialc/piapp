@@ -1,5 +1,4 @@
 //Created by Georgina Alacaraz
-
 import { Button, Grid } from '@mui/material';
 import { StringDecoder } from 'string_decoder';
 import { UserContextType } from './Types';
@@ -9,7 +8,14 @@ import { useLocation } from 'react-router-dom';
 import { UserContext } from './Auth';
 import { Paper } from '@mui/material';
 import { Card, CardContent, Typography } from '@mui/material';
-//for community page
+import { IconButton } from '@mui/material';
+import HeartIcon from '@mui/icons-material/Favorite';
+import Box from '@mui/material/Box';
+import { TextField } from '@mui/material';
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
+import { useNavigate } from 'react-router-dom';
+import navigate from 'react-router-dom';
+import Posts from './posts';
 
 interface WindowWithEnv extends Window {
   __ENV?: {
@@ -28,6 +34,11 @@ export default function CommentContent() {
   const { user, saveUser, showModal, saveShowModal, onModalClose } = React.useContext(UserContext) as UserContextType;
   const [comment, setComment] = useState<{ content: string, user: { username: string } }[]>([]);
   const [post, setPost] = useState<any>(null);
+  const [postLikes, setPostLikes] = useState(0);
+  const [commentLikes, setCommentLikes] = useState<number[]>([]);
+  const [index, setIndex] = useState<number>(0);
+  const navigate = useNavigate();
+  
   const location = useLocation();
   const postId = location.state.postId;
   console.log(postId);
@@ -47,6 +58,25 @@ export default function CommentContent() {
       }
   }, [postId]);
 
+  // Function to handle post like
+ 
+  const handleCommentLike = (index: number) => {
+    const updatedLikes = [...commentLikes];
+    updatedLikes[index] += 1;
+    setCommentLikes(updatedLikes);
+  }
+
+
+  // Function to handle comment like
+  const handlePostLike = () => {
+    const updatedLikes = [...postLikes];
+    updatedLikes[0] += 1;
+    setPostLikes(updatedLikes);
+  };
+ 
+  const handleNavigatePublicProfile = (userId: string) => {
+    navigate(`/publicProfile/${userId}`);
+  }
   
   useEffect(() => {
     if (!postId) return; // Add a guard clause if communityId is not set
@@ -64,45 +94,59 @@ export default function CommentContent() {
   return (
     <div style={{ maxWidth: '600px', margin: '1', textAlign: 'left' }}>
       {post?.title && (
-      <Typography variant="h5" margin={1} style={{ color: '#9E4291', fontWeight: 'bold' }}>
-        {post.title}
-      </Typography>
+        <>
+          <Typography variant="h5" margin={1} style={{ color: '#9E4291', fontWeight: 'bold' }}>
+            {post.title}
+          </Typography>
+        </>
       )}
       {post?.description && (
-      <Typography variant="body1" margin={1} style={{ color: 'black' }}>
-        {post.description}
-      </Typography>
+        <Typography variant="body1" margin={1} style={{ color: 'black' }}>
+          {post.description}
+        </Typography>
       )}
+      {/* Like button for the post */}
+      <IconButton aria-label="like comment" onClick={() => handleCommentLike(index)} style={{ marginLeft: '8px' }}>
+              <HeartIcon style={{ fontSize: '16px', fill: 'white', stroke: 'black', strokeWidth: '2px' }} />
+              <Typography variant="body2" style={{ color: 'gray', marginLeft: '4px' }}>{commentLikes[index]}</Typography>
+        </IconButton>
       <br />
+      <br />
+      {/* Comments */}
       {comment.length > 0 ? (
         comment.map((comment, index) => (
           <Paper
             key={index}
             elevation={3}
             sx={{
-              backgroundColor: 'white',
-              marginY: 2,
-              padding: 2,
-              borderRadius: '40px',
+              backgroundColor: 'transparent', // Set background color to transparent
+              marginBottom: '8px',
+              padding: '12px',
+              borderRadius: '16px',
               display: 'flex',
-              justifyContent: 'flex-start',
-              marginLeft: 'auto',
-              marginRight: '0',
-              
+              alignItems: 'center',
             }}
           >
-            {/* Combine the username and comment content */}
-            <Typography variant="body1" component="div" sx={{ wordBreak: 'break-word' }}>
-              <span style={{ fontWeight: 'bold', marginRight: '8px' }}>
-                {comment.user.username || 'Anonymous'}:
-              </span>
-              {comment.content}
-            </Typography>
+
+              <Typography variant="body1" sx={{ color: 'black', flex: '1', fontWeight: '400', lineHeight: '1.4' }}>
+              <Button
+                  onClick={() => handleNavigatePublicProfile(comment.user.username)} 
+                  style={{ fontWeight: 'bold', color: '#9E4291', textTransform: 'none' }}
+                >
+                  {comment.user.username|| 'Anonymous'}:
+                </Button>
+                {comment.content}
+              </Typography>
+            {/* Like button for the comment */}
+            <IconButton aria-label="like comment" onClick={() => handleCommentLike(index)} style={{ marginLeft: '8px' }}>
+              <HeartIcon style={{ fontSize: '16px', fill: 'white', stroke: 'black', strokeWidth: '2px' }} />
+              <Typography variant="body2" style={{ color: 'gray', marginLeft: '4px' }}>{commentLikes[index]}</Typography>
+            </IconButton>
           </Paper>
         ))
       ) : (
         // Display a message if there are no comments
-        <Typography variant="subtitle2" style={{ marginTop: '5px', fontStyle: "italic" }}>
+        <Typography variant="subtitle2" style={{ marginTop: '5px', fontStyle: "italic", color: '#9E4291' }}>
           There are no comments, be the first :)
         </Typography>
       )}

@@ -11,4 +11,5 @@ export interface UserData {
   accessToken: string,
   communitiesCreated: Array<ObjectId>,
   communitiesJoined: Array<ObjectId>
+  comments: Array<ObjectId>,
 }

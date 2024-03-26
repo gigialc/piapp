@@ -7,18 +7,14 @@ import PostContent from "../components/PostContent";
 import { UserContext } from "../components/Auth";
 import { UserContextType } from "../components/Types";
 import { CommunityType } from "../components/Types";
+import { Box } from '@mui/system';
 
 const _window: Window & typeof globalThis & { __ENV?: { backendURL: string, sandbox: "true" | "false" } } = window;
 const backendURL = _window.__ENV?.backendURL;
 
 const axiosClient = axios.create({ baseURL: `${backendURL}`, timeout: 20000, withCredentials: true });
 
-interface Props {
-  name: string,
-  description: string,
-  // price: number,
-  community: CommunityType,
-}
+
 
 export default function Chat() {
   const { user, saveUser, showModal, saveShowModal, onModalClose } = useContext(UserContext) as UserContextType;
@@ -26,9 +22,14 @@ export default function Chat() {
   const [createCommunityData, setCreateCommunityData] = useState<CommunityType[] | null>(null);;
   const [selectedCommunity, setSelectedCommunity] = useState<CommunityType | null>(null);
   const [isFollowing, setIsFollowing] = useState(false);
+
   const navigate = useNavigate();
   const location = useLocation();
   const communityId = location.state?.communityId;
+
+  const handleNavigatePublicProfile = (communityId: string) => {
+    navigate("/PublicProfile", { state: { communityId } });
+  }
 
   useEffect(() => {
     if (!communityId) return;
@@ -71,44 +72,59 @@ export default function Chat() {
         console.error('Error:', error);
       });
 
-  //   //check if user is already subscribed to the community
-  //   useEffect(() => {
-  //     axiosClient.get(`/user/joined/${communityId}`, { params: { userId: user.uid } })
-  //       .then((response) => {
-  //         setIsFollowing(response.data.isFollowing);
-  //         setIsFollowing(true);
-  //       })
-  //       .catch((error) => {
-  //         console.error(error);
-  //         setIsFollowing(false);
-  //       });
-  //   }, [communityId, user]);
   }
-
 
   return (
     <>
       <Header />
-      {community?.name && (
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: 2, paddingTop: 20 }}>
-          <Typography variant="h5" color="black" style={{ fontWeight: 'Bold', marginLeft:15 }}>
-            🩷 {community.name}
-          </Typography>
-          <Button
-            variant="contained"
-            style={{ marginRight: 20, backgroundColor: '#9E4291', color: 'white' , borderRadius: 20, display: 'inline-flex', height: '25px', textTransform: 'none'}}
-            onClick= {handleFollow}
-          >
-            {isFollowing ? 'Subscribed' : 'Subscribe'}
-          </Button>
+      <div style={{ padding: '15px' }}>
+        <div style={{ marginBottom: '20px' }}>
+          {community ? (
+            <>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Typography variant="h5" style={{ fontWeight: 'bold' }}>
+                {community.name}
+                </Typography>
+                <Button
+                  variant="contained"
+                  onClick={handleFollow}
+                  style={{ borderRadius: 20, backgroundColor: isFollowing ? '#D3D3D3' : '#9E4291', color: 'white', textTransform: 'none' }}
+                >
+                  {isFollowing ? 'Unfollow' : 'Follow'}
+                </Button>
+              </div>
+              <Typography variant="subtitle1" style={{ marginTop: '0px' }}>
+                {/* user button */}
+                  <Button
+                  style={{
+                    color: '#4C4E52',
+                    textTransform: 'none',
+                    padding: 0, // Remove padding if you want the button to look like plain text
+                    minWidth: 0, // Use this to prevent the button from having a minimum size
+                  }}
+                  onClick={() => handleNavigatePublicProfile(communityId)}
+                >
+                  @{community.user.username}
+                </Button>
+
+              </Typography>
+              <Typography variant="body1" style={{ marginTop: '10px' }}>
+                {community.description}
+              </Typography>
+            </>
+          ) : (
+            <Typography variant="h6">Loading community details...</Typography>
+          )}
         </div>
-      )}
-      {community?.description && (
-        <Typography variant="body1" style={{ color: '#9E4291', marginLeft: 20,marginTop:15 }}>
-          {community.description}
-        </Typography>
-      )}
-      <PostContent communityId={communityId} />
+        <div>
+          <PostContent communityId={communityId} />
+        </div>
+      </div>
+      <br />
+      <br />
+      <br />
+
     </>
   );
+  
 }

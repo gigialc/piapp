@@ -13,4 +13,6 @@ export interface PostType {
         _id: ObjectId,
     },
     comments: CommentType[],
+    likes: number,
+    
 }

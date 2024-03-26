@@ -14,7 +14,11 @@ import IconButton from '@mui/material/IconButton';
 import CommentIcon from '@mui/icons-material/Comment';
 import { PodcastsOutlined, PostAddOutlined } from "@mui/icons-material";
 import CommentContent from "./CommentContent";
-
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import { CardMedia } from '@mui/material';
+import { CardActionArea } from '@mui/material';
+import HeartIcon from '@mui/icons-material/Favorite';
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 
 interface WindowWithEnv extends Window {
   __ENV?: {
@@ -33,6 +37,8 @@ export default function PostContent({ communityId }: { communityId: string }) {
   const { user, saveUser, showModal, saveShowModal, onModalClose } = useContext(UserContext) as UserContextType;
   const navigate = useNavigate();
   const [posts, setPosts] = useState<PostType[]>([]);
+  const [postLikes, setPostLikes] = useState(posts.map(() => 0));
+  const [commentLikes, setCommentLikes] = useState<number[]>([]);
 
   const location = useLocation();
   const postId = location.state.postId;
@@ -42,6 +48,19 @@ export default function PostContent({ communityId }: { communityId: string }) {
   useEffect(() => {
     console.log(posts);
   }, [setPosts]);
+
+  const handleCommentLike = (index: number) => {
+    const updatedLikes = [...commentLikes];
+    updatedLikes[index] += 1;
+    setCommentLikes(updatedLikes);
+  }
+
+  // Function to handle comment like
+  const handlePostLike = () => {
+    const updatedLikes = [...postLikes];
+    updatedLikes[0] += 1;
+    setPostLikes(updatedLikes);
+  };
   
   // get the posts that have the same community id as the current session
   useEffect(() => {
@@ -57,38 +76,53 @@ export default function PostContent({ communityId }: { communityId: string }) {
   }, [communityId]);// Empty dependency array means this effect runs once on mount
 
   return (
-    <Box sx={{ flexGrow: 1, margin: 2}}>
-    <Grid container spacing={2} justifyContent="center">
-      {Array.isArray(posts) && posts.length > 0 ? (
-        posts.map((post) => (
-          <Grid item xs={12} md={8} key={post._id} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-            <Box sx={{ textAlign: 'left' }}>
-              <Typography variant="h6" sx={{  color: 'black', marginBottom: 1 }}>
-                 {post.title}
+    <Box sx={{ flexGrow: 1, margin: 2 }}>
+  <Grid container spacing={2}>
+    {Array.isArray(posts) && posts.length > 0 ? (
+      posts.map((post, index) => (
+        <Grid item xs={12} key={post._id}>
+          <Card sx={{ flexDirection: 'column', minHeight: 100, width: "100%", backgroundColor:'#efc9e4' }}>
+            <CardContent>
+              <Typography variant="h6" gutterBottom align="left">
+                {post.title}
               </Typography>
-              <Typography variant="body1" color="black">
+              <Typography variant="body1" color="text.secondary" align="left">
                 {post.description}
               </Typography>
-            </Box>
-            {/* Action area at the bottom */}
-            <Box sx={{ display: 'flex', alignItems: 'center', paddingTop: 2 }} onClick={() => navigate("/comments", { state: { postId: post._id } })}>
-            <IconButton aria-label="add a comment" sx={{ color: "#9E4291" }} >
-              <CommentIcon />
-            </IconButton>
-            <Typography variant="body2" sx={{ color: "#9E4291", display: 'inline' }}>
-              Comment
-            </Typography>
-          </Box>
-          </Grid>
-        ))
-      ) : (
-        <Grid item xs={12}>
-          <Typography textAlign="center">
-            There are no posts in this community :(
-          </Typography>
+            </CardContent>
+            <CardActions sx={{ marginTop: 'auto', display: 'flex', justifyContent: 'space-between' }}>
+              {/* Like button */}
+              <IconButton
+                onClick={() => handleCommentLike(index)}
+                aria-label="like post"
+                style={{ position: 'relative' }}
+              >
+                <HeartIcon style={{ fontSize: '16px', fill: 'white', stroke: 'black', strokeWidth: "2px" }} />
+                <Typography variant="body2" style={{ color: 'gray', marginLeft: '4px' }}>{commentLikes[index]}</Typography>
+              </IconButton>
+              {/* Comment button */}
+              <div> {/* Wrap comment icon and button in a div */}
+                <IconButton aria-label="add a comment" onClick={() => navigate("/comments", { state: { postId: post._id } })}>
+                  <ChatBubbleOutlineIcon style={{ fontSize: '16px', fill: 'white', stroke: 'black'}} />
+                </IconButton>
+                <Typography variant="body2" sx={{ color: "#9E4291", display: 'inline', marginLeft: '4px' }}>
+                  {post.comments.length}
+                </Typography>
+              </div>
+            </CardActions>
+          </Card>
         </Grid>
-      )}
-    </Grid>
-  </Box>
-);
+      ))
+    ) : (
+      <Grid item xs={12}>
+        <Typography variant="body1" textAlign="center">
+          There are no posts in this community :(
+        </Typography>
+      </Grid>
+    )}
+  </Grid>
+</Box>
+
+  );
+
 };

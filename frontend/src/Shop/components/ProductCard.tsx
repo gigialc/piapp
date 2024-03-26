@@ -27,8 +27,6 @@ interface Props {
 export default function ProductCard(props: Props) {
   const navigate = useNavigate();
 
-  
-
   // Define a function to handle the click and navigate to the chat page
   const handleNavigateToChat = (community: CommunityType) => {
     // get the community id and make it a current session

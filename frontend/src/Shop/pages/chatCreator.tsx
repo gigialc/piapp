@@ -32,6 +32,11 @@ export default function ChatCreator() {
   const location = useLocation();
   const communityId = location.state.communityId;
 
+
+  const handleNavigatePublicProfile = (communityId: string) => {
+    navigate("/PublicProfile", { state: { communityId } });
+  }
+  
   useEffect(() => {
     if (!communityId) return;
     axiosClient.get(`/community/community/${communityId}`)
@@ -63,22 +68,36 @@ export default function ChatCreator() {
   return (
     <>
       <Header />
-      <div style={{ padding: '20px' }}>
-        <div style={{ marginBottom: '30px' }}>
+      <div style={{ padding: '15px' }}>
+        <div style={{ marginBottom: '20px' }}>
           {community ? (
             <>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Typography variant="h4" style={{ fontWeight: 'Bold' }}>
+                <Typography variant="h5" style={{ fontWeight: 'bold' }}>
                   🩷 {community.name}
                 </Typography>
                 <Button
                   variant="contained"
                   onClick={handleFollow}
-                  style={{ borderRadius: 20, backgroundColor: isFollowing ? '#D3D3D3' : '#9E4291', color: 'white' }}
+                  style={{ borderRadius: 20, backgroundColor: isFollowing ? '#D3D3D3' : '#9E4291', color: 'white', textTransform: 'none' }}
                 >
                   {isFollowing ? 'Unfollow' : 'Follow'}
                 </Button>
               </div>
+              <Typography variant="subtitle1" style={{ marginTop: '0px' }}>
+                {/* user button */}
+                  <Button
+                  style={{
+                    color: '#4C4E52',
+                    textTransform: 'none',
+                    padding: 0, // Remove padding if you want the button to look like plain text
+                    minWidth: 0, // Use this to prevent the button from having a minimum size
+                  }}
+                  onClick={() => handleNavigatePublicProfile(communityId)}
+                >
+                  @{community.user.username}
+                </Button>
+              </Typography>
               <Typography variant="subtitle1" style={{ marginTop: '10px' }}>
                 {community.description}
               </Typography>
@@ -87,8 +106,7 @@ export default function ChatCreator() {
             <Typography variant="h6">Loading community details...</Typography>
           )}
         </div>
-  
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+        <div>
           <PostContent communityId={communityId} />
           <Posts communityId={communityId} />
         </div>
