@@ -11,11 +11,9 @@ import { Card, CardContent, Typography } from '@mui/material';
 import { IconButton } from '@mui/material';
 import HeartIcon from '@mui/icons-material/Favorite';
 import Box from '@mui/material/Box';
-import { TextField } from '@mui/material';
-import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import { useNavigate } from 'react-router-dom';
-import navigate from 'react-router-dom';
-import Posts from './posts';
+import { PostType } from './Types';
+
 
 interface WindowWithEnv extends Window {
   __ENV?: {
@@ -30,13 +28,15 @@ const backendURL = _window.__ENV && _window.__ENV.backendURL;
 const axiosClient = axios.create({ baseURL: `${backendURL}`, timeout: 20000, withCredentials: true });
 const config = { headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } };
 
-export default function CommentContent() {
+export default function CommentContent ( ) {
   const { user, saveUser, showModal, saveShowModal, onModalClose } = React.useContext(UserContext) as UserContextType;
   const [comment, setComment] = useState<{ content: string, user: { username: string } }[]>([]);
-  const [post, setPost] = useState<any>(null);
+  const [post, setPost] = useState<PostType | null>(null);
   const [postLikes, setPostLikes] = useState(0);
   const [commentLikes, setCommentLikes] = useState<number[]>([]);
   const [index, setIndex] = useState<number>(0);
+  const [liked, setLiked] = useState<boolean[]>(Array(comment.length).fill(false));
+  
   const navigate = useNavigate();
   
   const location = useLocation();
@@ -58,21 +58,22 @@ export default function CommentContent() {
       }
   }, [postId]);
 
-  // Function to handle post like
- 
   const handleCommentLike = (index: number) => {
-    const updatedLikes = [...commentLikes];
-    updatedLikes[index] += 1;
-    setCommentLikes(updatedLikes);
+    if (liked[index]) {
+      return; // Exit early if the post is already liked
+    }
+    axiosClient.post(`/comments/like/${comment[index]}`)
+      .then((response) => {
+        console.log(response);
+        // Update the liked status for the specific post
+        const newLiked = [...liked];
+        newLiked[index] = true;
+        setLiked(newLiked);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
-
-
-  // Function to handle comment like
-  const handlePostLike = () => {
-    const updatedLikes = [...postLikes];
-    updatedLikes[0] += 1;
-    setPostLikes(updatedLikes);
-  };
  
   const handleNavigatePublicProfile = (userId: string) => {
     navigate(`/publicProfile/${userId}`);
@@ -83,8 +84,8 @@ export default function CommentContent() {
   console.log(postId);
     axiosClient.get(`/posts/post/${postId}`) // Use template literals to inject communityId
       .then((response) => {
-        console.log(response.data);
-        setPost(response.data); // Assuming you want to set the entire response object
+        console.log(response.data); 
+        setPost(response.data);
       })
       .catch((error) => {
         console.error(error);
@@ -93,26 +94,22 @@ export default function CommentContent() {
   
   return (
     <div style={{ maxWidth: '600px', margin: '1', textAlign: 'left' }}>
-      {post?.title && (
-        <>
-          <Typography variant="h5" margin={1} style={{ color: '#9E4291', fontWeight: 'bold' }}>
-            {post.title}
-          </Typography>
-        </>
-      )}
-      {post?.description && (
-        <Typography variant="body1" margin={1} style={{ color: 'black' }}>
-          {post.description}
+      {postId ? (
+          <CardContent>
+            <Typography variant="h6" gutterBottom align="left" >
+              {post?.title}
+            </Typography>
+            <Typography variant="body1" color="text.secondary" align="left">
+              {post?.description}
+            </Typography>
+          </CardContent>
+      ) : (
+        <Typography variant="subtitle2" style={{ marginTop: '5px', fontStyle: "italic", color: '#9E4291' }}>
+          Loading post...
         </Typography>
       )}
-      {/* Like button for the post */}
-      <IconButton aria-label="like comment" onClick={() => handleCommentLike(index)} style={{ marginLeft: '8px' }}>
-              <HeartIcon style={{ fontSize: '16px', fill: 'white', stroke: 'black', strokeWidth: '2px' }} />
-              <Typography variant="body2" style={{ color: 'gray', marginLeft: '4px' }}>{commentLikes[index]}</Typography>
-        </IconButton>
       <br />
       <br />
-      {/* Comments */}
       {comment.length > 0 ? (
         comment.map((comment, index) => (
           <Paper
@@ -152,7 +149,7 @@ export default function CommentContent() {
       )}
     </div>
   );
-};
+}
 
   
 

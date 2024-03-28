@@ -39,6 +39,7 @@ export default function PostContent({ communityId }: { communityId: string }) {
   const [posts, setPosts] = useState<PostType[]>([]);
   const [postLikes, setPostLikes] = useState(posts.map(() => 0));
   const [commentLikes, setCommentLikes] = useState<number[]>([]);
+  const [liked, setLiked] = useState<boolean[]>(Array(posts.length).fill(false));
 
   const location = useLocation();
   const postId = location.state.postId;
@@ -49,17 +50,22 @@ export default function PostContent({ communityId }: { communityId: string }) {
     console.log(posts);
   }, [setPosts]);
 
+  //likes posted to backend for posts
   const handleCommentLike = (index: number) => {
-    const updatedLikes = [...commentLikes];
-    updatedLikes[index] += 1;
-    setCommentLikes(updatedLikes);
-  }
-
-  // Function to handle comment like
-  const handlePostLike = () => {
-    const updatedLikes = [...postLikes];
-    updatedLikes[0] += 1;
-    setPostLikes(updatedLikes);
+    if (liked[index]) {
+      return; // Exit early if the post is already liked
+    }
+    axiosClient.post(`/posts/like/${posts[index]._id}`)
+      .then((response) => {
+        console.log(response);
+        // Update the liked status for the specific post
+        const newLiked = [...liked];
+        newLiked[index] = true;
+        setLiked(newLiked);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
   
   // get the posts that have the same community id as the current session
@@ -77,52 +83,59 @@ export default function PostContent({ communityId }: { communityId: string }) {
 
   return (
     <Box sx={{ flexGrow: 1, margin: 2 }}>
-  <Grid container spacing={2}>
-    {Array.isArray(posts) && posts.length > 0 ? (
-      posts.map((post, index) => (
-        <Grid item xs={12} key={post._id}>
-          <Card sx={{ flexDirection: 'column', minHeight: 100, width: "100%", backgroundColor:'#efc9e4' }}>
-            <CardContent>
-              <Typography variant="h6" gutterBottom align="left">
-                {post.title}
-              </Typography>
-              <Typography variant="body1" color="text.secondary" align="left">
-                {post.description}
-              </Typography>
-            </CardContent>
-            <CardActions sx={{ marginTop: 'auto', display: 'flex', justifyContent: 'space-between' }}>
-              {/* Like button */}
-              <IconButton
-                onClick={() => handleCommentLike(index)}
-                aria-label="like post"
-                style={{ position: 'relative' }}
-              >
-                <HeartIcon style={{ fontSize: '16px', fill: 'white', stroke: 'black', strokeWidth: "2px" }} />
-                <Typography variant="body2" style={{ color: 'gray', marginLeft: '4px' }}>{commentLikes[index]}</Typography>
-              </IconButton>
-              {/* Comment button */}
-              <div> {/* Wrap comment icon and button in a div */}
-                <IconButton aria-label="add a comment" onClick={() => navigate("/comments", { state: { postId: post._id } })}>
-                  <ChatBubbleOutlineIcon style={{ fontSize: '16px', fill: 'white', stroke: 'black'}} />
-                </IconButton>
-                <Typography variant="body2" sx={{ color: "#9E4291", display: 'inline', marginLeft: '4px' }}>
-                  {post.comments.length}
-                </Typography>
-              </div>
-            </CardActions>
-          </Card>
-        </Grid>
-      ))
-    ) : (
-      <Grid item xs={12}>
-        <Typography variant="body1" textAlign="center">
-          There are no posts in this community :(
-        </Typography>
+      <Grid container spacing={2}>
+        {Array.isArray(posts) && posts.length > 0 ? (
+          posts.map((post, index) => (
+            <Grid item xs={12} key={post._id}>
+              <Card sx={{ flexDirection: 'column', minHeight: 100, width: "100%", backgroundColor:'#efc9e4' }}>
+                <CardContent>
+                  <Typography variant="h6" gutterBottom align="left">
+                    {post.title}
+                  </Typography>
+                  <Typography variant="body1" color="text.secondary" align="left">
+                    {post.description}
+                  </Typography>
+                </CardContent>
+                <CardActions sx={{ marginTop: 'auto', display: 'flex', justifyContent: 'space-between' }}>
+                  {/* Comment button */}
+                  <div> {/* Wrap comment icon and button in a div */}
+                    <IconButton aria-label="add a comment" onClick={() => navigate("/comments", { state: { postId: post._id } })}>
+                      <ChatBubbleOutlineIcon style={{ fontSize: '16px', color: "black"}} />
+                    </IconButton>
+                    <Typography variant="body2" sx={{ color: "#9E4291", display: 'inline', marginLeft: '4px' }}>
+                      {post.comments.length}
+                    </Typography>
+                  </div>
+                  {/* Like button */}
+                  <div> {/* Wrap like button and likes count in a div */}
+                    <IconButton
+                      onClick={() => handleCommentLike(index)}
+                      aria-label="like post"
+                      disabled={liked[index]} // Disable the button if the post is already liked
+                    >
+                      <HeartIcon
+                        style={{
+                          fontSize: '16px',
+                          fill: liked[index] ? 'red' : 'white', // Change fill color to red if liked, white otherwise
+                          stroke: 'black',
+                          strokeWidth: '2px'
+                        }}
+                      />
+                    </IconButton >{post.likes}
+                  </div>
+                </CardActions>
+              </Card>
+            </Grid>
+          ))
+        ) : (
+          <Grid item xs={12}>
+            <Typography variant="body1" textAlign="center">
+              There are no posts in this community :(
+            </Typography>
+          </Grid>
+        )}
       </Grid>
-    )}
-  </Grid>
-</Box>
-
+    </Box>
   );
-
-};
+  
+}

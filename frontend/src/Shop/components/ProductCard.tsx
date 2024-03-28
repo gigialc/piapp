@@ -45,7 +45,7 @@ export default function ProductCard(props: Props) {
       <CardContent>
         <Grid container justifyContent="space-between" alignItems="center">
           <Grid item>
-            <Typography variant="body1" gutterBottom style={{ fontWeight: 'bold' }}>
+            <Typography variant="h6" gutterBottom style={{ fontWeight: 'bold' }}>
               {props.name}
             </Typography>
           </Grid>
@@ -63,7 +63,7 @@ export default function ProductCard(props: Props) {
             </Button>
           </Grid>
         </Grid>
-        <Typography variant="body2" component="p">
+        <Typography variant="body1" component="p">
           {props.description}
         </Typography>
         <Typography variant="body2" style={{ color: "#4C4E52", paddingTop: '1rem' }}>
@@ -77,7 +77,7 @@ export default function ProductCard(props: Props) {
           style={{ textTransform: 'none', height: '25px', fontSize: '12px'}}
           onClick={() => handleNavigateToChat(props.community)}
         >
-          Enter
+          Join
         </Button>
       </CardActions>
     </Card>

@@ -125,7 +125,7 @@ export default function HomePage() {
 return(
   <>
   <Header />
-  <Typography variant="h6" style={{ fontWeight: 'bold', color: '#E69BD1', marginBottom: '10px' , marginLeft: 20 }}>
+  <Typography variant="h5" style={{ fontWeight: 'bold', color: '#E69BD1', marginBottom: '10px' , marginLeft: 20 }}>
     Communities ✨
   </Typography> 
   {createCommunityData ? (

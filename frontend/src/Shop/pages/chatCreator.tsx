@@ -76,13 +76,13 @@ export default function ChatCreator() {
                 <Typography variant="h5" style={{ fontWeight: 'bold' }}>
                   🩷 {community.name}
                 </Typography>
-                <Button
+                {/* <Button
                   variant="contained"
                   onClick={handleFollow}
                   style={{ borderRadius: 20, backgroundColor: isFollowing ? '#D3D3D3' : '#9E4291', color: 'white', textTransform: 'none' }}
                 >
                   {isFollowing ? 'Unfollow' : 'Follow'}
-                </Button>
+                </Button> */}
               </div>
               <Typography variant="subtitle1" style={{ marginTop: '0px' }}>
                 {/* user button */}

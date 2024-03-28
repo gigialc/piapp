@@ -113,5 +113,27 @@ export default function mountPostEndpoints(router: Router) {
           return res.status(500).json({ message: "Error fetching post", error });
         }
     });
+
+    //update likes on a post 
+    router.post('/like/:id', async (req, res) => {
+        const postCollection = req.app.locals.postCollection;
+        const id = req.params.id;
+        try {
+            const updateResult = await postCollection.updateOne(
+                { _id: new ObjectId(id) },
+                { $inc: { likes: 1 } }
+            );
+            if (updateResult.matchedCount === 0) {
+                return res.status(404).json({ message: "Post not found" });
+            }
+            if (updateResult.modifiedCount === 0) {
+                return res.status(400).json({ message: "Failed to like post" });
+            }
+            return res.status(200).json({ message: "Post liked successfully" });
+        } catch (error) {
+            console.error(error);
+            return res.status(500).json({ message: "Error liking post", error });
+        }
+    });
     
 }
